@@ -1,0 +1,15 @@
+{
+  "main": "dist/nrf-framework-courses.js",
+  "module": "src/index.js",
+  "scripts": {
+    "rollup": "rollup -c rollup.config.js"
+  },
+  "dependencies": {
+    "prettier": "^1.14.0",
+    "sander": "^0.6.0"
+  },
+  "devDependencies": {
+    "rollup": "^0.63.5",
+    "rollup-plugin-buble": "^0.19.2"
+  }
+}

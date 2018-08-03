@@ -9,7 +9,7 @@ export default class Step {
   /**
    * @param {Object} json The input JSON representation for this recipe
    */
-  construct(inputJson) {
+  constructor(inputJson) {
     let json = inputJson;
 
     // Sanity checks

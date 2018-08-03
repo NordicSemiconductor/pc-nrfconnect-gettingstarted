@@ -1,3 +1,5 @@
+import Step from "./Step";
+
 /**
  * A Checkable is a dummy placeholder right now.
  * TODO: add support for specifying command-line commands, so that they might
@@ -11,7 +13,7 @@ export default class Checkable {
   /**
    * @param {Object} json The input JSON representation for this recipe
    */
-  construct(inputJson) {
+  constructor(inputJson) {
     let json = inputJson;
 
     // Sanity checks
@@ -29,7 +31,7 @@ export default class Checkable {
     if (!json.steps || !(json.steps instanceof Array)) {
       throw new Error('"steps" field missing or not an Array.');
     }
-    this._steps = json.steps.map(step => new Step(checkable));
+    this._steps = json.steps.map(step => new Step(step));
   }
 
   /**

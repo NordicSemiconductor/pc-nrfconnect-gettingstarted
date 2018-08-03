@@ -10,7 +10,7 @@ export default class Recipe {
   /**
    * @param {Object} json The input JSON representation for this recipe
    */
-  construct(inputJson) {
+  constructor(inputJson) {
     let json = inputJson;
 
     // Sanity checks
@@ -62,7 +62,7 @@ export default class Recipe {
    * @returns {Promise<Recipe>} A Promise to an instance of Recipe
    */
   static loadFromFile(filename) {
-    sander.readFile(filename, { encoding: "utf8" }).then(text => {
+    return sander.readFile(filename, { encoding: "utf8" }).then(text => {
       let json;
       try {
         json = JSON.parse(text);
