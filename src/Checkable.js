@@ -24,9 +24,6 @@ export default class Checkable {
       // Inspired by GeoJSON, a course must have a "type": "Recipe" field
       throw new Error('"type" field in JSON is not "Checkable".');
     }
-    if (!json.tool || !(json.tool instanceof String)) {
-      throw new Error('"tool" field must be a string.');
-    }
 
     if (!json.steps || !(json.steps instanceof Array)) {
       throw new Error('"steps" field missing or not an Array.');

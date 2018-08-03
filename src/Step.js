@@ -9,8 +9,7 @@ export default class Step {
   /**
    * @param {Object} json The input JSON representation for this recipe
    */
-  constructor(inputJson) {
-    let json = inputJson;
+  constructor(json) {
 
     // Sanity checks
 
@@ -24,10 +23,11 @@ export default class Step {
 
     /// TODO: Add commands/automation
 
-    this._enabled = this.appliesToRunningPlatform(json.platforms);
+    this._enabled = appliesToRunningPlatform(json.platforms);
+    this._platforms = json.platforms;
 
     this._title = json.title;
-    this._description.json.description;
+    this._description = json.description;
   }
 
   /**

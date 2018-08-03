@@ -7,7 +7,7 @@
  * fitting the given definition
  */
 export default function appliesToRunningPlatform(platforms) {
-  if (platforms instanceof String) {
+  if (typeof platforms === "string") {
     platforms = [platforms];
   }
 

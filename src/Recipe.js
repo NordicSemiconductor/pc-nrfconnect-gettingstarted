@@ -1,6 +1,7 @@
 import sander from "sander";
 import Checkable from "./Checkable";
 import appliesToRunningPlatform from "./platform-check";
+import path from "path";
 
 /**
  * A Recipe is a set of things that should get one tool installed to a known
@@ -25,11 +26,11 @@ export default class Recipe {
       // Inspired by GeoJSON, a course must have a "type": "Recipe" field
       throw new Error('"type" field in JSON is not "Recipe".');
     }
-    if (!json.tool || !(json.tool instanceof String)) {
+    if (!json.tool || typeof json.tool !== "string") {
       throw new Error('"tool" field must be a string.');
     }
 
-    this._enabled = this.appliesToRunningPlatform(json.platforms);
+    this._enabled = appliesToRunningPlatform(json.platforms);
     this._platforms = json.platforms;
 
     // Using indexOf() instead of slice() to split name/semver, because the
@@ -42,7 +43,7 @@ export default class Recipe {
     this._toolSemver = json.tool.substring(hypenPosition + 1);
 
     this._title = json.title;
-    this._description.json.description;
+    this._description = json.description;
     //     this._recipes = json.recipes.map(recipeJson => new Recipe(recipeJson));
 
     /// TODO: Decide whether to stick with this name or change it.
@@ -72,15 +73,12 @@ export default class Recipe {
         );
       }
 
-      const recipe = new Recipe(json);
-      if (tool.json !== filename.replace(/\.json$/, "")) {
+      if (json.tool !== path.basename(filename).replace(/\.json$/, "")) {
         throw new Error(
-          '"tool" field doesn\'t match filename: ',
-          tool.json,
-          "vs",
-          filename
+          '"tool" field doesn\'t match filename: ' + json.tool + "vs" + filename
         );
       }
+      return new Recipe(json);
     });
   }
 
