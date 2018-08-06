@@ -1,4 +1,4 @@
-import Step from "./Step";
+import Step from './Step';
 
 /**
  * A Checkable is a dummy placeholder right now.
@@ -10,41 +10,41 @@ import Step from "./Step";
  * TODO: Decide whether to stick with the name, or to change it.
  */
 export default class Checkable {
-  /**
+    /**
    * @param {Object} json The input JSON representation for this recipe
    */
-  constructor(inputJson) {
-    let json = inputJson;
+    constructor(inputJson) {
+        const json = inputJson;
 
-    // Sanity checks
-    if (!json || !(json instanceof Object)) {
-      throw new Error("No JSON specified for Recipe constructor.");
-    }
-    if (json.type !== "Checkable") {
-      // Inspired by GeoJSON, a course must have a "type": "Recipe" field
-      throw new Error('"type" field in JSON is not "Checkable".');
+        // Sanity checks
+        if (!json || !(json instanceof Object)) {
+            throw new Error('No JSON specified for Recipe constructor.');
+        }
+        if (json.type !== 'Checkable') {
+            // Inspired by GeoJSON, a course must have a "type": "Recipe" field
+            throw new Error('"type" field in JSON is not "Checkable".');
+        }
+
+        if (!json.steps || !(json.steps instanceof Array)) {
+            throw new Error('"steps" field missing or not an Array.');
+        }
+        this._steps = json.steps.map(step => new Step(step));
     }
 
-    if (!json.steps || !(json.steps instanceof Array)) {
-      throw new Error('"steps" field missing or not an Array.');
-    }
-    this._steps = json.steps.map(step => new Step(step));
-  }
-
-  /**
+    /**
    * @return {Object} A JSON representation of the current instance.
    */
-  asJSON() {
-    return {
-      type: "Checkable",
-      steps: this._steps.map(step => step.asJSON())
-      //       recipes: this._recipes.map(recipe => recipe.asJSON())
-    };
-  }
+    asJSON() {
+        return {
+            type: 'Checkable',
+            steps: this._steps.map(step => step.asJSON()),
+            //       recipes: this._recipes.map(recipe => recipe.asJSON())
+        };
+    }
 
-  get steps() {
-    return this._steps;
-  }
+    get steps() {
+        return this._steps;
+    }
 
-  /// TODO: load state from local config or from state json
+    // / TODO: load state from local config or from state json
 }

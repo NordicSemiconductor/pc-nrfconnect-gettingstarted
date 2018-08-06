@@ -7,39 +7,35 @@
  * fitting the given definition
  */
 export default function appliesToRunningPlatform(platforms) {
-  if (typeof platforms === "string") {
-    platforms = [platforms];
-  }
-
-  platforms.forEach(p => {
-    const [platform, arch] = p.split("-");
-
-    // Values for platform/arch should map to possible values for
-    // nodejs' process.platform and process.arch
-    if (
-      platform !== "all" &&
-      platform !== "win32" &&
-      platform !== "linux" &&
-      platform !== "darwin"
-    ) {
-      throw new Error(
-        "Platform must be one of 'all', 'win32', 'linux' or 'darwin'"
-      );
+    if (typeof platforms === 'string') {
+        platforms = [platforms];
     }
 
-    if (arch !== undefined && arch !== "x32" && arch !== "x64") {
-      throw new Error(
-        "Platform architecture must be undefined or one of 'x32', 'x64'"
-      );
-    }
-  });
+    platforms.forEach(p => {
+        const [platform, arch] = p.split('-');
 
-  return platforms.some(p => {
-    const [platform, arch] = p.split("-");
+        // Values for platform/arch should map to possible values for
+        // nodejs' process.platform and process.arch
+        if (
+            platform !== 'all' &&
+      platform !== 'win32' &&
+      platform !== 'linux' &&
+      platform !== 'darwin'
+        ) {
+            throw new Error('Platform must be one of \'all\', \'win32\', \'linux\' or \'darwin\'');
+        }
 
-    return (
-      (platform === "all" || platform === process.platform) &&
+        if (arch !== undefined && arch !== 'x32' && arch !== 'x64') {
+            throw new Error('Platform architecture must be undefined or one of \'x32\', \'x64\'');
+        }
+    });
+
+    return platforms.some(p => {
+        const [platform, arch] = p.split('-');
+
+        return (
+            (platform === 'all' || platform === process.platform) &&
       (arch === undefined || arch === process.arch)
-    );
-  });
+        );
+    });
 }
