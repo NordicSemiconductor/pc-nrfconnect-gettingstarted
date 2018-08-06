@@ -1,18 +1,18 @@
-import Recipe from './Recipe';
 import sander from 'sander';
 import path from 'path';
+import Recipe from './Recipe';
 
 /**
  *
  */
 export default class Course {
     /**
-   * @param {Object} json The input JSON representation for this course
-   * @param {String=} searchPath An optional filesystem path where to look for
-   * the JSON files containing Recipe definitions.
-   */
+     * @param {Object} json The input JSON representation for this course
+     * @param {String=} searchPath An optional filesystem path where to look for
+     * the JSON files containing Recipe definitions.
+     */
     constructor(json, searchPath) {
-    // Sanity checks
+        // Sanity checks
         if (!json || !(json instanceof Object)) {
             throw new Error('No JSON specified for Course constructor.');
         }
@@ -30,7 +30,8 @@ export default class Course {
         this._title = json.title;
         this._description = json.description;
         console.log('Recipes in the definition: ', json.recipes);
-        this._recipesPromise = Promise.all(json.recipes.map(filename => {
+        this._recipesPromise = Promise.all(json.recipes.map(f => {
+            let filename = f;
             if (filename.search(/\.json$/) === -1) {
                 filename += '.json';
             }
@@ -45,23 +46,26 @@ export default class Course {
     }
 
     /**
-   * Asynchronously loads the recipes pointed from the 'recipes' field of the
-   * definition at
-   */
+     * Asynchronously loads the recipes pointed from the 'recipes' field of the
+     * definition; filenames are supposed to be relative to the executable,
+     * or relative to the file this Course was loaded from, it the Course was
+     * instantiated through loadFromFile.
+     * @return {Promise<Recipe>} The loaded recipes
+     */
     loadRecipes() {
         return this._recipesPromise;
     }
 
     /**
-   * Loads a .json file from the filesystem, parses it, and returns an instance
-   * of Course from it.
-   *
-   * TODO: Store the path of the loaded file, use it as the base path for
-   * the relative path of the recipes' files
-   *
-   * @param {String} filename Relative path of the file to load
-   * @returns {Promise<Course>} A Promise to an instance of Course
-   */
+     * Loads a .json file from the filesystem, parses it, and returns an instance
+     * of Course from it.
+     *
+     * TODO: Store the path of the loaded file, use it as the base path for
+     * the relative path of the recipes' files
+     *
+     * @param {String} filename Relative path of the file to load
+     * @return {Promise<Course>} A Promise to an instance of Course
+     */
     static loadFromFile(filename) {
         return sander
             .readFile(filename, { encoding: 'utf8' })
@@ -79,8 +83,8 @@ export default class Course {
     }
 
     /**
-   * @return {Object} A JSON representation of the current instance.
-   */
+     * @return {Object} A JSON representation of the current instance.
+     */
     asJSON() {
         if (!this._recipes) {
             throw new Error('Cannot represent Course as JSON: its recipes haven\'t been loaded yet. Wait for the Course.loadRecipes() promise.');

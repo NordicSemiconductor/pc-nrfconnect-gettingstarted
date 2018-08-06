@@ -1,7 +1,7 @@
+import path from 'path';
 import sander from 'sander';
 import Checkable from './Checkable';
 import appliesToRunningPlatform from './platform-check';
-import path from 'path';
 
 /**
  * A Recipe is a set of things that should get one tool installed to a known
@@ -9,57 +9,57 @@ import path from 'path';
  */
 export default class Recipe {
     /**
-   * @param {Object} json The input JSON representation for this recipe
-   */
-    constructor(inputJson) {
-        let json = inputJson;
-
+     * @param {Object} json The input JSON representation for this recipe
+     */
+    constructor(json) {
         // Sanity checks
-        if (json instanceof String) {
+        const data = (json instanceof String) ?
+            { platforms: 'all', url: json } : json;
+
+        if (data instanceof String) {
             // Assume that a string is really a recipe for all platforms
-            json = { platforms: 'all', url: json };
         }
-        if (!json || !(json instanceof Object)) {
+        if (!data || !(data instanceof Object)) {
             throw new Error('No JSON specified for Recipe constructor.');
         }
-        if (json.type !== 'Recipe') {
+        if (data.type !== 'Recipe') {
             // Inspired by GeoJSON, a course must have a "type": "Recipe" field
             throw new Error('"type" field in JSON is not "Recipe".');
         }
-        if (!json.tool || typeof json.tool !== 'string') {
+        if (!data.tool || typeof data.tool !== 'string') {
             throw new Error('"tool" field must be a string.');
         }
 
-        this._enabled = appliesToRunningPlatform(json.platforms);
-        this._platforms = json.platforms;
+        this._enabled = appliesToRunningPlatform(data.platforms);
+        this._platforms = data.platforms;
 
         // Using indexOf() instead of slice() to split name/semver, because the
         // semver part can have hyphens too.
-        const hypenPosition = json.tool.indexOf('-');
+        const hypenPosition = data.tool.indexOf('-');
         if (hypenPosition === -1) {
             throw new Error('"tool" field is malformed.');
         }
-        this._toolName = json.tool.substring(0, hypenPosition);
-        this._toolSemver = json.tool.substring(hypenPosition + 1);
+        this._toolName = data.tool.substring(0, hypenPosition);
+        this._toolSemver = data.tool.substring(hypenPosition + 1);
 
-        this._title = json.title;
-        this._description = json.description;
-        //     this._recipes = json.recipes.map(recipeJson => new Recipe(recipeJson));
+        this._title = data.title;
+        this._description = data.description;
+        //     this._recipes = data.recipes.map(recipeJson => new Recipe(recipeJson));
 
         // / TODO: Decide whether to stick with this name or change it.
-        if (!json.checkables || !(json.checkables instanceof Array)) {
+        if (!data.checkables || !(data.checkables instanceof Array)) {
             throw new Error('"checkables" field missing or not an Array.');
         }
-        this._checkables = json.checkables.map(checkable => new Checkable(checkable));
+        this._checkables = data.checkables.map(checkable => new Checkable(checkable));
     }
 
     /**
-   * Loads a .json file from the filesystem, parses it, and returns an instance
-   * of Recipe from it.
-   *
-   * @param {String} filename Relative path of the file to load
-   * @returns {Promise<Recipe>} A Promise to an instance of Recipe
-   */
+     * Loads a .json file from the filesystem, parses it, and returns an instance
+     * of Recipe from it.
+     *
+     * @param {String} filename Relative path of the file to load
+     * @returns {Promise<Recipe>} A Promise to an instance of Recipe
+     */
     static loadFromFile(filename) {
         return sander.readFile(filename, { encoding: 'utf8' }).then(text => {
             let json;
@@ -77,8 +77,8 @@ export default class Recipe {
     }
 
     /**
-   * @return {Object} A JSON representation of the current instance.
-   */
+     * @return {Object} A JSON representation of the current instance.
+     */
     asJSON() {
         return {
             type: 'Recipe',

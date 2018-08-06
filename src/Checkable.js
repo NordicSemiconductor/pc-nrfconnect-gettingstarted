@@ -11,11 +11,9 @@ import Step from './Step';
  */
 export default class Checkable {
     /**
-   * @param {Object} json The input JSON representation for this recipe
-   */
-    constructor(inputJson) {
-        const json = inputJson;
-
+     * @param {Object} json The input JSON representation for this recipe
+     */
+    constructor(json) {
         // Sanity checks
         if (!json || !(json instanceof Object)) {
             throw new Error('No JSON specified for Recipe constructor.');
@@ -32,8 +30,8 @@ export default class Checkable {
     }
 
     /**
-   * @return {Object} A JSON representation of the current instance.
-   */
+     * @return {Object} A JSON representation of the current instance.
+     */
     asJSON() {
         return {
             type: 'Checkable',

@@ -7,20 +7,19 @@
  * fitting the given definition
  */
 export default function appliesToRunningPlatform(platforms) {
-    if (typeof platforms === 'string') {
-        platforms = [platforms];
-    }
+    const plats = (typeof platforms === 'string') ?
+        [platforms] : platforms;
 
-    platforms.forEach(p => {
+    plats.forEach(p => {
         const [platform, arch] = p.split('-');
 
         // Values for platform/arch should map to possible values for
         // nodejs' process.platform and process.arch
         if (
             platform !== 'all' &&
-      platform !== 'win32' &&
-      platform !== 'linux' &&
-      platform !== 'darwin'
+            platform !== 'win32' &&
+            platform !== 'linux' &&
+            platform !== 'darwin'
         ) {
             throw new Error('Platform must be one of \'all\', \'win32\', \'linux\' or \'darwin\'');
         }
@@ -30,12 +29,12 @@ export default function appliesToRunningPlatform(platforms) {
         }
     });
 
-    return platforms.some(p => {
+    return plats.some(p => {
         const [platform, arch] = p.split('-');
 
         return (
             (platform === 'all' || platform === process.platform) &&
-      (arch === undefined || arch === process.arch)
+            (arch === undefined || arch === process.arch)
         );
     });
 }

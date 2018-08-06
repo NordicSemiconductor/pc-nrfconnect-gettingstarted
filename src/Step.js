@@ -7,10 +7,10 @@ import appliesToRunningPlatform from './platform-check';
  */
 export default class Step {
     /**
-   * @param {Object} json The input JSON representation for this recipe
-   */
+     * @param {Object} json The input JSON representation for this recipe
+     */
     constructor(json) {
-    // Sanity checks
+        // Sanity checks
 
         if (!json || !(json instanceof Object)) {
             throw new Error('No JSON specified for Recipe constructor.');
@@ -31,8 +31,8 @@ export default class Step {
     }
 
     /**
-   * @return {Object} A JSON representation of the current instance.
-   */
+     * @return {Object} A JSON representation of the current instance.
+     */
     asJSON() {
         return {
             type: 'Step',

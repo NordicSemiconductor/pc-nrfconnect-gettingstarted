@@ -1,4 +1,3 @@
-const sander = require('sander');
 const util = require('util');
 const { Course } = require('..');
 
