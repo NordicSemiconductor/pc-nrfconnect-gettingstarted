@@ -105,5 +105,13 @@ export default class Recipe {
     return this._enabled;
   }
 
+  get description() {
+    return this._description;
+  }
+
+  get title() {
+    return this._title;
+  }
+
   /// TODO: load state from local config or from state json
 }

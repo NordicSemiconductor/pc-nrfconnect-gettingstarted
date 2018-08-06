@@ -10,7 +10,6 @@ export default class Step {
    * @param {Object} json The input JSON representation for this recipe
    */
   constructor(json) {
-
     // Sanity checks
 
     if (!json || !(json instanceof Object)) {
@@ -28,6 +27,7 @@ export default class Step {
 
     this._title = json.title;
     this._description = json.description;
+    this._commands = json.commands;
   }
 
   /**
@@ -38,7 +38,8 @@ export default class Step {
       type: "Step",
       title: this._title,
       platforms: this._platforms,
-      description: this._description
+      description: this._description,
+      commands: this._commands
     };
   }
 
@@ -51,8 +52,11 @@ export default class Step {
   }
 
   get description() {
-    return this.description;
+    return this._description;
   }
 
+  get commands() {
+    return this._commands;
+  }
   /// TODO: load state from local config or from state json
 }

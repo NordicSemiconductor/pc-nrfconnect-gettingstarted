@@ -101,6 +101,14 @@ export default class Course {
     };
   }
 
+  get title() {
+    return this.title;
+  }
+
+  get description() {
+    return this._description;
+  }
+
   get recipes() {
     if (!this._recipes) {
       throw new Error(

@@ -11,7 +11,7 @@ export default function appliesToRunningPlatform(platforms) {
     platforms = [platforms];
   }
 
-  return platforms.forEach(p => {
+  platforms.forEach(p => {
     const [platform, arch] = p.split("-");
 
     // Values for platform/arch should map to possible values for
