@@ -98,7 +98,7 @@ export default class Course {
     }
 
     get title() {
-        return this.title;
+        return this._title;
     }
 
     get description() {

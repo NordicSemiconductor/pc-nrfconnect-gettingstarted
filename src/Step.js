@@ -48,7 +48,7 @@ export default class Step {
     }
 
     get title() {
-        return this.title;
+        return this._title;
     }
 
     get description() {
