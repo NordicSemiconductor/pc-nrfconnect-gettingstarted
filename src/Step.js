@@ -22,8 +22,9 @@ export default class Step {
 
         // / TODO: Add commands/automation
 
-        this._enabled = appliesToRunningPlatform(json.platforms);
-        this._platforms = json.platforms;
+        // 'platforms' field is optional in steps
+        this._platforms = json.platforms ? json.platforms : 'all';
+        this._enabled = appliesToRunningPlatform(this._platforms);
 
         this._title = json.title;
         this._description = json.description;

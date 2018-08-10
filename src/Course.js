@@ -1,6 +1,7 @@
 import sander from 'sander';
 import path from 'path';
 import Recipe from './Recipe';
+import appliesToRunningPlatform from './platform-check';
 
 /**
  *
@@ -41,12 +42,16 @@ export default class Course {
         })).then(recipes => {
             this._recipes = recipes;
         });
+
+        // 'platforms' field is optional in courses
+        this._platforms = json.platforms ? json.platforms : 'all';
+        this._enabled = appliesToRunningPlatform(this._platforms);
     }
 
     /**
      * Asynchronously loads the recipes pointed from the 'recipes' field of the
      * definition; filenames are supposed to be relative to the executable,
-     * or relative to the file this Course was loaded from, it the Course was
+     * or relative to the file this Course was loaded from, if the Course was
      * instantiated through loadFromFile.
      * @return {Promise<Recipe>} The loaded recipes
      */

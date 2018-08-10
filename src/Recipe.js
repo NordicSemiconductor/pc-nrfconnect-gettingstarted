@@ -43,7 +43,6 @@ export default class Recipe {
 
         this._title = data.title;
         this._description = data.description;
-        //     this._recipes = data.recipes.map(recipeJson => new Recipe(recipeJson));
 
         // / TODO: Decide whether to stick with this name or change it.
         if (!data.checkables || !(data.checkables instanceof Array)) {
@@ -70,7 +69,8 @@ export default class Recipe {
 
             // Sanity check: The filename must equal the "tool" field inside it.
             // This is done to make file metadata explicit in the file's contents,
-            // and to force the file contents (after editing) to match the file name.
+            // to force the file contents (after editing) to match the file name,
+            // and to be able to recreate the filename from the file contents.
             if (json.tool !== path.basename(filename).replace(/\.json$/, '')) {
                 throw new Error(`"tool" field doesn't match filename: ${json.tool}vs${filename}`);
             }

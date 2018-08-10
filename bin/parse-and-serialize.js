@@ -1,5 +1,5 @@
 const util = require('util');
-const { Course } = require('..');
+const Course = require('..');
 
 const filename = process.argv[2];
 
