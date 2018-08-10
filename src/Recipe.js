@@ -12,13 +12,11 @@ export default class Recipe {
      * @param {Object} json The input JSON representation for this recipe
      */
     constructor(json) {
-        // Sanity checks
+        // Assume that a string is really a recipe for all platforms
         const data = (json instanceof String) ?
             { platforms: 'all', url: json } : json;
 
-        if (data instanceof String) {
-            // Assume that a string is really a recipe for all platforms
-        }
+        // Sanity checks
         if (!data || !(data instanceof Object)) {
             throw new Error('No JSON specified for Recipe constructor.');
         }
@@ -30,8 +28,9 @@ export default class Recipe {
             throw new Error('"tool" field must be a string.');
         }
 
-        this._enabled = appliesToRunningPlatform(data.platforms);
-        this._platforms = data.platforms;
+        // 'platforms' field is optional in recipes
+        this._platforms = data.platforms ? data.platforms : 'all';
+        this._enabled = appliesToRunningPlatform(this._platforms);
 
         // Using indexOf() instead of slice() to split name/semver, because the
         // semver part can have hyphens too.
@@ -69,6 +68,9 @@ export default class Recipe {
                 throw new Error(`File ${filename} failed to be parsed as JSON: ${ex}`);
             }
 
+            // Sanity check: The filename must equal the "tool" field inside it.
+            // This is done to make file metadata explicit in the file's contents,
+            // and to force the file contents (after editing) to match the file name.
             if (json.tool !== path.basename(filename).replace(/\.json$/, '')) {
                 throw new Error(`"tool" field doesn't match filename: ${json.tool}vs${filename}`);
             }

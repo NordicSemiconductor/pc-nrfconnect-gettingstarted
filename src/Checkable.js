@@ -19,7 +19,7 @@ export default class Checkable {
             throw new Error('No JSON specified for Recipe constructor.');
         }
         if (json.type !== 'Checkable') {
-            // Inspired by GeoJSON, a course must have a "type": "Recipe" field
+            // Inspired by GeoJSON, a course must have a "type": "Checkable" field
             throw new Error('"type" field in JSON is not "Checkable".');
         }
 

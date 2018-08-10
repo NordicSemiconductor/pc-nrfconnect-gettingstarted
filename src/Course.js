@@ -29,13 +29,11 @@ export default class Course {
 
         this._title = json.title;
         this._description = json.description;
-        console.log('Recipes in the definition: ', json.recipes);
         this._recipesPromise = Promise.all(json.recipes.map(f => {
             let filename = f;
             if (filename.search(/\.json$/) === -1) {
                 filename += '.json';
             }
-            console.log('loading recipe from ', filename);
             const fullPath = searchPath
                 ? path.join(searchPath, filename)
                 : filename;

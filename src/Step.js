@@ -16,7 +16,7 @@ export default class Step {
             throw new Error('No JSON specified for Recipe constructor.');
         }
         if (json.type !== 'Step') {
-            // Inspired by GeoJSON, a course must have a "type": "Recipe" field
+            // Inspired by GeoJSON, a course must have a "type": "Step" field
             throw new Error('"type" field in JSON is not "Step".');
         }
 
