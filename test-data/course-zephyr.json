@@ -1,0 +1,7 @@
+{
+  "type": "Course",
+  "title": "Zephyr",
+  "platforms": "all",
+  "description": "Zephyr development envorinment",
+  "recipes": ["linux_update", "linux_zephyr_deps", "linux_zephyr_sdk-0.9.3"]
+}

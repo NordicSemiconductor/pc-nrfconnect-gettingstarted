@@ -1,0 +1,43 @@
+{
+  "type": "Recipe",
+  "title": "Update your OS",
+  "tool": "linux_update",
+  "platforms": "linux",
+  "description": "Ensure that your Linux OS is up-to-date.",
+  "checkables": [
+    {
+      "type": "Checkable",
+      "steps": [
+        {
+          "type": "Step",
+          "platforms": "linux",
+          "title": "Download",
+          "description": "Ensure your OS is up-to-date. On Ubuntu, you'll first need to update the local database list of available packages before upgrading:\
+\
+```\
+sudo apt-get update\
+sudo apt-get upgrade\
+```\
+\
+On Fedora:\
+\
+```\
+sudo dnf upgrade\
+```\
+\
+Note that having a newer version available for an installed package\
+(and reported by `dnf check-update`) does not imply a subsequent\
+`dnf upgrade` will install it, because it must also ensure dependencies\
+and other restrictions are satisfied.\
+\
+On Clear Linux:\
+\
+```\
+sudo swupd update\
+```\
+          "
+        }
+      ]
+    }
+  ]
+}
