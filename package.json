@@ -1,0 +1,19 @@
+{
+  "main": "dist/nrf-framework-courses.js",
+  "module": "src/index.js",
+  "scripts": {
+    "rollup": "rollup -c rollup.config.js",
+    "lint": "eslint src/ bin/"
+  },
+  "dependencies": {
+    "sander": "^0.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.16.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "rollup": "^0.63.5",
+    "rollup-plugin-buble": "^0.19.2",
+    "rollup-plugin-eslint": "^5.0.0"
+  }
+}
