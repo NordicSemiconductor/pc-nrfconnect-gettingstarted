@@ -1,0 +1,20 @@
+{
+  "type": "Recipe",
+  "title": "Update your OS",
+  "tool": "linux_update-noversion",
+  "platforms": "linux",
+  "description": "Ensure that your Linux OS is up-to-date.",
+  "checkables": [
+    {
+      "type": "Checkable",
+      "steps": [
+        {
+          "type": "Step",
+          "platforms": "linux",
+          "title": "Download",
+          "description": "Ensure your OS is up-to-date. On Ubuntu, you'll first need to update the local database list of available packages before upgrading:\n\n```\nsudo apt-get update\nsudo apt-get upgrade\n```\n\nOn Fedora:\n\n```\nsudo dnf upgrade\n```\n\nNote that having a newer version available for an installed package\n(and reported by `dnf check-update`) does not imply a subsequent\n`dnf upgrade` will install it, because it must also ensure dependencies\nand other restrictions are satisfied.\n\nOn Clear Linux:\n\n```\nsudo swupd update\n```\n          "
+        }
+      ]
+    }
+  ]
+}
