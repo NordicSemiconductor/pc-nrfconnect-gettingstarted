@@ -1,7 +1,6 @@
 {
   "main": "dist/nrf-framework-courses.js",
   "module": "src/index.js",
-    "displayName": "nRF framework courses checker getting started thing",
   "scripts": {
     "rollup": "rollup -c rollup.config.js",
     "lint": "eslint src/ bin/"

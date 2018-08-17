@@ -43,6 +43,7 @@ import { remote, ipcRenderer } from 'electron';
 import './resources/css/index.less';
 import { loadCourse } from './actions/courseActions';
 import courseReducer from './reducers/courseReducer';
+import Course from './components/Course';
 
 /* eslint-disable react/prop-types, no-unused-vars */
 
@@ -226,7 +227,7 @@ export function decorateMainView(MainView) {
         </MainView>
     )} else {
 
-        const courses = props.course.recipes.map((recipe, i)=>{
+        const course = props.course.recipes.map((recipe, i)=>{
             if (recipe.enabled) {
                 return (<li key={i}>
                 <h2>{recipe.title}</h2>
@@ -246,8 +247,11 @@ export function decorateMainView(MainView) {
 
         return (
         <MainView {...props} >
-        Course loaded: {props.course.title}, {props.course.description}
-        <ul> { courses } </ul>
+        <Course
+            title={props.course.title}
+            description={props.course.description}
+            recipes={props.course.recipes}
+        />
         </MainView>
        )}
     };

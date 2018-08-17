@@ -2,6 +2,6 @@
   "type": "Course",
   "title": "Zephyr",
   "platforms": "all",
-  "description": "Zephyr development envorinment",
+  "description": "Zephyr development environment",
   "recipes": ["linux_update-noversion", "linux_zephyr_deps-0.9.3", "linux_zephyr_sdk-0.9.3"]
 }
