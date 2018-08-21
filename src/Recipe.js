@@ -28,9 +28,10 @@ export default class Recipe {
             throw new Error('"tool" field must be a string.');
         }
 
-        // 'platforms' field is optional in recipes
+        // 'platforms' and 'osReleases' fields are optional in recipes
         this._platforms = data.platforms ? data.platforms : 'all';
-        this._enabled = appliesToRunningPlatform(this._platforms);
+        this._osreleases = data.osReleases ? data.osReleases : 'all';
+        this._enabled = appliesToRunningPlatform(this._platforms, this._osreleases);
 
         // Using indexOf() instead of slice() to split name/semver, because the
         // semver part can have hyphens too.
@@ -87,6 +88,7 @@ export default class Recipe {
             title: this._title,
             tool: `${this._toolName}-${this._toolSemver}`,
             platforms: this._platforms,
+            osReleases: this._osreleases,
             description: this._description,
             checkables: this._checkables.map(checkable => checkable.asJSON()),
             //       recipes: this._recipes.map(recipe => recipe.asJSON())
