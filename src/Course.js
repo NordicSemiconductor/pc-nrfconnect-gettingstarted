@@ -43,9 +43,10 @@ export default class Course {
             this._recipes = recipes;
         });
 
-        // 'platforms' field is optional in courses
+        // 'platforms' and 'osReleases' fields are optional in courses
         this._platforms = json.platforms ? json.platforms : 'all';
-        this._enabled = appliesToRunningPlatform(this._platforms);
+        this._osreleases = json.osReleases ? json.osReleases : 'all';
+        this._enabled = appliesToRunningPlatform(this._platforms, this._osreleases);
     }
 
     /**

@@ -22,9 +22,10 @@ export default class Step {
 
         // / TODO: Add commands/automation
 
-        // 'platforms' field is optional in steps
+        // 'platforms' and 'osReleases' fields are optional in steps
         this._platforms = json.platforms ? json.platforms : 'all';
-        this._enabled = appliesToRunningPlatform(this._platforms);
+        this._osreleases = json.osReleases ? json.osReleases : 'all';
+        this._enabled = appliesToRunningPlatform(this._platforms, this._osreleases);
 
         this._title = json.title;
         this._description = json.description;
@@ -39,6 +40,7 @@ export default class Step {
             type: 'Step',
             title: this._title,
             platforms: this._platforms,
+            osReleases: this._osreleases,
             description: this._description,
             commands: this._commands,
         };

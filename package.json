@@ -6,6 +6,7 @@
     "lint": "eslint src/ bin/"
   },
   "dependencies": {
+    "linux-os-info": "git+https://github.com/IvanSanchez/linux-os-info.git#75967280bd61ec23a675c3963e385923bb6fc89a",
     "sander": "^0.6.0"
   },
   "devDependencies": {
