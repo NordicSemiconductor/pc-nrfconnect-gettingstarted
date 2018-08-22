@@ -11,8 +11,35 @@
         {
           "type": "Step",
           "platforms": "linux",
-          "title": "Download",
-          "description": "Install the following required packages using either `apt-get` or `dnf`.\n\nOn an Ubuntu or Debian-like host system:\n\n```\nsudo apt-get install --no-install-recommends git cmake ninja-build gperf \\\n ccache doxygen dfu-util device-tree-compiler \\\n python3-ply python3-pip python3-setuptools python3-wheel xz-utils file \\\n make gcc-multilib autoconf automake libtool\n```\n\nOn a Fedora or Fedora-like host system:\n\n```\nsudo dnf group install \"Development Tools\" \"C Development Tools and Libraries\"\nsudo dnf install git cmake ninja-build gperf ccache\\\n doxygen dfu-util dtc python3-pip \\\n python3-ply python3-yaml dfu-util dtc python3-pykwalify \\\n glibc-devel.i686 libstdc++-devel.i686 autoconf automake libtool\n```\n\nOn Clear Linux host system:\n\n```\nsudo swupd bundle-add c-basic dev-utils dfu-util dtc \\\n os-core-dev python-basic python3-basic\n```\n\nInstall additional python packages required for development with Zephyr:\n\n```\ncd ~/zephyr  # or to your directory where zephyr is cloned\npip3 install --user -r scripts/requirements.txt\n```\n\nCMake version 3.8.2 or higher is required. Check what version you have using\n`cmake --version`; if you have an older version, check the backports or\ninstall a more recent version manually. For example, to install version\n3.8.2 from the CMake website directly in `~/cmake`:\n\n```\nmkdir $HOME/cmake && cd $HOME/cmake\nwget https://cmake.org/files/v3.8/cmake-3.8.2-Linux-x86_64.sh\nyes | sh cmake-3.8.2-Linux-x86_64.sh | cat\necho \"export PATH=$PWD/cmake-3.8.2-Linux-x86_64/bin:\\$PATH\" >> $HOME/.zephyrrc\nsource <zephyr git clone location>/zephyr-env.sh\ncmake --version\n```\n\n          "
+          "osReleases": "debian",
+          "title": "Install dependencies (apt)",
+          "description": "Install the following required packages using `apt-get`:\n\n```\nsudo apt-get install --no-install-recommends git cmake ninja-build gperf \\\n ccache doxygen dfu-util device-tree-compiler \\\n python3-ply python3-pip python3-setuptools python3-wheel xz-utils file \\\n make gcc-multilib autoconf automake libtool\n```\n"
+        },
+        {
+          "type": "Step",
+          "platforms": "linux",
+          "osReleases": "fedora",
+          "title": "Install dependencies (rpm)",
+          "description": "Install the following required packages using `dnf`:\n\n```\nsudo dnf group install \"Development Tools\" \"C Development Tools and Libraries\"\nsudo dnf install git cmake ninja-build gperf ccache\\\n doxygen dfu-util dtc python3-pip \\\n python3-ply python3-yaml dfu-util dtc python3-pykwalify \\\n glibc-devel.i686 libstdc++-devel.i686 autoconf automake libtool\n```\n"
+        },
+        {
+          "type": "Step",
+          "platforms": "linux",
+          "osReleases": "clear-linux-os",
+          "title": "Install dependencies (swupd)",
+          "description": "Install the following required packages using `swupd`:\nOn Clear Linux host system:\n\n```\nsudo swupd bundle-add c-basic dev-utils dfu-util dtc \\\n os-core-dev python-basic python3-basic\n```\n"
+        },
+        {
+          "type": "Step",
+          "platforms": "linux",
+          "title": "Install python dependencies",
+          "description": "Install additional python packages required for development with Zephyr:\n\n```\ncd ~/zephyr  # or to your directory where zephyr is cloned\npip3 install --user -r scripts/requirements.txt\n```\n"
+        },
+        {
+          "type": "Step",
+          "platforms": "linux",
+          "title": "Check CMake version",
+          "description": "CMake version 3.8.2 or higher is required. Check what version you have using `cmake --version`; if you have an older version, check the backports for your distribution or install a more recent version manually. For example, to install version 3.8.2 from the CMake website directly in `~/cmake`:\n\n```\nmkdir $HOME/cmake && cd $HOME/cmake\nwget https://cmake.org/files/v3.8/cmake-3.8.2-Linux-x86_64.sh\nyes | sh cmake-3.8.2-Linux-x86_64.sh | cat\necho \"export PATH=$PWD/cmake-3.8.2-Linux-x86_64/bin:\\$PATH\" >> $HOME/.zephyrrc\nsource <zephyr git clone location>/zephyr-env.sh\ncmake --version\n```\n          "
         }
       ]
     }
