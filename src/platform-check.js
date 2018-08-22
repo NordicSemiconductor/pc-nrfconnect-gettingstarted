@@ -1,14 +1,27 @@
+
+import OsInfo from 'linux-os-info';
+
+// Get the ID and ID_LIKE fields from /etc/os-release, concatenate their values
+const osInfo = OsInfo({synchronous: true});
+const currentOsIDs = (osInfo.id_like || "").split(/\s+/);
+currentOsIDs.push(osInfo.id);
+
 /**
- * Given a string or array of strings, parses it as recipe platforms and
- * returns whether the current process is running on one of those platforms.
+ * Given two string or arrays of strings, parses them as recipe platforms/OS releases
+ * and returns whether the current process is running on one of those platforms
+ * *and* on one of those OS releases.
  * Throws an error if the platforms definition is malformed.
  * @param {String|Array<String>} platforms The platforms definition
+ * @param {String|Array<String>} osReleases The OS Releases definition
  * @return {Boolean} Whether the current process is running on a platform
  * fitting the given definition
  */
-export default function appliesToRunningPlatform(platforms) {
+export default function appliesToRunningPlatform(platforms = 'all', osReleases = 'all') {
     const plats = (typeof platforms === 'string') ?
         [platforms] : platforms;
+
+    const osIDs = (typeof osReleases === 'string') ?
+        [osReleases] : osReleases;
 
     plats.forEach(p => {
         const [platform, arch] = p.split('-');
@@ -29,7 +42,7 @@ export default function appliesToRunningPlatform(platforms) {
         }
     });
 
-    return plats.some(p => {
+    const supportedPlatform = plats.some(p => {
         const [platform, arch] = p.split('-');
 
         return (
@@ -37,4 +50,10 @@ export default function appliesToRunningPlatform(platforms) {
             (arch === undefined || arch === process.arch)
         );
     });
+
+    const supportedOsID = osIDs.some(o => {
+        return (o === 'all' || currentOsIDs.indexOf(o) !== -1);
+    });
+
+    return supportedPlatform && supportedOsID;
 }
