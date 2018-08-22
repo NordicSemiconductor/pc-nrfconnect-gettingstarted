@@ -34,10 +34,10 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import ReactMarkdown from 'react-markdown';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Accordion, Panel } from 'react-bootstrap';
-
 
 const Course = props => {
     console.log('Course:', props);
@@ -46,12 +46,14 @@ const Course = props => {
         if (recipe.enabled) {
             return (
                 <Panel key={i} eventKey={i} header={recipe.title}>
-                    <h2>{recipe.description}</h2><br/>
+                    <ReactMarkdown source={recipe.description}/>
                     <ul>
                     {recipe.checkables.map(checkable=>{
                         return checkable.steps.map((step, j)=>{
                             if (step.enabled) {
-                                return (<li key={j}>{step.description}</li>);
+                                return (<li key={j}>
+                                <ReactMarkdown source={step.description}/>
+                                </li>);
                             }
                         })
                     })}
@@ -64,14 +66,11 @@ const Course = props => {
     return (
         <div>
         <h1>{props.title}</h1>
-        {props.description}
+        <ReactMarkdown source={props.description}/>
         <Accordion>{ recipes }</Accordion>
         </div>
     );
 
 };
-
-console.log('Definition of components/Course:', Course);
-console.log('Definition of react-bootstrap Panel:', Panel);
 
 export default Course;
