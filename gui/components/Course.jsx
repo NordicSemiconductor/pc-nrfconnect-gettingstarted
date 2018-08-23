@@ -34,26 +34,26 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import ReactMarkdown from 'react-markdown';
+import marked from 'marked-it-core';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Accordion, Panel } from 'react-bootstrap';
 
+function markup(md) {
+    return {__html: marked.generate(md).html.text };
+}
+
 const Course = props => {
-    console.log('Course:', props);
     const recipes = props.recipes.map((recipe, i)=>{
-        console.log('Course recipe:', i, recipe);
         if (recipe.enabled) {
             return (
                 <Panel key={i} eventKey={i} header={recipe.title}>
-                    <ReactMarkdown source={recipe.description}/>
+                    <p dangerouslySetInnerHTML={markup(recipe.description)}></p><br/>
                     <ul>
                     {recipe.checkables.map(checkable=>{
                         return checkable.steps.map((step, j)=>{
                             if (step.enabled) {
-                                return (<li key={j}>
-                                <ReactMarkdown source={step.description}/>
-                                </li>);
+                                return (<li key={j} dangerouslySetInnerHTML={markup(step.description)}></li>);
                             }
                         })
                     })}
@@ -66,7 +66,7 @@ const Course = props => {
     return (
         <div>
         <h1>{props.title}</h1>
-        <ReactMarkdown source={props.description}/>
+        {props.description}
         <Accordion>{ recipes }</Accordion>
         </div>
     );
