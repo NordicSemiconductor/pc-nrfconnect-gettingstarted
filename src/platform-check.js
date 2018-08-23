@@ -17,14 +17,11 @@ currentOsIDs.push(osInfo.id);
  * fitting the given definition
  */
 export default function appliesToRunningPlatform(platforms = 'all', osReleases = 'all') {
-    const plats = (typeof platforms === 'string') ?
-        [platforms] : platforms;
-
-    const osIDs = (typeof osReleases === 'string') ?
-        [osReleases] : osReleases;
+    const plats = (platforms instanceof Array) ?
+        platforms : [platforms];
 
     plats.forEach(p => {
-        const [platform, arch] = p.split('-');
+        const {platform, arch, osRelease, osVersion} = p;
 
         // Values for platform/arch should map to possible values for
         // nodejs' process.platform and process.arch
@@ -43,17 +40,17 @@ export default function appliesToRunningPlatform(platforms = 'all', osReleases =
     });
 
     const supportedPlatform = plats.some(p => {
-        const [platform, arch] = p.split('-');
+        const {platform, arch, osRelease, osVersion} = p;
 
         return (
             (platform === 'all' || platform === process.platform) &&
-            (arch === undefined || arch === process.arch)
+            (arch === undefined || arch === process.arch) &&
+            (osRelease === undefined || currentOsIDs.indexOf(osRelease) !== -1)
         );
+
+        /// TODO: make a comparison between osVersion and os.release() with e.g.
+        /// semver.satisfies() - see https://www.npmjs.com/package/semver
     });
 
-    const supportedOsID = osIDs.some(o => {
-        return (o === 'all' || currentOsIDs.indexOf(o) !== -1);
-    });
-
-    return supportedPlatform && supportedOsID;
+    return supportedPlatform;
 }
