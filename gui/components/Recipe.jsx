@@ -34,35 +34,42 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import marked from 'marked-it-core';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Accordion, Panel, Checkbox } from 'react-bootstrap';
-import Recipe from './Recipe';
+import { Checkbox } from 'react-bootstrap';
 
+function markup(md) {
+    return {__html: marked.generate(md).html.text };
+}
 
-const Course = props => {
-    const recipes = props.recipes.map((recipe, i)=> {
-        if (recipe.enabled) {
+const Recipe = ({recipe}) => {
 
-            const recipeCheckbox = (<Checkbox inline >&nbsp;</Checkbox>);
+    return (<div>
+        <p dangerouslySetInnerHTML={markup(recipe.description)}></p><br/>
+        {
+            recipe.checkables.map((checkable, j)=>{
+                const steps = checkable.steps.filter(step=>step.enabled).map((step, k)=> (
+                    <li key={k} dangerouslySetInnerHTML={markup(step.description)}>
+                    </li>)
+                );
 
-            return (
-                <Panel key={i} eventKey={i} header={[recipeCheckbox, recipe.title]}>
-                    <Recipe recipe={recipe} />
-                </Panel>
-            );
+                return (
+                    <div>
+                        <Checkbox  key={j} style={{
+                            float: 'left',
+                            marginTop: 0
+                        }} >&nbsp;</Checkbox>
+                        <ul>{steps}</ul>
+                    </div>
+                );
+
+            })
 
         }
-    });
-
-    return (
-        <div>
-        <h1>{props.title}</h1>
-        {props.description}
-        <Accordion>{ recipes }</Accordion>
         </div>
     );
 
 };
 
-export default Course;
+export default Recipe;

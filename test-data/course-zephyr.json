@@ -4,6 +4,7 @@
   "platforms": { "platform": "linux" },
   "description": "Zephyr development environment",
   "recipes": [
+    "darwin_intro-noversion",
     "linux_update-noversion",
     "linux_zephyr_deps-0.9.3",
     "linux_zephyr_sdk-0.9.3"
