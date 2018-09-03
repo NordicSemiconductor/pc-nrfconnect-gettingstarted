@@ -48,7 +48,7 @@ function markup(md) {
 
 class Recipe extends React.Component {
     render() {
-        const { recipe } = this.props;
+        const { recipe, checkables } = this.props;
 
         return (<div>
             <p dangerouslySetInnerHTML={markup(recipe.description)} /><br />
@@ -58,6 +58,8 @@ class Recipe extends React.Component {
                         <li key={k} dangerouslySetInnerHTML={markup(step.description)} />),
                     );
 
+                    console.log('Checkbox number ', j, ' state shall be ', checkables[j]);
+
                     return (
                         <div key={`${recipe.tool}-${j}`} >
                             <Checkbox
@@ -66,9 +68,10 @@ class Recipe extends React.Component {
                                     marginTop: 0,
                                 }}
                                 onChange={ev => {
-                                    this.props.onCheckboxChange(recipe.tool, j, ev.target.checked);
+                                        this.props.onCheckboxChange(recipe.tool, j, ev.target.checked);
+                                    }
                                 }
-                                }
+                                checked={ checkables[j] }
                             >&nbsp;</Checkbox>
                             <ul>{steps}</ul>
                         </div>
@@ -79,8 +82,6 @@ class Recipe extends React.Component {
         );
     }
 }
-
-// export default Recipe
 
 export default connect(
     state => state,

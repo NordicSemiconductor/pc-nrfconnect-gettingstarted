@@ -31,8 +31,11 @@
     "clean-modules": "rimraf \"node_modules/!(rimraf|.bin)\""
   },
   "devDependencies": {
-    "pc-nrfconnect-devdep": "git+https://github.com/NordicSemiconductor/pc-nrfconnect-devdep.git#semver:^1.2.3",
-    "react-markdown": "^3.4.1"
+    "pc-nrfconnect-devdep": "git+https://github.com/NordicSemiconductor/pc-nrfconnect-devdep.git#semver:^1.2.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "configstore": "^4.0.0",
+    "electron-store": "^2.0.0",
+    "marked-it-core": "^0.10.2"
+  }
 }

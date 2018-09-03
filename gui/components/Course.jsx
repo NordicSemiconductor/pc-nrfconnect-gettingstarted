@@ -43,11 +43,18 @@ import Recipe from './Recipe';
 const Course = props => {
     const recipes = props.recipes.map((recipe, i) => {
         if (recipe.enabled) {
+
+            const recipeCheckables = props.checkables[recipe.tool];
+            console.log('Recipe ', recipe.tool, ' loaded checkables ', recipeCheckables);
+
+            // TODO: Iterate through props.checkables[recipe.tool] and see if
+            // everything is true. Set the checkbox state from there.
+
             const recipeCheckbox = (<Checkbox inline key={i} >&nbsp;</Checkbox>);
 
             return (
                 <Panel key={i} eventKey={i} header={[recipeCheckbox, recipe.title]}>
-                    <Recipe recipe={recipe} />
+                    <Recipe recipe={recipe} checkables={recipeCheckables} />
                 </Panel>
             );
         }
