@@ -13,7 +13,12 @@
           "platforms": { "platform": "linux" },
           "title": "Download",
           "description": "Download the latest SDK as a self-extracting installation binary:\n\n```\nwget https://github.com/zephyrproject-rtos/meta-zephyr-sdk/releases/download/0.9.3/zephyr-sdk-0.9.3-setup.run\n```\n\n(You can change *0.9.3* to another version if needed; the [Zephyr Downloads](https://www.zephyrproject.org/developers/#downloads) page contains all available SDK releases.)\n"
-        },
+        }
+      ]
+    },
+    {
+      "type": "Checkable",
+      "steps": [
         {
           "type": "Step",
           "platforms": { "platform": "linux" },
@@ -25,7 +30,12 @@
           "platforms": { "platform": "linux" },
           "title": "Follow install instructions",
           "description": "Follow the installation instructions on the screen. The toolchain's default installation location is `/opt/zephyr-sdk/`, but it is recommended to install the SDK under your home directory instead.\n\nTo install the SDK in the default location, you need to run the installation binary as root.\n"
-        },
+        }
+      ]
+    },
+    {
+      "type": "Checkable",
+      "steps": [
         {
           "type": "Step",
           "platforms": { "platform": "linux" },

@@ -19,10 +19,20 @@ export function loadCourse(courseFilename) {
                 type: 'COURSE_LOAD_FAIL',
                 error
             });
-        })
+        });
     }
 }
 
+export function checkableChange(tool, checkableIndex, isDone) {
+    return function(dispatch) {
+        dispatch({
+            type: 'CHECKABLE_CHANGE',
+            tool,
+            checkableIndex,
+            isDone
+        });
+    }
+}
 
 
 

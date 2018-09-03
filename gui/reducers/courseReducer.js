@@ -38,18 +38,42 @@ import { Record } from 'immutable';
 
 const InitialState = new Record({
     course: null,
+    checkables: {},
 });
 
 export default function reducer(state = new InitialState(), action) {
+    let checkables;
 
     switch (action.type) {
         case 'COURSE_LOADED':
+
+            // Init all checkables as not checked
+            checkables = {};
+            for (const recipe of action.course.recipes) {
+                if (recipe.enabled) {
+                    const tool = recipe.tool;
+                    checkables[tool] = [];
+                    for (const checkable of recipe.checkables) {
+                        checkables[tool].push(false);
+                    }
+                }
+            }
+
             return state
+                .set('checkables', checkables)
                 .set('course', action.course);
 
         case 'COURSE_LOAD_FAIL':
             return state
                 .set('course', null);
+
+        case 'CHECKABLE_CHANGE':
+
+            checkables = state.get('checkables');
+            checkables[action.tool][action.checkableIndex] = !!action.isDone;
+
+            return state
+                .set('checkables', checkables);
 
         default:
     }

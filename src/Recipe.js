@@ -86,7 +86,7 @@ export default class Recipe {
         return {
             type: 'Recipe',
             title: this._title,
-            tool: `${this._toolName}-${this._toolSemver}`,
+            tool: this.tool,
             platforms: this._platforms,
             osReleases: this._osreleases,
             description: this._description,
@@ -109,6 +109,10 @@ export default class Recipe {
 
     get title() {
         return this._title;
+    }
+
+    get tool() {
+        return `${this._toolName}-${this._toolSemver}`;
     }
 
     // / TODO: load state from local config or from state json

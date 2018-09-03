@@ -38,38 +38,55 @@ import marked from 'marked-it-core';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Checkbox } from 'react-bootstrap';
+import { connect } from 'react-redux';
+
+import { checkableChange } from '../actions/courseActions';
 
 function markup(md) {
-    return {__html: marked.generate(md).html.text };
+    return { __html: marked.generate(md).html.text };
 }
 
-const Recipe = ({recipe}) => {
+class Recipe extends React.Component {
+    render() {
+        const { recipe } = this.props;
 
-    return (<div>
-        <p dangerouslySetInnerHTML={markup(recipe.description)}></p><br/>
-        {
-            recipe.checkables.map((checkable, j)=>{
-                const steps = checkable.steps.filter(step=>step.enabled).map((step, k)=> (
-                    <li key={k} dangerouslySetInnerHTML={markup(step.description)}>
-                    </li>)
-                );
+        return (<div>
+            <p dangerouslySetInnerHTML={markup(recipe.description)} /><br />
+            {
+                recipe.checkables.map((checkable, j) => {
+                    const steps = checkable.steps.filter(step => step.enabled).map((step, k) => (
+                        <li key={k} dangerouslySetInnerHTML={markup(step.description)} />),
+                    );
 
-                return (
-                    <div>
-                        <Checkbox  key={j} style={{
-                            float: 'left',
-                            marginTop: 0
-                        }} >&nbsp;</Checkbox>
-                        <ul>{steps}</ul>
-                    </div>
-                );
-
-            })
-
-        }
+                    return (
+                        <div key={`${recipe.tool}-${j}`} >
+                            <Checkbox
+                                key={j} style={{
+                                    float: 'left',
+                                    marginTop: 0,
+                                }}
+                                onChange={ev => {
+                                    this.props.onCheckboxChange(recipe.tool, j, ev.target.checked);
+                                }
+                                }
+                            >&nbsp;</Checkbox>
+                            <ul>{steps}</ul>
+                        </div>
+                    );
+                })
+            }
         </div>
-    );
+        );
+    }
+}
 
-};
+// export default Recipe
 
-export default Recipe;
+export default connect(
+    state => state,
+    dispatch => ({
+        onCheckboxChange: (tool, checkableIndex, isDone) => {
+            checkableChange(tool, checkableIndex, isDone)(dispatch);
+        },
+    }),
+)(Recipe);

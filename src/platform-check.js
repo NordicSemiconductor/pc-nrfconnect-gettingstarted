@@ -2,8 +2,8 @@
 import OsInfo from 'linux-os-info';
 
 // Get the ID and ID_LIKE fields from /etc/os-release, concatenate their values
-const osInfo = OsInfo({synchronous: true});
-const currentOsIDs = (osInfo.id_like || "").split(/\s+/);
+const osInfo = OsInfo({ synchronous: true });
+const currentOsIDs = (osInfo.id_like || '').split(/\s+/);
 currentOsIDs.push(osInfo.id);
 
 /**
@@ -21,7 +21,9 @@ export default function appliesToRunningPlatform(platforms = 'all', osReleases =
         platforms : [platforms];
 
     plats.forEach(p => {
-        const {platform, arch, osRelease, osVersion} = p;
+        const {
+            platform, arch, osRelease, osVersion,
+        } = p;
 
         // Values for platform/arch should map to possible values for
         // nodejs' process.platform and process.arch
@@ -40,7 +42,9 @@ export default function appliesToRunningPlatform(platforms = 'all', osReleases =
     });
 
     const supportedPlatform = plats.some(p => {
-        const {platform, arch, osRelease, osVersion} = p;
+        const {
+            platform, arch, osRelease, osVersion,
+        } = p;
 
         return (
             (platform === 'all' || platform === process.platform) &&
@@ -48,8 +52,8 @@ export default function appliesToRunningPlatform(platforms = 'all', osReleases =
             (osRelease === undefined || currentOsIDs.indexOf(osRelease) !== -1)
         );
 
-        /// TODO: make a comparison between osVersion and os.release() with e.g.
-        /// semver.satisfies() - see https://www.npmjs.com/package/semver
+        // / TODO: make a comparison between osVersion and os.release() with e.g.
+        // / semver.satisfies() - see https://www.npmjs.com/package/semver
     });
 
     return supportedPlatform;

@@ -25,13 +25,23 @@
           "platforms": { "platform": "linux", "osRelease": "clear-linux-os" },
           "title": "Install dependencies (swupd)",
           "description": "Install the following required packages using `swupd`:\nOn Clear Linux host system:\n\n```\nsudo swupd bundle-add c-basic dev-utils dfu-util dtc \\\n os-core-dev python-basic python3-basic\n```\n"
-        },
+        }
+      ]
+    },
+    {
+      "type": "Checkable",
+      "steps": [
         {
           "type": "Step",
           "platforms": { "platform": "linux" },
           "title": "Install python dependencies",
           "description": "Install additional python packages required for development with Zephyr:\n\n```\ncd ~/zephyr  # or to your directory where zephyr is cloned\npip3 install --user -r scripts/requirements.txt\n```\n"
-        },
+        }
+      ]
+    },
+    {
+      "type": "Checkable",
+      "steps": [
         {
           "type": "Step",
           "platforms": { "platform": "linux" },

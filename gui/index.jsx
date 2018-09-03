@@ -34,7 +34,7 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { join }  from 'path';
+import { join } from 'path';
 import React from 'react';
 import { combineReducers } from 'redux';
 import { remote, ipcRenderer } from 'electron';
@@ -121,13 +121,14 @@ export function onReady(dispatch, getState) {
     // TODO: Do not hardcode the course path.
     // IPC stuff to fetch the path of the currently running code (not
     // remote.app.getAppPath(), which is the path of the core code)
-    ipcRenderer.once('app-details', (sender, details)=>{
-        console.log(details);
+    ipcRenderer.once('app-details', (sender, details) => {
+//         console.log('IPC application details', details);
 //         console.log(remote.app, remote.app.getAppPath(), remote.app.getName(), __dirname, join(__dirname, 'test-data/course-zephyr.json'));
-        console.log(join(details.path, 'test-data/course-zephyr.json'));
+//         console.log(join(details.path, 'test-data/course-zephyr.json'));
 
         loadCourse(join(details.path, 'test-data/course-zephyr.json'))(dispatch);
     });
+//     console.log('Sending IPC call for application details');
     ipcRenderer.send('get-app-details');
 }
 
@@ -218,42 +219,39 @@ export function decorateLogHeaderButton(LogHeaderButton) {
  */
 export function decorateMainView(MainView) {
     return props => {
-        console.log('decorateMainView:',props);
-
         if (!props.course) {
-        return (
-        <MainView {...props} >
+            return (
+                <MainView {...props} >
         No course loaded
         </MainView>
-    )} else {
+            );
+        }
 
-        const course = props.course.recipes.map((recipe, i)=>{
+        const course = props.course.recipes.map((recipe, i) => {
             if (recipe.enabled) {
                 return (<li key={i}>
-                <h2>{recipe.title}</h2>
-                {recipe.description}<br/>
-                <ul>
-                {recipe.checkables.map(checkable=>{
-                    return checkable.steps.map((step, j)=>{
-                        if (step.enabled) {
-                            return (<li key={j}>{step.description}</li>);
-                        }
-                    })
-                })}
-                </ul>
+                    <h2>{recipe.title}</h2>
+                    {recipe.description}<br />
+                    <ul>
+                        {recipe.checkables.map(checkable => checkable.steps.map((step, j) => {
+                            if (step.enabled) {
+                                return (<li key={j}>{step.description}</li>);
+                            }
+                        }))}
+                    </ul>
                 </li>);
             }
         });
 
         return (
-        <MainView {...props} >
-        <Course
-            title={props.course.title}
-            description={props.course.description}
-            recipes={props.course.recipes}
-        />
-        </MainView>
-       )}
+            <MainView {...props} >
+                <Course
+                    title={props.course.title}
+                    description={props.course.description}
+                    recipes={props.course.recipes}
+                />
+            </MainView>
+        );
     };
 }
 
@@ -372,12 +370,9 @@ export function mapLogViewerState(state, props) {
  * @returns {Object} Props that will be passed to the component.
  */
 export function mapMainViewState(state, props) {
-
-    console.log('mapMainViewState', state.app.courseReducer.course);
-
     return {
         ...props,
-        course: state.app.courseReducer.course
+        course: state.app.courseReducer.course,
     };
 }
 
@@ -523,7 +518,7 @@ export function mapSidePanelDispatch(dispatch, props) {
  * @param {Object} action A Redux action object.
  * @returns {Object} A new Redux state object.
  */
-export const reduceApp = combineReducers({courseReducer});
+export const reduceApp = combineReducers({ courseReducer });
 
 // export function reduceApp(state = (new Record({})), action) {
 //     return courseReducer(state, action);

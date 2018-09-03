@@ -41,28 +41,25 @@ import Recipe from './Recipe';
 
 
 const Course = props => {
-    const recipes = props.recipes.map((recipe, i)=> {
+    const recipes = props.recipes.map((recipe, i) => {
         if (recipe.enabled) {
-
-            const recipeCheckbox = (<Checkbox inline >&nbsp;</Checkbox>);
+            const recipeCheckbox = (<Checkbox inline key={i} >&nbsp;</Checkbox>);
 
             return (
                 <Panel key={i} eventKey={i} header={[recipeCheckbox, recipe.title]}>
                     <Recipe recipe={recipe} />
                 </Panel>
             );
-
         }
     });
 
     return (
         <div>
-        <h1>{props.title}</h1>
-        {props.description}
-        <Accordion>{ recipes }</Accordion>
+            <h1>{props.title}</h1>
+            {props.description}
+            <Accordion>{ recipes }</Accordion>
         </div>
     );
-
 };
 
 export default Course;
