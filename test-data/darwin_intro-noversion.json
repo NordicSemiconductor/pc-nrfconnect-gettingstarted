@@ -1,0 +1,20 @@
+{
+  "type": "Recipe",
+  "title": "Development environment setup on macOS",
+  "tool": "darwin_intro-noversion",
+  "platforms": { "platform": "darwin" },
+  "description": "This course describes how to set up a macOS development system.\n\n After completing these steps, you will be able to compile and run your Zephyr applications on the following macOS version:\n\n* Mac OS X 10.11 (El Capitan)\n* macOS Sierra 10.12\n\nDeveloping for Zephyr on macOS generally requires you to build the toolchain yourself. However, if there is already an macOS toolchain for your target architecture you can use it directly.",
+  "checkables": [
+    {
+      "type": "Checkable",
+      "steps": [
+        {
+          "type": "Step",
+          "platforms": { "platform": "darwin" },
+          "title": "Using a 3rd party toolchain",
+          "description": "If a toolchain is available for the architecture you plan to build for, then you can use it [as explained in the Zephyr documentation](http://docs.zephyrproject.org/getting_started/getting_started.html#third-party-x-compilers).\n\nAn example of an available 3rd party toolchain is GCC ARM Embedded for the Cortex-M family of cores."
+        }
+      ]
+    }
+  ]
+}

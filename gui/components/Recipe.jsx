@@ -58,7 +58,7 @@ class Recipe extends React.Component {
                         <li key={k} dangerouslySetInnerHTML={markup(step.description)} />),
                     );
 
-                    console.log('Checkbox number ', j, ' state shall be ', checkables[j]);
+//                     console.log('Checkbox number ', j, ' state shall be ', checkables[j]);
 
                     return (
                         <div key={`${recipe.tool}-${j}`} >

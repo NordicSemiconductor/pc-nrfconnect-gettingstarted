@@ -1,0 +1,43 @@
+{
+  "type": "Recipe",
+  "title": "Installing Requirements and Dependencies",
+  "tool": "darwin_deps-0.9.3",
+  "platforms": { "platform": "darwin" },
+  "description": "To install the software components required to build the Zephyr kernel on a Mac, you will need to build a cross compiler for the target devices you wish to build for and install tools that the build system requires.",
+  "checkables": [
+    {
+      "type": "Checkable",
+      "steps": [
+        {
+          "type": "Step",
+          "platforms": { "platform": "darwin" },
+          "title": "Install Homebrew",
+          "description": "First, install *Homebrew* (The missing package manager for macOS). Homebrew is a free and open-source software package management system that simplifies the installation of software on Apple's macOS operating system.\n
+\n
+To install *Homebrew*, visit the [*Homebrew* site](http://brew.sh/) and follow the installation instructions on the site.\n
+\n
+To complete the Homebrew installation, you might be prompted to install some missing dependency. If so, follow please follow the instructions provided."
+        },
+        {
+          "type": "Step",
+          "platforms": { "platform": "darwin" },
+          "title": "Install tools from Homebrew",
+          "description": "After Homebrew is successfully installed, install the following tools using the brew command line.\n
+\n
+```\n
+brew install cmake ninja dfu-util doxygen qemu dtc python3 gperf\n
+cd ~/zephyr   # or to the folder where you cloned the zephyr repo\n
+pip3 install --user -r scripts/requirements.txt```\n
+\n
+Source `zephyr-env.sh` wherever you have cloned the Zephyr Git repository:\n
+\n
+```
+unset ZEPHYR_SDK_INSTALL_DIR\n
+cd <zephyr git clone location>\n
+source zephyr-env.sh\n
+```"
+        },
+      ]
+    }
+  ]
+}

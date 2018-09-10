@@ -47,6 +47,8 @@ const InitialState = new Record({
 export default function reducer(state = new InitialState(), action) {
     let checkables;
 
+console.log('reducer: got', action.type);
+
     switch (action.type) {
         case 'COURSE_LOADED':
 
@@ -78,10 +80,9 @@ export default function reducer(state = new InitialState(), action) {
             checkables = state.get('checkables');
             checkables[action.tool][action.checkableIndex] = !!action.isDone;
 
-            state = state.set('checkables', checkables);
             persistentStore.set('checkables', checkables);
 
-            return state;
+            return state.set('checkables', Object.assign({}, checkables));
 
         default:
     }

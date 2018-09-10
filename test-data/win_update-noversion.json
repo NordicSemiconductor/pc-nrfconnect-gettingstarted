@@ -1,0 +1,20 @@
+{
+  "type": "Recipe",
+  "title": "Update your OS",
+  "tool": "linux_update-noversion",
+  "platforms": { "platform": "linux" },
+  "description": "Ensure that your Windows OS is up-to-date.",
+  "checkables": [
+    {
+      "type": "Checkable",
+      "steps": [
+        {
+          "type": "Step",
+          "platforms": { "platform": "win32"},
+          "title": "Update system",
+          "description": "Before proceeding with the build, ensure that you are running your Windows system with the latest updates installed."
+        }
+      ]
+    }
+  ]
+}

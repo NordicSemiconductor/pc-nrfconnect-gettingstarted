@@ -12,19 +12,19 @@
           "type": "Step",
           "platforms": { "platform": "linux", "osRelease": "debian" },
           "title": "Install dependencies (apt)",
-          "description": "Install the following required packages using `apt-get`:\n\n```\nsudo apt-get install --no-install-recommends git cmake ninja-build gperf \\\n ccache doxygen dfu-util device-tree-compiler \\\n python3-ply python3-pip python3-setuptools python3-wheel xz-utils file \\\n make gcc-multilib autoconf automake libtool\n```\n"
+          "description": "Install the following required packages using `apt-get`:\n\n```\nsudo apt-get install --no-install-recommends git cmake ninja-build gperf \\\n ccache doxygen dfu-util device-tree-compiler \\\n python3-ply python3-pip python3-setuptools python3-wheel xz-utils file \\\n make gcc-multilib autoconf automake libtool librsvg2-bin \\\n texlive-latex-base texlive-latex-extra latexmk texlive-fonts-recommended\n```\n"
         },
         {
           "type": "Step",
           "platforms": { "platform": "linux", "osRelease": "fedora" },
           "title": "Install dependencies (rpm)",
-          "description": "Install the following required packages using `dnf`:\n\n```\nsudo dnf group install \"Development Tools\" \"C Development Tools and Libraries\"\nsudo dnf install git cmake ninja-build gperf ccache\\\n doxygen dfu-util dtc python3-pip \\\n python3-ply python3-yaml dfu-util dtc python3-pykwalify \\\n glibc-devel.i686 libstdc++-devel.i686 autoconf automake libtool\n```\n"
+          "description": "Install the following required packages using `dnf`:\n\n```\nsudo dnf group install \"Development Tools\" \"C Development Tools and Libraries\"\nsudo dnf install git cmake ninja-build gperf ccache\\\n doxygen dfu-util dtc python3-pip \\\n python3-ply python3-yaml dfu-util dtc python3-pykwalify \\\n glibc-devel.i686 libstdc++-devel.i686 autoconf automake libtool\\\n texlive-latex latexmk texlive-collection-fontsrecommended librsvg2-tools\n```\n"
         },
         {
           "type": "Step",
           "platforms": { "platform": "linux", "osRelease": "clear-linux-os" },
           "title": "Install dependencies (swupd)",
-          "description": "Install the following required packages using `swupd`:\nOn Clear Linux host system:\n\n```\nsudo swupd bundle-add c-basic dev-utils dfu-util dtc \\\n os-core-dev python-basic python3-basic\n```\n"
+          "description": "Install the following required packages using `swupd`:\nOn Clear Linux host system:\n\n```\nsudo swupd bundle-add c-basic dev-utils dfu-util dtc \\\n os-core-dev python-basic python3-basic texlive\n```\n"
         }
       ]
     },
