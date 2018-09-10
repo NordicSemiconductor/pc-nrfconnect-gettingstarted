@@ -1,20 +1,41 @@
 {
-  "main": "dist/nrf-framework-courses.js",
-  "module": "src/index.js",
-  "scripts": {
-    "rollup": "rollup -c rollup.config.js",
-    "lint": "eslint src/ bin/"
+  "name": "pc-nrfconnect-boilerplate",
+  "version": "1.1.0",
+  "description": "nRF framework courses checker getting started thing",
+  "displayName": "nRF framework courses checker getting started thing",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NordicSemiconductor/pc-nrfconnect-boilerplate.git"
   },
-  "dependencies": {
-    "linux-os-info": "git+https://github.com/IvanSanchez/linux-os-info.git#75967280bd61ec23a675c3963e385923bb6fc89a",
-    "sander": "^0.6.0"
+  "author": "Nordic Semiconductor ASA",
+  "license": "SEE LICENSE IN LICENSE",
+  "engines": {
+    "nrfconnect": "^2.4.0"
+  },
+  "main": "dist/bundle.js",
+  "files": [
+    "dist/",
+    "icon.png",
+    "LICENSE"
+  ],
+  "scripts": {
+    "dev": "nrfconnect-scripts build-watch",
+    "webpack": "nrfconnect-scripts build-dev",
+    "build": "nrfconnect-scripts build-prod",
+    "lint": "nrfconnect-scripts lint components reducers index.jsx",
+    "lintfix": "nrfconnect-scripts lint --fix components reducers index.jsx",
+    "test": "nrfconnect-scripts test",
+    "test-watch": "nrfconnect-scripts test --watch",
+    "clean": "npm run clean-dist && npm run clean-modules",
+    "clean-dist": "rimraf dist",
+    "clean-modules": "rimraf \"node_modules/!(rimraf|.bin)\""
   },
   "devDependencies": {
-    "eslint": "^4.16.0",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.8.0",
-    "rollup": "^0.63.5",
-    "rollup-plugin-buble": "^0.19.2",
-    "rollup-plugin-eslint": "^5.0.0"
+    "pc-nrfconnect-devdep": "git+https://github.com/NordicSemiconductor/pc-nrfconnect-devdep.git#semver:^1.2.3"
+  },
+  "dependencies": {
+    "configstore": "^4.0.0",
+    "electron-store": "^2.0.0",
+    "marked-it-core": "^0.10.2"
   }
 }
