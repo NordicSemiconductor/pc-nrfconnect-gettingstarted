@@ -1,3 +1,5 @@
+/* eslint no-underscore-dangle: "off" */
+
 import path from 'path';
 import sander from 'sander';
 import Checkable from './Checkable';

@@ -36,6 +36,8 @@
   "dependencies": {
     "configstore": "^4.0.0",
     "electron-store": "^2.0.0",
-    "marked-it-core": "^0.10.2"
+    "linux-os-info": "^2.0.0",
+    "marked-it-core": "^0.10.2",
+    "sander": "^0.6.0"
   }
 }

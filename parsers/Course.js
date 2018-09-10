@@ -1,3 +1,5 @@
+/* eslint no-underscore-dangle: "off" */
+
 import sander from 'sander';
 import path from 'path';
 import Recipe from './Recipe';

@@ -1,3 +1,5 @@
+/* eslint no-underscore-dangle: "off" */
+
 import appliesToRunningPlatform from './platform-check';
 
 /**
