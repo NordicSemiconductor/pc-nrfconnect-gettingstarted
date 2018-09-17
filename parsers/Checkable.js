@@ -14,8 +14,10 @@ import Step from './Step';
 export default class Checkable {
     /**
      * @param {Object} json The input JSON representation for this recipe
+     * @param {Number=} id An optional numeric identifier, which should be
+     * unique for each Checkable in a Recipe during runtime.
      */
-    constructor(json) {
+    constructor(json, id) {
         // Sanity checks
         if (!json || !(json instanceof Object)) {
             throw new Error('No JSON specified for Recipe constructor.');
@@ -28,7 +30,8 @@ export default class Checkable {
         if (!json.steps || !(json.steps instanceof Array)) {
             throw new Error('"steps" field missing or not an Array.');
         }
-        this._steps = json.steps.map(step => new Step(step));
+        this._steps = json.steps.map((step, i) => new Step(step, i));
+        this._id = id;
     }
 
     /**
@@ -44,6 +47,10 @@ export default class Checkable {
 
     get steps() {
         return this._steps;
+    }
+
+    get id() {
+        return this._id;
     }
 
     // / TODO: load state from local config or from state json

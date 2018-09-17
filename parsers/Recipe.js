@@ -12,8 +12,10 @@ import appliesToRunningPlatform from './platform-check';
 export default class Recipe {
     /**
      * @param {Object} json The input JSON representation for this recipe
+     * @param {Number=} id An optional numeric identifier, which should be
+     * unique for each Recipe during runtime.
      */
-    constructor(json) {
+    constructor(json, id) {
         // Assume that a string is really a recipe for all platforms
         const data = (json instanceof String) ?
             { platforms: 'all', url: json } : json;
@@ -46,12 +48,13 @@ export default class Recipe {
 
         this._title = data.title;
         this._description = data.description;
+        this._id = id;
 
         // / TODO: Decide whether to stick with this name or change it.
         if (!data.checkables || !(data.checkables instanceof Array)) {
             throw new Error('"checkables" field missing or not an Array.');
         }
-        this._checkables = data.checkables.map(checkable => new Checkable(checkable));
+        this._checkables = data.checkables.map((checkable, i) => new Checkable(checkable, i));
     }
 
     /**
@@ -115,6 +118,10 @@ export default class Recipe {
 
     get tool() {
         return `${this._toolName}-${this._toolSemver}`;
+    }
+
+    get id() {
+        return this._id;
     }
 
     // / TODO: load state from local config or from state json

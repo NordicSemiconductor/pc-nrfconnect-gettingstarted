@@ -34,6 +34,12 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/* This file uses for..of iterators, which conflict with the 'no-restricted-syntax'
+   eslint rule. However, this runs only on Electron, which has support for the
+   ES2015 features we're using here, so there's actually no risk. */
+/* eslint no-restricted-syntax: "off" */
+
+
 import { Record } from 'immutable';
 import Store from 'electron-store';
 
@@ -47,7 +53,7 @@ const InitialState = new Record({
 export default function reducer(state = new InitialState(), action) {
     let checkables;
 
-console.log('reducer: got', action.type);
+    console.log('reducer: got', action.type);
 
     switch (action.type) {
         case 'COURSE_LOADED':
@@ -61,7 +67,7 @@ console.log('reducer: got', action.type);
                     if (!checkables[tool]) {
                         checkables[tool] = [];
                         for (const checkable of recipe.checkables) {
-                            checkables[tool].push(false);
+                            checkables[tool].push(checkable);
                         }
                     }
                 }

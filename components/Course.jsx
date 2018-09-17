@@ -40,25 +40,29 @@ import { Accordion, Panel, Checkbox } from 'react-bootstrap';
 import Recipe from './Recipe';
 
 
-class Course extends React.Component{
+class Course extends React.Component {
     render() {
-        const recipes = this.props.recipes.map((recipe, i) => {
+        const recipes = this.props.recipes.map(recipe => {
             if (recipe.enabled) {
-
                 const recipeCheckables = this.props.checkables[recipe.tool];
                 console.log('Recipe ', recipe.tool, ' loaded checkables ', recipeCheckables);
 
                 // TODO: Iterate through props.checkables[recipe.tool] and see if
                 // everything is true. Set the checkbox state from there.
 
-                const recipeCheckbox = (<Checkbox inline key={i} >&nbsp;</Checkbox>);
+                const recipeCheckbox = (<Checkbox inline key={recipe.id} >&nbsp;</Checkbox>);
 
                 return (
-                    <Panel key={i} eventKey={i} header={[recipeCheckbox, recipe.title]}>
+                    <Panel
+                        key={recipe.id}
+                        eventKey={recipe.id}
+                        header={[recipeCheckbox, recipe.title]}
+                    >
                         <Recipe recipe={recipe} checkables={recipeCheckables} />
                     </Panel>
                 );
             }
+            return null;
         });
 
         return (
@@ -69,6 +73,13 @@ class Course extends React.Component{
             </div>
         );
     }
+}
+
+Course.propTypes = {
+    recipes: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+    checkables: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
 };
 
 export default Course;

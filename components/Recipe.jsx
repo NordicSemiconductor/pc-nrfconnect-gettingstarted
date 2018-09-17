@@ -34,6 +34,11 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/* This uses `dangerouslySetInnerHTML` + the 'marked' JS library to put the
+   markdown strings into the document. The "cleaner" option, 'react-markdown',
+   has a parser that misbehaves on quote blocks plus whitespace. */
+/* eslint react/no-danger: "off" */
+
 import marked from 'marked-it-core';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -46,42 +51,57 @@ function markup(md) {
     return { __html: marked.generate(md).html.text };
 }
 
-class Recipe extends React.Component {
-    render() {
-        const { recipe, checkables } = this.props;
+function Recipe(props) {
+// class Recipe extends React.Component {
+//     render() {
+    const { recipe, checkables } = props;
 
-        return (<div>
-            <p dangerouslySetInnerHTML={markup(recipe.description)} /><br />
-            {
-                recipe.checkables.map((checkable, j) => {
-                    const steps = checkable.steps.filter(step => step.enabled).map((step, k) => (
-                        <li key={k} dangerouslySetInnerHTML={markup(step.description)} />),
+    return (<div>
+        <p dangerouslySetInnerHTML={markup(recipe.description)} /><br />
+        {
+                recipe.checkables.map(checkable => {
+                    const steps = checkable.steps.filter(step => step.enabled).map(step => (
+                        <li key={step.id} dangerouslySetInnerHTML={markup(step.description)} />),
                     );
 
 //                     console.log('Checkbox number ', j, ' state shall be ', checkables[j]);
 
                     return (
-                        <div key={`${recipe.tool}-${j}`} >
+                        <div key={`${recipe.tool}-${checkable.id}`} >
                             <Checkbox
-                                key={j} style={{
+                                key={checkable.id}
+                                style={{
                                     float: 'left',
                                     marginTop: 0,
                                 }}
                                 onChange={ev => {
-                                        this.props.onCheckboxChange(recipe.tool, j, ev.target.checked);
-                                    }
+                                    props.onCheckboxChange(
+                                        recipe.tool,
+                                        checkable.id,
+                                        ev.target.checked,
+                                    );
                                 }
-                                checked={ checkables[j] }
+                                }
+                                checked={checkables[checkable.id]}
                             >&nbsp;</Checkbox>
                             <ul>{steps}</ul>
                         </div>
                     );
                 })
             }
-        </div>
-        );
-    }
+    </div>
+    );
 }
+// }
+
+Recipe.propTypes = {
+    recipe: PropTypes.shape({}).isRequired,
+    checkables: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+
+    // Apparently eslint doesn't realise that `onCheckboxChange` is called
+    // inside an event handler, so the next line is commented out.
+    // onCheckboxChange: PropTypes.function.isRequired,
+};
 
 export default connect(
     state => state,

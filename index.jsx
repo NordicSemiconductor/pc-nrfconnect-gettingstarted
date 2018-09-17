@@ -37,7 +37,7 @@
 import { join } from 'path';
 import React from 'react';
 import { combineReducers } from 'redux';
-import { remote, ipcRenderer } from 'electron';
+import { ipcRenderer } from 'electron';
 // import { logger } from 'nrfconnect/core';
 // import Hello from './components/Hello';
 import './resources/css/index.less';
@@ -123,7 +123,13 @@ export function onReady(dispatch, getState) {
     // remote.app.getAppPath(), which is the path of the core code)
     ipcRenderer.once('app-details', (sender, details) => {
 //         console.log('IPC application details', details);
-//         console.log(remote.app, remote.app.getAppPath(), remote.app.getName(), __dirname, join(__dirname, 'test-data/course-zephyr.json'));
+//     console.log(
+//         remote.app,
+//         remote.app.getAppPath(),
+//         remote.app.getName(),
+//         __dirname,
+//         join(__dirname, 'test-data/course-zephyr.json')
+//     );
 //         console.log(join(details.path, 'test-data/course-zephyr.json'));
 
         loadCourse(join(details.path, 'test-data/course-zephyr.json'))(dispatch);
@@ -219,7 +225,6 @@ export function decorateLogHeaderButton(LogHeaderButton) {
  */
 export function decorateMainView(MainView) {
     return props => {
-
         console.log('decorateMainView props', props);
 
         if (!props.course) {

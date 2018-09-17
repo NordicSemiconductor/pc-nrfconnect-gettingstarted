@@ -4,34 +4,30 @@ import Course from '../parsers';
 
 // @param {String} courseFilename The file name of the JSON course file to load
 // @returns {function(*)} Function that can be passed to redux dispatch.
-
 export function loadCourse(courseFilename) {
-    return function(dispatch) {
-        Course.loadFromFile(courseFilename).then((course)=>{
+    return dispatch => {
+        Course.loadFromFile(courseFilename).then(course => {
             dispatch({
                 type: 'COURSE_LOADED',
-                course
+                course,
             });
-        }).catch((error)=>{
+        }).catch(error => {
             dispatch({
                 type: 'COURSE_LOAD_FAIL',
-                error
+                error,
             });
         });
-    }
+    };
 }
 
 export function checkableChange(tool, checkableIndex, isDone) {
-    return function(dispatch) {
+    return dispatch => {
         dispatch({
             type: 'CHECKABLE_CHANGE',
             tool,
             checkableIndex,
-            isDone
+            isDone,
         });
-    }
+    };
 }
-
-
-
 

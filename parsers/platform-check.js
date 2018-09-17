@@ -11,18 +11,18 @@ currentOsIDs.push(osInfo.id);
  * and returns whether the current process is running on one of those platforms
  * *and* on one of those OS releases.
  * Throws an error if the platforms definition is malformed.
- * @param {String|Array<String>} platforms The platforms definition
- * @param {String|Array<String>} osReleases The OS Releases definition
+ * @param {Object|Array<Object>} platforms The platforms definition. A plain
+ * object containing platform, arch, osRelease and osVersion string members.
  * @return {Boolean} Whether the current process is running on a platform
- * fitting the given definition
+ * fitting (any of) the given definition(s)
  */
-export default function appliesToRunningPlatform(platforms = 'all', osReleases = 'all') {
+export default function appliesToRunningPlatform(platforms = 'all') {
     const plats = (platforms instanceof Array) ?
         platforms : [platforms];
 
     plats.forEach(p => {
         const {
-            platform, arch, osRelease, osVersion,
+            platform, arch,
         } = p;
 
         // Values for platform/arch should map to possible values for
@@ -43,7 +43,8 @@ export default function appliesToRunningPlatform(platforms = 'all', osReleases =
 
     const supportedPlatform = plats.some(p => {
         const {
-            platform, arch, osRelease, osVersion,
+            platform, arch, osRelease,
+            // TODO: get the `osVersion` property from destructuring `p`
         } = p;
 
         return (
@@ -52,8 +53,8 @@ export default function appliesToRunningPlatform(platforms = 'all', osReleases =
             (osRelease === undefined || currentOsIDs.indexOf(osRelease) !== -1)
         );
 
-        // / TODO: make a comparison between osVersion and os.release() with e.g.
-        // / semver.satisfies() - see https://www.npmjs.com/package/semver
+        // TODO: make a comparison between osVersion and os.release() with e.g.
+        // semver.satisfies() - see https://www.npmjs.com/package/semver
     });
 
     return supportedPlatform;
