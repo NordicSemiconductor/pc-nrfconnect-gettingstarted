@@ -96,7 +96,7 @@ function Recipe(props) {
 
 Recipe.propTypes = {
     recipe: PropTypes.shape({}).isRequired,
-    checkables: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    checkables: PropTypes.arrayOf(PropTypes.bool.isRequired).isRequired,
 
     // Apparently eslint doesn't realise that `onCheckboxChange` is called
     // inside an event handler, so the next line is commented out.

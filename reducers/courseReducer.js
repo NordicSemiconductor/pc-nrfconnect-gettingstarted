@@ -53,8 +53,6 @@ const InitialState = new Record({
 export default function reducer(state = new InitialState(), action) {
     let checkables;
 
-    console.log('reducer: got', action.type);
-
     switch (action.type) {
         case 'COURSE_LOADED':
 

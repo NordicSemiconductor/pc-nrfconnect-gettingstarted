@@ -45,7 +45,7 @@ class Course extends React.Component {
         const recipes = this.props.recipes.map(recipe => {
             if (recipe.enabled) {
                 const recipeCheckables = this.props.checkables[recipe.tool];
-                console.log('Recipe ', recipe.tool, ' loaded checkables ', recipeCheckables);
+//                 console.log('Recipe ', recipe.tool, ' loaded checkables ', recipeCheckables);
 
                 // TODO: Iterate through props.checkables[recipe.tool] and see if
                 // everything is true. Set the checkbox state from there.
@@ -77,7 +77,7 @@ class Course extends React.Component {
 
 Course.propTypes = {
     recipes: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-    checkables: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+    checkables: PropTypes.shape({}).isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
 };

@@ -32,7 +32,7 @@ export default class Course {
 
         this._title = json.title;
         this._description = json.description;
-        this._recipesPromise = Promise.all(json.recipes.map(f => {
+        this._recipesPromise = Promise.all(json.recipes.map((f, i) => {
             let filename = f;
             if (filename.search(/\.json$/) === -1) {
                 filename += '.json';
@@ -40,7 +40,7 @@ export default class Course {
             const fullPath = searchPath
                 ? path.join(searchPath, filename)
                 : filename;
-            return Recipe.loadFromFile(fullPath);
+            return Recipe.loadFromFile(fullPath, i);
         })).then(recipes => {
             this._recipes = recipes;
         });

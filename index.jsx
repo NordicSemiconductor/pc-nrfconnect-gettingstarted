@@ -225,8 +225,6 @@ export function decorateLogHeaderButton(LogHeaderButton) {
  */
 export function decorateMainView(MainView) {
     return props => {
-        console.log('decorateMainView props', props);
-
         if (!props.course) {
             return (
                 <MainView {...props} >
@@ -234,22 +232,6 @@ export function decorateMainView(MainView) {
         </MainView>
             );
         }
-
-//         const course = props.course.recipes.map((recipe, i) => {
-//             if (recipe.enabled) {
-//                 return (<li key={i}>
-//                     <h2>{recipe.title}</h2>
-//                     {recipe.description}<br />
-//                     <ul>
-//                         {recipe.checkables.map(checkable => checkable.steps.map((step, j) => {
-//                             if (step.enabled) {
-//                                 return (<li key={j}>{step.description}</li>);
-//                             }
-//                         }))}
-//                     </ul>
-//                 </li>);
-//             }
-//         });
 
         return (
             <MainView {...props} >

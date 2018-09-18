@@ -62,9 +62,11 @@ export default class Recipe {
      * of Recipe from it.
      *
      * @param {String} filename Relative path of the file to load
+     * @param {Number=} id An optional numeric identifier, which should be
+     * unique for each Recipe during runtime.
      * @returns {Promise<Recipe>} A Promise to an instance of Recipe
      */
-    static loadFromFile(filename) {
+    static loadFromFile(filename, id) {
         return readFile(filename, { encoding: 'utf8' }).then(text => {
             let json;
             try {
@@ -80,7 +82,7 @@ export default class Recipe {
             if (json.tool !== path.basename(filename).replace(/\.json$/, '')) {
                 throw new Error(`"tool" field doesn't match filename: ${json.tool} vs ${filename}`);
             }
-            return new Recipe(json);
+            return new Recipe(json, id);
         });
     }
 
