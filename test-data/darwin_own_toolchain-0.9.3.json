@@ -1,7 +1,7 @@
 {
     "type": "Recipe",
     "title": "Build a toolchain from scratch",
-    "tool": "darwin_toolchain-0.9.3",
+    "tool": "darwin_own_toolchain-0.9.3",
     "platforms": { "platform": "darwin" },
     "description": "To install the software components required to build the Zephyr kernel on a Mac, you will need to build a cross compiler for the target devices you wish to build for and install tools that the build system requires.",
     "checkables": [

@@ -1,8 +1,8 @@
 {
     "type": "Recipe",
     "title": "Update your OS",
-    "tool": "linux_update-noversion",
-    "platforms": { "platform": "linux" },
+    "tool": "win_update-noversion",
+    "platforms": { "platform": "win32" },
     "description": "Ensure that your Windows OS is up-to-date.",
     "checkables": [
         {

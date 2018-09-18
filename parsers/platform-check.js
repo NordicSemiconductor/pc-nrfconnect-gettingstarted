@@ -2,7 +2,7 @@
 import OsInfo from 'linux-os-info';
 
 // Get the ID and ID_LIKE fields from /etc/os-release, concatenate their values
-const osInfo = OsInfo({ synchronous: true });
+const osInfo = OsInfo({ mode: 'sync' });
 const currentOsIDs = (osInfo.id_like || '').split(/\s+/);
 currentOsIDs.push(osInfo.id);
 

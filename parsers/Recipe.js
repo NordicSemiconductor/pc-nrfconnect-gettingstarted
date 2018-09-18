@@ -78,7 +78,7 @@ export default class Recipe {
             // to force the file contents (after editing) to match the file name,
             // and to be able to recreate the filename from the file contents.
             if (json.tool !== path.basename(filename).replace(/\.json$/, '')) {
-                throw new Error(`"tool" field doesn't match filename: ${json.tool}vs${filename}`);
+                throw new Error(`"tool" field doesn't match filename: ${json.tool} vs ${filename}`);
             }
             return new Recipe(json);
         });
