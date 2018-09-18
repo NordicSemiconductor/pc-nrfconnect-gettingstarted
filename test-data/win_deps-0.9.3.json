@@ -1,0 +1,50 @@
+{
+    "type": "Recipe",
+    "title": "Installing Requirements and Dependencies",
+    "tool": "win32_deps-0.9.3",
+    "platforms": { "platform": "win32" },
+    "description": "The easiest way to install the dependencies natively on Microsoft Windows is to use the [`Chocolatey` package manager](https://chocolatey.org/). If you prefer to install those manually then simply download the required packages from their respective websites.",
+    "checkables": [
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Set up environment variables for proxies",
+                    "description": "If you're behind a corporate firewall, you'll likely need to specify a proxy to get access to internet resources:\n```\nset HTTP_PROXY=http://user:password@proxy.mycompany.com:1234\nset HTTPS_PROXY=http://user:password@proxy.mycompany.com:1234\n```\n\nYou can avoid typing these `set` commands every time by placing them inside a `.cmd` file and running that every time you open a Command Prompt."
+                },
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Install Chocolatey",
+                    "description": "Install `Chocolatey` by following the [install instructions on the `Chocolatey` website](https://chocolatey.org/install)."
+                },
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Install cmake",
+                    "description": "Install CMake by running:\n```\nchoco install -y cmake --installargs 'ADD_CMAKE_TO_PATH=System'\n```\n"
+                },
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Install Chocolatey",
+                    "description": "Install `Chocolatey` by following the [instructions on the `Chocolatey install` website](https://chocolatey.org/install)."
+                },
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Install Chocolatey",
+                    "description": "Install `Chocolatey` by following the [instructions on the `Chocolatey install` website](https://chocolatey.org/install)."
+                },
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Install Chocolatey",
+                    "description": "Install `Chocolatey` by following the [instructions on the `Chocolatey install` website](https://chocolatey.org/install)."
+                }
+            ]
+        }
+    ]
+}

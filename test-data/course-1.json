@@ -1,7 +1,7 @@
 {
-  "type": "Course",
-  "title": "A course with no recipes",
-  "platforms": "all",
-  "description": "This is just a stub for testing",
-  "recipes": []
+    "type": "Course",
+    "title": "A course with no recipes",
+    "platforms": "all",
+    "description": "This is just a stub for testing",
+    "recipes": []
 }

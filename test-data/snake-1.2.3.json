@@ -1,55 +1,55 @@
 {
-  "type": "Recipe",
-  "title": "Installing Snake",
-  "tool": "snake-1.2.3",
-  "platforms": "all",
-  "description": "A thing for testing. Totally not a python.",
-  "checkables": [
-    {
-      "type": "Checkable",
-      "steps": [
+    "type": "Recipe",
+    "title": "Installing Snake",
+    "tool": "snake-1.2.3",
+    "platforms": "all",
+    "description": "A thing for testing. Totally not a python.",
+    "checkables": [
         {
-          "type": "Step",
-          "platforms": "all",
-          "title": "Download",
-          "description": "download something from somewhere"
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": "all",
+                    "title": "Download",
+                    "description": "download something from somewhere"
+                },
+                {
+                    "type": "Step",
+                    "platforms": ["win32", "darwin"],
+                    "title": "Install",
+                    "description": "double-click the installer"
+                },
+                {
+                    "type": "Step",
+                    "platforms": "linux",
+                    "title": "Install",
+                    "description": "run somethingsomething in a terminal"
+                }
+            ]
         },
         {
-          "type": "Step",
-          "platforms": ["win32", "darwin"],
-          "title": "Install",
-          "description": "double-click the installer"
-        },
-        {
-          "type": "Step",
-          "platforms": "linux",
-          "title": "Install",
-          "description": "run somethingsomething in a terminal"
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": "all",
+                    "title": "Configure",
+                    "description": "Edit the file whatever and change something"
+                },
+                {
+                    "type": "Step",
+                    "platforms": ["win32"],
+                    "title": "Set path",
+                    "description": "do something about %PATH%"
+                },
+                {
+                    "type": "Step",
+                    "platforms": ["linux", "darwin"],
+                    "title": "Set path",
+                    "description": "do something about $PATH"
+                }
+            ]
         }
-      ]
-    },
-    {
-      "type": "Checkable",
-      "steps": [
-        {
-          "type": "Step",
-          "platforms": "all",
-          "title": "Configure",
-          "description": "Edit the file whatever and change something"
-        },
-        {
-          "type": "Step",
-          "platforms": ["win32"],
-          "title": "Set path",
-          "description": "do something about %PATH%"
-        },
-        {
-          "type": "Step",
-          "platforms": ["linux", "darwin"],
-          "title": "Set path",
-          "description": "do something about $PATH"
-        }
-      ]
-    }
-  ]
+    ]
 }
