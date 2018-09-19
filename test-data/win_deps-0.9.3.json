@@ -101,8 +101,41 @@
                 {
                     "type": "Step",
                     "platforms": { "platform": "win32" },
-                    "title": "Install cross compiler toolchain",
-                    "description": "For x86, install the 2017 Windows host ISSM toolchain from the Intel Developer Zone: `ISSM Toolchain`_. Use your web browser to download the toolchain's ``tar.gz`` file. You can then use 7-Zip or a similar tool to extract it into a destination folder."
+                    "title": "Install cross compiler toolchain for x86",
+                    "description": "For cross-compiling for x86 targets, install the 2017 Windows host [ISSM toolchain from the Intel Developer Zone](https://software.intel.com/en-us/articles/issm-toolchain-only-download). Use your web browser to download the toolchain's ``tar.gz`` file. You can then use 7-Zip or a similar tool to extract it into a destination folder."
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Install cross compiler toolchain for ARM",
+                    "description": "For cross-compiling for ARM targets, install [GNU ARM Embedded from the ARM developer website](). (install to `c:\\gnuarmemb`)."
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Environment variables for ISSM",
+                    "description": "Within the Command Prompt, set up environment variables for the ISSM toolchain:\n ```\n set ZEPHYR_TOOLCHAIN_VARIANT=issm\n set ISSM_INSTALLATION_PATH=c:issm0-toolchain-windows-2017-01-25\n ```\n "
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Environment variables for GNU ARM",
+                    "description": "Within the Command Prompt, set up environment variables for the GNU ARM toolchain:\n ```\n set ZEPHYR_TOOLCHAIN_VARIANT=gnuarmemb\n set GNUARMEMB_TOOLCHAIN_PATH=c:gnuarmemb\n ```\n "
                 }
             ]
         }
