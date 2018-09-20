@@ -2,6 +2,8 @@
 
 import Step from './Step';
 
+import checkerFactory from './Checker';
+
 /**
  * A Checkable is a dummy placeholder right now.
  * TODO: add support for specifying command-line commands, so that they might
@@ -23,7 +25,7 @@ export default class Checkable {
             throw new Error('No JSON specified for Recipe constructor.');
         }
         if (json.type !== 'Checkable') {
-            // Inspired by GeoJSON, a course must have a "type": "Checkable" field
+            // Inspired by GeoJSON, a checkable must have a "type": "Checkable" field
             throw new Error('"type" field in JSON is not "Checkable".');
         }
 
@@ -32,6 +34,16 @@ export default class Checkable {
         }
         this._steps = json.steps.map((step, i) => new Step(step, i));
         this._id = id;
+
+
+        if (json.checkers) {
+            this._isManual = false;
+
+            this._checkers = json.checkers.map(checkerFactory);
+        } else {
+            this._isManual = true;
+        }
+
     }
 
     /**
@@ -41,7 +53,7 @@ export default class Checkable {
         return {
             type: 'Checkable',
             steps: this._steps.map(step => step.asJSON()),
-            //       recipes: this._recipes.map(recipe => recipe.asJSON())
+            checkers: this._checkers.map(checker=>checker.asJson())
         };
     }
 
@@ -51,6 +63,19 @@ export default class Checkable {
 
     get id() {
         return this._id;
+    }
+
+    get isManual() {
+        return this._isManual;
+    }
+
+    /**
+     * @return {Promise<Boolean>} Whether all own checkers passed or not.
+     */
+    runCheckers(){
+        return Promise.all(this._checkers.map(checker=>checker.run()))
+        .then(()=>true)
+        .catch(()=>false);
     }
 
     // / TODO: load state from local config or from state json
