@@ -1,13 +1,19 @@
 
-
-import { exists } from 'sander';
+import sander from 'sander';
 
 import ChildProcess from 'child_process';
 
+import appliesToRunningPlatform from './platform-check';
 
 
 
 class AbstractChecker {
+    constructor(json) {
+        this._platforms = json.platforms ? json.platforms : 'all';
+        this._osreleases = json.osReleases ? json.osReleases : 'all';
+        this._enabled = appliesToRunningPlatform(this._platforms, this._osreleases);
+    }
+
     /**
      * Runs the check for this checker.
      * @return {Promise<Boolean>} Whether the check from this checker passes or not.
@@ -19,6 +25,10 @@ class AbstractChecker {
      * @return {Object} The JSON serialization of the current checker
      */
     asJson() {}
+
+    get enabled() {
+        return this._enabled;
+    }
 }
 
 
@@ -26,12 +36,17 @@ class AbstractChecker {
 
 class CommandChecker extends AbstractChecker {
     constructor(json) {
+        super(json);
         this._command = json.command;
     }
 
     run() {
+        if (!this.enabled) { return Promise.resolve(true); }
+
         // Spawn a child process, and then wait for its 'close' event
 
+        /// TODO: provide some way of fetching the child's output, for
+        /// logging purposes. Maybe two callbacks passed to run() ???
         return new Promise((resolve, reject)=>{
 
             const cp = ChildProcess.exec(this._command);
@@ -60,15 +75,18 @@ class CommandChecker extends AbstractChecker {
 
 class FileExistsChecker extends AbstractChecker {
     constructor(json) {
+        super(json);
         this._filenames = (json.filenames instanceof Array) ?
             json.filenames : [json.filenames];
 
     }
 
     run() {
+         if (!this.enabled) { return Promise.resolve(true); }
+
         // Just delegate to the 'sander' library - it will return a Promise as
         // expected here
-        return this._filenames.map(exists);
+        return this._filenames.map(sander.exists);
     }
 
     asJson() {

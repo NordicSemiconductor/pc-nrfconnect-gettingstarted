@@ -1,7 +1,7 @@
 /* eslint no-underscore-dangle: "off" */
 
 import path from 'path';
-import { readFile } from 'sander';
+import sander from 'sander';
 import Checkable from './Checkable';
 import appliesToRunningPlatform from './platform-check';
 
@@ -67,7 +67,7 @@ export default class Recipe {
      * @returns {Promise<Recipe>} A Promise to an instance of Recipe
      */
     static loadFromFile(filename, id) {
-        return readFile(filename, { encoding: 'utf8' }).then(text => {
+        return sander.readFile(filename, { encoding: 'utf8' }).then(text => {
             let json;
             try {
                 json = JSON.parse(text);

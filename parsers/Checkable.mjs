@@ -53,7 +53,9 @@ export default class Checkable {
         return {
             type: 'Checkable',
             steps: this._steps.map(step => step.asJSON()),
-            checkers: this._checkers.map(checker=>checker.asJson())
+            checkers: this._checkers ?
+                this._checkers.map(checker=>checker.asJson()) :
+                undefined
         };
     }
 
@@ -73,6 +75,10 @@ export default class Checkable {
      * @return {Promise<Boolean>} Whether all own checkers passed or not.
      */
     runCheckers(){
+        if (this.isManual) {
+            throw new Error("Cannot runCheckers() on a manual checkable");
+        }
+
         return Promise.all(this._checkers.map(checker=>checker.run()))
         .then(()=>true)
         .catch(()=>false);
