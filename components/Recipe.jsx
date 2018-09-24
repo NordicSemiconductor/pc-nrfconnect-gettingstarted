@@ -44,6 +44,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Checkbox } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import CheckableButton from './CheckableButton';
 
 import { checkableChange } from '../actions/courseActions';
 
@@ -59,36 +60,41 @@ function Recipe(props) {
     return (<div>
         <p dangerouslySetInnerHTML={markup(recipe.description)} /><br />
         {
-                recipe.checkables.map(checkable => {
-                    const steps = checkable.steps.filter(step => step.enabled).map(step => (
-                        <li key={step.id} dangerouslySetInnerHTML={markup(step.description)} />),
-                    );
+            recipe.checkables.map(checkable => {
+                const steps = checkable.steps.filter(step => step.enabled).map(step => (
+                    <li key={step.id} dangerouslySetInnerHTML={markup(step.description)} />),
+                );
 
 //                     console.log('Checkbox number ', j, ' state shall be ', checkables[j]);
 
-                    return (
-                        <div key={`${recipe.tool}-${checkable.id}`} >
-                            <Checkbox
-                                key={checkable.id}
-                                style={{
-                                    float: 'left',
-                                    marginTop: 0,
-                                }}
-                                onChange={ev => {
-                                    props.onCheckboxChange(
-                                        recipe.tool,
-                                        checkable.id,
-                                        ev.target.checked,
-                                    );
-                                }
-                                }
-                                checked={checkables[checkable.id]}
-                            >&nbsp;</Checkbox>
-                            <ul>{steps}</ul>
-                        </div>
-                    );
-                })
-            }
+//                         <Checkbox
+//                             key={checkable.id}
+//                             style={{
+//                                 float: 'left',
+//                                 marginTop: 0,
+//                             }}
+//                             onChange={ev => {
+//                                 props.onCheckboxChange(
+//                                     recipe.tool,
+//                                     checkable.id,
+//                                     ev.target.checked,
+//                                 );
+//                             }
+//                             }
+//                             checked={checkables[checkable.id]}
+//                         >&nbsp;</Checkbox>
+                return (
+                    <div key={`${recipe.tool}-${checkable.id}`} >
+                        <CheckableButton
+                            checkable={checkable}
+                            checkableState={checkables[checkable.id]}
+                            onChange={props.onCheckboxChange(recipe.tool, checkable.id)}
+                        />
+                        <ul>{steps}</ul>
+                    </div>
+                );
+            })
+        }
     </div>
     );
 }
@@ -106,8 +112,10 @@ Recipe.propTypes = {
 export default connect(
     state => state,
     dispatch => ({
-        onCheckboxChange: (tool, checkableIndex, isDone) => {
-            checkableChange(tool, checkableIndex, isDone)(dispatch);
+        onCheckboxChange: (tool, checkableIndex) => {
+            return (checkableState)=>{
+                checkableChange(tool, checkableIndex, checkableState)(dispatch);
+            }
         },
     }),
 )(Recipe);

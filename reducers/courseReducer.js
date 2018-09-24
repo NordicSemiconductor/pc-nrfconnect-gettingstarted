@@ -56,7 +56,8 @@ export default function reducer(state = new InitialState(), action) {
     switch (action.type) {
         case 'COURSE_LOADED':
 
-            // Init all checkables as not checked
+            // Load checkable states from persistent storage (config file).
+            // If not available, init all checkables as not checked.
             checkables = persistentStore.get('checkables', checkables) || {};
 
             for (const recipe of action.course.recipes) {
@@ -65,7 +66,7 @@ export default function reducer(state = new InitialState(), action) {
                     if (!checkables[tool]) {
                         checkables[tool] = [];
                         for (const checkable of recipe.checkables) {
-                            checkables[tool].push(checkable);
+                            checkables[tool][checkable.id] = 'no';
                         }
                     }
                 }
@@ -82,9 +83,14 @@ export default function reducer(state = new InitialState(), action) {
         case 'CHECKABLE_CHANGE':
 
             checkables = state.get('checkables');
-            checkables[action.tool][action.checkableIndex] = !!action.isDone;
+            checkables[action.tool][action.checkableIndex] = action.checkableState;
 
-            persistentStore.set('checkables', checkables);
+            // Do not save the state when a child process is running - this covers
+            // the case where a user kills the application while a check is
+            // running on a child process.
+            if (action.checkableState !== 'in_progress') {
+                persistentStore.set('checkables', checkables);
+            }
 
             return state.set('checkables', Object.assign({}, checkables));
 
