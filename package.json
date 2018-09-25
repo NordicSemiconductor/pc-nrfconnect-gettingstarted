@@ -1,6 +1,6 @@
 {
-  "name": "pc-nrfconnect-boilerplate",
-  "version": "1.1.0",
+  "name": "nrf-framework-courses",
+  "version": "0.1.0",
   "description": "nRF framework courses checker getting started thing",
   "displayName": "nRF framework courses checker getting started thing",
   "repository": {

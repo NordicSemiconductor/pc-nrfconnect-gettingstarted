@@ -34,7 +34,7 @@ export default class Course {
         this._description = json.description;
         this._recipesPromise = Promise.all(json.recipes.map((f, i) => {
             let filename = f;
-            if (filename.search(/\.json$/) === -1) {
+            if (path.extname(filename) !== 'json') {
                 filename += '.json';
             }
             const fullPath = searchPath
