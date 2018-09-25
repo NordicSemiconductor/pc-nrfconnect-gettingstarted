@@ -43,7 +43,6 @@ export default class Checkable {
         } else {
             this._isManual = true;
         }
-
     }
 
     /**
@@ -54,8 +53,8 @@ export default class Checkable {
             type: 'Checkable',
             steps: this._steps.map(step => step.asJSON()),
             checkers: this._checkers ?
-                this._checkers.map(checker=>checker.asJson()) :
-                undefined
+                this._checkers.map(checker => checker.asJson()) :
+                undefined,
         };
     }
 
@@ -74,14 +73,14 @@ export default class Checkable {
     /**
      * @return {Promise<Boolean>} Whether all own checkers passed or not.
      */
-    runCheckers(){
+    runCheckers() {
         if (this.isManual) {
-            throw new Error("Cannot runCheckers() on a manual checkable");
+            throw new Error('Cannot runCheckers() on a manual checkable');
         }
 
-        return Promise.all(this._checkers.map(checker=>checker.run()))
-        .then(()=>true)
-        .catch(()=>false);
+        return Promise.all(this._checkers.map(checker => checker.run()))
+        .then(() => true)
+        .catch(() => false);
     }
 
     // / TODO: load state from local config or from state json

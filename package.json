@@ -23,7 +23,7 @@
     "webpack": "nrfconnect-scripts build-dev",
     "build": "nrfconnect-scripts build-prod",
     "lint": "nrfconnect-scripts lint components reducers index.jsx actions parsers",
-    "lintfix": "nrfconnect-scripts lint --fix components reducers index.jsx",
+    "lintfix": "nrfconnect-scripts lint --fix components reducers index.jsx actions parsers",
     "test": "nrfconnect-scripts test",
     "test-watch": "nrfconnect-scripts test --watch",
     "clean": "npm run clean-dist && npm run clean-modules",

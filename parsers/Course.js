@@ -1,6 +1,5 @@
 /* eslint no-underscore-dangle: "off" */
 
-// import sander from 'sander';
 import { readFile } from 'sander';
 import path from 'path';
 import Recipe from './Recipe';
@@ -74,7 +73,6 @@ export default class Course {
      * @return {Promise<Course>} A Promise to an instance of Course
      */
     static loadFromFile(filename) {
-//         return sander.readFile(filename, { encoding: 'utf8' })
         return readFile(filename, { encoding: 'utf8' })
             .then(text => {
                 let json;

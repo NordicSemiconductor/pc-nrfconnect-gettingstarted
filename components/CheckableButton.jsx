@@ -36,38 +36,30 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Checkbox } from 'react-bootstrap';
-import { connect } from 'react-redux';
 
 
 function CheckableButton(props) {
-
     const { checkableState, checkable } = props;
+
+    function runChecker() {
+        props.onChange('in_progress');
+        checkable.runCheckers().then(passed => {
+            props.onChange(passed ? 'done' : 'no');
+        });
+    }
 
     if (checkable.isManual) {
         if (!checkableState || checkableState === 'no') {
-            return (<button onClick={()=>{props.onChange('done')}}>Mark as manually done</button>)
-        } else {
-            return (<span>Done.<button onClick={()=>{props.onChange('no')}}>Mark as not done</button></span>)
+            return (<button onClick={() => { props.onChange('done'); }}>Mark as manually done</button>);
         }
-    } else {
-        if (!checkableState || checkableState === 'no') {
-
-            function runChecker(){
-                props.onChange( 'in_progress' );
-                checkable.runCheckers().then((passed)=>{
-                    props.onChange( passed ? 'done' : 'no' );
-                });
-            }
-
-            return (<button onClick={runChecker}>Run check for these steps</button>)
-        } else if (!checkableState || checkableState === 'in_progress') {
-            return (<span>Running checks...</span>)
-        } else {
-            return (<span>Done.<button onClick={()=>{props.onChange('no')}}>Mark as not done</button></span>)
-        }
+        return (<span>Done.<button onClick={() => { props.onChange('no'); }}>Mark as not done</button></span>);
     }
-
+    if (!checkableState || checkableState === 'no') {
+        return (<button onClick={runChecker}>Run check for these steps</button>);
+    } else if (!checkableState || checkableState === 'in_progress') {
+        return (<span>Running checks...</span>);
+    }
+    return (<span>Done.<button onClick={() => { props.onChange('no'); }}>Mark as not done</button></span>);
 }
 
 CheckableButton.propTypes = {
@@ -75,5 +67,11 @@ CheckableButton.propTypes = {
 //     isManual: PropTypes.bool.isRequired,
 };
 
+CheckableButton.propTypes = {
+    onChange: PropTypes.function.isRequired,
+    checkableState: PropTypes.string.isRequired,
+    checkable: PropTypes.shape({}).isRequired,
+
+};
 
 export default CheckableButton;

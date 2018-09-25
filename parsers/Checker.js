@@ -1,10 +1,10 @@
+/* eslint no-underscore-dangle: "off" */
 
 import sander from 'sander';
 
 import ChildProcess from 'child_process';
 
 import appliesToRunningPlatform from './platform-check';
-
 
 
 class AbstractChecker {
@@ -18,20 +18,20 @@ class AbstractChecker {
      * Runs the check for this checker.
      * @return {Promise<Boolean>} Whether the check from this checker passes or not.
      */
+    // eslint-disable-next-line class-methods-use-this
     run() {}
 
     /**
      * Returns a JSON serialization of the current checker
      * @return {Object} The JSON serialization of the current checker
      */
+    // eslint-disable-next-line class-methods-use-this
     asJson() {}
 
     get enabled() {
         return this._enabled;
     }
 }
-
-
 
 
 class CommandChecker extends AbstractChecker {
@@ -45,29 +45,27 @@ class CommandChecker extends AbstractChecker {
 
         // Spawn a child process, and then wait for its 'close' event
 
-        /// TODO: provide some way of fetching the child's output, for
-        /// logging purposes. Maybe two callbacks passed to run() ???
-        return new Promise((resolve, reject)=>{
-
+        // / TODO: provide some way of fetching the child's output, for
+        // / logging purposes. Maybe two callbacks passed to run() ???
+        return new Promise((resolve, reject) => {
             const cp = ChildProcess.exec(this._command);
 
-            cp.on('close', (exitCode)=>{
+            cp.on('close', exitCode => {
                 if (exitCode) {
                     reject(exitCode);
                 } else {
                     resolve();
                 }
             });
-
         });
     }
 
     asJson() {
         return {
-            type:'Checker',
+            type: 'Checker',
             checkerType: 'command',
-            command: this._command
-        }
+            command: this._command,
+        };
     }
 
 }
@@ -78,11 +76,10 @@ class FileExistsChecker extends AbstractChecker {
         super(json);
         this._filenames = (json.filenames instanceof Array) ?
             json.filenames : [json.filenames];
-
     }
 
     run() {
-         if (!this.enabled) { return Promise.resolve(true); }
+        if (!this.enabled) { return Promise.resolve(true); }
 
         // Just delegate to the 'sander' library - it will return a Promise as
         // expected here
@@ -91,14 +88,13 @@ class FileExistsChecker extends AbstractChecker {
 
     asJson() {
         return {
-            type:'Checker',
+            type: 'Checker',
             checkerType: 'fileExists',
-            filenames: this._filenames
-        }
+            filenames: this._filenames,
+        };
     }
 
 }
-
 
 
 export default function checkerFactory(json) {
@@ -113,12 +109,7 @@ export default function checkerFactory(json) {
         return new CommandChecker(json);
     } else if (json.checkerType === 'fileExists') {
         return new FileExistsChecker(json);
-    } else {
-        throw new Error('"checkerType" field in Checker JSON must be either "command" or "fileExists".');
     }
+    throw new Error('"checkerType" field in Checker JSON must be either "command" or "fileExists".');
 }
-
-
-
-
 
