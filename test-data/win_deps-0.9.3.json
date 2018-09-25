@@ -1,0 +1,143 @@
+{
+    "type": "Recipe",
+    "title": "Installing Requirements and Dependencies",
+    "tool": "win32_deps-0.9.3",
+    "platforms": { "platform": "win32" },
+    "description": "The easiest way to install the dependencies natively on Microsoft Windows is to use the [`Chocolatey` package manager](https://chocolatey.org/). If you prefer to install those manually then simply download the required packages from their respective websites.",
+    "checkables": [
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Set up environment variables for proxies",
+                    "description": "If you're behind a corporate firewall, you'll likely need to specify a proxy to get access to internet resources:\n```\nset HTTP_PROXY=http://user:password@proxy.mycompany.com:1234\nset HTTPS_PROXY=http://user:password@proxy.mycompany.com:1234\n```\n\nYou can avoid typing these `set` commands every time by placing them inside a `.cmd` file and running that every time you open a Command Prompt."
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Install Chocolatey",
+                    "description": "Install `Chocolatey` by following the [install instructions on the `Chocolatey` website](https://chocolatey.org/install)."
+                },
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Open admin cmd.exe",
+                    "description": "Open a Command Prompt (`cmd.exe`) as **Administrator**."
+                },
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Disable confirmation",
+                    "description": "(Optionally) disable global confirmation to avoid having to add the `-y` flag to all chocolatey commands:\n```\nchoco feature enable -n allowGlobalConfirmation\n```\n"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Install cmake",
+                    "description": "Install CMake by running:\n```\nchoco install -y cmake --installargs 'ADD_CMAKE_TO_PATH=System'\n```\n"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Install tools",
+                    "description": "Install the rest of the tools:\n```\nchoco install git python ninja dtc-msys2 gperf doxygen.install\n```\n"
+                },
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Close prompt",
+                    "description": "Close the comand prompt window."
+                },
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Open cmd.exe",
+                    "description": "Open a Command Prompt (`cmd.exe`) as a **regular user**."
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Clone zephyr source",
+                    "description": "Clone a copy of the Zephyr source into your home directory using `git`:\n```\ncd %userprofile%\ngit clone https://github.com/zephyrproject-rtos/zephyr.git\n```\n"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Install python modules",
+                    "description": "Install the required python modules:\n```\ncd %userprofile%\\zephyr\npip3 install -r scripts/requirements.txt\n```\n"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Install cross compiler toolchain for x86",
+                    "description": "For cross-compiling for x86 targets, install the 2017 Windows host [ISSM toolchain from the Intel Developer Zone](https://software.intel.com/en-us/articles/issm-toolchain-only-download). Use your web browser to download the toolchain's ``tar.gz`` file. You can then use 7-Zip or a similar tool to extract it into a destination folder."
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Install cross compiler toolchain for ARM",
+                    "description": "For cross-compiling for ARM targets, install [GNU ARM Embedded from the ARM developer website](). (install to `c:\\gnuarmemb`)."
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Environment variables for ISSM",
+                    "description": "Within the Command Prompt, set up environment variables for the ISSM toolchain:\n ```\n set ZEPHYR_TOOLCHAIN_VARIANT=issm\n set ISSM_INSTALLATION_PATH=c:issm0-toolchain-windows-2017-01-25\n ```\n "
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Environment variables for GNU ARM",
+                    "description": "Within the Command Prompt, set up environment variables for the GNU ARM toolchain:\n ```\n set ZEPHYR_TOOLCHAIN_VARIANT=gnuarmemb\n set GNUARMEMB_TOOLCHAIN_PATH=c:gnuarmemb\n ```\n "
+                }
+            ]
+        }
+    ]
+}

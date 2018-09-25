@@ -1,3 +1,5 @@
+/* eslint no-underscore-dangle: "off" */
+
 import appliesToRunningPlatform from './platform-check';
 
 /**
@@ -8,8 +10,10 @@ import appliesToRunningPlatform from './platform-check';
 export default class Step {
     /**
      * @param {Object} json The input JSON representation for this recipe
+     * @param {Number=} id An optional numeric identifier, which should be
+     * unique for each Checkable in a Recipe during runtime.
      */
-    constructor(json) {
+    constructor(json, id) {
         // Sanity checks
 
         if (!json || !(json instanceof Object)) {
@@ -22,13 +26,15 @@ export default class Step {
 
         // / TODO: Add commands/automation
 
-        // 'platforms' field is optional in steps
+        // 'platforms' and 'osReleases' fields are optional in steps
         this._platforms = json.platforms ? json.platforms : 'all';
-        this._enabled = appliesToRunningPlatform(this._platforms);
+        this._osreleases = json.osReleases ? json.osReleases : 'all';
+        this._enabled = appliesToRunningPlatform(this._platforms, this._osreleases);
 
         this._title = json.title;
         this._description = json.description;
         this._commands = json.commands;
+        this._id = id;
     }
 
     /**
@@ -39,6 +45,7 @@ export default class Step {
             type: 'Step',
             title: this._title,
             platforms: this._platforms,
+            osReleases: this._osreleases,
             description: this._description,
             commands: this._commands,
         };
@@ -58,6 +65,10 @@ export default class Step {
 
     get commands() {
         return this._commands;
+    }
+
+    get id() {
+        return this._id;
     }
     // / TODO: load state from local config or from state json
 }

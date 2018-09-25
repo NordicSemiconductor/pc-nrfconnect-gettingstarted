@@ -1,0 +1,20 @@
+{
+    "type": "Recipe",
+    "title": "Build a \"Hello world\" example",
+    "tool": "darwin_helloworld-0.9.3",
+    "platforms": { "platform": "darwin" },
+    "description": "",
+    "checkables": [
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "darwin" },
+                    "title": "Build a \"Hello world\" example",
+                    "description": "To check that all the tools are ready, try building the `hello_world` sample.\n\nThis assumes the target board is a nRF52 development kit (with the `pca10040` board).\n\n\n```\ncd $ZEPHYR_BASE/samples/hello_world\nmkdir build && cd build\n\n# Use cmake to configure a Ninja-based build system:\ncmake -GNinja -DBOARD=nrf52_pca10040 ..\n\n# Now run ninja on the generated build system:\nninja\n``` "
+                }
+            ]
+        }
+    ]
+}

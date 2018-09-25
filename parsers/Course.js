@@ -1,4 +1,6 @@
-import sander from 'sander';
+/* eslint no-underscore-dangle: "off" */
+
+import { readFile } from 'sander';
 import path from 'path';
 import Recipe from './Recipe';
 import appliesToRunningPlatform from './platform-check';
@@ -30,22 +32,23 @@ export default class Course {
 
         this._title = json.title;
         this._description = json.description;
-        this._recipesPromise = Promise.all(json.recipes.map(f => {
+        this._recipesPromise = Promise.all(json.recipes.map((f, i) => {
             let filename = f;
-            if (filename.search(/\.json$/) === -1) {
+            if (path.extname(filename) !== 'json') {
                 filename += '.json';
             }
             const fullPath = searchPath
                 ? path.join(searchPath, filename)
                 : filename;
-            return Recipe.loadFromFile(fullPath);
+            return Recipe.loadFromFile(fullPath, i);
         })).then(recipes => {
             this._recipes = recipes;
         });
 
-        // 'platforms' field is optional in courses
+        // 'platforms' and 'osReleases' fields are optional in courses
         this._platforms = json.platforms ? json.platforms : 'all';
-        this._enabled = appliesToRunningPlatform(this._platforms);
+        this._osreleases = json.osReleases ? json.osReleases : 'all';
+        this._enabled = appliesToRunningPlatform(this._platforms, this._osreleases);
     }
 
     /**
@@ -70,8 +73,7 @@ export default class Course {
      * @return {Promise<Course>} A Promise to an instance of Course
      */
     static loadFromFile(filename) {
-        return sander
-            .readFile(filename, { encoding: 'utf8' })
+        return readFile(filename, { encoding: 'utf8' })
             .then(text => {
                 let json;
                 try {
