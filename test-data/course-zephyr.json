@@ -3,7 +3,8 @@
     "title": "Zephyr",
     "platforms": [
         { "platform": "linux" },
-        { "platform": "win32" }
+        { "platform": "win32" },
+        { "platform": "darwin" }
     ],
     "description": "Zephyr development environment",
     "recipes": [
