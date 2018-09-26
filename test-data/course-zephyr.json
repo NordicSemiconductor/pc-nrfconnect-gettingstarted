@@ -1,7 +1,10 @@
 {
     "type": "Course",
     "title": "Zephyr",
-    "platforms": { "platform": "linux" },
+    "platforms": [
+        { "platform": "linux" },
+        { "platform": "win32" }
+    ],
     "description": "Zephyr development environment",
     "recipes": [
         "darwin_intro-noversion",
@@ -11,6 +14,8 @@
         "darwin_doctools-0.9.3",
         "darwin_helloworld-0.9.3",
         "win_update-noversion",
+        "win_deps-0.9.3",
+        "win_helloworld-0.9.3",
         "linux_update-noversion",
         "linux_zephyr_deps-0.9.3",
         "linux_zephyr_sdk-0.9.3"
