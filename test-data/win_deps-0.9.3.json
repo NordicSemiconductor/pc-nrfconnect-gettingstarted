@@ -1,7 +1,7 @@
 {
     "type": "Recipe",
     "title": "Installing Requirements and Dependencies",
-    "tool": "win32_deps-0.9.3",
+    "tool": "win_deps-0.9.3",
     "platforms": { "platform": "win32" },
     "description": "The easiest way to install the dependencies natively on Microsoft Windows is to use the [`Chocolatey` package manager](https://chocolatey.org/). If you prefer to install those manually then simply download the required packages from their respective websites.",
     "checkables": [
