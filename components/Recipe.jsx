@@ -81,7 +81,7 @@ function Recipe(props) {
 Recipe.propTypes = {
     recipe: PropTypes.shape({}).isRequired,
     checkables: PropTypes.arrayOf(PropTypes.bool.isRequired).isRequired,
-    onCheckboxChange: PropTypes.function.isRequired,
+    onCheckboxChange: PropTypes.func.isRequired,
 };
 
 export default connect(
