@@ -1,0 +1,49 @@
+{
+    "type": "Recipe",
+    "title": "Get Segger Embedded Studio",
+    "tool": "ses-0.1.0",
+    "platforms": { "platform": "all" },
+    "description": "Install Segger Embedded Studio for use with nRF Connect SDK",
+    "checkables": [
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Download",
+                    "description": "Download Segger Embedded Studio from http://"
+                },
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "linux" },
+                    "title": "Download",
+                    "description": "Download Segger Embedded Studio from http://"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "darwin" },
+                    "title": "Download",
+                    "description": "Download Segger Embedded Studio from http://"
+                },
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Extract",
+                    "description": "Extract Segger Embedded Studio to your prfered folder"
+                },
+                {
+                    "type": "Step",
+                    "platforms": [ { "platform": "linux"}, { "platform": "darwin" } ],
+                    "title": "Extract",
+                    "description": "Extract Segger Embedded Studio to your prfered folder\n```\ntar xzvf <downloaded segger embedded studio.tar.gz> <extract loaction>\n```\n"
+                }
+            ]
+        }
+    ]
+}

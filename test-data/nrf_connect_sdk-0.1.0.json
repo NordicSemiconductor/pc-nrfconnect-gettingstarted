@@ -1,0 +1,37 @@
+{
+    "type": "Recipe",
+    "title": "Clone the nRF Connect SDK",
+    "tool": "nrf_connect_sdk-0.1.0",
+    "platforms": { "platform": "all" },
+    "description": "This describe how you clone and set up the nRF Connect SDK.\n\nIf you intend to contribute directly to any of the repositories, you will have to make forks of the repositories. To do this, you can follow the instructions on [github.com](https://help.github.com/articles/fork-a-repo/) (https://help.github.com/articles/fork-a-repo/)",
+    "checkables": [
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "all" },
+                    "title": "Clone the repositories",
+                    "description": "Clone the latest SDK repositories:\n\n```\ncd <sourcecode_root>\nmkdir ncs\ncd ncs\ngit clone https://github.com/NordicPlayground/fw-nrfconnect-zephyr.git zephyr\ngit clone https://github.com/NordicPlayground/fw-nrfconnect-mcuboot.git mcuboot\ngit clone https://github.com/NordicPlayground/fw-nrfconnect-nrf.git nrf\ngit clone https://github.com/NordicPlayground/nrfxlib.git nrfxlib\n```\n"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "linux" },
+                    "title": "Set up environment",
+                    "description": "Set up the environment:\n\n```\nsource zephyr/zephyr-env.sh\n```\n"
+                },
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Set up environment",
+                    "description": "Set up the environment:\n\n```\nzephyr\\zephyr-env.cmd\n```\n"
+                }
+            ]
+        }
+    ]
+}

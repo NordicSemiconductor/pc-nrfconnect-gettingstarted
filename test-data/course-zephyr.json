@@ -1,24 +1,25 @@
 {
     "type": "Course",
-    "title": "Zephyr",
+    "title": "nRF Connect SDK",
     "platforms": [
         { "platform": "linux" },
         { "platform": "win32" },
         { "platform": "darwin" }
     ],
-    "description": "Zephyr development environment",
+    "description": "nRF Connect SDK development environment",
     "recipes": [
         "darwin_intro-noversion",
+        "win_update-noversion",
+        "linux_update-noversion",
+        "ses-0.1.0",
         "darwin_deps-0.9.3",
+        "win_deps-0.9.3",
+        "linux_zephyr_deps-0.9.3",
         "darwin_3rd_party_toolchain-0.9.3",
         "darwin_own_toolchain-0.9.3",
         "darwin_doctools-0.9.3",
-        "darwin_helloworld-0.9.3",
-        "win_update-noversion",
-        "win_deps-0.9.3",
-        "win_helloworld-0.9.3",
-        "linux_update-noversion",
-        "linux_zephyr_deps-0.9.3",
-        "linux_zephyr_sdk-0.9.3"
+        "linux_zephyr_sdk-0.9.3",
+        "nrf_connect_sdk-0.1.0",
+        "ses_config-0.1.0"
     ]
 }
