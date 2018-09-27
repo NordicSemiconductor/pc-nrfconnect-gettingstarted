@@ -68,7 +68,7 @@ CheckableButton.propTypes = {
 };
 
 CheckableButton.propTypes = {
-    onChange: PropTypes.function.isRequired,
+    onChange: PropTypes.func.isRequired,
     checkableState: PropTypes.string.isRequired,
     checkable: PropTypes.shape({}).isRequired,
 
