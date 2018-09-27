@@ -1,5 +1,7 @@
-const util = require('util');
-const Course = require('../parsers');
+// const util = require('util');
+// const Course = require('../parsers');
+import util from 'util';
+import Course from '../parsers';
 
 const filename = process.argv[2];
 

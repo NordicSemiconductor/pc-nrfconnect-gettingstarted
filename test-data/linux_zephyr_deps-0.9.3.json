@@ -7,6 +7,14 @@
     "checkables": [
         {
             "type": "Checkable",
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "platforms": { "platform": "linux", "osRelease": "debian" },
+                    "command": "dpkg -s git cmake ninja-build gperf ccache doxygen dfu-util device-tree-compiler python3-ply python3-pip python3-setuptools python3-wheel xz-utils file make gcc-multilib autoconf automake libtool librsvg2-bin texlive-latex-base texlive-latex-extra latexmk texlive-fonts-recommended"
+                }
+            ],
             "steps": [
                 {
                     "type": "Step",

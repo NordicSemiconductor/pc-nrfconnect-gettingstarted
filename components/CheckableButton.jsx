@@ -34,61 +34,44 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* This uses `dangerouslySetInnerHTML` + the 'marked' JS library to put the
-   markdown strings into the document. The "cleaner" option, 'react-markdown',
-   has a parser that misbehaves on quote blocks plus whitespace. */
-/* eslint react/no-danger: "off" */
-
-import marked from 'marked-it-core';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import CheckableButton from './CheckableButton';
 
-import { checkableChange } from '../actions/courseActions';
 
-function markup(md) {
-    return { __html: marked.generate(md).html.text };
-}
+function CheckableButton(props) {
+    const { checkableState, checkable } = props;
 
-function Recipe(props) {
-    const { recipe, checkables } = props;
+    function runChecker() {
+        props.onChange('in_progress');
+        checkable.runCheckers().then(passed => {
+            props.onChange(passed ? 'done' : 'no');
+        });
+    }
 
-    return (<div>
-        <p dangerouslySetInnerHTML={markup(recipe.description)} /><br />
-        {
-            recipe.checkables.map(checkable => {
-                const steps = checkable.steps.filter(step => step.enabled).map(step => (
-                    <li key={step.id} dangerouslySetInnerHTML={markup(step.description)} />),
-                );
-
-                return (
-                    <div key={`${recipe.tool}-${checkable.id}`} >
-                        <CheckableButton
-                            checkable={checkable}
-                            checkableState={checkables[checkable.id]}
-                            onChange={props.onCheckboxChange(recipe.tool, checkable.id)}
-                        />
-                        <ul>{steps}</ul>
-                    </div>
-                );
-            })
+    if (checkable.isManual) {
+        if (!checkableState || checkableState === 'no') {
+            return (<button onClick={() => { props.onChange('done'); }}>Mark as manually done</button>);
         }
-    </div>
-    );
+        return (<span>Done.<button onClick={() => { props.onChange('no'); }}>Mark as not done</button></span>);
+    }
+    if (!checkableState || checkableState === 'no') {
+        return (<button onClick={runChecker}>Run check for these steps</button>);
+    } else if (!checkableState || checkableState === 'in_progress') {
+        return (<span>Running checks...</span>);
+    }
+    return (<span>Done.<button onClick={() => { props.onChange('no'); }}>Mark as not done</button></span>);
 }
 
-Recipe.propTypes = {
-    recipe: PropTypes.shape({}).isRequired,
-    checkables: PropTypes.arrayOf(PropTypes.bool.isRequired).isRequired,
-    onCheckboxChange: PropTypes.function.isRequired,
+CheckableButton.propTypes = {
+//     checkableState: PropTypes.string.isRequired,
+//     isManual: PropTypes.bool.isRequired,
 };
 
-export default connect(
-    state => state,
-    dispatch => ({
-        onCheckboxChange: (tool, checkableIndex) => checkableState => {
-            checkableChange(tool, checkableIndex, checkableState)(dispatch);
-        },
-    }),
-)(Recipe);
+CheckableButton.propTypes = {
+    onChange: PropTypes.function.isRequired,
+    checkableState: PropTypes.string.isRequired,
+    checkable: PropTypes.shape({}).isRequired,
+
+};
+
+export default CheckableButton;
