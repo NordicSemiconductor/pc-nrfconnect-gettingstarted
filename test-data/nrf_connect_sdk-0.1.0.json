@@ -3,7 +3,7 @@
     "title": "Clone the nRF Connect SDK",
     "tool": "nrf_connect_sdk-0.1.0",
     "platforms": { "platform": "all" },
-    "description": "This describe how you clone and set up the nRF Connect SDK.\n\nIf you intend to contribute directly to any of the repositories, you will have to make forks of the repositories. To do this, you can follow the instructions on [github.com](https://help.github.com/articles/fork-a-repo/) (https://help.github.com/articles/fork-a-repo/)",
+    "description": "This describe how you clone and set up the nRF Connect SDK.\n\nIf you intend to contribute directly to any of the repositories, you will have to make forks of the repositories. To do this, you can follow the instructions on [github.com](https://help.github.com/articles/fork-a-repo/)",
     "checkables": [
         {
             "type": "Checkable",
@@ -23,13 +23,13 @@
                     "type": "Step",
                     "platforms": { "platform": "linux" },
                     "title": "Set up environment",
-                    "description": "Set up the environment:\n\n```\nsource zephyr/zephyr-env.sh\n```\n"
+                    "description": "Set up the environment:\n\n```\nsource zephyr/zephyr-env.sh\n```\nIt is recommended to add this automatically to your environment (i.e. *.bashrc*)."
                 },
                 {
                     "type": "Step",
                     "platforms": { "platform": "win32" },
                     "title": "Set up environment",
-                    "description": "Set up the environment:\n\n```\nzephyr\\zephyr-env.cmd\n```\n"
+                    "description": "Set up the environment:\n\n```\nzephyr\\zephyr-env.cmd\n```\nIt is recommended to add this automatically to your environment."
                 }
             ]
         }

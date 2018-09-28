@@ -48,7 +48,12 @@ import CheckableButton from './CheckableButton';
 import { checkableChange } from '../actions/courseActions';
 
 function markup(md) {
-    return { __html: marked.generate(md).html.text };
+    const extensions = {};
+    extensions.html = {};
+    extensions.html.onLink = (source, data) => {
+        return source.replace(new RegExp('<a href="(.*)">(.*)</a>', 'g'), `<a href="$1">$2 ($1)</a>`);
+    };
+    return { __html: marked.generate(md, { extensions }).html.text };
 }
 
 function Recipe(props) {
