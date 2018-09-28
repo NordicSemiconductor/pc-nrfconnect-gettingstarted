@@ -16,7 +16,8 @@
   "files": [
     "dist/",
     "icon.png",
-    "LICENSE"
+    "LICENSE",
+    "test-data"
   ],
   "scripts": {
     "dev": "nrfconnect-scripts build-watch",
@@ -38,5 +39,11 @@
     "electron-store": "^2.0.0",
     "linux-os-info": "^2.0.0",
     "marked-it-core": "^0.10.2"
-  }
+  },
+  "bundledDependencies": [
+    "configstore",
+    "electron-store",
+    "linux-os-info",
+    "marked-it-core"
+  ]
 }
