@@ -38,5 +38,8 @@
     "electron-store": "^1.2.0",
     "linux-os-info": "^2.0.0",
     "marked-it-core": "^0.10.2"
-  }
+  },
+  "bundledDependencies": [
+    "electron-store"
+  ]
 }
