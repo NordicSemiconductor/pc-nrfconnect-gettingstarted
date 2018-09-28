@@ -40,6 +40,9 @@
     "marked-it-core": "^0.10.2"
   },
   "bundledDependencies": [
-    "electron-store"
+    "configstore",
+    "electron-store",
+    "linux-os-info",
+    "marked-it-core"
   ]
 }
