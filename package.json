@@ -16,7 +16,8 @@
   "files": [
     "dist/",
     "icon.png",
-    "LICENSE"
+    "LICENSE",
+    "test-data"
   ],
   "scripts": {
     "dev": "nrfconnect-scripts build-watch",
