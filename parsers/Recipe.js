@@ -1,7 +1,7 @@
 /* eslint no-underscore-dangle: "off" */
 
 import path from 'path';
-import { readFile } from 'sander';
+import { readFile } from './fs-promises';
 import Checkable from './Checkable';
 import appliesToRunningPlatform from './platform-check';
 

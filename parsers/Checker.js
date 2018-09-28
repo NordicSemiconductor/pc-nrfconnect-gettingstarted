@@ -1,9 +1,8 @@
 /* eslint no-underscore-dangle: "off" */
 
-import sander from 'sander';
 
 import ChildProcess from 'child_process';
-
+import { stat } from './fs-promises';
 import appliesToRunningPlatform from './platform-check';
 
 
@@ -83,7 +82,7 @@ class FileExistsChecker extends AbstractChecker {
 
         // Just delegate to the 'sander' library - it will return a Promise as
         // expected here
-        return this._filenames.map(sander.exists);
+        return this._filenames.map(stat);
     }
 
     asJson() {
