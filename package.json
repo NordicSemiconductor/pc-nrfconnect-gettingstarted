@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "configstore": "^4.0.0",
-    "electron-store": "^1.2.0",
+    "electron-store": "^2.0.0",
     "linux-os-info": "^2.0.0",
     "marked-it-core": "^0.10.2"
   },
