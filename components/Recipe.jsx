@@ -39,47 +39,58 @@
    has a parser that misbehaves on quote blocks plus whitespace. */
 /* eslint react/no-danger: "off" */
 
-import marked from 'marked-it-core';
+import ReactMarkdown from 'react-markdown';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { shell } from 'electron';
 import CheckableButton from './CheckableButton';
-
 import { checkableChange } from '../actions/courseActions';
-
-function markup(md) {
-    const extensions = {};
-    extensions.html = {};
-    extensions.html.onLink = (source, data) => {
-        return source.replace(new RegExp('<a href="(.*)">(.*)</a>', 'g'), `<a href="$1">$2 ($1)</a>`);
-    };
-    return { __html: marked.generate(md, { extensions }).html.text };
-}
 
 function Recipe(props) {
     const { recipe, checkables } = props;
 
-    return (<div>
-        <p dangerouslySetInnerHTML={markup(recipe.description)} /><br />
-        {
-            recipe.checkables.map(checkable => {
-                const steps = checkable.steps.filter(step => step.enabled).map(step => (
-                    <li key={step.id} dangerouslySetInnerHTML={markup(step.description)} />),
-                );
+    const onClick = event => {
+        shell.openExternal(event.target.getAttribute('href'));
+    };
 
-                return (
-                    <div key={`${recipe.tool}-${checkable.id}`} >
-                        <CheckableButton
-                            checkable={checkable}
-                            checkableState={checkables[checkable.id]}
-                            onChange={props.onCheckboxChange(recipe.tool, checkable.id)}
-                        />
-                        <ul>{steps}</ul>
-                    </div>
-                );
-            })
-        }
-    </div>
+    const renderers = {
+        link: item => (
+            <a
+                href={item.href}
+                onClick={onClick}
+            >
+                {item.children }
+            </a>
+        ),
+    };
+
+    return (
+        <div>
+            <ReactMarkdown source={recipe.description} renderers={renderers} /><br />
+            {
+                recipe.checkables.map(checkable => {
+                    const steps = checkable.steps.filter(step => step.enabled).map(step => (
+                        <ReactMarkdown
+                            key={step.id}
+                            source={step.description}
+                            renderers={renderers}
+                        />),
+                    );
+
+                    return (
+                        <div key={`${recipe.tool}-${checkable.id}`} >
+                            <CheckableButton
+                                checkable={checkable}
+                                checkableState={checkables[checkable.id]}
+                                onChange={props.onCheckboxChange(recipe.tool, checkable.id)}
+                            />
+                            <ul>{steps}</ul>
+                        </div>
+                    );
+                })
+            }
+        </div>
     );
 }
 

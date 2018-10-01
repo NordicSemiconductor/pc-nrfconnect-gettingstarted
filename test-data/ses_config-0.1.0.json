@@ -1,9 +1,9 @@
 {
     "type": "Recipe",
-    "title": "Set up a project with Segger Embedded Studio",
+    "title": "Set up a project with SEGGER Embedded Studio",
     "tool": "ses_config-0.1.0",
     "platforms": { "platform": "all" },
-    "description": "Configure Segger Embedded Studio for use with nRF Connect SDK",
+    "description": "Configure SEGGER Embedded Studio for use with nRF Connect SDK",
     "checkables": [
 
         {
@@ -12,8 +12,8 @@
                 {
                     "type": "Step",
                     "platforms": { "platform": "all" },
-                    "title": "Start Segger Embedded Studio",
-                    "description": "Go to the location where you installed Segger Embedded Studio\n\nGo to the *bin* folder\n\nExecute *emStudio*"
+                    "title": "Start SEGGER Embedded Studio",
+                    "description": "Go to the location where you installed SEGGER Embedded Studio\n\nGo to the *bin* folder\n\nExecute *emStudio*"
                 },
                 {
                     "type": "Step",
@@ -26,6 +26,12 @@
                     "platforms": { "platform": "all" },
                     "title": "Choose paths",
                     "description": "Choose the paths for the different parameters\n\n**Zephyr Base** should be *&lt;sourcecode_root&gt;/zephyr*\n\n**CMakeLists.txt** should be a link to the projects file for your project, i.e. *&lt;sourcecode_root&gt;/nrf/samples/bluetooth/hids_mouse/CMakeLists.txt*\n\n**Build Directory** should be the location to build to, i.e. *&lt;sourcecode_root&gt;/nrf/samples/bluetooth/hids_mouse/build*\n\n**Board Directory** should be the location of the board description of your development kit, i.e. *&lt;sourcecode_root&gt;/nrf/boards/arm/nrf52840_pca20041*\n\n**GNU ARM Embedded Toolchain Directory** should be the location where you installed your GNU ARM Embedded Toolchain, i.e. *c:\\gnuarmemb* "
+                },
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "all" },
+                    "title": "Open project",
+                    "description": "Click OK to open the project"
                 }
 
             ]

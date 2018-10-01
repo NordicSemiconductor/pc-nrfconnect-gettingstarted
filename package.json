@@ -1,6 +1,6 @@
 {
   "name": "nrf-framework-courses",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "nRF Getting Started Assistant",
   "displayName": "nRF Getting Started Assistant",
   "repository": {
@@ -38,12 +38,12 @@
     "configstore": "^4.0.0",
     "electron-store": "^2.0.0",
     "linux-os-info": "^2.0.0",
-    "marked-it-core": "^0.10.2"
+    "react-markdown": "^3.6.0"
   },
   "bundledDependencies": [
     "configstore",
     "electron-store",
     "linux-os-info",
-    "marked-it-core"
+    "react-markdown"
   ]
 }

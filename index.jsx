@@ -103,7 +103,7 @@ export const config = {
  * @returns {undefined}
  */
 export function onInit(dispatch, getState) {
-//     logger.info('App initializing');
+
 }
 
 /**
@@ -116,25 +116,13 @@ export function onInit(dispatch, getState) {
  * @returns {undefined}
  */
 export function onReady(dispatch, getState) {
-//     logger.info('App initialized');
-
     // TODO: Do not hardcode the course path.
     // IPC stuff to fetch the path of the currently running code (not
     // remote.app.getAppPath(), which is the path of the core code)
     ipcRenderer.once('app-details', (sender, details) => {
-//         console.log('IPC application details', details);
-//     console.log(
-//         remote.app,
-//         remote.app.getAppPath(),
-//         remote.app.getName(),
-//         __dirname,
-//         join(__dirname, 'test-data/course-zephyr.json')
-//     );
-//         console.log(join(details.path, 'test-data/course-zephyr.json'));
-
         loadCourse(join(details.path, 'test-data/course-zephyr.json'))(dispatch);
     });
-//     console.log('Sending IPC call for application details');
+
     ipcRenderer.send('get-app-details');
 }
 
@@ -154,9 +142,6 @@ export function decorateDeviceSelector(DeviceSelector) {
     return props => (
         <div />
     );
-//     return props => (
-//         <DeviceSelector {...props} />
-//     );
 }
 
 /**

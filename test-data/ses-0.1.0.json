@@ -1,9 +1,9 @@
 {
     "type": "Recipe",
-    "title": "Get Segger Embedded Studio",
+    "title": "Get SEGGER Embedded Studio",
     "tool": "ses-0.1.0",
     "platforms": { "platform": "all" },
-    "description": "Install Segger Embedded Studio for use with nRF Connect SDK",
+    "description": "Install SEGGER Embedded Studio for use with nRF Connect SDK",
     "checkables": [
         {
             "type": "Checkable",
@@ -12,7 +12,7 @@
                     "type": "Step",
                     "platforms": { "platform": "all" },
                     "title": "Download",
-                    "description": "Download Segger Embedded Studio from http://developer.nordicsemi.com/.NCS_PV/getting_started/"
+                    "description": "Download SEGGER Embedded Studio from http://developer.nordicsemi.com/.NCS_PV/getting_started/"
                 }
             ]
         },
@@ -23,7 +23,7 @@
                     "type": "Step",
                     "platforms": { "platform": "all" },
                     "title": "Extract",
-                    "description": "Extract Segger Embedded Studio to your preferred folder"
+                    "description": "Extract SEGGER Embedded Studio to your preferred folder"
                 }
             ]
         }
