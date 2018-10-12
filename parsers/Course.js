@@ -3,63 +3,29 @@
 import path from 'path';
 import { readFile } from './fs-promises';
 import Recipe from './Recipe';
-import appliesToRunningPlatform from './platform-check';
+
+import AbstractParser from './AbstractParser';
 
 /**
  *
  */
-export default class Course {
+export default class Course extends AbstractParser {
     /**
      * @param {Object} json The input JSON representation for this course
      * @param {String=} searchPath An optional filesystem path where to look for
      * the JSON files containing Recipe definitions.
      */
     constructor(json, searchPath) {
-        // Sanity checks
-        if (!json || !(json instanceof Object)) {
-            throw new Error('No JSON specified for Course constructor.');
-        }
-        if (json.type !== 'Course') {
-            // Inspired by GeoJSON, a course must have a "type": "Course" field
-            throw new Error('"type" field in JSON is not "Course".');
-        }
-        if (!json.title) {
-            throw new Error('"title" field missing.');
-        }
-        if (!json.recipes || !(json.recipes instanceof Array)) {
-            throw new Error('"recipes" field missing or not an Array.');
-        }
-
-        this._title = json.title;
-        this._description = json.description;
-        this._recipesPromise = Promise.all(json.recipes.map((f, i) => {
-            let filename = f;
-            if (path.extname(filename) !== 'json') {
-                filename += '.json';
-            }
-            const fullPath = searchPath
-                ? path.join(searchPath, filename)
-                : filename;
-            return Recipe.loadFromFile(fullPath, i);
-        })).then(recipes => {
-            this._recipes = recipes;
-        });
-
-        // 'platforms' and 'osReleases' fields are optional in courses
-        this._platforms = json.platforms ? json.platforms : 'all';
-        this._osreleases = json.osReleases ? json.osReleases : 'all';
-        this._enabled = appliesToRunningPlatform(this._platforms, this._osreleases);
+        super(json, 'Course', -1, [
+            'title',
+            'description',
+            { name: 'recipes', type: Array, processer: Course.extractRecipes(searchPath), promise: true },
+        ]);
     }
 
-    /**
-     * Asynchronously loads the recipes pointed from the 'recipes' field of the
-     * definition; filenames are supposed to be relative to the executable,
-     * or relative to the file this Course was loaded from, if the Course was
-     * instantiated through loadFromFile.
-     * @return {Promise<Recipe>} The loaded recipes
-     */
     loadRecipes() {
-        return this._recipesPromise;
+        return this._recipesPromise
+            .then(resipes => { this._recipes = resipes; });
     }
 
     /**
@@ -74,40 +40,32 @@ export default class Course {
      */
     static loadFromFile(filename) {
         return readFile(filename, { encoding: 'utf8' })
-            .then(text => {
-                let json;
-                try {
-                    json = JSON.parse(text);
-                } catch (ex) {
-                    throw new Error(`File ${filename} failed to be parsed as JSON: ${ex}`);
-                }
-
-                return new Course(json, path.dirname(filename));
-            })
+            .then(text => JSON.parse(text))
+            .catch(error => { throw new Error(`File ${filename} failed to be parsed as JSON: ${error}`); })
+            .then(json => new Course(json, path.dirname(filename)))
             .then(course => course.loadRecipes().then(() => course));
     }
 
+    static extractRecipes(searchPath) {
+        return async recipes => Promise.all(
+                    recipes
+                        .map(filename => (path.extname(filename) !== '.json' ? `${filename}.json` : filename))
+                        .map(filename => (searchPath ? path.join(searchPath, filename) : filename))
+                        .map(async (filepath, recipeId) => Recipe.loadFromFile(filepath, recipeId)),
+        );
+    }
+
     /**
-     * @return {Object} A JSON representation of the current instance.
+     * Serializes the custom properties for this parser
+     * @return {Object} A JSON representation of the custom properties.
      */
-    asJSON() {
+    serialize() {
         if (!this._recipes) {
             throw new Error('Cannot represent Course as JSON: its recipes haven\'t been loaded yet. Wait for the Course.loadRecipes() promise.');
         }
         return {
-            type: 'Course',
-            title: this._title,
-            description: this._description,
-            recipes: this._recipes.map(recipe => recipe.asJSON()),
+            recipes: this._recipes.map(recipe => recipe.tool),
         };
-    }
-
-    get title() {
-        return this._title;
-    }
-
-    get description() {
-        return this._description;
     }
 
     get recipes() {
@@ -116,6 +74,4 @@ export default class Course {
         }
         return this._recipes;
     }
-
-    // / TODO: load state from local config or from state json
 }

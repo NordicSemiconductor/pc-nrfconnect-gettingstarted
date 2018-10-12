@@ -3,14 +3,11 @@
 
 import ChildProcess from 'child_process';
 import { stat } from './fs-promises';
-import appliesToRunningPlatform from './platform-check';
+import AbstractParser from './AbstractParser';
 
-
-class AbstractChecker {
-    constructor(json) {
-        this._platforms = json.platforms ? json.platforms : 'all';
-        this._osreleases = json.osReleases ? json.osReleases : 'all';
-        this._enabled = appliesToRunningPlatform(this._platforms, this._osreleases);
+class AbstractChecker extends AbstractParser {
+    constructor(json, id) {
+        super(json, 'Checker', id, ['checkerType', { name: 'command', optional: true }, { name: 'filenames', optional: true }]);
     }
 
     /**
@@ -20,36 +17,38 @@ class AbstractChecker {
     // eslint-disable-next-line class-methods-use-this
     run() {}
 
-    /**
-     * Returns a JSON serialization of the current checker
-     * @return {Object} The JSON serialization of the current checker
-     */
-    // eslint-disable-next-line class-methods-use-this
-    asJson() {}
-
     get enabled() {
-        return this._enabled;
+        return this._platforms.isEnabled();
     }
 }
 
 
 class CommandChecker extends AbstractChecker {
-    constructor(json) {
-        super(json);
-        this._command = json.command;
-    }
-
     run() {
-        if (!this.enabled) { return Promise.resolve(true); }
+        if (!this.enabled) {
+            return Promise.resolve(true);
+        }
 
         // Spawn a child process, and then wait for its 'close' event
 
         // / TODO: provide some way of fetching the child's output, for
         // / logging purposes. Maybe two callbacks passed to run() ???
         return new Promise((resolve, reject) => {
-            const cp = ChildProcess.exec(this._command);
+            const child = ChildProcess.exec(this._command,
+                {},
+                (error, stderr, stdout) => {
+                    if (error) {
+                        console.log('Error', error);
+                    }
+                    if (stderr) {
+                        console.log('stderr', stderr);
+                    }
+                    if (stdout) {
+                        console.log('stdout', stdout);
+                    }
+                });
 
-            cp.on('close', exitCode => {
+            child.on('close', exitCode => {
                 if (exitCode) {
                     reject(exitCode);
                 } else {
@@ -59,10 +58,9 @@ class CommandChecker extends AbstractChecker {
         });
     }
 
-    asJson() {
+    serialize() {
         return {
-            type: 'Checker',
-            checkerType: 'command',
+            checkerType: this._checkerType,
             command: this._command,
         };
     }
@@ -85,18 +83,22 @@ class FileExistsChecker extends AbstractChecker {
         return this._filenames.map(stat);
     }
 
-    asJson() {
+    serialize() {
         return {
-            type: 'Checker',
-            checkerType: 'fileExists',
+            checkerType: this._checkerType,
             filenames: this._filenames,
         };
     }
 
 }
 
-
-export default function checkerFactory(json) {
+/**
+ * Factory function that creates the correct Checker.
+ * @param {Object} json The data defining the parser
+ * @param {Number} id The index in the array
+ * @return {Object} The created Checker
+ */
+export default function checkerFactory(json, id) {
     if (json.type !== 'Checker') {
         if (json.type !== 'Checkable') {
             // Inspired by GeoJSON, a checker must have a "type": "Checker" field
@@ -105,9 +107,9 @@ export default function checkerFactory(json) {
     }
 
     if (json.checkerType === 'command') {
-        return new CommandChecker(json);
+        return new CommandChecker(json, id);
     } else if (json.checkerType === 'fileExists') {
-        return new FileExistsChecker(json);
+        return new FileExistsChecker(json, id);
     }
     throw new Error('"checkerType" field in Checker JSON must be either "command" or "fileExists".');
 }

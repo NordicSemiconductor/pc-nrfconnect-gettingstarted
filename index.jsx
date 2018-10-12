@@ -120,7 +120,7 @@ export function onReady(dispatch, getState) {
     // IPC stuff to fetch the path of the currently running code (not
     // remote.app.getAppPath(), which is the path of the core code)
     ipcRenderer.once('app-details', (sender, details) => {
-        loadCourse(join(details.path, 'test-data/course-zephyr.json'))(dispatch);
+        loadCourse(join(details.path, 'resources/data/course-zephyr.json'))(dispatch);
     });
 
     ipcRenderer.send('get-app-details');

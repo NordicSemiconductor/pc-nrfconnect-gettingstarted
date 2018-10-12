@@ -1,6 +1,6 @@
 
 
-import Course from '../parsers/index';
+import Course from '../parsers';
 
 // @param {String} courseFilename The file name of the JSON course file to load
 // @returns {function(*)} Function that can be passed to redux dispatch.

@@ -3,6 +3,7 @@
 import Step from './Step';
 
 import checkerFactory from './Checker';
+import AbstractParser from './AbstractParser';
 
 /**
  * A Checkable is a dummy placeholder right now.
@@ -13,44 +14,25 @@ import checkerFactory from './Checker';
  * TODO: Add support for platform filtering, pretty much like the Recipes
  * TODO: Decide whether to stick with the name, or to change it.
  */
-export default class Checkable {
+export default class Checkable extends AbstractParser {
     /**
      * @param {Object} json The input JSON representation for this recipe
      * @param {Number=} id An optional numeric identifier, which should be
      * unique for each Checkable in a Recipe during runtime.
      */
     constructor(json, id) {
-        // Sanity checks
-        if (!json || !(json instanceof Object)) {
-            throw new Error('No JSON specified for Recipe constructor.');
-        }
-        if (json.type !== 'Checkable') {
-            // Inspired by GeoJSON, a checkable must have a "type": "Checkable" field
-            throw new Error('"type" field in JSON is not "Checkable".');
-        }
-
-        if (!json.steps || !(json.steps instanceof Array)) {
-            throw new Error('"steps" field missing or not an Array.');
-        }
-        this._steps = json.steps.map((step, i) => new Step(step, i));
-        this._id = id;
-
-
-        if (json.checkers) {
-            this._isManual = false;
-
-            this._checkers = json.checkers.map(checkerFactory);
-        } else {
-            this._isManual = true;
-        }
+        super(json, 'Checkable', id, [
+            { name: 'steps', type: Array, processer: data => data.map((value, stepId) => new Step(value, stepId)) },
+            { name: 'checkables', type: Array, optional: true, processer: data => data.map((value, checkableId) => checkerFactory(value, checkableId)) },
+        ]);
     }
 
     /**
-     * @return {Object} A JSON representation of the current instance.
+     * Serializes the custom properties for this parser
+     * @return {Object} A JSON representation of the custom properties.
      */
-    asJSON() {
+    serialize() {
         return {
-            type: 'Checkable',
             steps: this._steps.map(step => step.asJSON()),
             checkers: this._checkers ?
                 this._checkers.map(checker => checker.asJson()) :
@@ -62,12 +44,8 @@ export default class Checkable {
         return this._steps;
     }
 
-    get id() {
-        return this._id;
-    }
-
     get isManual() {
-        return this._isManual;
+        return this._checkables.some(item => item.enabled());
     }
 
     /**
@@ -82,6 +60,4 @@ export default class Checkable {
         .then(() => true)
         .catch(() => false);
     }
-
-    // / TODO: load state from local config or from state json
 }

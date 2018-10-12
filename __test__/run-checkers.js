@@ -37,4 +37,3 @@ Course.loadFromFile(filename).then(course => {
     }
 
 });
-
