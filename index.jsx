@@ -38,12 +38,10 @@ import { join } from 'path';
 import React from 'react';
 import { combineReducers } from 'redux';
 import { ipcRenderer } from 'electron';
-// import { logger } from 'nrfconnect/core';
-// import Hello from './components/Hello';
 import './resources/css/index.less';
-import { loadCourse } from './actions/courseActions';
-import courseReducer from './reducers/courseReducer';
-import Course from './components/Course';
+import { loadCourse } from './lib/actions/courseActions';
+import courseReducer from './lib/reducers/courseReducer';
+import Course from './lib/components/Course';
 
 /* eslint-disable react/prop-types, no-unused-vars */
 
