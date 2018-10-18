@@ -3,7 +3,7 @@
     "title": "Installing Requirements and Dependencies",
     "tool": "win_deps-0.9.3",
     "platforms": { "platform": "win32" },
-    "description": "The easiest way to install the dependencies natively on Microsoft Windows is to use the [`Chocolatey` package manager](https://chocolatey.org/). If you prefer to install those manually then simply download the required packages from their respective websites.",
+    "description": "The easiest way to install the dependencies natively on Microsoft Windows is to use the [`Chocolatey` package manager](https://chocolatey.org/). If you prefer to install those manually then simply download the required packages from their respective websites.\n\n[Zephyr Getting Started for Windows](https://docs.zephyrproject.org/latest/getting_started/installation_win.html#installing-requirements-and-dependencies) have more descriptions for how to get all the needed tools.",
     "checkables": [
         {
             "type": "Checkable",
@@ -64,45 +64,6 @@
                     "platforms": { "platform": "win32" },
                     "title": "Close prompt",
                     "description": "Close the comand prompt window."
-                },
-                {
-                    "type": "Step",
-                    "platforms": { "platform": "win32" },
-                    "title": "Open cmd.exe",
-                    "description": "Open a Command Prompt (`cmd.exe`) as a **regular user**."
-                }
-            ]
-        },
-        {
-            "type": "Checkable",
-            "steps": [
-                {
-                    "type": "Step",
-                    "platforms": { "platform": "win32" },
-                    "title": "Clone zephyr source",
-                    "description": "Clone a copy of the Zephyr source into your home directory using `git`:\n```\ncd %userprofile%\ngit clone https://github.com/zephyrproject-rtos/zephyr.git\n```\n"
-                }
-            ]
-        },
-        {
-            "type": "Checkable",
-            "steps": [
-                {
-                    "type": "Step",
-                    "platforms": { "platform": "win32" },
-                    "title": "Install python modules",
-                    "description": "Install the required python modules:\n```\ncd %userprofile%\\zephyr\npip3 install -r scripts/requirements.txt\n```\n"
-                }
-            ]
-        },
-        {
-            "type": "Checkable",
-            "steps": [
-                {
-                    "type": "Step",
-                    "platforms": { "platform": "win32" },
-                    "title": "Install cross compiler toolchain for x86",
-                    "description": "For cross-compiling for x86 targets, install the 2017 Windows host [ISSM toolchain from the Intel Developer Zone](https://software.intel.com/en-us/articles/issm-toolchain-only-download). Use your web browser to download the toolchain's ``tar.gz`` file. You can then use 7-Zip or a similar tool to extract it into a destination folder."
                 }
             ]
         },
@@ -113,7 +74,7 @@
                     "type": "Step",
                     "platforms": { "platform": "win32" },
                     "title": "Install cross compiler toolchain for ARM",
-                    "description": "For cross-compiling for ARM targets, install [GNU ARM Embedded from the ARM developer website](). (install to `c:\\gnuarmemb`)."
+                    "description": "For cross-compiling for ARM targets, install [GNU ARM Embedded from the ARM developer website](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads). (It is recommended to install to `c:\\gnuarmemb`)."
                 }
             ]
         },
@@ -123,14 +84,9 @@
                 {
                     "type": "Step",
                     "platforms": { "platform": "win32" },
-                    "title": "Environment variables for ISSM",
-                    "description": "Within the Command Prompt, set up environment variables for the ISSM toolchain:\n ```\n set ZEPHYR_TOOLCHAIN_VARIANT=issm\n set ISSM_INSTALLATION_PATH=c:issm0-toolchain-windows-2017-01-25\n ```\n "
-                }
-            ]
-        },
-        {
-            "type": "Checkable",
-            "steps": [
+                    "title": "Open cmd.exe",
+                    "description": "Open a Command Prompt (`cmd.exe`) as a **regular user**."
+                },
                 {
                     "type": "Step",
                     "platforms": { "platform": "win32" },

@@ -3,7 +3,7 @@
     "title": "Zephyr dependencies for Linux",
     "tool": "linux_zephyr_deps-0.9.3",
     "platforms": { "platform": "linux" },
-    "description": "Installing Zephyr Requirements and Dependencies on Linux.",
+    "description": "Installing Zephyr Requirements and Dependencies on Linux.\n\n[Zephyr Getting Started for Linux](https://docs.zephyrproject.org/latest/getting_started/installation_linux.html#installing-requirements-and-dependencies) have more descriptions for how to get all the needed tools.",
     "checkables": [
         {
             "type": "Checkable",

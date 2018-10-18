@@ -21,15 +21,38 @@
             "steps": [
                 {
                     "type": "Step",
-                    "platforms": { "platform": "linux" },
+                    "platforms": { "platform": "win32" },
+                    "title": "Install python modules",
+                    "description": "Install the required python modules:\n```\ncd <sourcecode_root>\\zephyr\npip3 install -r scripts\\requirements.txt\n```\n"
+                },
+                {
+                    "type": "Step",
+                    "platforms": [
+                        { "platform": "linux" },
+                        { "platform": "darwin" }
+                    ],
+                    "title": "Install python modules",
+                    "description": "Install the required python modules:\n```\ncd <sourcecode_root>/zephyr\npip3 install --user -r scripts/requirements.txt\n```\n"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": [
+                        { "platform": "linux" },
+                        { "platform": "darwin" }
+                    ],
                     "title": "Set up environment",
-                    "description": "Set up the environment:\n\n```\nsource zephyr/zephyr-env.sh\n```\nIt is recommended to add this automatically to your environment (i.e. *.bashrc*)."
+                    "description": "Set up the environment:\n\n```\ncd <sourcecode_root>\nunset ZEPHYR_SDK_INSTALL_DIR\nsource zephyr/zephyr-env.sh\n```\nIt is recommended to add this automatically to your environment (i.e. *.bashrc*)."
                 },
                 {
                     "type": "Step",
                     "platforms": { "platform": "win32" },
                     "title": "Set up environment",
-                    "description": "Set up the environment:\n\n```\nzephyr\\zephyr-env.cmd\n```\nIt is recommended to add this automatically to your environment."
+                    "description": "Set up the environment:\n\n```\ncd <sourcecode_root>\nzephyr\\zephyr-env.cmd\n```\nIt is recommended to add this automatically to your environment."
                 }
             ]
         }
