@@ -49,18 +49,13 @@ import Description from './Description';
 function Recipe(props) {
     const { recipe, checkables } = props;
 
-    if (recipe.id === undefined) {
-        console.log(`recipe.id is undefined ${recipe.id}`);
-    }
-
     return (
         <div>
-            <Description key={recipe.id} description={recipe.description} /><br />
+            <Description key={recipe.id} description={recipe.title} /><br />
             {
                 recipe.checkables.map(checkable => {
                     const steps = checkable.steps
                         .filter(step => step.enabled)
-                        .map(step => { console.log(step.id); return step; })
                         .map(step => (
                             <Description
                                 key={step.id}
@@ -85,7 +80,14 @@ function Recipe(props) {
 }
 
 Recipe.propTypes = {
-    recipe: PropTypes.shape({}).isRequired,
+    recipe: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        checkable: PropTypes.shape({
+            checkers: PropTypes.array,
+            steps: PropTypes.array.isRequired,
+        }),
+    }).isRequired,
     checkables: PropTypes.arrayOf(PropTypes.bool.isRequired).isRequired,
     onCheckboxChange: PropTypes.func.isRequired,
 };

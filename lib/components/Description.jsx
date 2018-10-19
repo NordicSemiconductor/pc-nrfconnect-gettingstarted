@@ -62,7 +62,7 @@ function process(item) {
 }
 
 function Description(props) {
-    const { key, description } = props;
+    const { description } = props;
 
     const descriptionArray = (description instanceof Array) ? description : [description];
 
@@ -88,7 +88,6 @@ function Description(props) {
 
     return (
         <ReactMarkdown
-            key={key}
             source={processedDescription}
             renderers={renderers}
         />
@@ -96,12 +95,10 @@ function Description(props) {
 }
 
 Description.defaultProps = {
-    key: 0,
     description: '',
 };
 
 Description.propTypes = {
-    key: PropTypes.number,
     description: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.array,
