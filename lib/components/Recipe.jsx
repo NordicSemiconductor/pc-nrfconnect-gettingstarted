@@ -39,44 +39,34 @@
    has a parser that misbehaves on quote blocks plus whitespace. */
 /* eslint react/no-danger: "off" */
 
-import ReactMarkdown from 'react-markdown';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { shell } from 'electron';
 import CheckableButton from './CheckableButton';
 import { checkableChange } from '../actions/courseActions';
+import Description from './Description';
 
 function Recipe(props) {
     const { recipe, checkables } = props;
 
-    const onClick = event => {
-        shell.openExternal(event.target.getAttribute('href'));
-    };
-
-    const renderers = {
-        link: item => (
-            <a
-                href={item.href}
-                onClick={onClick}
-            >
-                {item.children }
-            </a>
-        ),
-    };
+    if (recipe.id === undefined) {
+        console.log(`recipe.id is undefined ${recipe.id}`);
+    }
 
     return (
         <div>
-            <ReactMarkdown source={recipe.description} renderers={renderers} /><br />
+            <Description key={recipe.id} description={recipe.description} /><br />
             {
                 recipe.checkables.map(checkable => {
-                    const steps = checkable.steps.filter(step => step.enabled).map(step => (
-                        <ReactMarkdown
-                            key={step.id}
-                            source={step.description}
-                            renderers={renderers}
-                        />),
-                    );
+                    const steps = checkable.steps
+                        .filter(step => step.enabled)
+                        .map(step => { console.log(step.id); return step; })
+                        .map(step => (
+                            <Description
+                                key={step.id}
+                                description={step.description}
+                            />),
+                        );
 
                     return (
                         <div key={`${recipe.tool}-${checkable.id}`} >

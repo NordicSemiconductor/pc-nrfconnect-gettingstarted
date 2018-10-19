@@ -37,5 +37,17 @@ describe('Test Course Loader', () => {
                 done();
             });
         });
+
+        it('filters steps not valid for the platform', (done) => {
+            const filename = path.normalize('./__test__/data/course-2.json');
+            const course = Course.loadFromFile(filename);
+
+            course.then(data => {
+                expect(data.recipes[0].checkables.length).toBe(2);
+                expect(data.recipes[0].checkables[0].steps.length).toBe(3);
+                expect(data.recipes[0].checkables[0].steps.filter(step => step.enabled).length).toBe(2);
+                done();
+            });
+        });
     });
 });

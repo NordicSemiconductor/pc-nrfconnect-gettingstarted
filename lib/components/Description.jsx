@@ -34,51 +34,78 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+ /* eslint no-prototype-builtins: "off" */
+
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Accordion, Panel, Checkbox } from 'react-bootstrap';
-import Recipe from './Recipe';
-import Description from './Description';
+import ReactMarkdown from 'react-markdown';
+import { shell } from 'electron';
 
+function process(item) {
+    if (typeof item === 'string') {
+        return item;
+    }
 
-function Course(props) {
-    const { title, description } = props;
+    if (!item.hasOwnProperty('type')) {
+        return 'Error in format. Item does not have propery type.';
+    }
 
-    const recipes = props.recipes
-        .filter(recipe => recipe.enabled)
-        .map(recipe => {
-            const recipeCheckables = props.checkables[recipe.tool];
+    if (item.type === 'commands') {
+        return [
+            '```',
+            ...item.description,
+            '```',
+        ];
+    }
 
-            // TODO: Iterate through props.checkables[recipe.tool] and see if
-            // everything is true. Set the checkbox state from there.
+    return 'Error in format. Unknown type';
+}
 
-            const recipeCheckbox = (<Checkbox inline key={recipe.id} >&nbsp;</Checkbox>);
+function Description(props) {
+    const { key, description } = props;
 
-            return (
-                <Panel
-                    key={recipe.id}
-                    eventKey={recipe.id}
-                    header={[recipeCheckbox, recipe.title]}
-                >
-                    <Recipe recipe={recipe} checkables={recipeCheckables} />
-                </Panel>
-            );
-        });
+    const descriptionArray = (description instanceof Array) ? description : [description];
+
+    const onClick = event => {
+        shell.openExternal(event.target.getAttribute('href'));
+    };
+
+    const renderers = {
+        link: item => (
+            <a
+                href={item.href}
+                onClick={onClick}
+            >
+                {item.children }
+            </a>
+        ),
+    };
+
+    const processedDescription = descriptionArray
+        .map(item => process(item))
+        .reduce((acc, val) => acc.concat(val), [])
+        .join('\n');
 
     return (
-        <div>
-            <h1>{title}</h1>
-            <Description descrption={description} />
-            <Accordion>{recipes}</Accordion>
-        </div>
+        <ReactMarkdown
+            key={key}
+            source={processedDescription}
+            renderers={renderers}
+        />
     );
 }
 
-Course.propTypes = {
-    recipes: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-    checkables: PropTypes.shape({}).isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
+Description.defaultProps = {
+    key: 0,
+    description: '',
 };
 
-export default Course;
+Description.propTypes = {
+    key: PropTypes.number,
+    description: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.array,
+    ]),
+};
+
+export default Description;

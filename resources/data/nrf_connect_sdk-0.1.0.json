@@ -3,7 +3,10 @@
     "title": "Clone the nRF Connect SDK",
     "tool": "nrf_connect_sdk-0.1.0",
     "platforms": { "platform": "all" },
-    "description": "This describe how you clone and set up the nRF Connect SDK.\n\nIf you intend to contribute directly to any of the repositories, you will have to make forks of the repositories. To do this, you can follow the instructions on [github.com](https://help.github.com/articles/fork-a-repo/)",
+    "description": [
+        "This describe how you clone and set up the nRF Connect SDK.",
+        "If you intend to contribute directly to any of the repositories, you will have to make forks of the repositories. To do this, you can follow the instructions on [github.com](https://help.github.com/articles/fork-a-repo/)"
+    ],
     "checkables": [
         {
             "type": "Checkable",
@@ -12,7 +15,21 @@
                     "type": "Step",
                     "platforms": { "platform": "all" },
                     "title": "Clone the repositories",
-                    "description": "Clone the latest SDK repositories:\n\n```\ncd <sourcecode_root>\nmkdir ncs\ncd ncs\ngit clone https://github.com/NordicPlayground/fw-nrfconnect-zephyr.git zephyr\ngit clone https://github.com/NordicPlayground/fw-nrfconnect-mcuboot.git mcuboot\ngit clone https://github.com/NordicPlayground/fw-nrfconnect-nrf.git nrf\ngit clone https://github.com/NordicPlayground/nrfxlib.git nrfxlib\n```\n"
+                    "description": [
+                        "Clone the latest SDK repositories:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "cd <sourcecode_root>",
+                                "mkdir ncs",
+                                "cd ncs",
+                                "git clone https://github.com/NordicPlayground/fw-nrfconnect-zephyr.git zephyr",
+                                "git clone https://github.com/NordicPlayground/fw-nrfconnect-mcuboot.git mcuboot",
+                                "git clone https://github.com/NordicPlayground/fw-nrfconnect-nrf.git nrf",
+                                "git clone https://github.com/NordicPlayground/nrfxlib.git nrfxlib"
+                            ]
+                        }
+                    ]
                 }
             ]
         },
@@ -23,7 +40,16 @@
                     "type": "Step",
                     "platforms": { "platform": "win32" },
                     "title": "Install python modules",
-                    "description": "Install the required python modules:\n```\ncd <sourcecode_root>\\zephyr\npip3 install -r scripts\\requirements.txt\n```\n"
+                    "description": [
+                        "Install the required python modules:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "cd <sourcecode_root>\\zephyr",
+                                "pip3 install -r scripts\\requirements.txt"
+                            ]
+                        }
+                    ]
                 },
                 {
                     "type": "Step",
@@ -32,7 +58,16 @@
                         { "platform": "darwin" }
                     ],
                     "title": "Install python modules",
-                    "description": "Install the required python modules:\n```\ncd <sourcecode_root>/zephyr\npip3 install --user -r scripts/requirements.txt\n```\n"
+                    "description": [
+                        "Install the required python modules:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "cd <sourcecode_root>/zephyr",
+                                "pip3 install --user -r scripts/requirements.txt"
+                            ]
+                        }
+                    ]
                 }
             ]
         },
@@ -46,13 +81,34 @@
                         { "platform": "darwin" }
                     ],
                     "title": "Set up environment",
-                    "description": "Set up the environment:\n\n```\ncd <sourcecode_root>\nunset ZEPHYR_SDK_INSTALL_DIR\nsource zephyr/zephyr-env.sh\n```\nIt is recommended to add this automatically to your environment (i.e. *.bashrc*)."
+                    "description": [
+                        "Set up the environment:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "cd <sourcecode_root>",
+                                "unset ZEPHYR_SDK_INSTALL_DIR",
+                                "source zephyr/zephyr-env.sh"
+                            ]
+                        },
+                        "It is recommended to add this automatically to your environment (i.e. *.bashrc*)."
+                    ]
                 },
                 {
                     "type": "Step",
                     "platforms": { "platform": "win32" },
                     "title": "Set up environment",
-                    "description": "Set up the environment:\n\n```\ncd <sourcecode_root>\nzephyr\\zephyr-env.cmd\n```\nIt is recommended to add this automatically to your environment."
+                    "description": [
+                        "Set up the environment:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "cd <sourcecode_root>",
+                                "zephyr\\zephyr-env.cmd"
+                            ]
+                        },
+                        "It is recommended to add this automatically to your environment."
+                    ]
                 }
             ]
         }
