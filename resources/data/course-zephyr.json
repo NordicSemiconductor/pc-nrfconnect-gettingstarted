@@ -6,11 +6,8 @@
         { "platform": "win32" },
         { "platform": "darwin" }
     ],
-    "description": "nRF Connect SDK development environment",
+    "description": "Set up nRF Connect SDK development environment.",
     "recipes": [
-        "darwin_intro-noversion",
-        "win_update-noversion",
-        "linux_update-noversion",
         "ses-0.1.0",
         "darwin_deps-0.9.3",
         "win_deps-0.9.3",
