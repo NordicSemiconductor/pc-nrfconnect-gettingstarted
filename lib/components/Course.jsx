@@ -68,7 +68,7 @@ function Course(props) {
     return (
         <div>
             <h1>{title}</h1>
-            <Description descrption={description} />
+            <Description description={description} />
             <Accordion>{recipes}</Accordion>
         </div>
     );

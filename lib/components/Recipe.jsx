@@ -51,7 +51,7 @@ function Recipe(props) {
 
     return (
         <div>
-            <Description key={recipe.id} description={recipe.title} /><br />
+            <Description key={recipe.id} description={recipe.description} /><br />
             {
                 recipe.checkables.map(checkable => {
                     const steps = checkable.steps
