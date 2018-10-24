@@ -34,25 +34,30 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/* eslint comma-dangle: "off" */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Accordion, Panel, Checkbox } from 'react-bootstrap';
+import { connect } from 'react-redux';
 import Recipe from './Recipe';
 import Description from './Description';
+import { done } from '../actions/courseActions';
 
 
 function Course(props) {
-    const { title, description } = props;
+    const { title, description, checkables } = props;
 
     const recipes = props.recipes
         .filter(recipe => recipe.enabled)
         .map(recipe => {
-            const recipeCheckables = props.checkables[recipe.tool];
+            const recipeCheckables = checkables[recipe.tool];
 
-            // TODO: Iterate through props.checkables[recipe.tool] and see if
-            // everything is true. Set the checkbox state from there.
+            const allDone = recipeCheckables.every(item => item === done);
 
-            const recipeCheckbox = (<Checkbox inline key={recipe.id} >&nbsp;</Checkbox>);
+            const recipeCheckbox = (
+                <Checkbox inline key={recipe.id} checked={allDone} >&nbsp;</Checkbox>
+            );
 
             return (
                 <Panel
@@ -60,7 +65,7 @@ function Course(props) {
                     eventKey={recipe.id}
                     header={[recipeCheckbox, recipe.title]}
                 >
-                    <Recipe recipe={recipe} checkables={recipeCheckables} />
+                    <Recipe recipe={recipe} />
                 </Panel>
             );
         });
@@ -81,4 +86,11 @@ Course.propTypes = {
     description: PropTypes.string.isRequired,
 };
 
-export default Course;
+export default connect(
+    state => ({
+        title: state.app.courseReducer.course.title,
+        description: state.app.courseReducer.course.description,
+        recipes: state.app.courseReducer.course.recipes,
+        checkables: state.app.courseReducer.checkables,
+    })
+)(Course);

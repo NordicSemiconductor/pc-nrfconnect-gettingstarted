@@ -34,67 +34,129 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/* eslint no-debugger: "off" */
+/* eslint comma-dangle: "off" */
+
+
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Checkbox } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import * as Actions from '../actions/courseActions';
 
-
-function CheckableButton(props) {
-    const { checkableState, checkable } = props;
-/*
-    function runChecker() {
-        props.onChange('in_progress');
-        checkable.runCheckers().then(passed => {
-            props.onChange(passed ? 'done' : 'no');
-        });
+function getNextState(isManual, currentState) {
+    if (currentState === Actions.done) {
+        return Actions.notDone;
     }
-*/
-    const shouldBeChecked = checkableState === 'done';
+
+    if (currentState === Actions.inProgress) {
+        return Actions.done;
+    }
+
+    if (isManual) {
+        return Actions.done;
+    }
+
+    return Actions.inProgress;
+}
+
+function InnerButton(props) {
+    const { status, label, changeFunction } = props;
 
     return (
-        <Checkbox
-            key={checkable.id}
-            style={{
-                float: 'left',
-                marginTop: 0,
-            }}
-            onChange={ev => props.onChange(ev.target.checked ? 'done' : 'no')
-            }
-            checked={shouldBeChecked}
-        >&nbsp;</Checkbox>
+        <span>
+            {status}
+            <button onClick={changeFunction}>
+                {label}
+            </button>
+        </span>
     );
+}
 
-/*
-    if (checkable.isManual) {
-        if (!checkableState || checkableState === 'no') {
-            return (<button onClick={() =>
-                { props.onChange('done'); }}>Mark as manually done</button>
-            );
+InnerButton.defaultProps = {
+    status: '',
+};
+
+InnerButton.propTypes = {
+    status: PropTypes.string,
+    label: PropTypes.string.isRequired,
+    changeFunction: PropTypes.func.isRequired,
+};
+
+function extractInformation(isManual, currentState) {
+    const status = currentState === Actions.done ? 'Done' : '';
+    let label = '';
+
+    if (isManual) {
+        if (currentState === Actions.notDone) {
+            label = 'Manually mark as done';
+        } else {
+            label = 'Manually mark as undone';
         }
-        return (<span>Done.<button onClick={() =>
-            { props.onChange('no'); }}>Mark as not done</button></span>
-        );
+    } else if (currentState === Actions.notDone ||
+            currentState === Actions.done) {
+        label = 'Run checkers';
+    } else {
+        label = 'Checkers are running';
     }
-    if (!checkableState || checkableState === 'no') {
-        return (<button onClick={runChecker}>Run check for these steps</button>);
-    } else if (!checkableState || checkableState === 'in_progress') {
-        return (<span>Running checks...</span>);
-    }
-    return (<span>Done.<button onClick={() =>
-        { props.onChange('no'); }}>Mark as not done</button></span>
+
+    return {
+        label,
+        status,
+    };
+}
+
+function CheckableButton(props) {
+    const {
+        currentState,
+        isManual,
+        setStatus,
+        tool,
+        id,
+        nextState,
+    } = props;
+
+    const {
+        label,
+        status,
+    } = extractInformation(isManual, currentState);
+
+    return (
+        <InnerButton
+            changeFunction={() => setStatus(tool, id, nextState)}
+            label={label}
+            status={status}
+        />
     );
-*/
 }
 
 CheckableButton.propTypes = {
-//     checkableState: PropTypes.string.isRequired,
-//     isManual: PropTypes.bool.isRequired,
+    currentState: PropTypes.string.isRequired,
+    nextState: PropTypes.string.isRequired,
+    isManual: PropTypes.bool.isRequired,
+    setStatus: PropTypes.func.isRequired,
+    tool: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
 };
 
-CheckableButton.propTypes = {
-    onChange: PropTypes.func.isRequired,
-    checkableState: PropTypes.string.isRequired,
-    checkable: PropTypes.shape({}).isRequired,
+const mapStateToProps = (state, ownProps) => ({
+    currentState: state.app.courseReducer.checkables[ownProps.tool][ownProps.data.id],
+});
+
+const mapDispatchToProps = {
+    setStatus: Actions.checkableChange,
 };
 
-export default CheckableButton;
+const mergeProps = (stateProps, dispatchProps, ownProps) => ({
+    ...stateProps,
+    nextState: getNextState(ownProps.data.isManual, stateProps.currentState),
+    ...dispatchProps,
+    tool: ownProps.tool,
+    id: ownProps.data.id,
+    isManual: ownProps.data.isManual,
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+    mergeProps
+)(CheckableButton);

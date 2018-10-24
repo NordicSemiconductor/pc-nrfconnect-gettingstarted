@@ -39,38 +39,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import CheckableButton from './CheckableButton';
 import Description from './Description';
-import Checkable from './Checkable';
 
-function Recipe(props) {
-    const { recipe } = props;
+function Checkable(props) {
+    const { tool, data } = props;
+
+    const steps = data
+        .steps
+        .filter(step => step.enabled)
+        .map(step => (
+            <Description
+                key={step.id}
+                description={step.description}
+            />
+            )
+        );
 
     return (
-        <div>
-            <Description key={recipe.id} description={recipe.description} /><br />
-            {
-                recipe.checkables.map(checkable => (
-                    <Checkable
-                        key={`${recipe.tool}-${checkable.id}`}
-                        tool={recipe.tool}
-                        recipeID={recipe.id}
-                        data={checkable}
-                    />)
-                )
-            }
+        <div key={`${tool}-${data.id}`} >
+            <CheckableButton
+                tool={tool}
+                data={data}
+            />
+            <ul>{steps}</ul>
         </div>
     );
 }
 
-Recipe.propTypes = {
-    recipe: PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        checkable: PropTypes.shape({
-            checkers: PropTypes.array,
-            steps: PropTypes.array.isRequired,
-        }),
+Checkable.propTypes = {
+    tool: PropTypes.string.isRequired,
+    data: PropTypes.shape({
+        steps: PropTypes.array.isRequired,
     }).isRequired,
 };
 
-export default Recipe;
+export default Checkable;
