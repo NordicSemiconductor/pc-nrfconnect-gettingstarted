@@ -12,7 +12,17 @@
                     "type": "Step",
                     "platforms": { "platform": "darwin" },
                     "title": "Set up tools for building the documentation",
-                    "description": "Install tools to build Zephyr documentation:\n```\nbrew install mactex librsvg\ntlmgr install latexmk\ntlmgr install collection-fontsrecommended\n```"
+                    "description": [
+                        "Install tools to build Zephyr documentation:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "brew install mactex librsvg",
+                                "tlmgr install latexmk",
+                                "tlmgr install collection-fontsrecommended"
+                            ]
+                        }
+                    ]
                 }
             ]
         }

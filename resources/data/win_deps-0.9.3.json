@@ -12,7 +12,17 @@
                     "type": "Step",
                     "platforms": { "platform": "win32" },
                     "title": "Set up environment variables for proxies",
-                    "description": "If you're behind a corporate firewall, you'll likely need to specify a proxy to get access to internet resources:\n```\nset HTTP_PROXY=http://user:password@proxy.mycompany.com:1234\nset HTTPS_PROXY=http://user:password@proxy.mycompany.com:1234\n```\n\nYou can avoid typing these `set` commands every time by placing them inside a `.cmd` file and running that every time you open a Command Prompt."
+                    "description": [
+                        "If you're behind a corporate firewall, you'll likely need to specify a proxy to get access to internet resources:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "set HTTP_PROXY=http://user:password@proxy.mycompany.com:1234",
+                                "set HTTPS_PROXY=http://user:password@proxy.mycompany.com:1234"
+                            ]
+                        },
+                        "You can avoid typing these `set` commands every time by placing them inside a `.cmd` file and running that every time you open a Command Prompt."
+                    ]
                 }
             ]
         },
@@ -35,7 +45,22 @@
                     "type": "Step",
                     "platforms": { "platform": "win32" },
                     "title": "Disable confirmation",
-                    "description": "(Optionally) disable global confirmation to avoid having to add the `-y` flag to all chocolatey commands:\n```\nchoco feature enable -n allowGlobalConfirmation\n```\n"
+                    "description": [
+                        "(Optionally) disable global confirmation to avoid having to add the `-y` flag to all chocolatey commands:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "choco feature enable -n allowGlobalConfirmation"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "choco"
                 }
             ]
         },
@@ -46,7 +71,15 @@
                     "type": "Step",
                     "platforms": { "platform": "win32" },
                     "title": "Install cmake",
-                    "description": "Install CMake by running:\n```\nchoco install -y cmake --installargs 'ADD_CMAKE_TO_PATH=System'\n```\n"
+                    "description": [
+                        "Install CMake by running:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "choco install -y cmake --installargs 'ADD_CMAKE_TO_PATH=System'"
+                            ]
+                        }
+                    ]
                 }
             ]
         },
@@ -57,7 +90,15 @@
                     "type": "Step",
                     "platforms": { "platform": "win32" },
                     "title": "Install tools",
-                    "description": "Install the rest of the tools:\n```\nchoco install git python ninja dtc-msys2 gperf doxygen.install\n```\n"
+                    "description": [
+                        "Install the rest of the tools:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "choco install git python ninja dtc-msys2 gperf doxygen.install"
+                            ]
+                        }
+                    ]
                 },
                 {
                     "type": "Step",
@@ -76,6 +117,13 @@
                     "title": "Install cross compiler toolchain for ARM",
                     "description": "For cross-compiling for ARM targets, install [GNU ARM Embedded from the ARM developer website](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads). (It is recommended to install to `c:\\gnuarmemb`)."
                 }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "fileExists",
+                    "filenames": ["c:\\gnuarmemb"]
+                }
             ]
         },
         {
@@ -91,7 +139,27 @@
                     "type": "Step",
                     "platforms": { "platform": "win32" },
                     "title": "Environment variables for GNU ARM",
-                    "description": "Within the Command Prompt, set up environment variables for the GNU ARM toolchain:\n ```\n set ZEPHYR_TOOLCHAIN_VARIANT=gnuarmemb\n set GNUARMEMB_TOOLCHAIN_PATH=c:gnuarmemb\n ```\n "
+                    "description": [
+                        "Within the Command Prompt, set up environment variables for the GNU ARM toolchain:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "set ZEPHYR_TOOLCHAIN_VARIANT gnuarmemb",
+                                "set GNUARMEMB_TOOLCHAIN_PATH c:\\gnuarmemb"
+                            ]
+                        },
+                        "You can avoid typing these `set` commands every time by placing them inside a `.cmd` file and running that every time you open a Command Prompt."
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": [
+                        "set ZEPHYR_TOOLCHAIN_VARIANT",
+                        "set GNUARMEMB_TOOLCHAIN_PATH"
+                    ]
                 }
             ]
         }
