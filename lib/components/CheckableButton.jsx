@@ -44,15 +44,19 @@ import { connect } from 'react-redux';
 import * as Actions from '../actions/courseActions';
 
 function getNextState(isManual, currentState) {
-    if (currentState === Actions.done) {
+    if (isManual) {
+        if (currentState === Actions.notDone) {
+            return Actions.done;
+        }
+
         return Actions.notDone;
     }
 
-    if (currentState === Actions.inProgress) {
-        return Actions.done;
+    if (currentState === Actions.done) {
+        return Actions.inProgress;
     }
 
-    if (isManual) {
+    if (currentState === Actions.inProgress) {
         return Actions.done;
     }
 
@@ -113,12 +117,20 @@ function CheckableButton(props) {
         tool,
         id,
         nextState,
+        runFunctions,
     } = props;
 
     const {
         label,
         status,
     } = extractInformation(isManual, currentState);
+
+    if (currentState === Actions.inProgress) {
+        runFunctions().then(
+            () => setStatus(tool, id, Actions.done),
+            () => setStatus(tool, id, Actions.notDone)
+        );
+    }
 
     return (
         <InnerButton
@@ -129,6 +141,10 @@ function CheckableButton(props) {
     );
 }
 
+CheckableButton.defaultProps = {
+    runFunctions: () => Promise.resolve(),
+};
+
 CheckableButton.propTypes = {
     currentState: PropTypes.string.isRequired,
     nextState: PropTypes.string.isRequired,
@@ -136,6 +152,7 @@ CheckableButton.propTypes = {
     setStatus: PropTypes.func.isRequired,
     tool: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
+    runFunctions: PropTypes.func,
 };
 
 const mapStateToProps = (state, ownProps) => ({
@@ -153,6 +170,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => ({
     tool: ownProps.tool,
     id: ownProps.data.id,
     isManual: ownProps.data.isManual,
+    runFunctions: ownProps.runFunctions,
 });
 
 export default connect(

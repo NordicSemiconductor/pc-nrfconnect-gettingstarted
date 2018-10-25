@@ -61,6 +61,7 @@ function Checkable(props) {
             <CheckableButton
                 tool={tool}
                 data={data}
+                runFunctions={() => data.runCheckers()}
             />
             <ul>{steps}</ul>
         </div>
@@ -71,6 +72,7 @@ Checkable.propTypes = {
     tool: PropTypes.string.isRequired,
     data: PropTypes.shape({
         steps: PropTypes.array.isRequired,
+        runCheckers: PropTypes.func.isRequired,
     }).isRequired,
 };
 

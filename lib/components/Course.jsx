@@ -56,7 +56,7 @@ function Course(props) {
             const allDone = recipeCheckables.every(item => item === done);
 
             const recipeCheckbox = (
-                <Checkbox inline key={recipe.id} checked={allDone} >&nbsp;</Checkbox>
+                <Checkbox inline key={recipe.id} checked={allDone} readOnly >&nbsp;</Checkbox>
             );
 
             return (
