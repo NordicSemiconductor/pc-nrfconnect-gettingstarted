@@ -128,7 +128,11 @@ function CheckableButton(props) {
     if (currentState === Actions.inProgress) {
         runFunctions().then(
             () => setStatus(tool, id, Actions.done),
-            () => setStatus(tool, id, Actions.notDone)
+            ({ command, exitCode, outputs }) => {
+                console.log(`The call to '${command}' exited with exit code ${exitCode}.`);
+                console.log(`Output: ${outputs.stderr.join('\r\n')}`);
+                setStatus(tool, id, Actions.notDone);
+            }
         );
     }
 
