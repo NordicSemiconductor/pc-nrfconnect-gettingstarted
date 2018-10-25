@@ -94,7 +94,7 @@ function extractInformation(isManual, currentState) {
         if (currentState === Actions.notDone) {
             label = 'Manually mark as done';
         } else {
-            label = 'Manually mark as undone';
+            label = 'Manually mark as not done';
         }
     } else if (currentState === Actions.notDone ||
             currentState === Actions.done) {
