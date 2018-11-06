@@ -1,8 +1,9 @@
 {
   "name": "nrf-framework-courses",
-  "version": "0.1.3",
-  "description": "nRF Getting Started Assistant",
-  "displayName": "nRF Getting Started Assistant",
+
+  "version": "0.1.5",
+  "displayName": "Getting Started Assistant",
+  "description": "Guide for setting up toolchains and getting the code for nRF Connect SDK",
   "repository": {
     "type": "git",
     "url": "https://github.com/NordicSemiconductor/pc-nrfconnect-boilerplate.git"

@@ -5,7 +5,7 @@ describe('Test Course Loader', () => {
     describe('loading courses', () => {
         it('throws error when course file does not exist', (done) => {
             Course.loadFromFile('non_existing_file').catch(err => {
-                expect(err).toMatchSnapshot();
+                expect(err.message).toMatch(/^File non_existing_file failed to be parsed as JSON:/);
                 done();
             });
         });

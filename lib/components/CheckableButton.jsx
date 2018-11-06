@@ -164,7 +164,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = {
-    setStatus: Actions.checkableChange,
+    setStatus: Actions.checkableChangeAction,
 };
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => ({

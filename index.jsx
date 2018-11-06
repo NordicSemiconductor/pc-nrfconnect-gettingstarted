@@ -39,7 +39,7 @@ import React from 'react';
 import { combineReducers } from 'redux';
 import { ipcRenderer } from 'electron';
 import './resources/css/index.less';
-import { loadCourse } from './lib/actions/courseActions';
+import { loadCourseAction } from './lib/actions/courseActions';
 import courseReducer from './lib/reducers/courseReducer';
 import Course from './lib/components/Course';
 
@@ -118,7 +118,7 @@ export function onReady(dispatch, getState) {
     // IPC stuff to fetch the path of the currently running code (not
     // remote.app.getAppPath(), which is the path of the core code)
     ipcRenderer.once('app-details', (sender, details) => {
-        loadCourse(join(details.path, 'resources/data/course-zephyr.json'))(dispatch);
+        dispatch(loadCourseAction(join(details.path, 'resources/data/course-zephyr.json')));
     });
 
     ipcRenderer.send('get-app-details');

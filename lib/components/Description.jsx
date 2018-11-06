@@ -41,30 +41,8 @@ import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import { shell } from 'electron';
 
-function process(item) {
-    if (typeof item === 'string') {
-        return item;
-    }
-
-    if (!item.hasOwnProperty('type')) {
-        return 'Error in format. Item does not have propery type.';
-    }
-
-    if (item.type === 'commands') {
-        return [
-            '```',
-            ...item.description,
-            '```',
-        ];
-    }
-
-    return 'Error in format. Unknown type';
-}
-
 function Description(props) {
     const { description } = props;
-
-    const descriptionArray = (description instanceof Array) ? description : [description];
 
     const onClick = event => {
         shell.openExternal(event.target.getAttribute('href'));
@@ -81,14 +59,9 @@ function Description(props) {
         ),
     };
 
-    const processedDescription = descriptionArray
-        .map(item => process(item))
-        .reduce((acc, val) => acc.concat(val), [])
-        .join('\n');
-
     return (
         <ReactMarkdown
-            source={processedDescription}
+            source={description}
             renderers={renderers}
         />
     );

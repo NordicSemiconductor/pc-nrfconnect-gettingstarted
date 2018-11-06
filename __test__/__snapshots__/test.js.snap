@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Test Course Loader loading courses throws error when course file does not exist 1`] = `[Error: File non_existing_file failed to be parsed as JSON: Error: ENOENT: no such file or directory, open 'C:\\git\\nrf-framework-courses\\non_existing_file']`;
