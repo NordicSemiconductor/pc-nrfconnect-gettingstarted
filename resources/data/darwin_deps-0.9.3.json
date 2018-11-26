@@ -1,0 +1,52 @@
+{
+    "type": "Recipe",
+    "title": "Installing Requirements and Dependencies",
+    "tool": "darwin_deps-0.9.3",
+    "platforms": { "platform": "darwin" },
+    "description": [
+        "To install the software components required to build the Zephyr kernel on a Mac, you will need to build a cross compiler for the target devices you wish to build for and install tools that the build system requires.",
+        "[Zephyr Getting Started for macOS](https://docs.zephyrproject.org/latest/getting_started/installation_mac.html#installing-requirements-and-dependencies) have more descriptions for how to get all the needed tools."
+    ],
+    "checkables": [
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "darwin" },
+                    "title": "Install Homebrew",
+                    "description": [
+                        "Install *Homebrew* (The missing package manager for macOS). Homebrew is a free and open-source software package management system that simplifies the installation of software on Apple's macOS operating system.",
+                        "To install *Homebrew*, visit the [*Homebrew* site](http://brew.sh/) and follow the installation instructions on the site.",
+                        "To complete the Homebrew installation, you might be prompted to install some missing dependencies. If so, follow please follow the instructions provided."
+                    ]
+                },
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "darwin" },
+                    "title": "Install tools from Homebrew",
+                    "description": [
+                        "After Homebrew is successfully installed, install the following tools using the brew command line.",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "brew install cmake ninja dfu-util doxygen qemu dtc python3 gperf\ncd ~/zephyr",
+                                "# or to the folder where you cloned the zephyr repo",
+                                "pip3 install --user -r scripts/requirements.txt"
+                            ]
+                        },
+                        "Source `zephyr-env.sh` wherever you have cloned the Zephyr Git repository:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "unset ZEPHYR_SDK_INSTALL_DIR",
+                                "cd <zephyr git clone location>",
+                                "source zephyr-env.sh"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Platform handle errors in data stores error and is not enabled on an array containing one illegal platform and arch, and a legal, matching element after 1`] = `[Error: "illegal platform" is not valid for the "platform" field.]`;
+
+exports[`Platform handle errors in data stores error and is not enabled on an array containing one illegal platform and arch, and a legal, matching element first 1`] = `[Error: "illegal platform" is not valid for the "platform" field.]`;
+
+exports[`Platform handle errors in data stores error and is not enabled on illegal arch 1`] = `[Error: "illegal arch" is not valid for the "arch" field.]`;
+
+exports[`Platform handle errors in data stores error and is not enabled on illegal platform 1`] = `[Error: "illegal platform" is not valid for the "platform" field.]`;
+
+exports[`Platform handle errors in data stores error and is not enabled when a number is sent in 1`] = `[Error: "1" is not a valid form of "Platform".]`;
+
+exports[`Platform handle errors in data stores error and is not enabled when an object without the "platform" property is sent 1`] = `[Error: [object Object] does not contain the mandatory property "platform".]`;
+
+exports[`Platform handle errors in data stores error and is not enabled when both illegal platform and arch 1`] = `[Error: "illegal platform" is not valid for the "platform" field.]`;
