@@ -1,7 +1,7 @@
 {
     "type": "Recipe",
     "title": "Zephyr dependencies for Linux",
-    "tool": "linux_zephyr_deps-0.9.3",
+    "tool": "linux_zephyr_deps-0.9.5",
     "platforms": { "platform": "linux" },
     "description": [
         "Installing Zephyr Requirements and Dependencies on Linux.",
@@ -68,26 +68,6 @@
                             "type": "commands",
                             "description": [
                                 "sudo swupd bundle-add c-basic dev-utils dfu-util dtc \\\n os-core-dev python-basic python3-basic texlive"
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "type": "Checkable",
-            "steps": [
-                {
-                    "type": "Step",
-                    "platforms": { "platform": "linux" },
-                    "title": "Install python dependencies",
-                    "description": [
-                        "Install additional python packages required for development with Zephyr:",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "cd ~/zephyr  # or to your directory where zephyr is cloned",
-                                "pip3 install --user -r scripts/requirements.txt"
                             ]
                         }
                     ]
