@@ -1,0 +1,55 @@
+{
+    "type": "Recipe",
+    "title": "Build a toolchain from scratch",
+    "tool": "darwin_own_toolchain-0.9.3",
+    "platforms": { "platform": "darwin" },
+    "description": "To install the software components required to build the Zephyr kernel on a Mac, you will need to build a cross compiler for the target devices you wish to build for and install tools that the build system requires.",
+    "checkables": [
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "darwin" },
+                    "title": "Build a toolchain with Crosstool NG",
+                    "description": [
+                        "In case a toolchain is not available for the board you are using, you can build a toolchain from scratch using crosstool-NG. Follow the steps on the crosstool-NG website to [prepare your host](http://crosstool-ng.github.io/docs/os-setup/).",
+                        "Follow the [Zephyr SDK with Crosstool NG instructions](https://github.com/zephyrproject-rtos/sdk-ng/blob/master/README.md) to build the toolchain for various architectures. You will need to clone the `sdk-ng` repo and run the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "./go.sh <arch>"
+                            ]
+                        },
+                        "Repeat the step for all architectures you want to support in your environment (Currently only i586 and arm builds are verified)."
+                    ]
+                },
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "darwin" },
+                    "title": "Set up toolchain environment variables",
+                    "description": [
+                        "To use the toolchain with Zephyr, export the following environment variables and use the target location where the toolchain was installed, type:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "export ZEPHYR_TOOLCHAIN_VARIANT=xtools",
+                                "export XTOOLS_TOOLCHAIN_PATH=/Volumes/CrossToolNGNew/build/output/"
+                            ]
+                        },
+                        "To use the same toolchain in new sessions in the future you can set the variables in the file :file:`${HOME}/.zephyrrc`, for example:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "cat <<EOF > ~/.zephyrrc",
+                                "export XTOOLS_TOOLCHAIN_PATH=/Volumes/CrossToolNGNew/build/output/",
+                                "export ZEPHYR_TOOLCHAIN_VARIANT=xtools",
+                                "EOF"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

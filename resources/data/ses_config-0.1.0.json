@@ -1,0 +1,50 @@
+{
+    "type": "Recipe",
+    "title": "Set up a project with SEGGER Embedded Studio",
+    "tool": "ses_config-0.1.0",
+    "platforms": { "platform": "all" },
+    "description": "Configure SEGGER Embedded Studio for use with nRF Connect SDK",
+    "checkables": [
+
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "all" },
+                    "title": "Start SEGGER Embedded Studio",
+                    "description": [
+                        "Go to the location where you installed SEGGER Embedded Studio",
+                        "Go to the *bin* folder",
+                        "Execute *emStudio*"
+                    ]
+                },
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "all" },
+                    "title": "Open a project",
+                    "description": "Click the file menu *File > Open nRF Connect SDK Project...*"
+                },
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "all" },
+                    "title": "Choose paths",
+                    "description": [
+                        "Choose the paths for the different parameters",
+                        "**Zephyr Base** should be *&lt;sourcecode_root&gt;/zephyr*",
+                        "**CMakeLists.txt** should be a link to the projects file for your project, i.e. *&lt;sourcecode_root&gt;/nrf/samples/bluetooth/hids_mouse/CMakeLists.txt*",
+                        "**Build Directory** should be the location to build to, i.e. *&lt;sourcecode_root&gt;/nrf/samples/bluetooth/hids_mouse/build*",
+                        "**Board Directory** should be the location of the board description of your development kit, i.e. *&lt;sourcecode_root&gt;/nrf/boards/arm/nrf52840_pca20041*",
+                        "**GNU ARM Embedded Toolchain Directory** should be the location where you installed your GNU ARM Embedded Toolchain, i.e. *c:\\gnuarmemb* "
+                    ]
+                },
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "all" },
+                    "title": "Open project",
+                    "description": "Click OK to open the project"
+                }
+            ]
+        }
+    ]
+}

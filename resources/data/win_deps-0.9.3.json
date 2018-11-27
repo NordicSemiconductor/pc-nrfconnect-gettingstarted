@@ -1,0 +1,167 @@
+{
+    "type": "Recipe",
+    "title": "Installing Requirements and Dependencies",
+    "tool": "win_deps-0.9.3",
+    "platforms": { "platform": "win32" },
+    "description": "The easiest way to install the dependencies natively on Microsoft Windows is to use the [`Chocolatey` package manager](https://chocolatey.org/). If you prefer to install those manually then simply download the required packages from their respective websites.\n\n[Zephyr Getting Started for Windows](https://docs.zephyrproject.org/latest/getting_started/installation_win.html#installing-requirements-and-dependencies) have more descriptions for how to get all the needed tools.",
+    "checkables": [
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Set up environment variables for proxies",
+                    "description": [
+                        "If you're behind a corporate firewall, you'll likely need to specify a proxy to get access to internet resources:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "set HTTP_PROXY=http://user:password@proxy.mycompany.com:1234",
+                                "set HTTPS_PROXY=http://user:password@proxy.mycompany.com:1234"
+                            ]
+                        },
+                        "You can avoid typing these `set` commands every time by placing them inside a `.cmd` file and running that every time you open a Command Prompt."
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Install Chocolatey",
+                    "description": "Install `Chocolatey` by following the [install instructions on the `Chocolatey` website](https://chocolatey.org/install)."
+                },
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Open admin cmd.exe",
+                    "description": "Open a Command Prompt (`cmd.exe`) as **Administrator**."
+                },
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Disable confirmation",
+                    "description": [
+                        "(Optionally) disable global confirmation to avoid having to add the `-y` flag to all chocolatey commands:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "choco feature enable -n allowGlobalConfirmation"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "choco"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Install cmake",
+                    "description": [
+                        "Install CMake by running:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "choco install -y cmake --installargs 'ADD_CMAKE_TO_PATH=System'"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Install tools",
+                    "description": [
+                        "Install the rest of the tools:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "choco install git python ninja dtc-msys2 gperf doxygen.install"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Close prompt",
+                    "description": "Close the comand prompt window."
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Install cross compiler toolchain for ARM",
+                    "description": "For cross-compiling for ARM targets, install [GNU ARM Embedded from the ARM developer website](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads). (It is recommended to install to `c:\\gnuarmemb`)."
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "fileExists",
+                    "filenames": ["c:\\gnuarmemb"]
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Open cmd.exe",
+                    "description": "Open a Command Prompt (`cmd.exe`) as a **regular user**."
+                },
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Environment variables for GNU ARM",
+                    "description": [
+                        "Within the Command Prompt, set up environment variables for the GNU ARM toolchain:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "set ZEPHYR_TOOLCHAIN_VARIANT gnuarmemb",
+                                "set GNUARMEMB_TOOLCHAIN_PATH c:\\gnuarmemb"
+                            ]
+                        },
+                        "You can avoid typing these `set` commands every time by placing them inside a `.cmd` file and running that every time you open a Command Prompt."
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": [
+                        "set ZEPHYR_TOOLCHAIN_VARIANT",
+                        "set GNUARMEMB_TOOLCHAIN_PATH"
+                    ]
+                }
+            ]
+        }
+    ]
+}
