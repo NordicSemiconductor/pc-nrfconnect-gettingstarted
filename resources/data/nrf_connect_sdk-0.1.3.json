@@ -4,7 +4,7 @@
     "tool": "nrf_connect_sdk-0.1.3",
     "platforms": { "platform": "all" },
     "description": [
-        "This describe how you clone and set up the nRF Connect SDK.",
+        "The nRF Connect SDK consists of four GitHub repositories. To set up the nRF Connect SDK, you must clone these repositories, install the required Python modules, and define some environment variables.",
         "If you intend to contribute directly to any of the repositories, you will have to make forks of the repositories. To do this, you can follow the instructions on [github.com](https://help.github.com/articles/fork-a-repo/)"
     ],
     "checkables": [
@@ -72,9 +72,9 @@
                 {
                     "type": "Step",
                     "platforms": { "platform": "win32" },
-                    "title": "Install python modules",
+                    "title": "Install Python modules",
                     "description": [
-                        "Install the required python modules:",
+                        "The nRF Connect SDK Zephyr repository contains a list of required Python modules. Install theses modules by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
@@ -90,9 +90,9 @@
                         { "platform": "linux" },
                         { "platform": "darwin" }
                     ],
-                    "title": "Install python modules",
+                    "title": "Install Python modules",
                     "description": [
-                        "Install the required python modules:",
+                        "The nRF Connect SDK Zephyr repository contains a list of required Python modules. Install theses modules by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
@@ -115,7 +115,7 @@
                     ],
                     "title": "Set up environment",
                     "description": [
-                        "Set up the environment:",
+                        "Every time you open a command prompt to work with the nRF Connect SDK, you must load the environment settings for Zephyr. To do so, enter the following commands:",
                         {
                             "type": "commands",
                             "description": [
@@ -124,7 +124,7 @@
                                 "source zephyr/zephyr-env.sh"
                             ]
                         },
-                        "It is recommended to add this automatically to your environment (i.e. *.bashrc*)."
+                        "For convenience, put these commands in a file that runs automatically when you open a command prompt (for example, *.bashrc*)."
                     ]
                 },
                 {
@@ -132,7 +132,7 @@
                     "platforms": { "platform": "win32" },
                     "title": "Set up environment",
                     "description": [
-                        "Set up the environment:",
+                        "Every time you open a command prompt to work with the nRF Connect SDK, you must load the environment settings for Zephyr. To do so, enter the following commands:",
                         {
                             "type": "commands",
                             "description": [
@@ -140,7 +140,7 @@
                                 "zephyr\\zephyr-env.cmd"
                             ]
                         },
-                        "It is recommended to add this automatically to your environment."
+                        "For convenience, put these commands in a file that runs automatically when you open a command prompt."
                     ]
                 }
             ]
