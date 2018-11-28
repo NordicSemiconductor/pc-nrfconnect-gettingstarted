@@ -34,72 +34,22 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/* eslint no-debugger: "off" */
 /* eslint comma-dangle: "off" */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import { ButtonGroup, Button } from 'react-bootstrap';
 
-import Description from './Description';
+import { connect } from 'react-redux';
+import Checkable from '../components/Checkable';
 import * as courseActions from '../actions/courseActions';
 
 
-function Checkable(props) {
-    const {
-        tool,
-        data,
-        currentState,
-        changeState,
-    } = props;
-    const manualButtonText = currentState === courseActions.done ?
-        'Mark' :
-        'Unmark';
-
-    const steps = data
-        .steps
-        .filter(step => step.enabled)
-        .map(step => (
-            <Description
-                className="description"
-                key={step.id}
-                description={step.description}
-            />
-            )
-        );
-
-    console.log(changeState);
-
-    return (
-        <div key={`${tool}-${data.id}`} className="checkable">
-            {/* <CheckableButton
-                tool={tool}
-                data={data}
-                runFunctions={() => data.runCheckers()}
-            /> */}
-            <ul className="checkable-description">{steps}</ul>
-            <ButtonGroup className="checkable-button-group">
-                <Button
-                    className="checkable-button btn btn-primary btn-nordic"
-                    onClick={() => changeState(tool, data.id)}
-                >
-                    { manualButtonText }
-                </Button>
-                {data.isManual &&
-                    <Button className="checkable-button btn btn-primary btn-nordic">Check</Button>
-                }
-            </ButtonGroup>
-        </div>
-    );
-}
-
-Checkable.propTypes = {
-    tool: PropTypes.string.isRequired,
-    data: PropTypes.shape({
-        steps: PropTypes.array.isRequired,
-        runCheckers: PropTypes.func.isRequired,
-    }).isRequired,
-    changeState: PropTypes.func.isRequired,
-    currentState: PropTypes.string.isRequired,
-};
-
-export default Checkable;
+export default connect(
+    (state, props) => ({
+        ...props,
+        currentState: state.app.courseReducer.checkables[props.tool][props.data.id],
+    }),
+    (dispatch, props) => ({
+        ...props,
+        changeState: (tool, index) => dispatch(courseActions.changeState(tool, index)),
+    }),
+)(Checkable);

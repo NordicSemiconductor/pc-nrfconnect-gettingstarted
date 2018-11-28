@@ -40,7 +40,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Description from './Description';
-import Checkable from './Checkable';
+import Checkable from '../containers/Checkable';
 
 function Recipe(props) {
     const { recipe } = props;
