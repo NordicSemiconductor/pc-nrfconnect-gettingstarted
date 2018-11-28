@@ -38,6 +38,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ButtonGroup, Button } from 'react-bootstrap';
 
 import CheckableButton from './CheckableButton';
 import Description from './Description';
@@ -50,6 +51,7 @@ function Checkable(props) {
         .filter(step => step.enabled)
         .map(step => (
             <Description
+                className="description"
                 key={step.id}
                 description={step.description}
             />
@@ -57,13 +59,17 @@ function Checkable(props) {
         );
 
     return (
-        <div key={`${tool}-${data.id}`} >
-            <CheckableButton
+        <div key={`${tool}-${data.id}`} className="checkable">
+            {/* <CheckableButton
                 tool={tool}
                 data={data}
                 runFunctions={() => data.runCheckers()}
-            />
-            <ul>{steps}</ul>
+            /> */}
+            <ul className="checkable-description">{steps}</ul>
+            <ButtonGroup className="checkable-button-group">
+                <Button className="checkable-button btn btn-primary btn-nordic">Mark as done</Button>
+                <Button className="checkable-button btn btn-primary btn-nordic">Check</Button>
+            </ButtonGroup>
         </div>
     );
 }

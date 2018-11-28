@@ -14,3 +14,26 @@ div.core-main-view {
     }
 }
 
+.checkable {
+    display: flex;
+    flex-direction: row;
+
+    .checkable-description {
+        flex-grow: 99;
+        border-left: 10px solid green;
+    }
+    .checkable-button-group {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        align-self: center;
+        padding-left: 0.5%;
+    }
+    .checkable-button {
+        flex-grow: 1;
+        margin: 1px;
+        max-height: 2%;
+        min-height: 2%;
+        border-radius: 0;
+    }
+}

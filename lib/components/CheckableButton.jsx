@@ -66,6 +66,8 @@ function getNextState(isManual, currentState) {
 function InnerButton(props) {
     const { status, label, changeFunction } = props;
 
+    console.log(status);
+
     return (
         <span>
             {status}
