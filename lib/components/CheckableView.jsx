@@ -34,8 +34,6 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* eslint comma-dangle: "off" */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ButtonGroup, Button } from 'react-bootstrap';
@@ -101,7 +99,6 @@ const CheckableView = ({
     checkableDescClassName += currentState === CheckableState.DONE ? ' marked' : '';
     checkableDescClassName += currentState === CheckableState.NOT_DONE ? ' unmarked' : '';
     checkableDescClassName += currentState === CheckableState.IN_PROGRESS ? ' progress' : '';
-    console.log(currentState);
 
     return (
         <div key={`${tool}-${data.id}`} className="checkable">
