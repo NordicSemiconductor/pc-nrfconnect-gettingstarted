@@ -5,7 +5,7 @@
     "platforms": { "platform": "win32" },
     "description": [
         "The [Zephyr Getting Started for Windows](https://docs.zephyrproject.org/latest/getting_started/installation_win.html#installing-requirements-and-dependencies) describes how to install the required tools. The easiest way  is detailed below.",
-        "Complete the following steps to install the toolchain using the [`Chocolatey` package manager](https://chocolatey.org/)"
+        "Complete the following steps to install the toolchain using the [Chocolatey package manager](https://chocolatey.org/)"
     ],
     "checkables": [
         {
