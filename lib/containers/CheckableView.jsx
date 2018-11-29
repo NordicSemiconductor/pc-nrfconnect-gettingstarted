@@ -34,48 +34,18 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
- /* eslint no-prototype-builtins: "off" */
+import { connect } from 'react-redux';
+import CheckableView from '../components/CheckableView';
+import { checkableChangeAction, manualCheck } from '../actions/courseActions';
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import ReactMarkdown from 'react-markdown';
-import { shell } from 'electron';
-
-function Description(props) {
-    const { description } = props;
-
-    const onClick = event => {
-        shell.openExternal(event.target.getAttribute('href'));
-    };
-
-    const renderers = {
-        link: item => (
-            <a
-                href={item.href}
-                onClick={onClick}
-            >
-                {item.children }
-            </a>
-        ),
-    };
-
-    return (
-        <ReactMarkdown
-            source={description}
-            renderers={renderers}
-        />
-    );
-}
-
-Description.defaultProps = {
-    description: '',
-};
-
-Description.propTypes = {
-    description: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.array,
-    ]),
-};
-
-export default Description;
+export default connect(
+    (state, props) => ({
+        ...props,
+        currentState: state.app.courseReducer.checkables[props.tool][props.data.id],
+    }),
+    (dispatch, props) => ({
+        ...props,
+        autoCheck: (tool, index, state) => dispatch(checkableChangeAction(tool, index, state)),
+        manualCheck: (tool, index) => dispatch(manualCheck(tool, index)),
+    }),
+)(CheckableView);

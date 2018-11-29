@@ -34,46 +34,40 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* eslint comma-dangle: "off" */
-
 import React from 'react';
 import PropTypes from 'prop-types';
+import DescriptionView from './DescriptionView';
+import CheckableView from '../containers/CheckableView';
 
-import CheckableButton from './CheckableButton';
-import Description from './Description';
+const CheckableViews = recipe => (
+    recipe.checkables.map(checkable => (
+        <CheckableView
+            key={`${recipe.tool}-${checkable.id}`}
+            tool={recipe.tool}
+            recipeID={recipe.id}
+            data={checkable}
+        />
+    ))
+);
 
-function Checkable(props) {
-    const { tool, data } = props;
+const RecipeView = ({
+    recipe,
+}) => (
+    <div>
+        <DescriptionView key={recipe.id} description={recipe.description} /><br />
+        { CheckableViews(recipe) }
+    </div>
+);
 
-    const steps = data
-        .steps
-        .filter(step => step.enabled)
-        .map(step => (
-            <Description
-                key={step.id}
-                description={step.description}
-            />
-            )
-        );
-
-    return (
-        <div key={`${tool}-${data.id}`} >
-            <CheckableButton
-                tool={tool}
-                data={data}
-                runFunctions={() => data.runCheckers()}
-            />
-            <ul>{steps}</ul>
-        </div>
-    );
-}
-
-Checkable.propTypes = {
-    tool: PropTypes.string.isRequired,
-    data: PropTypes.shape({
-        steps: PropTypes.array.isRequired,
-        runCheckers: PropTypes.func.isRequired,
+RecipeView.propTypes = {
+    recipe: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        checkable: PropTypes.shape({
+            checkers: PropTypes.array,
+            steps: PropTypes.array.isRequired,
+        }),
     }).isRequired,
 };
 
-export default Checkable;
+export default RecipeView;

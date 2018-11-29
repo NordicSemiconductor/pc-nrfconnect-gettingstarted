@@ -34,63 +34,46 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* eslint comma-dangle: "off" */
+ /* eslint no-prototype-builtins: "off" */
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Accordion, Panel, Checkbox } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import Recipe from './Recipe';
-import Description from './Description';
-import { done } from '../actions/courseActions';
+import ReactMarkdown from 'react-markdown';
+import { shell } from 'electron';
 
+const DescriptionView = ({ description }) => {
+    const onClick = event => {
+        shell.openExternal(event.target.getAttribute('href'));
+    };
 
-function Course(props) {
-    const { title, description, checkables } = props;
-
-    const recipes = props.recipes
-        .filter(recipe => recipe.enabled)
-        .map(recipe => {
-            const recipeCheckables = checkables[recipe.tool];
-
-            const allDone = recipeCheckables.every(item => item === done);
-
-            const recipeCheckbox = (
-                <Checkbox inline key={recipe.id} checked={allDone} readOnly >&nbsp;</Checkbox>
-            );
-
-            return (
-                <Panel
-                    key={recipe.id}
-                    eventKey={recipe.id}
-                    header={[recipeCheckbox, recipe.title]}
-                >
-                    <Recipe recipe={recipe} />
-                </Panel>
-            );
-        });
+    const renderers = {
+        link: item => (
+            <a
+                href={item.href}
+                onClick={onClick}
+            >
+                {item.children}
+            </a>
+        ),
+    };
 
     return (
-        <div>
-            <h1>{title}</h1>
-            <Description description={description} />
-            <Accordion>{recipes}</Accordion>
-        </div>
+        <ReactMarkdown
+            source={description}
+            renderers={renderers}
+        />
     );
-}
-
-Course.propTypes = {
-    recipes: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-    checkables: PropTypes.shape({}).isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
 };
 
-export default connect(
-    state => ({
-        title: state.app.courseReducer.course.title,
-        description: state.app.courseReducer.course.description,
-        recipes: state.app.courseReducer.course.recipes,
-        checkables: state.app.courseReducer.checkables,
-    })
-)(Course);
+DescriptionView.propTypes = {
+    description: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.array,
+    ]),
+};
+
+DescriptionView.defaultProps = {
+    description: '',
+};
+
+export default DescriptionView;

@@ -14,3 +14,39 @@ div.core-main-view {
     }
 }
 
+.checkable {
+    display: flex;
+    flex-direction: row;
+
+    .checkable-description {
+        flex-grow: 99;
+    }
+    .marked {
+        border-left: 10px solid #D0DF00;
+    }
+    .unmarked {
+        border-left: 10px solid #EE2F4E;
+    }
+    .progress {
+        border-left: 10px solid #FFCD00;
+    }
+    .checkable-button-group {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        min-width: 155px;
+        max-width: 75px;
+        align-self: start;
+        padding-left: 10px;
+        .btn {
+            margin-left: 0px;
+        }
+    }
+    .checkable-button {
+        flex-grow: 1;
+        margin: 1px;
+        max-height: 2%;
+        min-height: 2%;
+        border-radius: 0;
+    }
+}
