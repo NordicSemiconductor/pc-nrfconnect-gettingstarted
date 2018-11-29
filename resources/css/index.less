@@ -1,7 +1,6 @@
 // This file is imported by index.jsx, and may contain styles for the app.
 
 .core-main-layout > div:nth-child(1) > div:nth-child(1).core-main-view {
-
     overflow-y: scroll;
 }
 
@@ -12,6 +11,10 @@ div.core-main-view {
     a {
         cursor: pointer;
     }
+}
+
+.core-side-panel {
+    width: 300px;
 }
 
 .checkable {
@@ -48,5 +51,40 @@ div.core-main-view {
         max-height: 2%;
         min-height: 2%;
         border-radius: 0;
+    }
+}
+
+.variable:not(:last-child) {
+    margin-bottom: 12px;
+}
+
+.variable {
+    display: block;
+    .variable-name, .form-control {
+        font-family: monospace;
+        display: block;
+    }
+    .variable-name {
+        .glyphicon {
+            margin-right: 10px;
+        }
+    }
+    button.form-control {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .form-control {
+        font-weight: bold;
+        border-radius: 0;
+        padding: 0 5px;
+        height: 2em;
+        text-align: left;
+    }
+}
+
+.variable:not(.set) {
+    .variable-name {
+        color: #EE2F4E;
     }
 }
