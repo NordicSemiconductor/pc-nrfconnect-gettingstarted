@@ -36,7 +36,7 @@
 
 import { connect } from 'react-redux';
 import CheckableView from '../components/CheckableView';
-import * as courseActions from '../actions/courseActions';
+import { checkableChangeAction, manualCheck } from '../actions/courseActions';
 
 export default connect(
     (state, props) => ({
@@ -45,6 +45,7 @@ export default connect(
     }),
     (dispatch, props) => ({
         ...props,
-        changeState: (tool, index) => dispatch(courseActions.changeState(tool, index)),
+        autoCheck: (tool, index, state) => dispatch(checkableChangeAction(tool, index, state)),
+        manualCheck: (tool, index) => dispatch(manualCheck(tool, index)),
     }),
 )(CheckableView);

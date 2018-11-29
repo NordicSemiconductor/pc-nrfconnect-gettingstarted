@@ -42,6 +42,7 @@ import { ButtonGroup, Button } from 'react-bootstrap';
 import DescriptionView from './DescriptionView';
 import * as courseActions from '../actions/courseActions';
 
+
 const Description = (id, desc) => (
     <DescriptionView
         className="description"
@@ -54,19 +55,31 @@ const Steps = data => (
     data.steps.filter(step => step.enabled)
         .map(step => Description(step.id, step.description)));
 
-const MarkButton = (tool, id, changeState, manualButtonText) => (
+const MarkButton = (tool, id, manualCheck, manualButtonText) => (
     <Button
         className="checkable-button btn btn-primary btn-nordic"
-        onClick={() => changeState(tool, id)}
+        onClick={() => manualCheck(tool, id)}
     >
         { manualButtonText }
     </Button>
 );
 
-const CheckButton = data => (
+const check = (tool, data, autoCheck) => {
+    const id = data.id;
+    autoCheck(tool, id, courseActions.CheckableState.IN_PROGRESS);
+    data.runCheckers()
+        .then(() => {
+            autoCheck(tool, id, courseActions.CheckableState.DONE);
+        })
+        .catch(() => {
+            autoCheck(tool, id, courseActions.CheckableState.NOT_DONE);
+        });
+};
+
+const CheckButton = (tool, data, autoCheck) => (
     <Button
         className="checkable-button btn btn-nordic"
-        onClick={data.runCheckers}
+        onClick={() => check(tool, data, autoCheck)}
     >
         Check
     </Button>
@@ -76,24 +89,26 @@ const CheckableView = ({
     tool,
     data,
     currentState,
-    changeState,
+    manualCheck,
+    autoCheck,
 }) => {
     const manualButtonText = currentState === courseActions.done ?
         'Unmark' :
         'Mark';
 
-    let checkableDescClassName = 'checkable-description ';
+    let checkableDescClassName = 'checkable-description';
     const CheckableState = courseActions.CheckableState;
-    checkableDescClassName += currentState === CheckableState.DONE ? 'marked' : '';
-    checkableDescClassName += currentState === CheckableState.NOT_DONE ? 'unmarked' : '';
-    checkableDescClassName += currentState === CheckableState.IN_PROGRESS ? 'progress' : '';
+    checkableDescClassName += currentState === CheckableState.DONE ? ' marked' : '';
+    checkableDescClassName += currentState === CheckableState.NOT_DONE ? ' unmarked' : '';
+    checkableDescClassName += currentState === CheckableState.IN_PROGRESS ? ' progress' : '';
+    console.log(currentState);
 
     return (
         <div key={`${tool}-${data.id}`} className="checkable">
             <ul className={checkableDescClassName}>{Steps(data)}</ul>
             <ButtonGroup className="checkable-button-group">
-                {MarkButton(tool, data.id, changeState, manualButtonText)}
-                {data.isManual && CheckButton(data)}
+                {MarkButton(tool, data.id, manualCheck, manualButtonText)}
+                {!data.isManual && CheckButton(tool, data, autoCheck)}
             </ButtonGroup>
         </div>
     );
@@ -105,7 +120,8 @@ CheckableView.propTypes = {
         steps: PropTypes.array.isRequired,
         runCheckers: PropTypes.func.isRequired,
     }).isRequired,
-    changeState: PropTypes.func.isRequired,
+    manualCheck: PropTypes.func.isRequired,
+    autoCheck: PropTypes.func.isRequired,
     currentState: PropTypes.string.isRequired,
 };
 
