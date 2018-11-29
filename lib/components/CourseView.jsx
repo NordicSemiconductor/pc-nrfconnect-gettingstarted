@@ -39,58 +39,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Accordion, Panel, Checkbox } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import Recipe from './Recipe';
+import RecipeView from './RecipeView';
 import DescriptionView from './DescriptionView';
 import { done } from '../actions/courseActions';
 
+const RecipeViews = (recipes, checkables) => (
+    recipes.filter(recipe => recipe.enabled).map(recipe => {
+        const recipeCheckables = checkables[recipe.tool];
 
-function Course(props) {
-    const { title, description, checkables } = props;
+        const allDone = recipeCheckables.every(item => item === done);
 
-    const recipes = props.recipes
-        .filter(recipe => recipe.enabled)
-        .map(recipe => {
-            const recipeCheckables = checkables[recipe.tool];
+        const recipeCheckbox = (
+            <Checkbox inline key={recipe.id} checked={allDone} readOnly >&nbsp;</Checkbox>
+        );
 
-            const allDone = recipeCheckables.every(item => item === done);
+        return (
+            <Panel
+                key={recipe.id}
+                eventKey={recipe.id}
+                header={[recipeCheckbox, recipe.title]}
+            >
+                <RecipeView recipe={recipe} />
+            </Panel>
+        );
+    }));
 
-            const recipeCheckbox = (
-                <Checkbox inline key={recipe.id} checked={allDone} readOnly >&nbsp;</Checkbox>
-            );
 
-            return (
-                <Panel
-                    key={recipe.id}
-                    eventKey={recipe.id}
-                    header={[recipeCheckbox, recipe.title]}
-                >
-                    <Recipe recipe={recipe} />
-                </Panel>
-            );
-        });
+const CourseView = ({ title, description, recipes, checkables }) => (
+    <div>
+        <h1>{title}</h1>
+        <DescriptionView description={description} />
+        <Accordion>{RecipeViews(recipes, checkables)}</Accordion>
+    </div>
+);
 
-    return (
-        <div>
-            <h1>{title}</h1>
-            <DescriptionView description={description} />
-            <Accordion>{recipes}</Accordion>
-        </div>
-    );
-}
-
-Course.propTypes = {
+CourseView.propTypes = {
     recipes: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
     checkables: PropTypes.shape({}).isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
 };
 
-export default connect(
-    state => ({
-        title: state.app.courseReducer.course.title,
-        description: state.app.courseReducer.course.description,
-        recipes: state.app.courseReducer.course.recipes,
-        checkables: state.app.courseReducer.checkables,
-    })
-)(Course);
+export default CourseView;

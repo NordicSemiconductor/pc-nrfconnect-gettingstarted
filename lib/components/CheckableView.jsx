@@ -39,7 +39,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ButtonGroup, Button } from 'react-bootstrap';
-
 import DescriptionView from './DescriptionView';
 import * as courseActions from '../actions/courseActions';
 
@@ -51,7 +50,7 @@ const Description = (id, desc) => (
     />
 );
 
-const Steps = (data) => (
+const Steps = data => (
     data.steps.filter(step => step.enabled)
         .map(step => Description(step.id, step.description)));
 
@@ -64,7 +63,7 @@ const MarkButton = (tool, id, changeState, manualButtonText) => (
     </Button>
 );
 
-const CheckButton = (data) => (
+const CheckButton = data => (
     <Button
         className="checkable-button btn btn-nordic"
         onClick={data.runCheckers}
@@ -73,7 +72,7 @@ const CheckButton = (data) => (
     </Button>
 );
 
-const Checkable = ({
+const CheckableView = ({
     tool,
     data,
     currentState,
@@ -98,9 +97,9 @@ const Checkable = ({
             </ButtonGroup>
         </div>
     );
-}
+};
 
-Checkable.propTypes = {
+CheckableView.propTypes = {
     tool: PropTypes.string.isRequired,
     data: PropTypes.shape({
         steps: PropTypes.array.isRequired,
@@ -110,4 +109,4 @@ Checkable.propTypes = {
     currentState: PropTypes.string.isRequired,
 };
 
-export default Checkable;
+export default CheckableView;

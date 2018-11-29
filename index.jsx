@@ -38,10 +38,10 @@ import { join } from 'path';
 import React from 'react';
 import { combineReducers } from 'redux';
 import { ipcRenderer } from 'electron';
-import './resources/css/index.less';
 import { loadCourseAction } from './lib/actions/courseActions';
 import courseReducer from './lib/reducers/courseReducer';
-import Course from './lib/components/Course';
+import CourseView from './lib/containers/CourseView';
+import './resources/css/index.less';
 
 /* eslint-disable react/prop-types, no-unused-vars */
 
@@ -218,7 +218,7 @@ export function decorateMainView(MainView) {
 
         return (
             <MainView {...props} >
-                <Course
+                <CourseView
                     title={props.course.title}
                     description={props.course.description}
                     recipes={props.course.recipes}

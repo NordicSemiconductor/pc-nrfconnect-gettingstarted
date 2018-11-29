@@ -34,43 +34,18 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* eslint comma-dangle: "off" */
+import { connect } from 'react-redux';
+import CourseView from '../components/CourseView';
 
-import React from 'react';
-import PropTypes from 'prop-types';
-
-import DescriptionView from './DescriptionView';
-import Checkable from '../containers/Checkable';
-
-function Recipe(props) {
-    const { recipe } = props;
-
-    return (
-        <div>
-            <DescriptionView key={recipe.id} description={recipe.description} /><br />
-            {
-                recipe.checkables.map(checkable => (
-                    <Checkable
-                        key={`${recipe.tool}-${checkable.id}`}
-                        tool={recipe.tool}
-                        recipeID={recipe.id}
-                        data={checkable}
-                    />)
-                )
-            }
-        </div>
-    );
-}
-
-Recipe.propTypes = {
-    recipe: PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        checkable: PropTypes.shape({
-            checkers: PropTypes.array,
-            steps: PropTypes.array.isRequired,
-        }),
-    }).isRequired,
-};
-
-export default Recipe;
+export default connect(
+    (state, props) => ({
+        ...props,
+        title: state.app.courseReducer.course.title,
+        description: state.app.courseReducer.course.description,
+        recipes: state.app.courseReducer.course.recipes,
+        checkables: state.app.courseReducer.checkables,
+    }),
+    (dispatch, props) => ({
+        ...props,
+    }),
+)(CourseView);

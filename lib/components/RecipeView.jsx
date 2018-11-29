@@ -34,22 +34,40 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* eslint no-debugger: "off" */
-/* eslint comma-dangle: "off" */
+import React from 'react';
+import PropTypes from 'prop-types';
+import DescriptionView from './DescriptionView';
+import CheckableView from '../containers/CheckableView';
 
+const CheckableViews = recipe => (
+    recipe.checkables.map(checkable => (
+        <CheckableView
+            key={`${recipe.tool}-${checkable.id}`}
+            tool={recipe.tool}
+            recipeID={recipe.id}
+            data={checkable}
+        />
+    ))
+);
 
-import { connect } from 'react-redux';
-import Checkable from '../components/Checkable';
-import * as courseActions from '../actions/courseActions';
+const RecipeView = ({
+    recipe,
+}) => (
+    <div>
+        <DescriptionView key={recipe.id} description={recipe.description} /><br />
+        { CheckableViews(recipe) }
+    </div>
+);
 
+RecipeView.propTypes = {
+    recipe: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        checkable: PropTypes.shape({
+            checkers: PropTypes.array,
+            steps: PropTypes.array.isRequired,
+        }),
+    }).isRequired,
+};
 
-export default connect(
-    (state, props) => ({
-        ...props,
-        currentState: state.app.courseReducer.checkables[props.tool][props.data.id],
-    }),
-    (dispatch, props) => ({
-        ...props,
-        changeState: (tool, index) => dispatch(courseActions.changeState(tool, index)),
-    }),
-)(Checkable);
+export default RecipeView;
