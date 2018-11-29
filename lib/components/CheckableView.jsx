@@ -66,12 +66,8 @@ const check = (tool, data, autoCheck) => {
     const id = data.id;
     autoCheck(tool, id, courseActions.CheckableState.IN_PROGRESS);
     data.runCheckers()
-        .then(() => {
-            autoCheck(tool, id, courseActions.CheckableState.DONE);
-        })
-        .catch(() => {
-            autoCheck(tool, id, courseActions.CheckableState.NOT_DONE);
-        });
+        .then(() => autoCheck(tool, id, courseActions.CheckableState.DONE))
+        .catch(() => autoCheck(tool, id, courseActions.CheckableState.NOT_DONE));
 };
 
 const CheckButton = (tool, data, autoCheck) => (
