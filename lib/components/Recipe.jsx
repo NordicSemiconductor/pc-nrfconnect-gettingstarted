@@ -39,7 +39,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Description from './Description';
+import DescriptionView from './DescriptionView';
 import Checkable from '../containers/Checkable';
 
 function Recipe(props) {
@@ -47,7 +47,7 @@ function Recipe(props) {
 
     return (
         <div>
-            <Description key={recipe.id} description={recipe.description} /><br />
+            <DescriptionView key={recipe.id} description={recipe.description} /><br />
             {
                 recipe.checkables.map(checkable => (
                     <Checkable

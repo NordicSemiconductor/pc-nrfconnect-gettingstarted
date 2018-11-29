@@ -41,7 +41,7 @@ import PropTypes from 'prop-types';
 import { Accordion, Panel, Checkbox } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import Recipe from './Recipe';
-import Description from './Description';
+import DescriptionView from './DescriptionView';
 import { done } from '../actions/courseActions';
 
 
@@ -73,7 +73,7 @@ function Course(props) {
     return (
         <div>
             <h1>{title}</h1>
-            <Description description={description} />
+            <DescriptionView description={description} />
             <Accordion>{recipes}</Accordion>
         </div>
     );

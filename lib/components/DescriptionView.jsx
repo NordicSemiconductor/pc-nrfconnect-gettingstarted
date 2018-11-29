@@ -41,9 +41,7 @@ import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import { shell } from 'electron';
 
-function Description(props) {
-    const { description } = props;
-
+const DescriptionView = ({ description }) => {
     const onClick = event => {
         shell.openExternal(event.target.getAttribute('href'));
     };
@@ -54,7 +52,7 @@ function Description(props) {
                 href={item.href}
                 onClick={onClick}
             >
-                {item.children }
+                {item.children}
             </a>
         ),
     };
@@ -65,17 +63,17 @@ function Description(props) {
             renderers={renderers}
         />
     );
-}
-
-Description.defaultProps = {
-    description: '',
 };
 
-Description.propTypes = {
+DescriptionView.propTypes = {
     description: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.array,
     ]),
 };
 
-export default Description;
+DescriptionView.defaultProps = {
+    description: '',
+};
+
+export default DescriptionView;

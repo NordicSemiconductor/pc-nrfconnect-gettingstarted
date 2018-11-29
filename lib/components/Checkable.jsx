@@ -40,53 +40,61 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ButtonGroup, Button } from 'react-bootstrap';
 
-import Description from './Description';
+import DescriptionView from './DescriptionView';
 import * as courseActions from '../actions/courseActions';
 
+const Description = (id, desc) => (
+    <DescriptionView
+        className="description"
+        key={id}
+        description={desc}
+    />
+);
 
-function Checkable(props) {
-    const {
-        tool,
-        data,
-        currentState,
-        changeState,
-    } = props;
+const Steps = (data) => (
+    data.steps.filter(step => step.enabled)
+        .map(step => Description(step.id, step.description)));
+
+const MarkButton = (tool, id, changeState, manualButtonText) => (
+    <Button
+        className="checkable-button btn btn-primary btn-nordic"
+        onClick={() => changeState(tool, id)}
+    >
+        { manualButtonText }
+    </Button>
+);
+
+const CheckButton = (data) => (
+    <Button
+        className="checkable-button btn btn-nordic"
+        onClick={data.runCheckers}
+    >
+        Check
+    </Button>
+);
+
+const Checkable = ({
+    tool,
+    data,
+    currentState,
+    changeState,
+}) => {
     const manualButtonText = currentState === courseActions.done ?
-        'Mark' :
-        'Unmark';
+        'Unmark' :
+        'Mark';
 
-    const steps = data
-        .steps
-        .filter(step => step.enabled)
-        .map(step => (
-            <Description
-                className="description"
-                key={step.id}
-                description={step.description}
-            />
-            )
-        );
-
-    console.log(changeState);
+    let checkableDescClassName = 'checkable-description ';
+    const CheckableState = courseActions.CheckableState;
+    checkableDescClassName += currentState === CheckableState.DONE ? 'marked' : '';
+    checkableDescClassName += currentState === CheckableState.NOT_DONE ? 'unmarked' : '';
+    checkableDescClassName += currentState === CheckableState.IN_PROGRESS ? 'progress' : '';
 
     return (
         <div key={`${tool}-${data.id}`} className="checkable">
-            {/* <CheckableButton
-                tool={tool}
-                data={data}
-                runFunctions={() => data.runCheckers()}
-            /> */}
-            <ul className="checkable-description">{steps}</ul>
+            <ul className={checkableDescClassName}>{Steps(data)}</ul>
             <ButtonGroup className="checkable-button-group">
-                <Button
-                    className="checkable-button btn btn-primary btn-nordic"
-                    onClick={() => changeState(tool, data.id)}
-                >
-                    { manualButtonText }
-                </Button>
-                {data.isManual &&
-                    <Button className="checkable-button btn btn-primary btn-nordic">Check</Button>
-                }
+                {MarkButton(tool, data.id, changeState, manualButtonText)}
+                {data.isManual && CheckButton(data)}
             </ButtonGroup>
         </div>
     );
