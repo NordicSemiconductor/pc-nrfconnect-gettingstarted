@@ -41,13 +41,13 @@ import PropTypes from 'prop-types';
 import { Accordion, Panel, Checkbox } from 'react-bootstrap';
 import RecipeView from './RecipeView';
 import DescriptionView from './DescriptionView';
-import { done } from '../actions/courseActions';
+import { CheckableState } from '../actions/courseActions';
 
 const RecipeViews = (recipes, checkables) => (
     recipes.filter(recipe => recipe.enabled).map(recipe => {
         const recipeCheckables = checkables[recipe.tool];
 
-        const allDone = recipeCheckables.every(item => item === done);
+        const allDone = recipeCheckables.every(item => item === CheckableState.DONE);
 
         const recipeCheckbox = (
             <Checkbox inline key={recipe.id} checked={allDone} readOnly >&nbsp;</Checkbox>

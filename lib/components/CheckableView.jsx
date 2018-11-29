@@ -92,12 +92,12 @@ const CheckableView = ({
     manualCheck,
     autoCheck,
 }) => {
-    const manualButtonText = currentState === courseActions.done ?
+    const CheckableState = courseActions.CheckableState;
+    const manualButtonText = currentState === CheckableState.DONE ?
         'Unmark' :
         'Mark';
 
     let checkableDescClassName = 'checkable-description';
-    const CheckableState = courseActions.CheckableState;
     checkableDescClassName += currentState === CheckableState.DONE ? ' marked' : '';
     checkableDescClassName += currentState === CheckableState.NOT_DONE ? ' unmarked' : '';
     checkableDescClassName += currentState === CheckableState.IN_PROGRESS ? ' progress' : '';
