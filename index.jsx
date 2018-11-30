@@ -41,7 +41,10 @@ import { ipcRenderer } from 'electron';
 import { loadCourseAction } from './lib/actions/courseActions';
 import courseReducer from './lib/reducers/courseReducer';
 import CourseView from './lib/containers/CourseView';
+import SidePanel from './lib/containers/sidePanel';
 import './resources/css/index.less';
+
+import AbstractParser from './lib/parsers/AbstractParser';
 
 /* eslint-disable react/prop-types, no-unused-vars */
 
@@ -101,7 +104,8 @@ export const config = {
  * @returns {undefined}
  */
 export function onInit(dispatch, getState) {
-
+    // TODO: remove this hack when checkers are properly called via actions
+    AbstractParser.getState = getState;
 }
 
 /**
@@ -279,7 +283,7 @@ export function decorateNavMenuItem(NavMenuItem) {
  * @param {Function} SidePanel The core SidePanel component.
  * @returns {Function} A new React component.
  */
-export function decorateSidePanel(SidePanel) {
+export function decorateSidePanel() {
     return props => (
         <SidePanel {...props} />
     );
