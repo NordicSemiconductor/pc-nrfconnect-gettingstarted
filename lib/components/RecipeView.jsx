@@ -37,7 +37,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import DescriptionView from './DescriptionView';
-import CheckableView from '../containers/CheckableView';
+import CheckableView from '../containers/checkableView';
 
 const CheckableViews = recipe => (
     recipe.checkables.map(checkable => (

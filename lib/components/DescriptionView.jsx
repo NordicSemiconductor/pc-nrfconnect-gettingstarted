@@ -1,4 +1,4 @@
-/* Copyright (c) 2015 - 2017, Nordic Semiconductor ASA
+/* Copyright (c) 2015 - 2018, Nordic Semiconductor ASA
  *
  * All rights reserved.
  *
@@ -34,42 +34,29 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
- /* eslint no-prototype-builtins: "off" */
-
 import React from 'react';
-import PropTypes from 'prop-types';
+import { string, node, array, oneOfType } from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import { shell } from 'electron';
 
-const DescriptionView = ({ description }) => {
-    const onClick = event => {
-        shell.openExternal(event.target.getAttribute('href'));
-    };
+const link = ({ href, children }) => (
+    <a
+        href={href}
+        onClick={({ target }) => shell.openExternal(target.getAttribute('href'))}
+    >
+        { children }
+    </a>
+);
 
-    const renderers = {
-        link: item => (
-            <a
-                href={item.href}
-                onClick={onClick}
-            >
-                {item.children}
-            </a>
-        ),
-    };
+link.propTypes = { href: string, children: node };
+link.defaultProps = { href: null, children: null };
 
-    return (
-        <ReactMarkdown
-            source={description}
-            renderers={renderers}
-        />
-    );
-};
+const DescriptionView = ({ description, ...rest }) => (
+    <ReactMarkdown source={description} renderers={{ link }} {...rest} />
+);
 
 DescriptionView.propTypes = {
-    description: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.array,
-    ]),
+    description: oneOfType([string, array]),
 };
 
 DescriptionView.defaultProps = {

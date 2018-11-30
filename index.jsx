@@ -36,17 +36,16 @@
 
 import { join } from 'path';
 import React from 'react';
-import { combineReducers } from 'redux';
 import { ipcRenderer } from 'electron';
 import { loadCourseAction } from './lib/actions/courseActions';
-import courseReducer from './lib/reducers/courseReducer';
-import CourseView from './lib/containers/CourseView';
+import appReducer from './lib/reducers';
+import CourseView from './lib/containers/courseView';
 import SidePanel from './lib/containers/sidePanel';
 import './resources/css/index.less';
 
 import AbstractParser from './lib/parsers/AbstractParser';
 
-/* eslint-disable react/prop-types, no-unused-vars */
+/* eslint-disable react/prop-types */
 
 
 // nRF Connect boilerplate app
@@ -84,10 +83,7 @@ export const config = {
         nordicUsb: false,
         serialport: false,
     },
-    deviceSetup: {
-        // dfu: {},
-        // jprog: {},
-    },
+    deviceSetup: {},
 };
 
 
@@ -117,7 +113,7 @@ export function onInit(dispatch, getState) {
  * invoked to read the current app state.
  * @returns {undefined}
  */
-export function onReady(dispatch, getState) {
+export function onReady(dispatch) {
     // TODO: Do not hardcode the course path.
     // IPC stuff to fetch the path of the currently running code (not
     // remote.app.getAppPath(), which is the path of the core code)
@@ -140,66 +136,8 @@ export function onReady(dispatch, getState) {
  * @param {Function} DeviceSelector The core DeviceSelector component.
  * @returns {Function} A new React component.
  */
-export function decorateDeviceSelector(DeviceSelector) {
-    return props => (
-        <div />
-    );
-}
-
-/**
- * Decorates the core Logo component, which is rendered in the top right
- * corner of the app. See:
- * https://github.com/NordicSemiconductor/pc-nrfconnect-core/blob/master/lib/components/Logo.jsx
- *
- * @param {Function} Logo The core Logo component.
- * @returns {Function} A new React component.
- */
-export function decorateLogo(Logo) {
-    return props => (
-        <Logo {...props} />
-    );
-}
-
-/**
- * Decorates the core LogEntry component, which renders a single log line
- * in the LogViewer. See:
- * https://github.com/NordicSemiconductor/pc-nrfconnect-core/blob/master/lib/windows/app/components/LogEntry.jsx
- *
- * @param {Function} LogEntry The core LogEntry component.
- * @returns {Function} A new React component.
- */
-export function decorateLogEntry(LogEntry) {
-    return props => (
-        <LogEntry {...props} />
-    );
-}
-
-/**
- * Decorates the core LogHeader component, which renders the header above
- * the log entries. See:
- * https://github.com/NordicSemiconductor/pc-nrfconnect-core/blob/master/lib/windows/app/components/LogHeader.jsx
- *
- * @param {Function} LogHeader The core LogHeader component.
- * @returns {Function} A new React component.
- */
-export function decorateLogHeader(LogHeader) {
-    return props => (
-        <LogHeader {...props} />
-    );
-}
-
-/**
- * Decorates the core LogHeaderButton component, which are the buttons
- * rendered in the LogViewer header. See:
- * https://github.com/NordicSemiconductor/pc-nrfconnect-core/blob/master/lib/windows/app/components/LogHeaderButton.jsx
- *
- * @param {Function} LogHeaderButton The core LogHeaderButton component.
- * @returns {Function} A new React component.
- */
-export function decorateLogHeaderButton(LogHeaderButton) {
-    return props => (
-        <LogHeaderButton {...props} />
-    );
+export function decorateDeviceSelector() {
+    return () => null;
 }
 
 /**
@@ -211,26 +149,19 @@ export function decorateLogHeaderButton(LogHeaderButton) {
  * @returns {Function} A new React component.
  */
 export function decorateMainView(MainView) {
-    return props => {
-        if (!props.course) {
-            return (
-                <MainView {...props} >
-        No course loaded
-        </MainView>
-            );
-        }
-
-        return (
-            <MainView {...props} >
+    return ({ course, checkables }) => (
+        <MainView>
+            { !course && 'No course loaded' }
+            { course &&
                 <CourseView
-                    title={props.course.title}
-                    description={props.course.description}
-                    recipes={props.course.recipes}
-                    checkables={props.checkables}
+                    title={course.title}
+                    description={course.description}
+                    recipes={course.recipes}
+                    checkables={checkables}
                 />
-            </MainView>
-        );
-    };
+            }
+        </MainView>
+    );
 }
 
 /**
@@ -255,24 +186,8 @@ export function decorateNavBar(NavBar) {
  * @param {Function} NavMenu The core NavMenu component.
  * @returns {Function} A new React component.
  */
-export function decorateNavMenu(NavMenu) {
-    return props => (
-        <NavMenu {...props} />
-    );
-}
-
-/**
- * Decorates the core NavMenuItem component, which represents one item in
- * the NavMenu. See:
- * https://github.com/NordicSemiconductor/pc-nrfconnect-core/blob/master/lib/components/NavMenuItem.jsx
- *
- * @param {Function} NavMenuItem The core NavMenu component.
- * @returns {Function} A new React component.
- */
-export function decorateNavMenuItem(NavMenuItem) {
-    return props => (
-        <NavMenuItem {...props} />
-    );
+export function decorateNavMenu() {
+    return ({ title }) => <h4>{ title }</h4>;
 }
 
 /**
@@ -295,51 +210,6 @@ export function decorateSidePanel() {
 
 /**
  * Receives the state object and returns props that will be passed to the
- * DeviceSelector component. See also the default `mapStateToProps` in:
- * https://github.com/NordicSemiconductor/pc-nrfconnect-core/blob/master/lib/windows/app/containers/DeviceSelectorContainer.js
- *
- * @param {Object} state The Redux state object.
- * @param {Object} props The default core props.
- * @returns {Object} Props that will be passed to the component.
- */
-export function mapDeviceSelectorState(state, props) {
-    return {
-        ...props,
-    };
-}
-
-/**
- * Receives the state object and returns props that will be passed to the
- * LogHeader component. See also the default `mapStateToProps` in:
- * https://github.com/NordicSemiconductor/pc-nrfconnect-core/blob/master/lib/windows/app/containers/LogHeaderContainer.js
- *
- * @param {Object} state The Redux state object.
- * @param {Object} props The default core props.
- * @returns {Object} Props that will be passed to the component.
- */
-export function mapLogHeaderState(state, props) {
-    return {
-        ...props,
-    };
-}
-
-/**
- * Receives the state object and returns props that will be passed to the
- * LogViewer component. See also the default `mapStateToProps` in:
- * https://github.com/NordicSemiconductor/pc-nrfconnect-core/blob/master/lib/windows/app/containers/LogViewerContainer.js
- *
- * @param {Object} state The Redux state object.
- * @param {Object} props The default core props.
- * @returns {Object} Props that will be passed to the component.
- */
-export function mapLogViewerState(state, props) {
-    return {
-        ...props,
-    };
-}
-
-/**
- * Receives the state object and returns props that will be passed to the
  * MainView component. See also the default `mapStateToProps` in:
  * https://github.com/NordicSemiconductor/pc-nrfconnect-core/blob/master/lib/windows/app/containers/MainViewContainer.js
  *
@@ -350,8 +220,8 @@ export function mapLogViewerState(state, props) {
 export function mapMainViewState(state, props) {
     return {
         ...props,
-        course: state.app.courseReducer.course,
-        checkables: state.app.courseReducer.checkables,
+        course: state.app.course,
+        checkables: state.app.checkables,
     };
 }
 
@@ -364,127 +234,11 @@ export function mapMainViewState(state, props) {
  * @param {Object} props The default core props.
  * @returns {Object} Props that will be passed to the component.
  */
-export function mapNavMenuState(state, props) {
+export function mapNavMenuState(state) {
     return {
-        ...props,
+        title: state.app.course.title,
     };
 }
-
-/**
- * Receives the state object and returns props that will be passed to the
- * SidePanel component. See also the default `mapStateToProps` in:
- * https://github.com/NordicSemiconductor/pc-nrfconnect-core/blob/master/lib/windows/app/containers/SidePanelContainer.js
- *
- * @param {Object} state The Redux state object.
- * @param {Object} props The default core props.
- * @returns {Object} Props that will be passed to the component.
- */
-export function mapSidePanelState(state, props) {
-    return {
-        ...props,
-    };
-}
-
-
-// Dispatching actions from components
-// ===================================
-
-/**
- * Receives the Redux dispatch function and returns props that will be
- * passed to the DeviceSelector component. See also the default
- * `mapDispatchToProps` in:
- * https://github.com/NordicSemiconductor/pc-nrfconnect-core/blob/master/lib/windows/app/containers/DeviceSelectorContainer.js
- *
- * @param {Function} dispatch The Redux dispatch function, which may be invoked to dispatch actions.
- * @param {Object} props The default core props
- * @returns {Object} Props that will be passed to the component.
- */
-export function mapDeviceSelectorDispatch(dispatch, props) {
-    return {
-        ...props,
-    };
-}
-
-/**
- * Receives the Redux dispatch function and returns props that will be
- * passed to the LogHeader component. See also the default
- * `mapDispatchToProps` in:
- * https://github.com/NordicSemiconductor/pc-nrfconnect-core/blob/master/lib/windows/app/containers/LogHeaderContainer.js
- *
- * @param {Function} dispatch The Redux dispatch function, which may be invoked to dispatch actions.
- * @param {Object} props The default core props
- * @returns {Object} Props that will be passed to the component.
- */
-export function mapLogHeaderDispatch(dispatch, props) {
-    return {
-        ...props,
-    };
-}
-
-/**
- * Receives the Redux dispatch function and returns props that will be
- * passed to the LogViewer component. See also the default
- * `mapDispatchToProps` in:
- * https://github.com/NordicSemiconductor/pc-nrfconnect-core/blob/master/lib/windows/app/containers/LogViewerContainer.js
- *
- * @param {Function} dispatch The Redux dispatch function, which may be invoked to dispatch actions.
- * @param {Object} props The default core props
- * @returns {Object} Props that will be passed to the component.
- */
-export function mapLogViewerDispatch(dispatch, props) {
-    return {
-        ...props,
-    };
-}
-
-/**
- * Receives the Redux dispatch function and returns props that will be
- * passed to the MainView component. See also the default
- * `mapDispatchToProps` in:
- * https://github.com/NordicSemiconductor/pc-nrfconnect-core/blob/master/lib/windows/app/containers/MainViewContainer.js
- *
- * @param {Function} dispatch The Redux dispatch function, which may be invoked to dispatch actions.
- * @param {Object} props The default core props
- * @returns {Object} Props that will be passed to the component.
- */
-export function mapMainViewDispatch(dispatch, props) {
-    return {
-        ...props,
-    };
-}
-
-/**
- * Receives the Redux dispatch function and returns props that will be
- * passed to the NavMenu component. See also the default
- * `mapDispatchToProps` in:
- * https://github.com/NordicSemiconductor/pc-nrfconnect-core/blob/master/lib/windows/app/containers/NavMenuContainer.js
- *
- * @param {Function} dispatch The Redux dispatch function, which may be invoked to dispatch actions.
- * @param {Object} props The default core props
- * @returns {Object} Props that will be passed to the component.
- */
-export function mapNavMenuDispatch(dispatch, props) {
-    return {
-        ...props,
-    };
-}
-
-/**
- * Receives the Redux dispatch function and returns props that will be
- * passed to the SidePanel component. See also the default
- * `mapDispatchToProps` in:
- * https://github.com/NordicSemiconductor/pc-nrfconnect-core/blob/master/lib/windows/app/containers/NavMenuContainer.js
- *
- * @param {Function} dispatch The Redux dispatch function, which may be invoked to dispatch actions.
- * @param {Object} props The default core props
- * @returns {Object} Props that will be passed to the component.
- */
-export function mapSidePanelDispatch(dispatch, props) {
-    return {
-        ...props,
-    };
-}
-
 
 // Adding information to state
 // ===========================
@@ -497,34 +251,4 @@ export function mapSidePanelDispatch(dispatch, props) {
  * @param {Object} action A Redux action object.
  * @returns {Object} A new Redux state object.
  */
-export const reduceApp = combineReducers({ courseReducer });
-
-// export function reduceApp(state = (new Record({})), action) {
-//     return courseReducer(state, action);
-// }
-
-
-// Intercepting actions with middleware
-// ====================================
-
-/**
- * A custom Redux middleware that can intercept any action. The
- * middleware is invoked after an action has been dispatched, but before
- * it reaches the reducers. See https://redux.js.org/advanced/middleware.
- *
- * This is useful e.g. when the app wants to perform some asynchronous
- * operation when a core action is dispatched. To see which core actions
- * may be intercepted, see:
- * https://github.com/NordicSemiconductor/pc-nrfconnect-core/tree/master/lib/windows/app/actions
- *
- * Note that the Redux store has a `dispatch` function for dispatching
- * actions, and a `getState` function for getting the state object.
- *
- * @param {Object} store The Redux store.
- * @returns {Function} The Redux middleware implementation.
- */
-export function middleware(store) {
-    return next => action => {
-        next(action);
-    };
-}
+export const reduceApp = appReducer;

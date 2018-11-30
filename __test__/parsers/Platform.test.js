@@ -5,25 +5,25 @@ describe('Platform', () => {
         it('accepts an empty platform and enables', () => {
             const platform = new Platform(undefined);
 
-            expect(platform._platforms.length).toBe(1);
-            expect(platform._platforms[0]).toMatchObject({ platform: 'all', osRelease: 'any', arch: 'any' });
-            expect(platform.isEnabled).toBe(true);
+            expect(platform.platforms.length).toBe(1);
+            expect(platform.platforms[0]).toMatchObject({ platform: 'all', osRelease: 'any', arch: 'any' });
+            expect(platform.enabled).toBe(true);
         });
 
         it('accepts a string platform and enables', () => {
             const platform = new Platform('all');
 
-            expect(platform._platforms.length).toBe(1);
-            expect(platform._platforms[0]).toMatchObject({ platform: 'all', osRelease: 'any', arch: 'any' });
-            expect(platform.isEnabled).toBe(true);
+            expect(platform.platforms.length).toBe(1);
+            expect(platform.platforms[0]).toMatchObject({ platform: 'all', osRelease: 'any', arch: 'any' });
+            expect(platform.enabled).toBe(true);
         });
 
         it('accepts an object platform and enables', () => {
             const platform = new Platform({ platform: 'all', osRelease: 'any', arch: 'any' });
 
-            expect(platform._platforms.length).toBe(1);
-            expect(platform._platforms[0]).toMatchObject({ platform: 'all', osRelease: 'any', arch: 'any' });
-            expect(platform.isEnabled).toBe(true);
+            expect(platform.platforms.length).toBe(1);
+            expect(platform.platforms[0]).toMatchObject({ platform: 'all', osRelease: 'any', arch: 'any' });
+            expect(platform.enabled).toBe(true);
         });
 
         it('accepts an array of platforms and enables', () => {
@@ -34,11 +34,11 @@ describe('Platform', () => {
             ];
             const platform = new Platform(platforms);
 
-            expect(platform._platforms.length).toBe(3);
+            expect(platform.platforms.length).toBe(3);
             platforms.forEach((p, index) => {
-                expect(platform._platforms[index]).toMatchObject(p);
+                expect(platform.platforms[index]).toMatchObject(p);
             })
-            expect(platform.isEnabled).toBe(true);
+            expect(platform.enabled).toBe(true);
         });
 
         it('accepts an array of platforms in different formats and enables', () => {
@@ -49,11 +49,11 @@ describe('Platform', () => {
             ];
             const platform = new Platform(platforms);
 
-            expect(platform._platforms.length).toBe(3);
-            expect(platform._platforms[0]).toMatchObject({ platform: 'win32', osRelease: 'any', arch: 'any' });
-            expect(platform._platforms[1]).toMatchObject({ platform: 'linux', osRelease: 'any', arch: 'any' });
-            expect(platform._platforms[2]).toMatchObject({ platform: 'darwin', osRelease: 'any', arch: 'any' });
-            expect(platform.isEnabled).toBe(true);
+            expect(platform.platforms.length).toBe(3);
+            expect(platform.platforms[0]).toMatchObject({ platform: 'win32', osRelease: 'any', arch: 'any' });
+            expect(platform.platforms[1]).toMatchObject({ platform: 'linux', osRelease: 'any', arch: 'any' });
+            expect(platform.platforms[2]).toMatchObject({ platform: 'darwin', osRelease: 'any', arch: 'any' });
+            expect(platform.enabled).toBe(true);
         });
     });
 
@@ -61,9 +61,9 @@ describe('Platform', () => {
         it('accepts when platform is correct', () => {
             const platform = new Platform(process.platform);
 
-            expect(platform._platforms.length).toBe(1);
-            expect(platform._platforms[0]).toMatchObject({ platform: process.platform.toLowerCase(), osRelease: 'any', arch: 'any' });
-            expect(platform.isEnabled).toBe(true);
+            expect(platform.platforms.length).toBe(1);
+            expect(platform.platforms[0]).toMatchObject({ platform: process.platform.toLowerCase(), osRelease: 'any', arch: 'any' });
+            expect(platform.enabled).toBe(true);
         });
 
         it('accepts when arch is correct', () => {
@@ -72,9 +72,9 @@ describe('Platform', () => {
                 arch: process.arch,
             });
 
-            expect(platform._platforms.length).toBe(1);
-            expect(platform._platforms[0]).toMatchObject({ platform: 'all', osRelease: 'any', arch: Platform.translateArch(process.arch.toLowerCase()) });
-            expect(platform.isEnabled).toBe(true);
+            expect(platform.platforms.length).toBe(1);
+            expect(platform.platforms[0]).toMatchObject({ platform: 'all', osRelease: 'any', arch: Platform.translateArch(process.arch.toLowerCase()) });
+            expect(platform.enabled).toBe(true);
         });
 
         it('accepts when platform and arch is correct', () => {
@@ -83,9 +83,9 @@ describe('Platform', () => {
                 arch: process.arch,
             });
 
-            expect(platform._platforms.length).toBe(1);
-            expect(platform._platforms[0]).toMatchObject({ platform: process.platform.toLowerCase(), osRelease: 'any', arch: Platform.translateArch(process.arch.toLowerCase()) });
-            expect(platform.isEnabled).toBe(true);
+            expect(platform.platforms.length).toBe(1);
+            expect(platform.platforms[0]).toMatchObject({ platform: process.platform.toLowerCase(), osRelease: 'any', arch: Platform.translateArch(process.arch.toLowerCase()) });
+            expect(platform.enabled).toBe(true);
         });
     });
 
@@ -93,22 +93,22 @@ describe('Platform', () => {
         it('stores error and is not enabled on illegal platform', () => {
             const platform = new Platform('illegal platform');
 
-            expect(platform.isEnabled).toBe(false);
-            expect(platform._error).toMatchSnapshot();
+            expect(platform.enabled).toBe(false);
+            expect(platform.error).toMatchSnapshot();
         });
 
         it('stores error and is not enabled on illegal arch', () => {
             const platform = new Platform({ platform: 'win32', arch: 'illegal arch' });
 
-            expect(platform.isEnabled).toBe(false);
-            expect(platform._error).toMatchSnapshot();
+            expect(platform.enabled).toBe(false);
+            expect(platform.error).toMatchSnapshot();
         });
 
         it('stores error and is not enabled when both illegal platform and arch', () => {
             const platform = new Platform({ platform: 'illegal platform', arch: 'illegal arch' });
 
-            expect(platform.isEnabled).toBe(false);
-            expect(platform._error).toMatchSnapshot();
+            expect(platform.enabled).toBe(false);
+            expect(platform.error).toMatchSnapshot();
         });
 
         it('stores error and is not enabled on an array containing one illegal platform and arch, and a legal, matching element first', () => {
@@ -117,8 +117,8 @@ describe('Platform', () => {
                 { platform: 'illegal platform', arch: 'illegal arch' },
             ]);
 
-            expect(platform.isEnabled).toBe(false);
-            expect(platform._error).toMatchSnapshot();
+            expect(platform.enabled).toBe(false);
+            expect(platform.error).toMatchSnapshot();
         });
 
         it('stores error and is not enabled on an array containing one illegal platform and arch, and a legal, matching element after', () => {
@@ -127,22 +127,22 @@ describe('Platform', () => {
                 'win32',
             ]);
 
-            expect(platform.isEnabled).toBe(false);
-            expect(platform._error).toMatchSnapshot();
+            expect(platform.enabled).toBe(false);
+            expect(platform.error).toMatchSnapshot();
         });
 
         it('stores error and is not enabled when a number is sent in', () => {
             const platform = new Platform(1);
 
-            expect(platform.isEnabled).toBe(false);
-            expect(platform._error).toMatchSnapshot();
+            expect(platform.enabled).toBe(false);
+            expect(platform.error).toMatchSnapshot();
         });
 
         it('stores error and is not enabled when an object without the "platform" property is sent', () => {
             const platform = new Platform({});
 
-            expect(platform.isEnabled).toBe(false);
-            expect(platform._error).toMatchSnapshot();
+            expect(platform.enabled).toBe(false);
+            expect(platform.error).toMatchSnapshot();
         });
     });
 });
