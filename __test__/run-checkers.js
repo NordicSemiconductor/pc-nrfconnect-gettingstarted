@@ -1,4 +1,4 @@
-import Course from '../lib/parsers';
+import Course from '../lib/parsers/Course';
 
 const filename = process.argv[2];
 
