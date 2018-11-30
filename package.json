@@ -25,6 +25,7 @@
     "build": "nrfconnect-scripts build-prod",
     "lint": "nrfconnect-scripts lint components reducers index.jsx actions parsers",
     "lintfix": "nrfconnect-scripts lint --fix components reducers index.jsx actions parsers",
+    "nordic-publish": "nrfconnect-scripts nordic-publish",
     "test": "nrfconnect-scripts test",
     "test-watch": "nrfconnect-scripts test --watch",
     "clean": "npm run clean-dist && npm run clean-modules",
@@ -32,7 +33,7 @@
     "clean-modules": "rimraf \"node_modules/!(rimraf|.bin)\""
   },
   "devDependencies": {
-    "pc-nrfconnect-devdep": "git+https://github.com/NordicSemiconductor/pc-nrfconnect-devdep.git#semver:^1.2.3"
+    "pc-nrfconnect-devdep": "git+https://github.com/NordicSemiconductor/pc-nrfconnect-devdep.git#semver:^1.3.4"
   },
   "dependencies": {
     "configstore": "^4.0.0",

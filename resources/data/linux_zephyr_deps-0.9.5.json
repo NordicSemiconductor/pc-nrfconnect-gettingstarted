@@ -1,7 +1,7 @@
 {
     "type": "Recipe",
-    "title": "Zephyr dependencies for Linux",
-    "tool": "linux_zephyr_deps-0.9.3",
+    "title": "Install the tools required by Zephyr",
+    "tool": "linux_zephyr_deps-0.9.5",
     "platforms": { "platform": "linux" },
     "description": [
         "Installing Zephyr Requirements and Dependencies on Linux.",
@@ -31,7 +31,7 @@
                     "platforms": { "platform": "linux", "osRelease": "debian" },
                     "title": "Install dependencies (apt)",
                     "description": [
-                        "Install the following required packages using `apt-get`:",
+                        "Use ``apt-get`` to install the required packages by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
@@ -45,7 +45,7 @@
                     "platforms": { "platform": "linux", "osRelease": "fedora" },
                     "title": "Install dependencies (rpm)",
                     "description": [
-                        "Install the following required packages using `dnf`:",
+                        "Use ``dnf`` to install the required packages by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
@@ -63,7 +63,7 @@
                     },
                     "title": "Install dependencies (swupd)",
                     "description": [
-                        "Install the following required packages using `swupd`:",
+                        "Use ``swupd`` to install the required packages by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
@@ -80,29 +80,16 @@
                 {
                     "type": "Step",
                     "platforms": { "platform": "linux" },
-                    "title": "Install python dependencies",
-                    "description": [
-                        "Install additional python packages required for development with Zephyr:",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "cd ~/zephyr  # or to your directory where zephyr is cloned",
-                                "pip3 install --user -r scripts/requirements.txt"
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "type": "Checkable",
-            "steps": [
+                    "title": "Check CMake version",
+                    "description": "Enter `cmake --version` to check which version of CMake you have installed. The nRF Connect SDK requires CMake version 3.8.2 or later. "
+                },
                 {
                     "type": "Step",
                     "platforms": { "platform": "linux" },
-                    "title": "Check CMake version",
+                    "title": "Update CMake version",
                     "description": [
-                        "CMake version 3.8.2 or higher is required. Check what version you have using `cmake --version`; if you have an older version, check the backports for your distribution or install a more recent version manually. For example, to install version 3.8.2 from the CMake website directly in `~/cmake`:",
+                        "If your CMake version is lower than required, check the backports for your distribution or install a current version of CMake manually.",
+                        "For example, to install version 3.8.2 directly from the CMake website into the `~/cmake` folder, enter the following commands:",
                         {
                             "type": "commands",
                             "description": [

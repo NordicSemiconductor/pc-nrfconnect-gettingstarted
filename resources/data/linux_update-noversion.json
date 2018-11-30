@@ -13,7 +13,7 @@
                     "platforms": { "platform": "linux", "osRelease": "debian" },
                     "title": "Update system (apt)",
                     "description": [
-                        "Ensure your OS is up-to-date. On Debian/Ubuntu, you'll first need to update the local database list of available packages before upgrading:",
+                        "Before you set up the toolchain, upgrade your Linux system to make sure you are running the latest version. Remember to update the local database list of available packages before upgrading. To ugrade your system, run the following commands:",
                         {
                             "type": "commands",
                             "description": [
@@ -28,7 +28,7 @@
                     "platforms": { "platform": "linux", "osRelease": "fedora" },
                     "title": "Update system (rpm)",
                     "description": [
-                        "Ensure your OS is up-to-date. On Fedora:",
+                        "Before you set up the toolchain, upgrade your Linux system to make sure you are running the latest version. To do so, run the following command:",
                         {
                             "type": "commands",
                             "description": [
@@ -46,7 +46,7 @@
                     },
                     "title": "Update system (swupd)",
                     "description": [
-                        "Ensure your OS is up-to-date. On Clear Linux:",
+                        "Before you set up the toolchain, upgrade your Linux system to make sure you are running the latest version. To do so, run the following command:",
                         {
                             "type": "commands",
                             "description": ["sudo swupd update"]

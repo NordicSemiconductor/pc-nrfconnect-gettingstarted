@@ -6,17 +6,20 @@
         { "platform": "win32" },
         { "platform": "darwin" }
     ],
-    "description": "Set up nRF Connect SDK development environment.",
+    "description": [
+        "Complete the following steps to set up your nRF Connect SDK development environment.",
+        "(Click on each step to display detailed information.)"
+    ],
     "recipes": [
-        "ses-0.1.0",
+        "ses-0.1.1",
         "darwin_deps-0.9.3",
-        "win_deps-0.9.3",
-        "linux_zephyr_deps-0.9.3",
+        "win_deps-0.9.4",
+        "linux_zephyr_deps-0.9.5",
         "darwin_3rd_party_toolchain-0.9.3",
         "darwin_own_toolchain-0.9.3",
         "darwin_doctools-0.9.3",
-        "linux_zephyr_sdk-0.9.3",
-        "nrf_connect_sdk-0.1.0",
-        "ses_config-0.1.0"
+        "linux_zephyr_sdk-0.9.5",
+        "nrf_connect_sdk-0.1.3",
+        "ses_config-0.1.2"
     ]
 }
