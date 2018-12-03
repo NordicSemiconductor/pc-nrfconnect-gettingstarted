@@ -1,4 +1,4 @@
-/* Copyright (c) 2015, Nordic Semiconductor ASA
+/* Copyright (c) 2015 - 2017, Nordic Semiconductor ASA
  *
  * All rights reserved.
  *
@@ -94,7 +94,7 @@ const CheckableView = ({
     let checkableDescClassName = 'checkable-description';
     checkableDescClassName += currentState === CheckableState.DONE ? ' marked' : '';
     checkableDescClassName += currentState === CheckableState.NOT_DONE ? ' unmarked' : '';
-    checkableDescClassName += currentState === CheckableState.IN_PROGRESS ? ' progress' : '';
+    checkableDescClassName += currentState === CheckableState.IN_PROGRESS ? ' in-progress' : '';
 
     return (
         <div key={`${tool}-${data.id}`} className="checkable">

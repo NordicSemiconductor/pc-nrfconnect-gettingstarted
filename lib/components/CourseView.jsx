@@ -1,4 +1,4 @@
-/* Copyright (c) 2015, Nordic Semiconductor ASA
+/* Copyright (c) 2015 - 2017, Nordic Semiconductor ASA
  *
  * All rights reserved.
  *
@@ -36,39 +36,66 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Accordion, Panel, Checkbox } from 'react-bootstrap';
+import { Tab, Col, Row, Nav, NavItem } from 'react-bootstrap';
 import RecipeView from './RecipeView';
 import DescriptionView from './DescriptionView';
 import { CheckableState } from '../actions/courseActions';
 
-const RecipeViews = (recipes, checkables) => (
-    recipes.filter(recipe => recipe.enabled).map(recipe => {
-        const recipeCheckables = checkables[recipe.tool];
+const recipeState = recipeCheckables => {
+    if (recipeCheckables.every(item => item === CheckableState.DONE)) {
+        return 'marked';
+    } else if (recipeCheckables.every(item => item === CheckableState.NOT_DONE)) {
+        return 'unmarked';
+    }
+    return 'in-progress';
+};
 
-        const allDone = recipeCheckables.every(item => item === CheckableState.DONE);
-
-        const recipeCheckbox = (
-            <Checkbox inline key={recipe.id} checked={allDone} readOnly >&nbsp;</Checkbox>
-        );
-
-        return (
-            <Panel
-                key={recipe.id}
-                eventKey={recipe.id}
-                header={[recipeCheckbox, recipe.title]}
-            >
-                <RecipeView recipe={recipe} />
-            </Panel>
-        );
-    })
-);
-
-
+const { Container, Content, Pane } = Tab;
 const CourseView = ({ description, recipes, checkables }) => (
-    <div className="course-view">
-        <DescriptionView description={description} className="course-description" />
-        <Accordion>{ RecipeViews(recipes, checkables) }</Accordion>
-    </div>
+    <Container id="course-view" className="course-view" defaultActiveKey={0}>
+        <Row className="clearfix">
+            <Col sm={3}>
+                <Nav bsStyle="pills" stacked>
+                    <NavItem eventKey={0}>
+                        <i className="recipe-number">{ 1 }</i>
+                        Overview
+                    </NavItem>
+                    {
+                        recipes.map(({ title, tool }, index) => (
+                            <NavItem
+                                eventKey={index + 1}
+                                key={`${index + 1}`}
+                                className={`${recipeState(checkables[tool])}`}
+                            >
+                                <i className="recipe-number">{ index + 2 }</i>
+                                { title }
+                            </NavItem>
+                        ))
+                    }
+                </Nav>
+            </Col>
+            <Col sm={9}>
+                <Content animation={false}>
+                    <Pane eventKey={0} className="course-pane">
+                        <h3>Overview</h3>
+                        <DescriptionView description={description} />
+                    </Pane>
+                    {
+                        recipes.map((recipe, index) => (
+                            <Pane
+                                eventKey={index + 1}
+                                key={`${index + 1}`}
+                                className={`recipe-pane ${recipeState(checkables[recipe.tool])}`}
+                            >
+                                <h3>{ recipe.title }</h3>
+                                <RecipeView {...recipe} />
+                            </Pane>
+                        ))
+                    }
+                </Content>
+            </Col>
+        </Row>
+    </Container>
 );
 
 CourseView.propTypes = {

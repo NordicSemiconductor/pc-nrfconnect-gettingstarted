@@ -1,30 +1,151 @@
 // This file is imported by index.jsx, and may contain styles for the app.
+@import './colors.less';
 
 .core-main-layout > div:nth-child(1) > div:nth-child(1).core-main-view {
-    overflow-y: scroll;
+    height: 100%;
+}
+
+.core-nav-bar h4 {
+    color: white;
+    margin-top: 20px;
 }
 
 div.core-main-view {
     user-select: text;
     cursor: auto;
+    background-color: white;
+    padding: 0;
+    position: relative;
 
     a {
         cursor: pointer;
     }
 }
 
-.core-nav-bar h4 {
-    padding: 10px 10px 0 10px;
-    color: white;
-}
-
 .core-side-panel {
     width: 300px;
 }
+.course-view {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 17px;
+    bottom: 2px;
 
-.course-description {
-    font-size: larger;
-    padding: 1.5em;
+    > div,  {
+        height: 100%;
+    }
+    .tab-pane:not(.active) {
+        display: none;
+    }
+    .tab-content, .tab-pane.active {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    background-color: inherit;
+    color: @nordicDarkgrey;
+}
+.nav-pills.nav-stacked > li + li {
+    margin-top: 0;
+}
+.nav.nav-pills {
+    counter-reset: counter;
+    > li {
+        position: relative;
+        overflow: hidden;
+        padding-left: 8px;
+        a {
+            padding-left: 40px;
+        }
+        > a:hover, > a:focus {
+            background-color: transparent;
+        }
+    }
+    :focus {
+        outline-color: transparent !important;
+    }
+    > li:hover, > li:focus {
+        background-color: @nordicLightgrey;
+    }
+    li.active {
+        background-color: @nordicMiddlegrey;
+        a {
+            color: white;
+        }
+    }
+
+    i {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        height: 30px;
+        width: 30px;
+        background-color: @nordicLake;
+        color: white;
+        border-radius: 15px;
+        text-align: center;
+        padding: 5px;
+    }
+    li:not(:first-child) i::before,
+    li:not(:last-child) i::after {
+        content: '';
+        border-left: 1px solid @nordicLake;
+        display: block;
+        position: absolute;
+        left: 14px;
+        height: 50px;
+        width: 1px;
+    }
+    li:not(:first-child) i::before {
+        bottom: 30px;
+    }
+    li:not(:last-child) i::after {
+        top: 30px;
+    }
+
+    li.marked i {
+        background-color: @nordicGrass;
+        color: black;
+    }
+    li.unmarked i {
+        background-color: @nordicRed;
+        color: white;
+    }
+    li.in-progress i {
+        background-color: @nordicSun;
+        color: black;
+    }
+}
+
+.course-pane h3, .recipe-pane h3 {
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+.recipe-view {
+    flex: 1;
+    overflow-y: scroll;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    .marked {
+        border-left: 6px solid @nordicGrass;
+    }
+    .unmarked {
+        border-left: 6px solid @nordicRed;
+    }
+    .in-progress {
+        border-left: 6px solid @nordicSun;
+    }
 }
 
 .checkable {
@@ -34,21 +155,11 @@ div.core-main-view {
     .checkable-description {
         flex-grow: 99;
     }
-    .marked {
-        border-left: 10px solid #D0DF00;
-    }
-    .unmarked {
-        border-left: 10px solid #EE2F4E;
-    }
-    .progress {
-        border-left: 10px solid #FFCD00;
-    }
     .checkable-button-group {
         display: flex;
         flex-direction: column;
         flex-grow: 1;
-        min-width: 155px;
-        max-width: 75px;
+        min-width: 110px;
         align-self: start;
         padding-left: 10px;
         .btn {
@@ -95,6 +206,6 @@ div.core-main-view {
 
 .variable:not(.set) {
     .variable-name {
-        color: #EE2F4E;
+        color: @nordicRed;
     }
 }
