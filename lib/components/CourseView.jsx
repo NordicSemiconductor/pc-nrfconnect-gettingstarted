@@ -1,4 +1,4 @@
-/* Copyright (c) 2015 - 2017, Nordic Semiconductor ASA
+/* Copyright (c) 2015, Nordic Semiconductor ASA
  *
  * All rights reserved.
  *
@@ -34,8 +34,6 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* eslint comma-dangle: "off" */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Accordion, Panel, Checkbox } from 'react-bootstrap';
@@ -62,21 +60,20 @@ const RecipeViews = (recipes, checkables) => (
                 <RecipeView recipe={recipe} />
             </Panel>
         );
-    }));
+    })
+);
 
 
-const CourseView = ({ title, description, recipes, checkables }) => (
-    <div>
-        <h1>{title}</h1>
-        <DescriptionView description={description} />
-        <Accordion>{RecipeViews(recipes, checkables)}</Accordion>
+const CourseView = ({ description, recipes, checkables }) => (
+    <div className="course-view">
+        <DescriptionView description={description} className="course-description" />
+        <Accordion>{ RecipeViews(recipes, checkables) }</Accordion>
     </div>
 );
 
 CourseView.propTypes = {
     recipes: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
     checkables: PropTypes.shape({}).isRequired,
-    title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
 };
 

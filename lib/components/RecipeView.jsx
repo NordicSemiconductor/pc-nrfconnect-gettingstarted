@@ -1,4 +1,4 @@
-/* Copyright (c) 2015 - 2017, Nordic Semiconductor ASA
+/* Copyright (c) 2015, Nordic Semiconductor ASA
  *
  * All rights reserved.
  *
@@ -37,7 +37,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import DescriptionView from './DescriptionView';
-import CheckableView from '../containers/CheckableView';
+import CheckableView from '../containers/checkableView';
 
 const CheckableViews = recipe => (
     recipe.checkables.map(checkable => (
