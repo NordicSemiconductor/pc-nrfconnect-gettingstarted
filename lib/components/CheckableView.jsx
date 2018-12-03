@@ -75,7 +75,7 @@ const CheckButton = (tool, data, autoCheck) => (
         className="checkable-button btn btn-nordic"
         onClick={() => check(tool, data, autoCheck)}
     >
-        Check
+        Verify
     </Button>
 );
 
@@ -88,8 +88,8 @@ const CheckableView = ({
 }) => {
     const CheckableState = courseActions.CheckableState;
     const manualButtonText = currentState === CheckableState.DONE ?
-        'Unmark' :
-        'Mark';
+        'Not done' :
+        'Done';
 
     let checkableDescClassName = 'checkable-description';
     checkableDescClassName += currentState === CheckableState.DONE ? ' marked' : '';

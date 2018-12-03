@@ -36,7 +36,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Tab, Col, Row, Nav, NavItem } from 'react-bootstrap';
+import { Tab, Col, Row, Nav, NavItem, Glyphicon } from 'react-bootstrap';
 import RecipeView from './RecipeView';
 import DescriptionView from './DescriptionView';
 import { CheckableState } from '../actions/courseActions';
@@ -57,7 +57,7 @@ const CourseView = ({ description, recipes, checkables }) => (
             <Col sm={3}>
                 <Nav bsStyle="pills" stacked>
                     <NavItem eventKey={0}>
-                        <i className="recipe-number">{ 1 }</i>
+                        <i className="recipe-number"><Glyphicon glyph="star" /></i>
                         Overview
                     </NavItem>
                     {
@@ -67,7 +67,7 @@ const CourseView = ({ description, recipes, checkables }) => (
                                 key={`${index + 1}`}
                                 className={`${recipeState(checkables[tool])}`}
                             >
-                                <i className="recipe-number">{ index + 2 }</i>
+                                <i className="recipe-number">{ index + 1 }</i>
                                 { title }
                             </NavItem>
                         ))
