@@ -52,7 +52,12 @@ link.propTypes = { href: string, children: node };
 link.defaultProps = { href: null, children: null };
 
 const DescriptionView = ({ description, ...rest }) => (
-    <ReactMarkdown source={description} renderers={{ link }} {...rest} />
+    <ReactMarkdown
+        className="description-view"
+        source={description}
+        renderers={{ link }}
+        {...rest}
+    />
 );
 
 DescriptionView.propTypes = {

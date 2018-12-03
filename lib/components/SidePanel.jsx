@@ -80,8 +80,8 @@ VariableAction.defaultProps = {
     kind: null,
 };
 
-const SidePanel = ({ variables, ...rest }) => (
-    <div className="core-side-panel">
+const SidePanel = ({ variables, hidden, ...rest }) => (
+    <div className={`core-side-panel ${hidden ? 'hidden' : ''}`}>
         <Panel header="Variables">
             {
                 Object.keys(variables)
@@ -102,10 +102,7 @@ const SidePanel = ({ variables, ...rest }) => (
 
 SidePanel.propTypes = {
     variables: PropTypes.shape({}).isRequired,
-};
-
-SidePanel.defaultProps = {
-    variables: {},
+    hidden: PropTypes.bool.isRequired,
 };
 
 export default SidePanel;

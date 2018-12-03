@@ -39,35 +39,30 @@ import PropTypes from 'prop-types';
 import DescriptionView from './DescriptionView';
 import CheckableView from '../containers/checkableView';
 
-const CheckableViews = recipe => (
-    recipe.checkables.map(checkable => (
-        <CheckableView
-            key={`${recipe.tool}-${checkable.id}`}
-            tool={recipe.tool}
-            recipeID={recipe.id}
-            data={checkable}
-        />
-    ))
-);
-
-const RecipeView = ({
-    recipe,
-}) => (
-    <div>
-        <DescriptionView key={recipe.id} description={recipe.description} /><br />
-        { CheckableViews(recipe) }
+const RecipeView = ({ tool, id, description, checkables }) => (
+    <div className="recipe-view">
+        <DescriptionView key={id} description={description} /><br />
+        {
+            checkables.map(checkable => (
+                <CheckableView
+                    key={`${tool}-${checkable.id}`}
+                    tool={tool}
+                    recipeID={id}
+                    data={checkable}
+                />
+            ))
+        }
     </div>
 );
 
 RecipeView.propTypes = {
-    recipe: PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        checkable: PropTypes.shape({
-            checkers: PropTypes.array,
-            steps: PropTypes.array.isRequired,
-        }),
-    }).isRequired,
+    tool: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+    checkables: PropTypes.arrayOf(PropTypes.shape({
+        checkers: PropTypes.array,
+        steps: PropTypes.array.isRequired,
+    })).isRequired,
 };
 
 export default RecipeView;
