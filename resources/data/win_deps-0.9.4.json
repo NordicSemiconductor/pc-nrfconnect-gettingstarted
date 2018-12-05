@@ -1,9 +1,12 @@
 {
     "type": "Recipe",
-    "title": "Installing Requirements and Dependencies",
-    "tool": "win_deps-0.9.3",
+    "title": "Install the toolchain",
+    "tool": "win_deps-0.9.4",
     "platforms": { "platform": "win32" },
-    "description": "The easiest way to install the dependencies natively on Microsoft Windows is to use the [`Chocolatey` package manager](https://chocolatey.org/). If you prefer to install those manually then simply download the required packages from their respective websites.\n\n[Zephyr Getting Started for Windows](https://docs.zephyrproject.org/latest/getting_started/installation_win.html#installing-requirements-and-dependencies) have more descriptions for how to get all the needed tools.",
+    "description": [
+        "The [Zephyr Getting Started for Windows](https://docs.zephyrproject.org/latest/getting_started/installation_win.html#installing-requirements-and-dependencies) describes how to install the required tools. The easiest way  is detailed below.",
+        "Complete the following steps to install the toolchain using the [Chocolatey package manager](https://chocolatey.org/)"
+    ],
     "checkables": [
         {
             "type": "Checkable",
@@ -13,7 +16,7 @@
                     "platforms": { "platform": "win32" },
                     "title": "Set up environment variables for proxies",
                     "description": [
-                        "If you're behind a corporate firewall, you'll likely need to specify a proxy to get access to internet resources:",
+                        "If you are behind a corporate firewall, you might need to specify a proxy to get access to internet resources:",
                         {
                             "type": "commands",
                             "description": [
@@ -21,7 +24,7 @@
                                 "set HTTPS_PROXY=http://user:password@proxy.mycompany.com:1234"
                             ]
                         },
-                        "You can avoid typing these `set` commands every time by placing them inside a `.cmd` file and running that every time you open a Command Prompt."
+                        "To avoid typing these `set` commands every time you open a command prompt, add them as system environment variables or place them in a `.cmd` file that you run instead."
                     ]
                 }
             ]
@@ -33,20 +36,20 @@
                     "type": "Step",
                     "platforms": { "platform": "win32" },
                     "title": "Install Chocolatey",
-                    "description": "Install `Chocolatey` by following the [install instructions on the `Chocolatey` website](https://chocolatey.org/install)."
+                    "description": "Install Chocolatey by following the [installation instructions on the Chocolatey website](https://chocolatey.org/install)."
                 },
                 {
                     "type": "Step",
                     "platforms": { "platform": "win32" },
                     "title": "Open admin cmd.exe",
-                    "description": "Open a Command Prompt (`cmd.exe`) as **Administrator**."
+                    "description": "Open a command prompt (`cmd.exe`) as **Administrator**. To do so, click the Windows start symbol, enter `cmd.exe` in the search field, then right-click the result and choose **Run as Administrator**."
                 },
                 {
                     "type": "Step",
                     "platforms": { "platform": "win32" },
                     "title": "Disable confirmation",
                     "description": [
-                        "(Optionally) disable global confirmation to avoid having to add the `-y` flag to all chocolatey commands:",
+                        "Optional: Disable global confirmation to avoid having to add the `-y` flag to all chocolatey commands. To do so, enter the following command:",
                         {
                             "type": "commands",
                             "description": [
@@ -72,7 +75,7 @@
                     "platforms": { "platform": "win32" },
                     "title": "Install cmake",
                     "description": [
-                        "Install CMake by running:",
+                        "Install CMake by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
@@ -91,7 +94,7 @@
                     "platforms": { "platform": "win32" },
                     "title": "Install tools",
                     "description": [
-                        "Install the rest of the tools:",
+                        "Install the rest of the tools by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
@@ -99,12 +102,6 @@
                             ]
                         }
                     ]
-                },
-                {
-                    "type": "Step",
-                    "platforms": { "platform": "win32" },
-                    "title": "Close prompt",
-                    "description": "Close the comand prompt window."
                 }
             ]
         },
@@ -115,7 +112,10 @@
                     "type": "Step",
                     "platforms": { "platform": "win32" },
                     "title": "Install cross compiler toolchain for ARM",
-                    "description": "For cross-compiling for ARM targets, install [GNU ARM Embedded from the ARM developer website](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads). (It is recommended to install to `c:\\gnuarmemb`)."
+                    "description": [
+                        "Download and install the latest GNU ARM Embedded toolchain to be able to cross-compile for ARM targets. It is available on the [ARM developer website](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads).",
+                        "We recommend to install the toolchain into the `c:\\gnuarmemb` folder."
+                    ]
                 }
             ],
             "checkers": [
@@ -140,7 +140,7 @@
                     "platforms": { "platform": "win32" },
                     "title": "Environment variables for GNU ARM",
                     "description": [
-                        "Within the Command Prompt, set up environment variables for the GNU ARM toolchain:",
+                        "In the command prompt, define the environment variables for the GNU ARM toolchain:",
                         {
                             "type": "commands",
                             "description": [

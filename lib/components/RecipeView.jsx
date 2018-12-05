@@ -1,4 +1,4 @@
-/* Copyright (c) 2015 - 2017, Nordic Semiconductor ASA
+/* Copyright (c) 2015, Nordic Semiconductor ASA
  *
  * All rights reserved.
  *
@@ -34,48 +34,35 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
- /* eslint no-prototype-builtins: "off" */
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactMarkdown from 'react-markdown';
-import { shell } from 'electron';
+import DescriptionView from './DescriptionView';
+import CheckableView from '../containers/checkableView';
 
-function Description(props) {
-    const { description } = props;
+const RecipeView = ({ tool, id, description, checkables }) => (
+    <div className="recipe-view">
+        <DescriptionView key={id} description={description} /><br />
+        {
+            checkables.map(checkable => (
+                <CheckableView
+                    key={`${tool}-${checkable.id}`}
+                    tool={tool}
+                    recipeID={id}
+                    data={checkable}
+                />
+            ))
+        }
+    </div>
+);
 
-    const onClick = event => {
-        shell.openExternal(event.target.getAttribute('href'));
-    };
-
-    const renderers = {
-        link: item => (
-            <a
-                href={item.href}
-                onClick={onClick}
-            >
-                {item.children }
-            </a>
-        ),
-    };
-
-    return (
-        <ReactMarkdown
-            source={description}
-            renderers={renderers}
-        />
-    );
-}
-
-Description.defaultProps = {
-    description: '',
+RecipeView.propTypes = {
+    tool: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+    checkables: PropTypes.arrayOf(PropTypes.shape({
+        checkers: PropTypes.array,
+        steps: PropTypes.array.isRequired,
+    })).isRequired,
 };
 
-Description.propTypes = {
-    description: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.array,
-    ]),
-};
-
-export default Description;
+export default RecipeView;

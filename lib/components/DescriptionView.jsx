@@ -1,4 +1,4 @@
-/* Copyright (c) 2015 - 2017, Nordic Semiconductor ASA
+/* Copyright (c) 2015, Nordic Semiconductor ASA
  *
  * All rights reserved.
  *
@@ -34,46 +34,38 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* eslint comma-dangle: "off" */
-
 import React from 'react';
-import PropTypes from 'prop-types';
+import { string, node, array, oneOfType } from 'prop-types';
+import ReactMarkdown from 'react-markdown';
+import { shell } from 'electron';
 
-import CheckableButton from './CheckableButton';
-import Description from './Description';
+const link = ({ href, children }) => (
+    <a
+        href={href}
+        onClick={({ target }) => shell.openExternal(target.getAttribute('href'))}
+    >
+        { children }
+    </a>
+);
 
-function Checkable(props) {
-    const { tool, data } = props;
+link.propTypes = { href: string, children: node };
+link.defaultProps = { href: null, children: null };
 
-    const steps = data
-        .steps
-        .filter(step => step.enabled)
-        .map(step => (
-            <Description
-                key={step.id}
-                description={step.description}
-            />
-            )
-        );
+const DescriptionView = ({ description, ...rest }) => (
+    <ReactMarkdown
+        className="description-view"
+        source={description}
+        renderers={{ link }}
+        {...rest}
+    />
+);
 
-    return (
-        <div key={`${tool}-${data.id}`} >
-            <CheckableButton
-                tool={tool}
-                data={data}
-                runFunctions={() => data.runCheckers()}
-            />
-            <ul>{steps}</ul>
-        </div>
-    );
-}
-
-Checkable.propTypes = {
-    tool: PropTypes.string.isRequired,
-    data: PropTypes.shape({
-        steps: PropTypes.array.isRequired,
-        runCheckers: PropTypes.func.isRequired,
-    }).isRequired,
+DescriptionView.propTypes = {
+    description: oneOfType([string, array]),
 };
 
-export default Checkable;
+DescriptionView.defaultProps = {
+    description: '',
+};
+
+export default DescriptionView;

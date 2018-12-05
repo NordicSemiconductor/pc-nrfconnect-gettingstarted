@@ -1,6 +1,6 @@
 {
     "type": "Recipe",
-    "title": "Update your OS",
+    "title": "Update your operating system",
     "tool": "win_update-noversion",
     "platforms": { "platform": "win32" },
     "description": "Ensure that your Windows OS is up-to-date.",
@@ -12,7 +12,7 @@
                     "type": "Step",
                     "platforms": { "platform": "win32" },
                     "title": "Update system",
-                    "description": "Before proceeding with the build, ensure that you are running your Windows system with the latest updates installed."
+                    "description": "Before you set up the toolchain, install available updates for your Windows system."
                 }
             ]
         }

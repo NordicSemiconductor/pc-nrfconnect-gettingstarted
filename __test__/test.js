@@ -1,5 +1,5 @@
 import path from 'path';
-import Course from '../lib/parsers';
+import Course from '../lib/parsers/Course';
 
 describe('Test Course Loader', () => {
     describe('loading courses', () => {

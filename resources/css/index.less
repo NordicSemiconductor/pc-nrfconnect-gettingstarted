@@ -1,16 +1,225 @@
 // This file is imported by index.jsx, and may contain styles for the app.
+@import './colors.less';
 
 .core-main-layout > div:nth-child(1) > div:nth-child(1).core-main-view {
+    height: 100%;
+}
 
-    overflow-y: scroll;
+.core-nav-bar h4 {
+    color: white;
+    margin-top: 20px;
 }
 
 div.core-main-view {
     user-select: text;
     cursor: auto;
+    background-color: white;
+    padding: 0;
+    position: relative;
 
     a {
         cursor: pointer;
     }
 }
 
+.core-side-panel {
+    width: 300px;
+}
+.course-view {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 17px;
+    bottom: 2px;
+
+    > div,  {
+        height: 100%;
+    }
+    .tab-pane:not(.active) {
+        display: none;
+    }
+    .tab-content, .tab-pane.active {
+        position: absolute;
+        top: 0;
+        left: 10px;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    background-color: inherit;
+    color: @nordicDarkgrey;
+}
+.nav-pills.nav-stacked > li + li {
+    margin-top: 0;
+}
+.nav.nav-pills {
+    counter-reset: counter;
+    > li {
+        position: relative;
+        overflow: hidden;
+        padding-left: 8px;
+        a {
+            padding-left: 40px;
+        }
+        > a:hover, > a:focus {
+            background-color: transparent;
+        }
+    }
+    :focus {
+        outline-color: transparent !important;
+    }
+    > li:hover, > li:focus {
+        background-color: @nordicLightgrey;
+    }
+    li.active {
+        background-color: @nordicMiddlegrey;
+        a {
+            color: white;
+        }
+    }
+
+    i {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        height: 30px;
+        width: 30px;
+        background-color: @nordicLake;
+        color: white;
+        border-radius: 15px;
+        text-align: center;
+        padding: 5px;
+        font-style: normal;
+    }
+    li:not(:first-child) i::before,
+    li:not(:last-child) i::after {
+        content: '';
+        border-left: 1px solid @nordicLake;
+        display: block;
+        position: absolute;
+        left: 14px;
+        height: 50px;
+        width: 1px;
+    }
+    li:not(:first-child) i::before {
+        bottom: 30px;
+    }
+    li:not(:last-child) i::after {
+        top: 30px;
+    }
+
+    li.marked i {
+        background-color: @nordicGrass;
+        color: black;
+    }
+    li.unmarked i, li.in-progress i {
+        background-color: @nordicMiddlegrey;
+        color: white;
+    }
+    li.unmarked.active i, li.in-progress.active i {
+        background-color: @nordicLightgrey;
+        color: black;
+    }
+}
+
+.course-pane h3, .recipe-pane h3 {
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+.recipe-view {
+    flex: 1;
+    overflow-y: scroll;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    .marked {
+        border-left: 6px solid @nordicGrass;
+    }
+    .unmarked {
+        border-left: 6px solid @nordicMiddlegrey;
+    }
+    .in-progress {
+        border-left: 6px solid @nordicSun;
+    }
+}
+
+.description-view {
+    max-width: 800px;
+}
+
+.checkable {
+    display: flex;
+    flex-direction: row;
+    margin: 0 0 20px 0;
+    border: 1px solid lightgrey;
+    box-shadow: 1px 1px 5px lightgrey;
+    padding: 10px;
+    max-width: 800px;
+
+    ul {
+        margin-bottom: 0;
+        -webkit-padding-start: 20px;
+    }
+    .checkable-description {
+        flex-grow: 99;
+    }
+    .checkable-button-group {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        min-width: 110px;
+        align-self: start;
+        padding-left: 10px;
+        .btn {
+            margin-left: 0px;
+        }
+    }
+    .checkable-button {
+        flex-grow: 1;
+        margin: 1px;
+        max-height: 2%;
+        min-height: 2%;
+        border-radius: 0;
+    }
+}
+
+.variable:not(:last-child) {
+    margin-bottom: 12px;
+}
+
+.variable {
+    display: block;
+    .variable-name, .form-control {
+        font-family: monospace;
+        display: block;
+    }
+    .variable-name {
+        .glyphicon {
+            margin-right: 10px;
+        }
+    }
+    button.form-control {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .form-control {
+        font-weight: bold;
+        border-radius: 0;
+        padding: 0 5px;
+        height: 2em;
+        text-align: left;
+    }
+}
+
+.variable:not(.set) {
+    .variable-name {
+        color: @nordicRed;
+    }
+}
