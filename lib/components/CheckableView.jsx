@@ -37,56 +37,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ButtonGroup, Button } from 'react-bootstrap';
+
 import DescriptionView from './DescriptionView';
-import * as courseActions from '../actions/courseActions';
-
-
-const Description = (id, desc) => (
-    <DescriptionView
-        className="description"
-        key={id}
-        description={desc}
-    />
-);
-
-const Steps = data => (
-    data.steps.filter(step => step.enabled)
-        .map(step => Description(step.id, step.description)));
-
-const MarkButton = (tool, id, manualCheck, manualButtonText) => (
-    <Button
-        className="checkable-button btn btn-primary btn-nordic"
-        onClick={() => manualCheck(tool, id)}
-    >
-        { manualButtonText }
-    </Button>
-);
-
-const check = (tool, data, autoCheck) => {
-    const id = data.id;
-    autoCheck(tool, id, courseActions.CheckableState.IN_PROGRESS);
-    data.runCheckers()
-        .then(() => autoCheck(tool, id, courseActions.CheckableState.DONE))
-        .catch(() => autoCheck(tool, id, courseActions.CheckableState.NOT_DONE));
-};
-
-const CheckButton = (tool, data, autoCheck) => (
-    <Button
-        className="checkable-button btn btn-nordic"
-        onClick={() => check(tool, data, autoCheck)}
-    >
-        Verify
-    </Button>
-);
+import { CheckableState } from '../actions/courseActions';
 
 const CheckableView = ({
     tool,
     data,
     currentState,
     manualCheck,
-    autoCheck,
+    check,
+    install,
 }) => {
-    const CheckableState = courseActions.CheckableState;
     const manualButtonText = currentState === CheckableState.DONE ?
         'Not done' :
         'Done';
@@ -98,10 +60,43 @@ const CheckableView = ({
 
     return (
         <div key={`${tool}-${data.id}`} className="checkable">
-            <ul className={checkableDescClassName}>{Steps(data)}</ul>
+            <ul className={checkableDescClassName}>
+                {
+                    data.steps.filter(step => step.enabled)
+                    .map(({ id, description }) => (
+                        <DescriptionView
+                            className="description"
+                            key={id}
+                            description={description}
+                        />
+                    ))
+                }
+            </ul>
             <ButtonGroup className="checkable-button-group">
-                {MarkButton(tool, data.id, manualCheck, manualButtonText)}
-                {!data.isManual && CheckButton(tool, data, autoCheck)}
+                <Button
+                    className="checkable-button btn btn-primary btn-nordic"
+                    onClick={manualCheck}
+                >
+                    { manualButtonText }
+                </Button>
+
+                { !data.isManual &&
+                    <Button
+                        className="checkable-button btn btn-nordic"
+                        onClick={check}
+                    >
+                        Verify
+                    </Button>
+                }
+
+                { data.automation &&
+                    <Button
+                        className="checkable-button btn btn-nordic"
+                        onClick={install}
+                    >
+                        Install
+                    </Button>
+                }
             </ButtonGroup>
         </div>
     );
@@ -114,8 +109,9 @@ CheckableView.propTypes = {
         runCheckers: PropTypes.func.isRequired,
     }).isRequired,
     manualCheck: PropTypes.func.isRequired,
-    autoCheck: PropTypes.func.isRequired,
     currentState: PropTypes.string.isRequired,
+    check: PropTypes.func.isRequired,
+    install: PropTypes.func.isRequired,
 };
 
 export default CheckableView;
