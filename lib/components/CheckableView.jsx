@@ -53,14 +53,15 @@ const CheckableView = ({
         'Not done' :
         'Done';
 
-    let checkableDescClassName = 'checkable-description';
-    checkableDescClassName += currentState === CheckableState.DONE ? ' marked' : '';
-    checkableDescClassName += currentState === CheckableState.NOT_DONE ? ' unmarked' : '';
-    checkableDescClassName += currentState === CheckableState.IN_PROGRESS ? ' in-progress' : '';
+    let checkableStateClassName = 'checkable-state';
+    checkableStateClassName += currentState === CheckableState.DONE ? ' marked' : '';
+    checkableStateClassName += currentState === CheckableState.NOT_DONE ? ' unmarked' : '';
+    checkableStateClassName += currentState === CheckableState.IN_PROGRESS ? ' in-progress' : '';
 
     return (
         <div key={`${tool}-${data.id}`} className="checkable">
-            <ul className={checkableDescClassName}>
+            <div className={checkableStateClassName} />
+            <ul className="checkable-description">
                 {
                     data.steps.filter(step => step.enabled)
                     .map(({ id, description }) => (

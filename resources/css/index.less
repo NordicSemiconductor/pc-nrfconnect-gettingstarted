@@ -139,18 +139,24 @@ div.core-main-view {
     padding-right: 15px;
     padding-bottom: 15px;
     .marked {
-        border-left: 6px solid @nordicGrass;
+        background-color: @nordicGrass;
     }
     .unmarked {
-        border-left: 6px solid @nordicMiddlegrey;
+        background-color: @nordicMiddlegrey;
     }
     .in-progress {
-        border-left: 6px solid @nordicSun;
+        background-color: @nordicSun;
+        background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+        background-size: 20px 20px;
+        animation: progress-bar-stripes 1s linear infinite;
     }
 }
 
 .description-view {
     max-width: 800px;
+    h4:not(:first-child) {
+        margin-top: 24px;
+    }
 }
 
 .checkable {
@@ -186,6 +192,11 @@ div.core-main-view {
         max-height: 2%;
         min-height: 2%;
         border-radius: 0;
+    }
+    .checkable-state {
+        width: 10px;
+        min-width: 10px;
+        max-width: 10px;
     }
 }
 
