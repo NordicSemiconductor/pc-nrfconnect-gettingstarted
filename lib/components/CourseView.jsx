@@ -36,7 +36,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Tab, Col, Row, Nav, NavItem, Glyphicon } from 'react-bootstrap';
+import { Tab, Col, Row, Nav, NavItem, Glyphicon, ButtonGroup, Button } from 'react-bootstrap';
 import RecipeView from './RecipeView';
 import DescriptionView from './DescriptionView';
 import { CheckableState } from '../actions/courseActions';
@@ -87,7 +87,16 @@ const CourseView = ({ description, recipes, checkables }) => (
                                 key={`${index + 1}`}
                                 className={`recipe-pane ${recipeState(checkables[recipe.tool])}`}
                             >
-                                <h3>{ recipe.title }</h3>
+                                <div className="course-title">
+                                    <h3>{ recipe.title }</h3>
+                                    <ButtonGroup className="checkable-button-group">
+                                        <Button
+                                            className="checkable-button btn btn-nordic"
+                                        >
+                                            Verify all
+                                        </Button>
+                                    </ButtonGroup>
+                                </div>
                                 <RecipeView {...recipe} />
                             </Pane>
                         ))
