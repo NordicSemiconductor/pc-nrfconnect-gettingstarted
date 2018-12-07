@@ -10,6 +10,437 @@
     "checkables": [
         {
             "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install git",
+                    "description": [
+                        "Install `git` by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "sudo apt-get installl git"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "dpkg -s git"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install cmake",
+                    "description": [
+                        "Install `cmake` by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "sudo apt-get installl cmake"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "dpkg -s cmake"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "linux" },
+                    "title": "Check CMake version",
+                    "description": "Enter `cmake --version` to check which version of CMake you have installed. The nRF Connect SDK requires CMake version 3.8.2 or later. "
+                },
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "linux" },
+                    "title": "Update CMake version",
+                    "description": [
+                        "If your CMake version is lower than required, check the backports for your distribution or install a current version of CMake manually.",
+                        "For example, to install version 3.8.2 directly from the CMake website into the `~/cmake` folder, enter the following commands:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "mkdir $HOME/cmake && cd $HOME/cmake",
+                                "wget https://cmake.org/files/v3.8/cmake-3.8.2-Linux-x86_64.sh",
+                                "yes | sh cmake-3.8.2-Linux-x86_64.sh | cat",
+                                "echo \"export PATH=$PWD/cmake-3.8.2-Linux-x86_64/bin:\\$PATH\" >> $HOME/.zephyrrc",
+                                "source <zephyr git clone location>/zephyr-env.sh",
+                                "cmake --version"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install ninja-build",
+                    "description": [
+                        "Install `ninja-build` by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "sudo apt-get installl ninja-build"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "dpkg -s ninja-build"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install gperf",
+                    "description": [
+                        "Install `gperf` by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "sudo apt-get installl gperf"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "dpkg -s gperf"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install ccache",
+                    "description": [
+                        "Install `ccache` by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "sudo apt-get installl ccache"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "dpkg -s ccache"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install dfu-util",
+                    "description": [
+                        "Install `dfu-util` by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "sudo apt-get installl dfu-util"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "dpkg -s dfu-util"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install device-tree-compiler",
+                    "description": [
+                        "Install `device-tree-compiler` by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "sudo apt-get installl device-tree-compiler"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "dpkg -s device-tree-compiler"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install wget",
+                    "description": [
+                        "Install `wget` by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "sudo apt-get installl wget"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "dpkg -s wget"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install python3-pip",
+                    "description": [
+                        "Install `python3-pip` by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "sudo apt-get installl python3-pip"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "dpkg -s python3-pip"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install python3-setuptools",
+                    "description": [
+                        "Install `python3-setuptools` by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "sudo apt-get installl python3-setuptools"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "dpkg -s python3-setuptools"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install python3-wheel",
+                    "description": [
+                        "Install `python3-wheel` by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "sudo apt-get installl python3-wheel"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "dpkg -s python3-wheel"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install xz-utils",
+                    "description": [
+                        "Install `xz-utils` by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "sudo apt-get installl xz-utils"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "dpkg -s xz-utils"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install file",
+                    "description": [
+                        "Install `file` by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "sudo apt-get installl file"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "dpkg -s file"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install make",
+                    "description": [
+                        "Install `make` by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "sudo apt-get installl make"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "dpkg -s make"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install gcc",
+                    "description": [
+                        "Install `gcc` by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "sudo apt-get installl gcc"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "dpkg -s gcc"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install gcc-multilib",
+                    "description": [
+                        "Install `gcc-multilib` by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "sudo apt-get installl gcc-multilib"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "dpkg -s gcc-multilib"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
             "checkers": [
                 {
                     "type": "Checker",
@@ -68,62 +499,6 @@
                             "type": "commands",
                             "description": [
                                 "sudo swupd bundle-add c-basic dev-utils dfu-util dtc \\\n os-core-dev python-basic python3-basic texlive"
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "type": "Checkable",
-            "steps": [
-                {
-                    "type": "Step",
-                    "title": "Install git",
-                    "description": [
-                        "Install `git` by entering the following command:",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "sudo apt-get installl git"
-                            ]
-                        }
-                    ]
-                }
-            ],
-            "checkers": [
-                {
-                    "type": "Checker",
-                    "checkerType": "command",
-                    "commands": "dpkg -s git"
-                }
-            ]
-        },
-        {
-            "type": "Checkable",
-            "steps": [
-                {
-                    "type": "Step",
-                    "platforms": { "platform": "linux" },
-                    "title": "Check CMake version",
-                    "description": "Enter `cmake --version` to check which version of CMake you have installed. The nRF Connect SDK requires CMake version 3.8.2 or later. "
-                },
-                {
-                    "type": "Step",
-                    "platforms": { "platform": "linux" },
-                    "title": "Update CMake version",
-                    "description": [
-                        "If your CMake version is lower than required, check the backports for your distribution or install a current version of CMake manually.",
-                        "For example, to install version 3.8.2 directly from the CMake website into the `~/cmake` folder, enter the following commands:",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "mkdir $HOME/cmake && cd $HOME/cmake",
-                                "wget https://cmake.org/files/v3.8/cmake-3.8.2-Linux-x86_64.sh",
-                                "yes | sh cmake-3.8.2-Linux-x86_64.sh | cat",
-                                "echo \"export PATH=$PWD/cmake-3.8.2-Linux-x86_64/bin:\\$PATH\" >> $HOME/.zephyrrc",
-                                "source <zephyr git clone location>/zephyr-env.sh",
-                                "cmake --version"
                             ]
                         }
                     ]
