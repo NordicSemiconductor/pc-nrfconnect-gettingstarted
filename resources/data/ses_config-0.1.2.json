@@ -2,8 +2,11 @@
     "type": "Recipe",
     "title": "Set up a project in SEGGER Embedded Studio",
     "tool": "ses_config-0.1.2",
-    "platforms": { "platform": "all" },
-    "description": "SEGGER Embedded Studio supports nRF Connect SDK projects. Note that you need a special version of SEGGER Embedded Studio as described in a previous step.",
+    "platforms": [
+        { "platform": "linux" },
+        { "platform": "win32" }
+    ],
+    "description": "SEGGER Embedded Studio supports nRF Connect SDK projects. Note that you need the Nordic Edition of SEGGER Embedded Studio as described in a previous step.",
     "checkables": [
 
         {
@@ -11,7 +14,6 @@
             "steps": [
                 {
                     "type": "Step",
-                    "platforms": { "platform": "all" },
                     "title": "Start SEGGER Embedded Studio",
                     "description": [
                         "Navigate to the folder where you extracted SEGGER Embedded Studio. In the ``bin`` subfolder, run ``emStudio``."
@@ -19,59 +21,29 @@
                 },
                 {
                     "type": "Step",
-                    "platforms": { "platform": "all" },
                     "title": "Open a project",
-                    "description": "Select **File > Open nRF Connect SDK Project**"
+                    "description": "Select **File > Open nRF Connect SDK Project**."
                 },
                 {
                     "type": "Step",
-                    "platforms": { "platform": "all" },
                     "title": "Choose paths",
-                    "description": "Choose the paths for the different parameters"
-                },
-                {
-                    "type": "Step",
-                    "platforms": { "platform": "all" },
-                    "title": "Zephyr Base",
-                    "description": "**Zephyr Base**: The folder of your Zephyr repository, thus the full path to ``ncs/zephyr``."
-                },
-                {
-                    "type": "Step",
-                    "platforms": { "platform": "all" },
-                    "title": "CMakeLists.txt",
-                    "description": "**CMakeLists.txt**: The path to the CMakeLists.txt project file for your project, thus the full path to, for example, ``ncs/nrf/samples/bluetooth/peripheral_hids_mouse/CMakeLists.txt``."
-                },
-                {
-                    "type": "Step",
-                    "platforms": { "platform": "all" },
-                    "title": "Build Directory",
-                    "description": "**Build Directory**: The folder where you want the output of the build to be placed, thus the full path to, for example, ``ncs/nrf/samples/bluetooth/peripheral_hids_mouse/build``."
-                },
-                {
-                    "type": "Step",
-                    "platforms": { "platform": "all" },
-                    "title": "Board Directory",
-                    "description": "**Board Directory**: The folder that contains the board description of your development kit, thus the full path to, for example, ``ncs/nrf/boards/arm/nrf52840_pca20041`` or ``ncs/zephyr/boards/arm/nrf9160_pca10090``."
-                },
-                {
-                    "type": "Step",
-                    "platforms": { "platform": "all" },
-                    "title": "GNU ARM Embedded Toolchain Directory",
                     "description": [
-                        "**GNU ARM Embedded Toolchain Directory**: The folder where you installed your GNU ARM Embedded Toolchain, thus, for example, *c:\\gnuarmemb* "
+                        "To import a project into SES, you must specify the following paths:",
+                        "- **Zephyr Base** - the location of your cloned Zephyr repository (the full path to ``ncs/zephyr``)",
+                        "- **CMakeLists.txt** - the location of the ``CMakeLists.txt`` project file of the sample that you want to work with (for example, the full path ``ncs/nrf/samples/nrf9160/asset_tracker/CMakeLists.txt``)",
+                        "- **Build Directory** - the folder in which to run the build (for example, the full path to ``ncs/nrf/samples/nrf9160/asset_tracker/build)",
+                        "- **Board Directory** - the location of the board description for which to build the project (for example, the full path to ``ncs/zephyr/boards/arm/nrf9160_pca10090``)",
+                        "- **GNU ARM Embedded Toolchain Directory** - the location of your GNU ARM Embedded Toolchain installation (for example, ``c:\\gnuarmemb``)",
+                        "- **Delete Existing CMakeCache.txt** - select this option to ensure that you are not building with an outdated build cache",
+                        "\n\n&nbsp;"
                     ]
                 },
                 {
                     "type": "Step",
-                    "platforms": { "platform": "all" },
-                    "title": "Delete cache",
-                    "description": "**Delete Existing CMakeCache.txt**: Select this option to ensure that you are not building with an outdated build cache."
-                },
-                {
-                    "type": "Step",
-                    "platforms": { "platform": "all" },
                     "title": "Open project",
-                    "description": "Click **OK** to open the project"
+                    "description": [
+                        "Click **OK** to open the project."
+                    ]
                 }
             ]
         }
