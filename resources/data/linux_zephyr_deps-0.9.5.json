@@ -1,6 +1,6 @@
 {
     "type": "Recipe",
-    "title": "Install the tools required by Zephyr",
+    "title": "Install the tool chain",
     "tool": "linux_zephyr_deps-0.9.5",
     "platforms": { "platform": "linux" },
     "description": [
@@ -71,6 +71,31 @@
                             ]
                         }
                     ]
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install git",
+                    "description": [
+                        "Install git by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "sudo apt-get installl git"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "dpkg -s xz"
                 }
             ]
         },
