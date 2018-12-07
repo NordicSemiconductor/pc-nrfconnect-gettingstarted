@@ -2,7 +2,10 @@
     "type": "Recipe",
     "title": "Download SEGGER Embedded Studio",
     "tool": "ses-0.1.1",
-    "platforms": { "platform": "all" },
+    "platforms": [
+        { "platform": "linux" },
+        { "platform": "win32" }
+    ],
     "description": "The recommended way of building and programming an nRF Connect SDK sample is to use the **Nordic Edition** of the **SEGGER Embedded Studio (SES)** IDE. SEGGER Embedded Studio is free of charge for use with Nordic Semiconductor devices.",
     "checkables": [
         {

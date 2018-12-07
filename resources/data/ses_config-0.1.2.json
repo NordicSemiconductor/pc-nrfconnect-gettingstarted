@@ -2,7 +2,10 @@
     "type": "Recipe",
     "title": "Set up a project in SEGGER Embedded Studio",
     "tool": "ses_config-0.1.2",
-    "platforms": { "platform": "all" },
+    "platforms": [
+        { "platform": "linux" },
+        { "platform": "win32" }
+    ],
     "description": "SEGGER Embedded Studio supports nRF Connect SDK projects. Note that you need the Nordic Edition of SEGGER Embedded Studio as described in a previous step.",
     "checkables": [
 

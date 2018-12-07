@@ -2,7 +2,10 @@
     "type": "Recipe",
     "title": "Clone the nRF Connect SDK",
     "tool": "nrf_connect_sdk-0.1.3",
-    "platforms": { "platform": "all" },
+    "platforms": [
+        { "platform": "linux" },
+        { "platform": "win32" }
+    ],
     "description": [
         "The nRF Connect SDK consists of four GitHub repositories. To set up the nRF Connect SDK, you must clone these repositories and install the required Python modules.",
         "If you intend to contribute directly to any of the repositories, you need to fork the repositories. For more information, see [Forking the nRF Connect SDK repositories](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/0.3.0/nrf/gs_ins_for.html) in the nRF Connect SDK documentation."

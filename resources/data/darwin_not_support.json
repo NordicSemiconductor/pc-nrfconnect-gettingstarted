@@ -1,0 +1,9 @@
+{
+    "type": "Recipe",
+    "title": "Installing on macOS",
+    "tool": "darwin_3rd_party_toolchain-0.9.3",
+    "platforms": { "platform": "darwin" },
+    "description": "Write something here to tell the user macOS is not supported by this app and display a link to guide the user.",
+    "checkables": [
+    ]
+}
