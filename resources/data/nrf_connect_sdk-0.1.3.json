@@ -4,8 +4,8 @@
     "tool": "nrf_connect_sdk-0.1.3",
     "platforms": { "platform": "all" },
     "description": [
-        "The nRF Connect SDK consists of four GitHub repositories. To set up the nRF Connect SDK, you must clone these repositories, install the required Python modules, and define some environment variables.",
-        "If you intend to contribute directly to any of the repositories, you will have to make forks of the repositories. To do this, you can follow the instructions on [github.com](https://help.github.com/articles/fork-a-repo/)"
+        "The nRF Connect SDK consists of four GitHub repositories. To set up the nRF Connect SDK, you must clone these repositories and install the required Python modules.",
+        "If you intend to contribute directly to any of the repositories, you need to fork the repositories. For more information, see [Forking the nRF Connect SDK repositories](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/0.3.0/nrf/gs_ins_for.html) in the nRF Connect SDK documentation."
     ],
     "checkables": [
         {
@@ -30,39 +30,6 @@
                             ]
                         }
                     ]
-                },
-                {
-                    "type": "Step",
-                    "platforms": { "platform": "win32" },
-                    "title": "Checkout nRF91 branch",
-                    "description": [
-                        "If you are developing for nRF91, you need to check out the nRF91 branch:",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "cd <sourcecode_root>\\ncs\\zephyr",
-                                "git checkout nrf91"
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "Step",
-                    "platforms": [
-                        { "platform": "linux" },
-                        { "platform": "darwin" }
-                    ],
-                    "title": "Checkout nRF91 branch",
-                    "description": [
-                        "If you are developing for nRF91, you need to check out the nRF91 branch:",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "cd <sourcecode_root>/ncs/zephyr",
-                                "git checkout nrf91"
-                            ]
-                        }
-                    ]
                 }
             ],
             "checkers": [
@@ -75,6 +42,39 @@
                         "<sourcecode_root>\\ncs\\mcuboot",
                         "<sourcecode_root>\\ncs\\nrf",
                         "<sourcecode_root>\\ncs\\nrfxlib"
+                    ]
+                },
+                {
+                    "type": "Checker",
+                    "checkerType": "fileExists",
+                    "platforms": { "platform": "linux", "platform": "darwin" },
+                    "filenames": [
+                        "<sourcecode_root>/ncs/zephyr",
+                        "<sourcecode_root>/ncs/mcuboot",
+                        "<sourcecode_root>/ncs/nrf",
+                        "<sourcecode_root>/ncs/nrfxlib"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "all" },
+                    "title": "Clone the repositories",
+                    "description": [
+                        "Check out the release:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "cd <sourcecode_root>\\ncs\\zephyr ; git checkout tags/v0.3.0",
+                                "cd <sourcecode_root>\\ncs\\mcuboot ; git checkout tags/v0.3.0",
+                                "cd <sourcecode_root>\\ncs\\nrf ; git checkout tags/v0.3.0",
+                                "cd <sourcecode_root>\\ncs\\nrfxlib ; git checkout tags/v0.3.0"
+                            ]
+                        }
                     ]
                 }
             ]
@@ -113,47 +113,6 @@
                                 "pip3 install --user -r scripts/requirements.txt"
                             ]
                         }
-                    ]
-                }
-            ]
-        },
-        {
-            "type": "Checkable",
-            "steps": [
-                {
-                    "type": "Step",
-                    "platforms": [
-                        { "platform": "linux" },
-                        { "platform": "darwin" }
-                    ],
-                    "title": "Set up environment",
-                    "description": [
-                        "Every time you open a command prompt to work with the nRF Connect SDK, you must load the environment settings for Zephyr. To do so, enter the following commands:",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "cd <sourcecode_root>/ncs",
-                                "unset ZEPHYR_SDK_INSTALL_DIR",
-                                "source zephyr/zephyr-env.sh"
-                            ]
-                        },
-                        "For convenience, put these commands in a file that runs automatically when you open a command prompt (for example, *.bashrc*)."
-                    ]
-                },
-                {
-                    "type": "Step",
-                    "platforms": { "platform": "win32" },
-                    "title": "Set up environment",
-                    "description": [
-                        "Every time you open a command prompt to work with the nRF Connect SDK, you must load the environment settings for Zephyr. To do so, enter the following commands:",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "cd <sourcecode_root>\\ncs",
-                                "zephyr\\zephyr-env.cmd"
-                            ]
-                        },
-                        "For convenience, put these commands in a file that runs automatically when you open a command prompt."
                     ]
                 }
             ]
