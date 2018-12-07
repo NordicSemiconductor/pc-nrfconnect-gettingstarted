@@ -27,38 +27,13 @@
                     "type": "Step",
                     "platforms": { "platform": "all" },
                     "title": "Choose paths",
-                    "description": "Choose the paths for the different parameters"
-                },
-                {
-                    "type": "Step",
-                    "platforms": { "platform": "all" },
-                    "title": "Zephyr Base",
-                    "description": "**Zephyr Base**: The folder of your Zephyr repository, thus the full path to ``ncs/zephyr``."
-                },
-                {
-                    "type": "Step",
-                    "platforms": { "platform": "all" },
-                    "title": "CMakeLists.txt",
-                    "description": "**CMakeLists.txt**: The path to the CMakeLists.txt project file for your project, thus the full path to, for example, ``ncs/nrf/samples/bluetooth/peripheral_hids_mouse/CMakeLists.txt``."
-                },
-                {
-                    "type": "Step",
-                    "platforms": { "platform": "all" },
-                    "title": "Build Directory",
-                    "description": "**Build Directory**: The folder where you want the output of the build to be placed, thus the full path to, for example, ``ncs/nrf/samples/bluetooth/peripheral_hids_mouse/build``."
-                },
-                {
-                    "type": "Step",
-                    "platforms": { "platform": "all" },
-                    "title": "Board Directory",
-                    "description": "**Board Directory**: The folder that contains the board description of your development kit, thus the full path to, for example, ``ncs/nrf/boards/arm/nrf52840_pca20041`` or ``ncs/zephyr/boards/arm/nrf9160_pca10090``."
-                },
-                {
-                    "type": "Step",
-                    "platforms": { "platform": "all" },
-                    "title": "GNU ARM Embedded Toolchain Directory",
                     "description": [
-                        "**GNU ARM Embedded Toolchain Directory**: The folder where you installed your GNU ARM Embedded Toolchain, thus, for example, *c:\\gnuarmemb* "
+                        "To import a project into SES, you must specify the following paths:",
+                        "**Zephyr Base**: The folder of your Zephyr repository, the full path to ``ncs/zephyr``.",
+                        "**CMakeLists.txt**: The path to the CMakeLists.txt project file for your project, the full path to e.g. ``ncs/nrf/samples/bluetooth/peripheral_hids_mouse/CMakeLists.txt``.",
+                        "**Build Directory**: The folder where you want the output of the build to be placed, the full path to e.g. ``ncs/nrf/samples/bluetooth/peripheral_hids_mouse/build``.",
+                        "**Board Directory**: The folder that contains the board description of your development kit, the full path to e.g. ``ncs/nrf/boards/arm/nrf52840_pca20041`` or ``ncs/zephyr/boards/arm/nrf9160_pca10090``.",
+                        "**GNU ARM Embedded Toolchain Directory**: The folder where you installed your GNU ARM Embedded Toolchain, for example, *c:\\gnuarmemb* "
                     ]
                 },
                 {
@@ -71,7 +46,9 @@
                     "type": "Step",
                     "platforms": { "platform": "all" },
                     "title": "Open project",
-                    "description": "Click **OK** to open the project"
+                    "description": [
+                        "Click **OK** to open the project"
+                    ]
                 }
             ]
         }

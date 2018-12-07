@@ -7,11 +7,17 @@
         { "platform": "darwin" }
     ],
     "description": [
-        "Complete the following steps to set up your nRF Connect SDK development environment.",
-        "(Click on each step to display detailed information.)"
+        "#### About",
+        "The nRF Connect SDK contains libraries and application examples for Nordic Semiconductor chips. It uses the *Zephyr Project* as real-time operating system.",
+        "#### What you'll need",
+        "- SEGGER Embedded Studio",
+        "- GNU ARM Embedded toolchain",
+        "- nRF Connect SDK",
+        "This guide will help you to install required software to get started with nRF Connect SDK development environment.",
+        "Follow the sections on the right to complete the installation.",
+        "#### Disclaimer"
     ],
     "recipes": [
-        "ses-0.1.1",
         "darwin_deps-0.9.3",
         "win_deps-0.9.4",
         "linux_zephyr_deps-0.9.5",
@@ -20,6 +26,7 @@
         "darwin_doctools-0.9.3",
         "linux_zephyr_sdk-0.9.5",
         "nrf_connect_sdk-0.1.3",
+        "ses-0.1.1",
         "ses_config-0.1.2"
     ]
 }

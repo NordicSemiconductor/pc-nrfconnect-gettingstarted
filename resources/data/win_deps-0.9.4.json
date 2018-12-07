@@ -5,7 +5,7 @@
     "platforms": { "platform": "win32" },
     "description": [
         "The [Zephyr Getting Started for Windows](https://docs.zephyrproject.org/latest/getting_started/installation_win.html#installing-requirements-and-dependencies) describes how to install the required tools. The easiest way  is detailed below.",
-        "Complete the following steps to install the toolchain using the [Chocolatey package manager](https://chocolatey.org/)"
+        "Complete the following steps to install the toolchain using the [Chocolatey package manager](https://chocolatey.org/)."
     ],
     "checkables": [
         {
@@ -13,40 +13,16 @@
             "steps": [
                 {
                     "type": "Step",
-                    "platforms": { "platform": "win32" },
-                    "title": "Set up environment variables for proxies",
-                    "description": [
-                        "If you are behind a corporate firewall, you might need to specify a proxy to get access to internet resources:",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "set HTTP_PROXY=http://user:password@proxy.mycompany.com:1234",
-                                "set HTTPS_PROXY=http://user:password@proxy.mycompany.com:1234"
-                            ]
-                        },
-                        "To avoid typing these `set` commands every time you open a command prompt, add them as system environment variables or place them in a `.cmd` file that you run instead."
-                    ]
-                }
-            ]
-        },
-        {
-            "type": "Checkable",
-            "steps": [
-                {
-                    "type": "Step",
-                    "platforms": { "platform": "win32" },
                     "title": "Install Chocolatey",
                     "description": "Install Chocolatey by following the [installation instructions on the Chocolatey website](https://chocolatey.org/install)."
                 },
                 {
                     "type": "Step",
-                    "platforms": { "platform": "win32" },
                     "title": "Open admin cmd.exe",
                     "description": "Open a command prompt (`cmd.exe`) as **Administrator**. To do so, click the Windows start symbol, enter `cmd.exe` in the search field, then right-click the result and choose **Run as Administrator**."
                 },
                 {
                     "type": "Step",
-                    "platforms": { "platform": "win32" },
                     "title": "Disable confirmation",
                     "description": [
                         "Optional: Disable global confirmation to avoid having to add the `-y` flag to all chocolatey commands. To do so, enter the following command:",
@@ -63,7 +39,16 @@
                 {
                     "type": "Checker",
                     "checkerType": "command",
-                    "commands": "choco"
+                    "commands": "<ChocolateyInstall:C:\\ProgramData\\chocolatey>\\bin\\choco feature > NUL"
+                }
+            ],
+            "automation-not-yet": [
+                {
+                    "type": "Automation",
+                    "commands": [
+                        "setx ChocolateyInstall <ChocolateyInstall>",
+                        "powershell -NoProfile -ExecutionPolicy Bypass -Command \"iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))\""
+                    ]
                 }
             ]
         },
@@ -72,10 +57,9 @@
             "steps": [
                 {
                     "type": "Step",
-                    "platforms": { "platform": "win32" },
                     "title": "Install cmake",
                     "description": [
-                        "Install CMake by entering the following command:",
+                        "Open a command prompt (`cmd.exe`) as **Administrator**. Install CMake by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
@@ -84,23 +68,19 @@
                         }
                     ]
                 }
-            ]
-        },
-        {
-            "type": "Checkable",
-            "steps": [
+            ],
+            "checkers": [
                 {
-                    "type": "Step",
-                    "platforms": { "platform": "win32" },
-                    "title": "Install tools",
-                    "description": [
-                        "Install the rest of the tools by entering the following command:",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "choco install git python ninja dtc-msys2 gperf doxygen.install"
-                            ]
-                        }
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "cmake --version"
+                }
+            ],
+            "automation-requires-elevated-shell": [
+                {
+                    "type": "Automation",
+                    "commands": [
+                        "<ChocolateyInstall>\\bin\\choco install -y -r cmake --installargs 'ADD_CMAKE_TO_PATH=System'"
                     ]
                 }
             ]
@@ -110,7 +90,156 @@
             "steps": [
                 {
                     "type": "Step",
-                    "platforms": { "platform": "win32" },
+                    "title": "Install git",
+                    "description": [
+                        "Install git by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "choco install git"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "<ChocolateyInstall>\\bin\\refreshenv && git --version"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install python",
+                    "description": [
+                        "Install python by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "choco install python"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "<ChocolateyInstall>\\bin\\refreshenv && pip3 --version"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install ninja",
+                    "description": [
+                        "Install ninja by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "choco install ninja"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "ninja --version"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install dtc",
+                    "description": [
+                        "Install dtc by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "choco install dtc-msys2"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "dtc --version"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install gperf",
+                    "description": [
+                        "Install gperf by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "choco install gperf"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "gperf --version"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install doxygen",
+                    "description": [
+                        "Install doxygen by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "choco install doxygen"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "doxygen --version"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
                     "title": "Install cross compiler toolchain for ARM",
                     "description": [
                         "Download and install the latest GNU ARM Embedded toolchain to be able to cross-compile for ARM targets. It is available on the [ARM developer website](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads).",
@@ -122,44 +251,7 @@
                 {
                     "type": "Checker",
                     "checkerType": "fileExists",
-                    "filenames": ["c:\\gnuarmemb"]
-                }
-            ]
-        },
-        {
-            "type": "Checkable",
-            "steps": [
-                {
-                    "type": "Step",
-                    "platforms": { "platform": "win32" },
-                    "title": "Open cmd.exe",
-                    "description": "Open a Command Prompt (`cmd.exe`) as a **regular user**."
-                },
-                {
-                    "type": "Step",
-                    "platforms": { "platform": "win32" },
-                    "title": "Environment variables for GNU ARM",
-                    "description": [
-                        "In the command prompt, define the environment variables for the GNU ARM toolchain:",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "set ZEPHYR_TOOLCHAIN_VARIANT gnuarmemb",
-                                "set GNUARMEMB_TOOLCHAIN_PATH c:\\gnuarmemb"
-                            ]
-                        },
-                        "You can avoid typing these `set` commands every time by placing them inside a `.cmd` file and running that every time you open a Command Prompt."
-                    ]
-                }
-            ],
-            "checkers": [
-                {
-                    "type": "Checker",
-                    "checkerType": "command",
-                    "commands": [
-                        "set ZEPHYR_TOOLCHAIN_VARIANT",
-                        "set GNUARMEMB_TOOLCHAIN_PATH"
-                    ]
+                    "filenames": ["<GnuArmEmb_path:c:\\gnuarmemb>\\bin\\gccvar.bat"]
                 }
             ]
         }

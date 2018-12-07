@@ -64,6 +64,19 @@
                         }
                     ]
                 }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "fileExists",
+                    "platforms": { "platform": "win32" },
+                    "filenames": [
+                        "<sourcecode_root>\\ncs\\zephyr",
+                        "<sourcecode_root>\\ncs\\mcuboot",
+                        "<sourcecode_root>\\ncs\\nrf",
+                        "<sourcecode_root>\\ncs\\nrfxlib"
+                    ]
+                }
             ]
         },
         {
