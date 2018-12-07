@@ -4,8 +4,8 @@
     "tool": "win_deps-0.9.4",
     "platforms": { "platform": "win32" },
     "description": [
-        "The [Zephyr Getting Started for Windows](https://docs.zephyrproject.org/latest/getting_started/installation_win.html#installing-requirements-and-dependencies) describes how to install the required tools. The easiest way  is detailed below.",
-        "Complete the following steps to install the toolchain using the [Chocolatey package manager](https://chocolatey.org/)."
+        "Complete the following steps to install the toolchain using the [Chocolatey package manager](https://chocolatey.org/).",
+        "For more information, see [Installing on Windows](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/0.3.0/nrf/gs_ins_windows.html) in the nRF Connect SDK documentation."
     ],
     "checkables": [
         {
@@ -73,7 +73,7 @@
                 {
                     "type": "Checker",
                     "checkerType": "command",
-                    "commands": "cmake --version"
+                    "commands": "<ChocolateyInstall>\\bin\\refreshenv && cmake --version"
                 }
             ],
             "automation-requires-elevated-shell": [
@@ -207,31 +207,6 @@
                     "type": "Checker",
                     "checkerType": "command",
                     "commands": "gperf --version"
-                }
-            ]
-        },
-        {
-            "type": "Checkable",
-            "steps": [
-                {
-                    "type": "Step",
-                    "title": "Install doxygen",
-                    "description": [
-                        "Install doxygen by entering the following command:",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "choco install doxygen"
-                            ]
-                        }
-                    ]
-                }
-            ],
-            "checkers": [
-                {
-                    "type": "Checker",
-                    "checkerType": "command",
-                    "commands": "doxygen --version"
                 }
             ]
         },
