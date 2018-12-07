@@ -50,8 +50,8 @@ const CheckableView = ({
     install,
 }) => {
     const manualButtonText = currentState === CheckableState.DONE ?
-        'Not done' :
-        'Done';
+        'Mark not done' :
+        'Mark done';
 
     let checkableStateClassName = 'checkable-state';
     checkableStateClassName += currentState === CheckableState.DONE ? ' marked' : '';
