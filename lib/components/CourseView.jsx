@@ -51,7 +51,7 @@ const recipeState = recipeCheckables => {
 };
 
 const { Container, Content, Pane } = Tab;
-const CourseView = ({ description, recipes, checkables }) => (
+const CourseView = ({ description, recipes, checkables, checkAll }) => (
     <Container id="course-view" className="course-view" defaultActiveKey={0}>
         <Row className="clearfix">
             <Col sm={3}>
@@ -89,13 +89,18 @@ const CourseView = ({ description, recipes, checkables }) => (
                             >
                                 <div className="course-title">
                                     <h3>{ recipe.title }</h3>
-                                    <ButtonGroup className="checkable-button-group">
-                                        <Button
-                                            className="checkable-button btn btn-nordic"
-                                        >
-                                            Verify all
-                                        </Button>
-                                    </ButtonGroup>
+                                    {(recipe.checkables.find(
+                                        ({ checkers }) => !!checkers) !== undefined
+                                    ) &&
+                                        <ButtonGroup className="checkable-button-group">
+                                            <Button
+                                                className="checkable-button btn btn-nordic"
+                                                onClick={() => checkAll(recipe)}
+                                            >
+                                                Verify all
+                                            </Button>
+                                        </ButtonGroup>
+                                    }
                                 </div>
                                 <RecipeView {...recipe} />
                             </Pane>
@@ -111,6 +116,7 @@ CourseView.propTypes = {
     recipes: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
     checkables: PropTypes.shape({}).isRequired,
     description: PropTypes.string.isRequired,
+    checkAll: PropTypes.func.isRequired,
 };
 
 export default CourseView;
