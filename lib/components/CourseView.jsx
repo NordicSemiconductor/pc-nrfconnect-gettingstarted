@@ -36,7 +36,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Tab, Col, Row, Nav, NavItem, Glyphicon } from 'react-bootstrap';
+import { Tab, Col, Row, Nav, NavItem, Glyphicon, ButtonGroup, Button } from 'react-bootstrap';
 import RecipeView from './RecipeView';
 import DescriptionView from './DescriptionView';
 import { CheckableState } from '../actions/courseActions';
@@ -51,7 +51,7 @@ const recipeState = recipeCheckables => {
 };
 
 const { Container, Content, Pane } = Tab;
-const CourseView = ({ description, recipes, checkables }) => (
+const CourseView = ({ description, recipes, checkables, checkAll }) => (
     <Container id="course-view" className="course-view" defaultActiveKey={0}>
         <Row className="clearfix">
             <Col sm={3}>
@@ -87,7 +87,21 @@ const CourseView = ({ description, recipes, checkables }) => (
                                 key={`${index + 1}`}
                                 className={`recipe-pane ${recipeState(checkables[recipe.tool])}`}
                             >
-                                <h3>{ recipe.title }</h3>
+                                <div className="course-title">
+                                    <h3>{ recipe.title }</h3>
+                                    {(recipe.checkables.find(
+                                        ({ checkers }) => !!checkers) !== undefined
+                                    ) &&
+                                        <ButtonGroup className="checkable-button-group">
+                                            <Button
+                                                className="checkable-button btn btn-nordic"
+                                                onClick={() => checkAll(recipe)}
+                                            >
+                                                Verify all
+                                            </Button>
+                                        </ButtonGroup>
+                                    }
+                                </div>
                                 <RecipeView {...recipe} />
                             </Pane>
                         ))
@@ -102,6 +116,7 @@ CourseView.propTypes = {
     recipes: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
     checkables: PropTypes.shape({}).isRequired,
     description: PropTypes.string.isRequired,
+    checkAll: PropTypes.func.isRequired,
 };
 
 export default CourseView;

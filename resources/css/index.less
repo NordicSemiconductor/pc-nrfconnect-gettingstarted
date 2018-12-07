@@ -133,6 +133,22 @@ div.core-main-view {
     margin-top: 10px;
 }
 
+.course-title {
+    display: flex;
+    flex-direction: row;
+    max-width: 800px;
+    padding-right: 9px;
+    h3 {
+        flex-grow: 99;
+    }
+    span {
+        flex-grow: 1;
+        .checkall {
+            flex-grow: 1;
+        }
+    }
+}
+
 .recipe-view {
     flex: 1;
     overflow-y: scroll;
@@ -175,29 +191,32 @@ div.core-main-view {
     .checkable-description {
         flex-grow: 99;
     }
-    .checkable-button-group {
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-        min-width: 110px;
-        align-self: start;
-        padding-left: 10px;
-        .btn {
-            margin-left: 0px;
-        }
-    }
-    .checkable-button {
-        flex-grow: 1;
-        margin: 1px;
-        max-height: 2%;
-        min-height: 2%;
-        border-radius: 0;
-    }
     .checkable-state {
         width: 10px;
         min-width: 10px;
         max-width: 10px;
     }
+}
+
+.checkable-button-group {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-width: 110px;
+    align-self: start;
+    padding-left: 10px;
+}
+
+.btn-group .btn + .btn {
+    margin-left: 0px;
+}
+
+.checkable-button {
+    flex-grow: 1;
+    margin: 1px;
+    max-height: 2%;
+    min-height: 2%;
+    border-radius: 0;
 }
 
 .variable:not(:last-child) {
