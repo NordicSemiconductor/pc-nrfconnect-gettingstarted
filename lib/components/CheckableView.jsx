@@ -83,7 +83,7 @@ const CheckableView = ({
 
                 { !data.isManual &&
                     <Button
-                        className="checkable-button btn btn-nordic"
+                        className="checkable-button btn btn-primary btn-nordic"
                         onClick={check}
                     >
                         Verify
@@ -92,7 +92,7 @@ const CheckableView = ({
 
                 { data.automation &&
                     <Button
-                        className="checkable-button btn btn-nordic"
+                        className="checkable-button btn btn-primary btn-nordic"
                         onClick={install}
                     >
                         Install
