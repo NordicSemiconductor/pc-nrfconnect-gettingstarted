@@ -81,7 +81,7 @@
                     "type": "Step",
                     "title": "Install git",
                     "description": [
-                        "Install git by entering the following command:",
+                        "Install `git` by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
@@ -95,7 +95,7 @@
                 {
                     "type": "Checker",
                     "checkerType": "command",
-                    "commands": "dpkg -s xz"
+                    "commands": "dpkg -s git"
                 }
             ]
         },
