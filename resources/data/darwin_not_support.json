@@ -3,7 +3,7 @@
     "title": "Installing on macOS",
     "tool": "darwin_3rd_party_toolchain-0.9.3",
     "platforms": { "platform": "darwin" },
-    "description": "Write something here to tell the user macOS is not supported by this app and display a link to guide the user.",
+    "description": "For information about how to clone the repositories and set up SEGGER Embedded Studio, see [nRF Connect documentation](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/0.3.0).",
     "checkables": [
     ]
 }
