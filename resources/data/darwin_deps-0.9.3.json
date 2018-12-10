@@ -1,6 +1,6 @@
 {
     "type": "Recipe",
-    "title": "Installing Requirements and Dependencies",
+    "title": "Installing the toolchain",
     "tool": "darwin_deps-0.9.3",
     "platforms": { "platform": "darwin" },
     "description": [
@@ -45,6 +45,31 @@
                             ]
                         }
                     ]
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install cmake",
+                    "description": [
+                        "Install `cmake` by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "brew installl cmake"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "brew list cmake"
                 }
             ]
         }
