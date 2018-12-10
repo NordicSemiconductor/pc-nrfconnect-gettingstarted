@@ -8,7 +8,6 @@
     ],
     "description": "SEGGER Embedded Studio supports nRF Connect SDK projects. Note that you need the Nordic Edition of SEGGER Embedded Studio as described in a previous step.",
     "checkables": [
-
         {
             "type": "Checkable",
             "steps": [
@@ -30,8 +29,8 @@
                     "description": [
                         "To import a project into SES, you must specify the following paths:",
                         "- **Zephyr Base** - the location of your cloned Zephyr repository (the full path to ``ncs/zephyr``)",
-                        "- **CMakeLists.txt** - the location of the ``CMakeLists.txt`` project file of the sample that you want to work with (for example, the full path ``ncs/nrf/samples/nrf9160/asset_tracker/CMakeLists.txt``)",
-                        "- **Build Directory** - the folder in which to run the build (for example, the full path to ``ncs/nrf/samples/nrf9160/asset_tracker/build)",
+                        "- **CMakeLists.txt** - the location of the ``CMakeLists.txt`` project file of the sample that you want to work with (for example, the full path to ``ncs/nrf/samples/nrf9160/asset_tracker/CMakeLists.txt``)",
+                        "- **Build Directory** - the folder in which to run the build (for example, the full path to ``ncs/nrf/samples/nrf9160/asset_tracker/build``)",
                         "- **Board Directory** - the location of the board description for which to build the project (for example, the full path to ``ncs/zephyr/boards/arm/nrf9160_pca10090``)",
                         "- **GNU ARM Embedded Toolchain Directory** - the location of your GNU ARM Embedded Toolchain installation (for example, ``c:\\gnuarmemb``)",
                         "- **Delete Existing CMakeCache.txt** - select this option to ensure that you are not building with an outdated build cache",
