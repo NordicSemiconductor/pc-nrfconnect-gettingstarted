@@ -394,31 +394,6 @@
             "steps": [
                 {
                     "type": "Step",
-                    "title": "Install gcc",
-                    "description": [
-                        "Install gcc by entering the following command:",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "sudo apt-get install gcc"
-                            ]
-                        }
-                    ]
-                }
-            ],
-            "checkers": [
-                {
-                    "type": "Checker",
-                    "checkerType": "command",
-                    "commands": "dpkg -s gcc"
-                }
-            ]
-        },
-        {
-            "type": "Checkable",
-            "steps": [
-                {
-                    "type": "Step",
                     "title": "Install gcc-multilib",
                     "description": [
                         "Install gcc-multilib by entering the following command:",
