@@ -27,7 +27,7 @@
                     "type": "Step",
                     "platforms": { "platform": "linux" },
                     "title": "Download",
-                    "description": "Download SEGGER Embedded Studio from the following links:\n\n- [Linux X86](http://segger.com/downloads/embedded-studio/embeddedstudio_arm_nordic_linux_x86)\n- [Linux X64](http://segger.com/downloads/embedded-studio/embeddedstudio_arm_nordic_linux_x64)"
+                    "description": "Download [SEGGER Embedded Studio](http://segger.com/downloads/embedded-studio/embeddedstudio_arm_nordic_linux_x64)."
                 }
             ],
             "automation-danger-dont-execute": [
