@@ -16,35 +16,16 @@
                     "platforms": { "platform": "darwin" },
                     "title": "Install Homebrew",
                     "description": [
-                        "Install *Homebrew* (The missing package manager for macOS). Homebrew is a free and open-source software package management system that simplifies the installation of software on Apple's macOS operating system.",
-                        "To install *Homebrew*, visit the [*Homebrew* site](http://brew.sh/) and follow the installation instructions on the site.",
-                        "To complete the Homebrew installation, you might be prompted to install some missing dependencies. If so, follow please follow the instructions provided."
+                        "First, install *Homebrew* by following instructions on the [Homebrew site](https://brew.sh/).",
+                        "Homebrew is a free and open-source package management system that simplifies the installation of software on macOS. While installing Homebrew, you may be prompted to install additional missing dependencies; please follow any such instructions as well."
                     ]
-                },
+                }
+            ],
+            "checkers": [
                 {
-                    "type": "Step",
-                    "platforms": { "platform": "darwin" },
-                    "title": "Install tools from Homebrew",
-                    "description": [
-                        "After Homebrew is successfully installed, install the following tools using the brew command line.",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "brew install cmake ninja dfu-util doxygen qemu dtc python3 gperf\ncd ~/zephyr",
-                                "# or to the folder where you cloned the zephyr repo",
-                                "pip3 install --user -r scripts/requirements.txt"
-                            ]
-                        },
-                        "Source `zephyr-env.sh` wherever you have cloned the Zephyr Git repository:",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "unset ZEPHYR_SDK_INSTALL_DIR",
-                                "cd <zephyr git clone location>",
-                                "source zephyr-env.sh"
-                            ]
-                        }
-                    ]
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "brew --version"
                 }
             ]
         },
@@ -70,6 +51,202 @@
                     "type": "Checker",
                     "checkerType": "command",
                     "commands": "brew list cmake"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install ninja",
+                    "description": [
+                        "Install `ninja` by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "brew installl ninja"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "brew list ninja"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install gperf",
+                    "description": [
+                        "Install `gperf` by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "brew installl gperf"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "brew list gperf"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install ccache",
+                    "description": [
+                        "Install `ccache` by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "brew installl ccache"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "brew list ccache"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install dfu-util",
+                    "description": [
+                        "Install `dfu-util` by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "brew installl dfu-util"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "brew list dfu-util"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install qemu",
+                    "description": [
+                        "Install `qemu` by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "brew installl qemu"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "brew list qemu"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install dtc",
+                    "description": [
+                        "Install `dtc` by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "brew installl dtc"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "brew list dtc"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install python3",
+                    "description": [
+                        "Install `python3` by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "brew installl python3"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "brew list python3"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install cross compiler toolchain for ARM",
+                    "description": [
+                        "Download and install the latest GNU ARM Embedded toolchain to be able to cross-compile for ARM targets.",
+                        "It is available on the [ARM developer website](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads).",
+                        "Extract the downloaded file to your preferred folder, e.g. `/opt/gnuarmemb`."
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "fileExists",
+                    "filenames": ["<GnuArmEmb_path:/opt/gnuarmemb>/bin/arm-none-eabi-gcc"]
                 }
             ]
         }
