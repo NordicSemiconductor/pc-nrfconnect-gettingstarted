@@ -50,8 +50,8 @@ const CheckableView = ({
     install,
 }) => {
     const manualButtonText = currentState === CheckableState.DONE ?
-        'Not done' :
-        'Done';
+        'Mark not done' :
+        'Mark done';
 
     let checkableStateClassName = 'checkable-state';
     checkableStateClassName += currentState === CheckableState.DONE ? ' marked' : '';
@@ -83,7 +83,7 @@ const CheckableView = ({
 
                 { !data.isManual &&
                     <Button
-                        className="checkable-button btn btn-nordic"
+                        className="checkable-button btn btn-primary btn-nordic"
                         onClick={check}
                     >
                         Verify
@@ -92,7 +92,7 @@ const CheckableView = ({
 
                 { data.automation &&
                     <Button
-                        className="checkable-button btn btn-nordic"
+                        className="checkable-button btn btn-primary btn-nordic"
                         onClick={install}
                     >
                         Install

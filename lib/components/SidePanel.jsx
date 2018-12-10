@@ -39,7 +39,7 @@ import PropTypes from 'prop-types';
 import { FormControl, Glyphicon, Panel } from 'react-bootstrap';
 
 function getVariableKind(name) {
-    if (/(root|path|dir|directory)$/i.test(name)) {
+    if (/(root|path|dir|directory|ChocolateyInstall)$/i.test(name)) {
         return { kind: 'openDirectory', icon: 'folder-open' };
     } else if (/file$/i.test(name)) {
         return { kind: 'openFile', icon: 'file' };

@@ -50,6 +50,8 @@ const recipeState = recipeCheckables => {
     return 'in-progress';
 };
 
+const btnClassName = 'checkable-button btn btn-primary btn-nordic';
+
 const { Container, Content, Pane } = Tab;
 const CourseView = ({ description, recipes, checkables, checkAll }) => (
     <Container id="course-view" className="course-view" defaultActiveKey={0}>
@@ -94,7 +96,7 @@ const CourseView = ({ description, recipes, checkables, checkAll }) => (
                                     ) &&
                                         <ButtonGroup className="checkable-button-group">
                                             <Button
-                                                className="checkable-button btn btn-nordic"
+                                                className={btnClassName}
                                                 onClick={() => checkAll(recipe)}
                                             >
                                                 Verify all

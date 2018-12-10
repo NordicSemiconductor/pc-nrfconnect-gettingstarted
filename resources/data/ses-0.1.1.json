@@ -2,17 +2,48 @@
     "type": "Recipe",
     "title": "Download SEGGER Embedded Studio",
     "tool": "ses-0.1.1",
-    "platforms": { "platform": "all" },
-    "description": "We recommend using SEGGER Embedded Studio when working with the nRF Connect SDK. SEGGER Embedded Studio is free of charge for use with Nordic Semiconductor devices.",
+    "platforms": [
+        { "platform": "linux" },
+        { "platform": "win32" },
+        { "platform": "darwin"}
+    ],
+    "description": "The recommended way of building and programming an nRF Connect SDK sample is to use the **Nordic Edition** of the **SEGGER Embedded Studio (SES)** IDE. SEGGER Embedded Studio is free of charge for use with Nordic Semiconductor devices.",
     "checkables": [
         {
             "type": "Checkable",
             "steps": [
                 {
                     "type": "Step",
-                    "platforms": { "platform": "all" },
+                    "platforms": { "platform": "win32" },
                     "title": "Download",
-                    "description": "Download SEGGER Embedded Studio. You need a special version of SEGGER Embedded Studio to be able to open and compile the projects in the nRF Connect SDK. You can find the download links on http://developer.nordicsemi.com/.NCS_PV/getting_started/."
+                    "description": "Download SEGGER Embedded Studio from the following links:\n\n- [Windows X86](http://segger.com/downloads/embedded-studio/embeddedstudio_arm_nordic_win_x86)\n- [Windows X64](http://segger.com/downloads/embedded-studio/embeddedstudio_arm_nordic_win_x64)"
+                },
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "darwin" },
+                    "title": "Download",
+                    "description": "Download [SEGGER Embedded Studio](http://segger.com/downloads/embedded-studio/embeddedstudio_arm_nordic_macos)."
+                },
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "linux" },
+                    "title": "Download",
+                    "description": "Download [SEGGER Embedded Studio](http://segger.com/downloads/embedded-studio/embeddedstudio_arm_nordic_linux_x64)."
+                }
+            ],
+            "automation-danger-dont-execute": [
+                {
+                    "type": "Automation",
+                    "platforms": { "platform": "win32" },
+                    "commands": [
+                        "exit 1",
+                        "powershell -NoProfile -Command \"exit $PSVersionTable.PSVersion.Major -lt 5\"",
+                        "powershell -NoProfile -Command \"Invoke-WebRequest -Uri http://segger.com/downloads/embedded-studio/embeddedstudio_arm_nordic_win_x86 -OutFile $env:TEMP\\embeddedstudio_arm_nordic_win_x86.zip\"",
+                        "powershell -NoProfile -Command \"Remove-Item <EmbeddedStudio_path>\\arm* -Recurse -Force\"",
+                        "powershell -NoProfile -Command \"Expand-Archive -Path $env:TEMP'\\embeddedstudio_arm_nordic_win_x86.zip' -DestinationPath <EmbeddedStudio_path:C:\\EmbeddedStudio>\"",
+                        "powershell -NoProfile -Command \"Move-Item <EmbeddedStudio_path>\\arm*\\* <EmbeddedStudio_path>\\\"",
+                        "powershell -NoProfile -Command \"Remove-Item <EmbeddedStudio_path>\\arm* -Recurse -Force\""
+                    ]
                 }
             ]
         },
@@ -23,7 +54,7 @@
                     "type": "Step",
                     "platforms": { "platform": "all" },
                     "title": "Extract",
-                    "description": "Extract SEGGER Embedded Studio to your preferred folder"
+                    "description": "Extract SEGGER Embedded Studio to your preferred folder."
                 }
             ]
         }
