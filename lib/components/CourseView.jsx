@@ -94,7 +94,7 @@ const CourseView = ({ description, recipes, checkables, checkAll }) => (
                                     ) &&
                                         <ButtonGroup className="checkable-button-group">
                                             <Button
-                                                className="checkable-button btn btn-nordic"
+                                                className="checkable-button btn btn-primary btn-nordic"
                                                 onClick={() => checkAll(recipe)}
                                             >
                                                 Verify all
