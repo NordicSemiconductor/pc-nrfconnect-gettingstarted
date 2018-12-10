@@ -4,7 +4,8 @@
     "tool": "ses_config-0.1.2",
     "platforms": [
         { "platform": "linux" },
-        { "platform": "win32" }
+        { "platform": "win32" },
+        { "platform": "darwin"}
     ],
     "description": "SEGGER Embedded Studio supports nRF Connect SDK projects. Note that you need the Nordic Edition of SEGGER Embedded Studio as described in a previous step.",
     "checkables": [

@@ -15,11 +15,11 @@
                     "type": "Step",
                     "title": "Install git",
                     "description": [
-                        "Install `git` by entering the following command:",
+                        "Install git by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
-                                "sudo apt-get installl git"
+                                "sudo apt-get install git"
                             ]
                         }
                     ]
@@ -40,11 +40,11 @@
                     "type": "Step",
                     "title": "Install cmake",
                     "description": [
-                        "Install `cmake` by entering the following command:",
+                        "Install cmake by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
-                                "sudo apt-get installl cmake"
+                                "sudo apt-get install cmake"
                             ]
                         }
                     ]
@@ -77,11 +77,11 @@
                         {
                             "type": "commands",
                             "description": [
-                                "mkdir $HOME/cmake && cd $HOME/cmake",
+                                "mkdir ${HOME}/cmake && cd $HOME/cmake",
                                 "wget https://cmake.org/files/v3.8/cmake-3.8.2-Linux-x86_64.sh",
                                 "yes | sh cmake-3.8.2-Linux-x86_64.sh | cat",
-                                "echo \"export PATH=$PWD/cmake-3.8.2-Linux-x86_64/bin:\\$PATH\" >> $HOME/.zephyrrc",
-                                "source <zephyr git clone location>/zephyr-env.sh",
+                                "echo \"export PATH=${PWD}/cmake-3.8.2-Linux-x86_64/bin:\\${PATH}\" >> ${HOME}/.zephyrrc",
+                                "source <sourcecode_root>/ncs/zephyr/zephyr-env.sh",
                                 "cmake --version"
                             ]
                         }
@@ -96,11 +96,11 @@
                     "type": "Step",
                     "title": "Install ninja-build",
                     "description": [
-                        "Install `ninja-build` by entering the following command:",
+                        "Install ninja-build by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
-                                "sudo apt-get installl ninja-build"
+                                "sudo apt-get install ninja-build"
                             ]
                         }
                     ]
@@ -121,11 +121,11 @@
                     "type": "Step",
                     "title": "Install gperf",
                     "description": [
-                        "Install `gperf` by entering the following command:",
+                        "Install gperf by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
-                                "sudo apt-get installl gperf"
+                                "sudo apt-get install gperf"
                             ]
                         }
                     ]
@@ -146,11 +146,11 @@
                     "type": "Step",
                     "title": "Install ccache",
                     "description": [
-                        "Install `ccache` by entering the following command:",
+                        "Install ccache by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
-                                "sudo apt-get installl ccache"
+                                "sudo apt-get install ccache"
                             ]
                         }
                     ]
@@ -171,11 +171,11 @@
                     "type": "Step",
                     "title": "Install dfu-util",
                     "description": [
-                        "Install `dfu-util` by entering the following command:",
+                        "Install dfu-util by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
-                                "sudo apt-get installl dfu-util"
+                                "sudo apt-get install dfu-util"
                             ]
                         }
                     ]
@@ -196,11 +196,11 @@
                     "type": "Step",
                     "title": "Install device-tree-compiler",
                     "description": [
-                        "Install `device-tree-compiler` by entering the following command:",
+                        "Install device-tree-compiler by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
-                                "sudo apt-get installl device-tree-compiler"
+                                "sudo apt-get install device-tree-compiler"
                             ]
                         }
                     ]
@@ -221,11 +221,11 @@
                     "type": "Step",
                     "title": "Install wget",
                     "description": [
-                        "Install `wget` by entering the following command:",
+                        "Install wget by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
-                                "sudo apt-get installl wget"
+                                "sudo apt-get install wget"
                             ]
                         }
                     ]
@@ -246,11 +246,11 @@
                     "type": "Step",
                     "title": "Install python3-pip",
                     "description": [
-                        "Install `python3-pip` by entering the following command:",
+                        "Install python3-pip by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
-                                "sudo apt-get installl python3-pip"
+                                "sudo apt-get install python3-pip"
                             ]
                         }
                     ]
@@ -271,11 +271,11 @@
                     "type": "Step",
                     "title": "Install python3-setuptools",
                     "description": [
-                        "Install `python3-setuptools` by entering the following command:",
+                        "Install python3-setuptools by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
-                                "sudo apt-get installl python3-setuptools"
+                                "sudo apt-get install python3-setuptools"
                             ]
                         }
                     ]
@@ -296,11 +296,11 @@
                     "type": "Step",
                     "title": "Install python3-wheel",
                     "description": [
-                        "Install `python3-wheel` by entering the following command:",
+                        "Install python3-wheel by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
-                                "sudo apt-get installl python3-wheel"
+                                "sudo apt-get install python3-wheel"
                             ]
                         }
                     ]
@@ -321,11 +321,11 @@
                     "type": "Step",
                     "title": "Install xz-utils",
                     "description": [
-                        "Install `xz-utils` by entering the following command:",
+                        "Install xz-utils by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
-                                "sudo apt-get installl xz-utils"
+                                "sudo apt-get install xz-utils"
                             ]
                         }
                     ]
@@ -346,11 +346,11 @@
                     "type": "Step",
                     "title": "Install file",
                     "description": [
-                        "Install `file` by entering the following command:",
+                        "Install file by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
-                                "sudo apt-get installl file"
+                                "sudo apt-get install file"
                             ]
                         }
                     ]
@@ -371,11 +371,11 @@
                     "type": "Step",
                     "title": "Install make",
                     "description": [
-                        "Install `make` by entering the following command:",
+                        "Install make by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
-                                "sudo apt-get installl make"
+                                "sudo apt-get install make"
                             ]
                         }
                     ]
@@ -396,11 +396,11 @@
                     "type": "Step",
                     "title": "Install gcc",
                     "description": [
-                        "Install `gcc` by entering the following command:",
+                        "Install gcc by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
-                                "sudo apt-get installl gcc"
+                                "sudo apt-get install gcc"
                             ]
                         }
                     ]
@@ -421,11 +421,11 @@
                     "type": "Step",
                     "title": "Install gcc-multilib",
                     "description": [
-                        "Install `gcc-multilib` by entering the following command:",
+                        "Install gcc-multilib by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
-                                "sudo apt-get installl gcc-multilib"
+                                "sudo apt-get install gcc-multilib"
                             ]
                         }
                     ]
@@ -441,67 +441,22 @@
         },
         {
             "type": "Checkable",
-            "checkers": [
-                {
-                    "type": "Checker",
-                    "checkerType": "command",
-                    "platforms": { "platform": "linux", "osRelease": "debian" },
-                    "command": [
-                        {
-                            "type": "commands",
-                            "description": [
-                                "dpkg -s git cmake ninja-build gperf ccache doxygen dfu-util device-tree-compiler python3-ply python3-pip python3-setuptools python3-wheel xz-utils file make gcc-multilib autoconf automake libtool librsvg2-bin texlive-latex-base texlive-latex-extra latexmk texlive-fonts-recommended"
-                            ]
-                        }
-                    ]
-                }
-            ],
             "steps": [
                 {
                     "type": "Step",
-                    "platforms": { "platform": "linux", "osRelease": "debian" },
-                    "title": "Install dependencies (apt)",
+                    "title": "Install cross compiler toolchain for ARM",
                     "description": [
-                        "Use ``apt-get`` to install the required packages by entering the following command:",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "sudo apt-get install --no-install-recommends git cmake ninja-build gperf \\\n ccache doxygen dfu-util device-tree-compiler \\\n python3-ply python3-pip python3-setuptools python3-wheel xz-utils file \\\n make gcc-multilib autoconf automake libtool librsvg2-bin \\\n texlive-latex-base texlive-latex-extra latexmk texlive-fonts-recommended"
-                            ]
-                        }
+                        "Download and install the latest GNU ARM Embedded toolchain to be able to cross-compile for ARM targets.",
+                        "It is available on the [ARM developer website](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads).",
+                        "Extract the downloaded file to your preferred folder, e.g. `/opt/gnuarmemb`."
                     ]
-                },
+                }
+            ],
+            "checkers": [
                 {
-                    "type": "Step",
-                    "platforms": { "platform": "linux", "osRelease": "fedora" },
-                    "title": "Install dependencies (rpm)",
-                    "description": [
-                        "Use ``dnf`` to install the required packages by entering the following command:",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "sudo dnf group install \"Development Tools\" \"C Development Tools and Libraries\"",
-                                "sudo dnf install git cmake ninja-build gperf ccache\\\n doxygen dfu-util dtc python3-pip \\\n python3-ply python3-yaml dfu-util dtc python3-pykwalify \\\n glibc-devel.i686 libstdc++-devel.i686 autoconf automake libtool\\\n texlive-latex latexmk texlive-collection-fontsrecommended librsvg2-tools"
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "Step",
-                    "platforms": {
-                        "platform": "linux",
-                        "osRelease": "clear-linux-os"
-                    },
-                    "title": "Install dependencies (swupd)",
-                    "description": [
-                        "Use ``swupd`` to install the required packages by entering the following command:",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "sudo swupd bundle-add c-basic dev-utils dfu-util dtc \\\n os-core-dev python-basic python3-basic texlive"
-                            ]
-                        }
-                    ]
+                    "type": "Checker",
+                    "checkerType": "fileExists",
+                    "filenames": ["<GnuArmEmb_path:/opt/gnuarmemb>/bin/arm-none-eabi-gcc"]
                 }
             ]
         }

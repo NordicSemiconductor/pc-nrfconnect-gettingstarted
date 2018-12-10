@@ -50,7 +50,7 @@
                 {
                     "type": "Checker",
                     "checkerType": "fileExists",
-                    "platforms": { "platform": "linux", "platform": "darwin" },
+                    "platforms": [{ "platform": "linux"}, {"platform": "darwin" }],
                     "filenames": [
                         "<sourcecode_root>/ncs/zephyr",
                         "<sourcecode_root>/ncs/mcuboot",
