@@ -159,31 +159,6 @@
             "steps": [
                 {
                     "type": "Step",
-                    "title": "Install QEMU",
-                    "description": [
-                        "Install QEMU by entering the following command:",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "brew install qemu"
-                            ]
-                        }
-                    ]
-                }
-            ],
-            "checkers": [
-                {
-                    "type": "Checker",
-                    "checkerType": "command",
-                    "commands": "brew list qemu"
-                }
-            ]
-        },
-        {
-            "type": "Checkable",
-            "steps": [
-                {
-                    "type": "Step",
                     "title": "Install DTC",
                     "description": [
                         "Install DTC by entering the following command:",
