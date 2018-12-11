@@ -156,7 +156,7 @@
                 {
                     "type": "Checker",
                     "checkerType": "command",
-                    "commands": "ninja --version"
+                    "commands": "<ChocolateyInstall>\\bin\\ninja --version"
                 }
             ]
         },
@@ -181,7 +181,7 @@
                 {
                     "type": "Checker",
                     "checkerType": "command",
-                    "commands": "dtc --version"
+                    "commands": "<ChocolateyInstall>\\bin\\dtc --version"
                 }
             ]
         },
@@ -206,7 +206,7 @@
                 {
                     "type": "Checker",
                     "checkerType": "command",
-                    "commands": "gperf --version"
+                    "commands": "<ChocolateyInstall>\\bin\\gperf --version"
                 }
             ]
         },
