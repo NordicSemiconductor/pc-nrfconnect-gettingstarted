@@ -57,7 +57,7 @@
             "steps": [
                 {
                     "type": "Step",
-                    "title": "Install cmake",
+                    "title": "Install CMake",
                     "description": [
                         "Open a command prompt (`cmd.exe`) as **Administrator**. Install CMake by entering the following command:",
                         {
@@ -90,9 +90,9 @@
             "steps": [
                 {
                     "type": "Step",
-                    "title": "Install git",
+                    "title": "Install Git",
                     "description": [
-                        "Install git by entering the following command:",
+                        "Install Git by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
@@ -115,9 +115,9 @@
             "steps": [
                 {
                     "type": "Step",
-                    "title": "Install python",
+                    "title": "Install Python",
                     "description": [
-                        "Install python by entering the following command:",
+                        "Install Python by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
@@ -140,9 +140,9 @@
             "steps": [
                 {
                     "type": "Step",
-                    "title": "Install ninja",
+                    "title": "Install Ninja",
                     "description": [
-                        "Install ninja by entering the following command:",
+                        "Install Ninja by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
@@ -165,9 +165,9 @@
             "steps": [
                 {
                     "type": "Step",
-                    "title": "Install dtc",
+                    "title": "Install DTC",
                     "description": [
-                        "Install dtc by entering the following command:",
+                        "Install DTC by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
@@ -190,9 +190,9 @@
             "steps": [
                 {
                     "type": "Step",
-                    "title": "Install gperf",
+                    "title": "Install GPerf",
                     "description": [
-                        "Install gperf by entering the following command:",
+                        "Install GPerf by entering the following command:",
                         {
                             "type": "commands",
                             "description": [

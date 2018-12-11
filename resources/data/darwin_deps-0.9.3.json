@@ -4,8 +4,8 @@
     "tool": "darwin_deps-0.9.3",
     "platforms": { "platform": "darwin" },
     "description": [
-        "To install the software components required to build the Zephyr kernel on a Mac, you will need to build a cross compiler for the target devices you wish to build for and install tools that the build system requires.",
-        "[Zephyr Getting Started for macOS](https://docs.zephyrproject.org/latest/getting_started/installation_mac.html#installing-requirements-and-dependencies) have more descriptions for how to get all the needed tools."
+        "Complete the following steps to install the Zephyr requirements and the GNU ARM Embedded Toolchain on macOS.",
+        "For more information, see [Development Environment Setup on macOS](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/0.3.0/zephyr/getting_started/installation_mac.html) in Zephyr’s Getting Started Guide."
     ],
     "checkables": [
         {
@@ -34,9 +34,9 @@
             "steps": [
                 {
                     "type": "Step",
-                    "title": "Install cmake",
+                    "title": "Install CMake",
                     "description": [
-                        "Install cmake by entering the following command:",
+                        "Install CMake by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
@@ -59,9 +59,9 @@
             "steps": [
                 {
                     "type": "Step",
-                    "title": "Install ninja",
+                    "title": "Install Ninja",
                     "description": [
-                        "Install ninja by entering the following command:",
+                        "Install Ninja by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
@@ -84,9 +84,9 @@
             "steps": [
                 {
                     "type": "Step",
-                    "title": "Install gperf",
+                    "title": "Install GPerf",
                     "description": [
-                        "Install gperf by entering the following command:",
+                        "Install GPerf by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
@@ -109,9 +109,9 @@
             "steps": [
                 {
                     "type": "Step",
-                    "title": "Install ccache",
+                    "title": "Install CCache",
                     "description": [
-                        "Install ccache by entering the following command:",
+                        "Install CCache by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
@@ -159,9 +159,9 @@
             "steps": [
                 {
                     "type": "Step",
-                    "title": "Install qemu",
+                    "title": "Install QEMU",
                     "description": [
-                        "Install qemu by entering the following command:",
+                        "Install QEMU by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
@@ -184,9 +184,9 @@
             "steps": [
                 {
                     "type": "Step",
-                    "title": "Install dtc",
+                    "title": "Install DTC",
                     "description": [
-                        "Install dtc by entering the following command:",
+                        "Install DTC by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
@@ -209,9 +209,9 @@
             "steps": [
                 {
                     "type": "Step",
-                    "title": "Install python3",
+                    "title": "Install Python3",
                     "description": [
-                        "Install python3 by entering the following command:",
+                        "Install Python3 by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
@@ -238,7 +238,7 @@
                     "description": [
                         "Download and install the latest GNU ARM Embedded toolchain to be able to cross-compile for ARM targets.",
                         "It is available on the [ARM developer website](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads).",
-                        "Extract the downloaded file to your preferred folder, e.g. `/opt/gnuarmemb`."
+                        "Extract the downloaded file to your preferred folder, for example, `/opt/gnuarmemb`."
                     ]
                 }
             ],
