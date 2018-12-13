@@ -15,8 +15,34 @@
                 {
                     "type": "Step",
                     "title": "Start SEGGER Embedded Studio",
+                    "platforms": [
+                        { "platform": "linux" },
+                        { "platform": "win32" }
+                    ],
                     "description": [
                         "Navigate to the folder where you extracted SEGGER Embedded Studio. In the ``bin`` subfolder, run ``emStudio``."
+                    ]
+                },
+                {
+                    "type": "Step",
+                    "title": "Start SEGGER Embedded Studio",
+                    "platforms": [{ "platform": "darwin"}],
+                    "description": [
+                        "Navigate to the folder where you extracted SEGGER Embedded Studio. Double click `SEGGER Embedded Studio for ARM.app`."
+                    ]
+                },
+                {
+                    "type": "Step",
+                    "title": "Set executables",
+                    "platforms": [{ "platform": "darwin"}],
+                    "description": [
+                        "Select **Tools > Options** and select tab **nRF Connect**.",
+                        "To be able to load and build a project in SES, you must specify the executable locations on macOS:",
+                        "- **CMake** - the path is ``/usr/local/bin/cmake`` by default",
+                        "- **DTC** - the path is ``/usr/local/bin/dtc`` by default",
+                        "- **Ninja** - the path is ``/usr/local/bin/ninja`` by default",
+                        "- **Python** - the path is ``/usr/local/bin/python3`` by default",
+                        "\n\n&nbsp;"
                     ]
                 },
                 {
