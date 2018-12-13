@@ -33,11 +33,11 @@
                 },
                 {
                     "type": "Step",
-                    "title": "Set excutables",
+                    "title": "Set executables",
                     "platforms": [{ "platform": "darwin"}],
                     "description": [
                         "Select **Tools > Options** and select tab **nRF Connect**.",
-                        "To be able to load and build a project in SES, you must specify the excutable properties on macOS:",
+                        "To be able to load and build a project in SES, you must specify the executable locations on macOS:",
                         "- **CMake** - the path is ``/usr/local/bin/cmake`` by default",
                         "- **DTC** - the path is ``/usr/local/bin/dtc`` by default",
                         "- **Ninja** - the path is ``/usr/local/bin/ninja`` by default",
