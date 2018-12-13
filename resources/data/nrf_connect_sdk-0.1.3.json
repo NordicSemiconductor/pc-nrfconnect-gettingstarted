@@ -66,17 +66,34 @@
             "steps": [
                 {
                     "type": "Step",
-                    "platforms": { "platform": "all" },
-                    "title": "Clone the repositories",
+                    "platforms": { "platform": "win32" },
+                    "title": "Check out the release",
                     "description": [
                         "Check out the release:",
                         {
                             "type": "commands",
                             "description": [
-                                "cd <sourcecode_root>\\ncs\\zephyr ; git checkout tags/v0.3.0",
-                                "cd <sourcecode_root>\\ncs\\mcuboot ; git checkout tags/v0.3.0",
+                                "cd <sourcecode_root>\\ncs\\zephyr ; git checkout tags/v1.13.99-ncs2",
+                                "cd <sourcecode_root>\\ncs\\mcuboot ; git checkout tags/v1.2.99-ncs2",
                                 "cd <sourcecode_root>\\ncs\\nrf ; git checkout tags/v0.3.0",
                                 "cd <sourcecode_root>\\ncs\\nrfxlib ; git checkout tags/v0.3.0"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Step",
+                    "platforms": [{ "platform": "linux"}, {"platform": "darwin" }],
+                    "title": "Check out the release",
+                    "description": [
+                        "Check out the release:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "cd <sourcecode_root>/ncs/zephyr ; git checkout tags/v1.13.99-ncs2",
+                                "cd <sourcecode_root>/ncs/mcuboot ; git checkout tags/v1.2.99-ncs2",
+                                "cd <sourcecode_root>/ncs/nrf ; git checkout tags/v0.3.0",
+                                "cd <sourcecode_root>/ncs/nrfxlib ; git checkout tags/v0.3.0"
                             ]
                         }
                     ]
