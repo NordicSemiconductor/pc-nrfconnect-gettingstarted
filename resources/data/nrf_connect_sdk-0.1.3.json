@@ -112,8 +112,9 @@
                         {
                             "type": "commands",
                             "description": [
-                                "cd <sourcecode_root>\\ncs\\zephyr",
-                                "pip3 install -r scripts\\requirements.txt"
+                                "cd <sourcecode_root>\\ncs",
+                                "pip3 install -r zephyr\\scripts\\requirements.txt",
+                                "pip3 install -r nrf\\scripts\\requirements.txt"
                             ]
                         }
                     ]
@@ -130,8 +131,9 @@
                         {
                             "type": "commands",
                             "description": [
-                                "cd <sourcecode_root>/ncs/zephyr",
-                                "pip3 install --user -r scripts/requirements.txt"
+                                "cd <sourcecode_root>/ncs",
+                                "pip3 install --user -r zephyr/scripts/requirements.txt",
+                                "pip3 install --user -r nrf/scripts/requirements.txt"
                             ]
                         }
                     ]
