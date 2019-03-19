@@ -420,8 +420,9 @@
                     "type": "Step",
                     "title": "Install cross compiler toolchain for ARM",
                     "description": [
-                        "Download and install the latest GNU ARM Embedded toolchain to be able to cross-compile for ARM targets.",
+                        "Download and install version `7-2018-q2-update` of the GNU ARM Embedded toolchain to be able to cross-compile for ARM targets.",
                         "It is available on the [ARM developer website](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads).",
+                        "_Important: Make sure to install the version that is mentioned above. Other versions might not work with the nRF Connect SDK._",
                         "Extract the downloaded file to your preferred folder, for example, `/opt/gnuarmemb`."
                     ]
                 }
