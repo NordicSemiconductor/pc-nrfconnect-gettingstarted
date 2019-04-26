@@ -13,7 +13,7 @@
         "- Zephyr requirements and GNU ARM Embedded Toolchain",
         "- nRF Connect SDK",
         "- SEGGER Embedded Studio",
-        "Follow the steps on the left to complete the installation. For more information, see the [nRF Connect SDK documentation](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/0.3.0).",
+        "Follow the steps on the left to complete the installation. For more information, see the [nRF Connect SDK documentation](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest).",
         "#### Disclaimer",
         "This app checks what tools are already installed on your machine and helps you add the ones that are missing. In most cases, you can rely on these checks, but if you have custom installations (for example, you installed a tool in a non-default folder that is not in your path), the result might be incorrect."
     ],

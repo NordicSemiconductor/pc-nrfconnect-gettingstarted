@@ -63,7 +63,8 @@
                                 "cd <sourcecode_root>",
                                 "mkdir ncs",
                                 "cd ncs",
-                                "west init -m https://github.com/NordicPlayground/fw-nrfconnect-nrf"
+                                "west init -m https://github.com/NordicPlayground/fw-nrfconnect-nrf",
+                                "west update"
                             ]
                         }
                     ]
@@ -143,7 +144,8 @@
                             "description": [
                                 "cd <sourcecode_root>\\ncs",
                                 "pip3 install -r zephyr\\scripts\\requirements.txt",
-                                "pip3 install -r nrf\\scripts\\requirements.txt"
+                                "pip3 install -r nrf\\scripts\\requirements.txt",
+                                "pip3 install -r mcuboot\\scripts\\requirements.txt"
                             ]
                         }
                     ]
@@ -162,7 +164,8 @@
                             "description": [
                                 "cd <sourcecode_root>/ncs",
                                 "pip3 install --user -r zephyr/scripts/requirements.txt",
-                                "pip3 install --user -r nrf/scripts/requirements.txt"
+                                "pip3 install --user -r nrf/scripts/requirements.txt",
+                                "pip3 install --user -r mcuboot/scripts/requirements.txt"
                             ]
                         }
                     ]

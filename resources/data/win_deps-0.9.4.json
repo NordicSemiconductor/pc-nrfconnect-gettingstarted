@@ -5,7 +5,7 @@
     "platforms": { "platform": "win32" },
     "description": [
         "Complete the following steps to install the toolchain using the [Chocolatey package manager](https://chocolatey.org/).",
-        "For more information, see [Installing on Windows](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/0.3.0/nrf/gs_ins_windows.html) in the nRF Connect SDK documentation."
+        "For more information, see [Installing on Windows](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/gs_ins_windows.html) in the nRF Connect SDK documentation."
     ],
     "checkables": [
         {

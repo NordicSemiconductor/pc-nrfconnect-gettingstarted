@@ -5,7 +5,7 @@
     "platforms": { "platform": "darwin" },
     "description": [
         "Complete the following steps to install the Zephyr requirements and the GNU ARM Embedded Toolchain on macOS.",
-        "For more information, see [Development Environment Setup on macOS](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/0.3.0/zephyr/getting_started/installation_mac.html) in Zephyr’s Getting Started Guide."
+        "For more information, see [Development Environment Setup on macOS](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/zephyr/getting_started/installation_mac.html) in Zephyr’s Getting Started Guide."
     ],
     "checkables": [
         {
@@ -13,7 +13,6 @@
             "steps": [
                 {
                     "type": "Step",
-                    "platforms": { "platform": "darwin" },
                     "title": "Install Homebrew",
                     "description": [
                         "First, install *Homebrew* by following instructions on the [Homebrew site](https://brew.sh/).",

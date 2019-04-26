@@ -60,7 +60,7 @@ const CourseView = ({ description, recipes, checkables, checkAll }) => (
                 <Nav bsStyle="pills" stacked>
                     <NavItem eventKey={0}>
                         <i className="recipe-number"><Glyphicon glyph="star" /></i>
-                        Overview
+                        <span className="recipe-title">Overview</span>
                     </NavItem>
                     {
                         recipes.map(({ title, tool }, index) => (
@@ -70,7 +70,7 @@ const CourseView = ({ description, recipes, checkables, checkAll }) => (
                                 className={`${recipeState(checkables[tool])}`}
                             >
                                 <i className="recipe-number">{ index + 1 }</i>
-                                { title }
+                                <span className="recipe-title">{ title }</span>
                             </NavItem>
                         ))
                     }

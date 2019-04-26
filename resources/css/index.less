@@ -47,6 +47,21 @@ div.core-main-view {
         display: flex;
         flex-direction: column;
     }
+
+    @media (max-width: 767px) {
+        .col-sm-3 {
+            width: 10%;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .col-sm-9 {
+            width: 85%;
+            display: inline-block;
+        }
+        span.recipe-title {
+            display: none;
+        }
+    }
 }
 
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
@@ -62,8 +77,10 @@ div.core-main-view {
         position: relative;
         overflow: hidden;
         padding-left: 8px;
+        min-width: 46px;
         a {
             padding-left: 40px;
+            min-height: 40px;
         }
         > a:hover, > a:focus {
             background-color: transparent;
