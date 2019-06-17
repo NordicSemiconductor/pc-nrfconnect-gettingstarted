@@ -218,9 +218,9 @@
                     "title": "Install cross compiler toolchain for ARM",
                     "description": [
                         "Download and install version `7-2018-q2-update` of the GNU ARM Embedded toolchain to be able to cross-compile for ARM targets.",
-                        "It is available on the [ARM developer website](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads).",
-                        "_Important: Make sure to install the version that is mentioned above. Other versions might not work with the nRF Connect SDK._",
-                        "We recommend to install the toolchain into the `c:\\gnuarmemb` folder."
+                        "We recommend to install the toolchain into the `c:\\gnuarmemb` folder.",
+                        "- [Windows 32-bit Installer (Signed for Windows 7 and later)](https://developer.arm.com/-/media/Files/downloads/gnu-rm/7-2018q2/gcc-arm-none-eabi-7-2018-q2-update-win32-sha2.exe)",
+                        "- [Windows 32-bit Installer (Unsigned)](https://developer.arm.com/-/media/Files/downloads/gnu-rm/7-2018q2/gcc-arm-none-eabi-7-2018-q2-update-win32.exe)"
                     ]
                 }
             ],
