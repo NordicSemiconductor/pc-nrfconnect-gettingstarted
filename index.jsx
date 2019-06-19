@@ -41,7 +41,7 @@ import { loadCourseAction } from './lib/actions/courseActions';
 import appReducer from './lib/reducers';
 import CourseView from './lib/containers/courseView';
 import SidePanel from './lib/containers/sidePanel';
-import './resources/css/index.less';
+import './resources/css/index.scss';
 
 import AbstractParser from './lib/parsers/AbstractParser';
 
@@ -152,14 +152,14 @@ export function decorateMainView(MainView) {
     return ({ course, checkables }) => (
         <MainView>
             { !course && 'No course loaded' }
-            { course &&
+            { course && (
                 <CourseView
                     title={course.title}
                     description={course.description}
                     recipes={course.recipes}
                     checkables={checkables}
                 />
-            }
+            )}
         </MainView>
     );
 }

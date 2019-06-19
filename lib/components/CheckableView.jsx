@@ -36,7 +36,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ButtonGroup, Button } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 import DescriptionView from './DescriptionView';
 import { CheckableState } from '../actions/courseActions';
@@ -49,9 +50,9 @@ const CheckableView = ({
     check,
     install,
 }) => {
-    const manualButtonText = currentState === CheckableState.DONE ?
-        'Mark not done' :
-        'Mark done';
+    const manualButtonText = currentState === CheckableState.DONE
+        ? 'Mark not done'
+        : 'Mark done';
 
     let checkableStateClassName = 'checkable-state';
     checkableStateClassName += currentState === CheckableState.DONE ? ' marked' : '';
@@ -64,13 +65,13 @@ const CheckableView = ({
             <ul className="checkable-description">
                 {
                     data.steps.filter(step => step.enabled)
-                    .map(({ id, description }) => (
-                        <DescriptionView
-                            className="description"
-                            key={id}
-                            description={description}
-                        />
-                    ))
+                        .map(({ id, description }) => (
+                            <DescriptionView
+                                className="description"
+                                key={id}
+                                description={description}
+                            />
+                        ))
                 }
             </ul>
             <ButtonGroup className="checkable-button-group">
@@ -81,23 +82,23 @@ const CheckableView = ({
                     { manualButtonText }
                 </Button>
 
-                { !data.isManual &&
+                { !data.isManual && (
                     <Button
                         className="checkable-button btn btn-primary btn-nordic"
                         onClick={check}
                     >
                         Verify
                     </Button>
-                }
+                )}
 
-                { data.automation &&
+                { data.automation && (
                     <Button
                         className="checkable-button btn btn-primary btn-nordic"
                         onClick={install}
                     >
                         Install
                     </Button>
-                }
+                )}
             </ButtonGroup>
         </div>
     );

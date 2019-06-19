@@ -1,5 +1,5 @@
 // This file is imported by index.jsx, and may contain styles for the app.
-@import './colors.less';
+@import './colors';
 
 .core-main-layout > div:nth-child(1) > div:nth-child(1).core-main-view {
     height: 100%;
@@ -66,7 +66,7 @@ div.core-main-view {
 
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
     background-color: inherit;
-    color: @nordicDarkgrey;
+    color: $nordicDarkgrey;
 }
 .nav-pills.nav-stacked > li + li {
     margin-top: 0;
@@ -79,35 +79,35 @@ div.core-main-view {
         padding-left: 8px;
         min-width: 46px;
         a {
-            padding-left: 40px;
+            padding-left: 48px;
             min-height: 40px;
+            margin-left: -8px;
+            border-radius: 0;
         }
         > a:hover, > a:focus {
             background-color: transparent;
+        }
+        a.active {
+            background-color: $nordicMiddlegrey;
+            color: white;
         }
     }
     :focus {
         outline-color: transparent !important;
     }
     > li:hover, > li:focus {
-        background-color: @nordicLightgrey;
-    }
-    li.active {
-        background-color: @nordicMiddlegrey;
-        a {
-            color: white;
-        }
+        background-color: $nordicLightgrey;
     }
 
     i {
         position: absolute;
         top: 0;
         bottom: 0;
-        left: 0;
+        left: 8px;
         margin: auto;
         height: 30px;
         width: 30px;
-        background-color: @nordicLake;
+        background-color: $nordicLake;
         color: white;
         border-radius: 15px;
         text-align: center;
@@ -117,7 +117,7 @@ div.core-main-view {
     li:not(:first-child) i::before,
     li:not(:last-child) i::after {
         content: '';
-        border-left: 1px solid @nordicLake;
+        border-left: 1px solid $nordicLake;
         display: block;
         position: absolute;
         left: 14px;
@@ -132,15 +132,15 @@ div.core-main-view {
     }
 
     li.marked i {
-        background-color: @nordicGrass;
+        background-color: $nordicGrass;
         color: black;
     }
     li.unmarked i, li.in-progress i {
-        background-color: @nordicMiddlegrey;
+        background-color: $nordicMiddlegrey;
         color: white;
     }
-    li.unmarked.active i, li.in-progress.active i {
-        background-color: @nordicLightgrey;
+    li.unmarked > a.active i, li.in-progress > a.active i {
+        background-color: $nordicLightgrey;
         color: black;
     }
 }
@@ -172,13 +172,13 @@ div.core-main-view {
     padding-right: 15px;
     padding-bottom: 15px;
     .marked {
-        background-color: @nordicGrass;
+        background-color: $nordicGrass;
     }
     .unmarked {
-        background-color: @nordicMiddlegrey;
+        background-color: $nordicMiddlegrey;
     }
     .in-progress {
-        background-color: @nordicSun;
+        background-color: $nordicSun;
         background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
         background-size: 20px 20px;
         animation: progress-bar-stripes 1s linear infinite;
@@ -247,7 +247,7 @@ div.core-main-view {
         display: block;
     }
     .variable-name {
-        .glyphicon {
+        .mdi {
             margin-right: 10px;
         }
     }
@@ -267,6 +267,19 @@ div.core-main-view {
 
 .variable:not(.set) {
     .variable-name {
-        color: @nordicRed;
+        color: $nordicRed;
     }
+}
+
+pre {
+    padding: 9.5px;
+    margin: 0 0 10px;
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: #333333;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }

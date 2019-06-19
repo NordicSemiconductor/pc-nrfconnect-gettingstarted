@@ -35,7 +35,9 @@
  */
 
 import React from 'react';
-import { string, node, array, oneOfType } from 'prop-types';
+import {
+    string, node, array, oneOfType,
+} from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import { shell } from 'electron';
 
