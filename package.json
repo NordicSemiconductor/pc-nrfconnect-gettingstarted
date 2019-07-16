@@ -1,6 +1,6 @@
 {
   "name": "nrf-framework-courses",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "displayName": "Getting Started Assistant",
   "description": "Guide for setting up toolchains and getting the code for nRF Connect SDK",
   "repository": {
