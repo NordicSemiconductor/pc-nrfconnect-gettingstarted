@@ -36,30 +36,34 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormControl, Glyphicon, Panel } from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
+import Card from 'react-bootstrap/Card';
 
 function getVariableKind(name) {
     if (/(root|path|dir|directory|ChocolateyInstall)$/i.test(name)) {
         return { kind: 'openDirectory', icon: 'folder-open' };
-    } else if (/file$/i.test(name)) {
+    }
+    if (/file$/i.test(name)) {
         return { kind: 'openFile', icon: 'file' };
     }
     return { kind: null, icon: null };
 }
 
-const VariableAction = ({ name, value, kind, setVariable, setVariableOpenDialog }) => {
+const VariableAction = ({
+    name, value, kind, setVariable, setVariableOpenDialog,
+}) => {
     if (kind) {
         return (
-            <FormControl
-                componentClass="button"
+            <Form.Control
+                as="button"
                 onClick={() => setVariableOpenDialog(name, value, kind)}
             >
                 { value }
-            </FormControl>
+            </Form.Control>
         );
     }
     return (
-        <FormControl
+        <Form.Control
             type="text"
             value={value}
             onChange={event => setVariable(name, event.target.value)}
@@ -82,21 +86,28 @@ VariableAction.defaultProps = {
 
 const SidePanel = ({ variables, hidden, ...rest }) => (
     <div className={`core-side-panel ${hidden ? 'hidden' : ''}`}>
-        <Panel header="Variables">
-            {
-                Object.keys(variables)
-                .map(name => ({ name, value: variables[name], ...getVariableKind(name) }))
-                .map(({ name, value, kind, icon }) => (
-                    <div key={name} className={`variable ${value !== undefined ? 'set' : ''}`}>
-                        <span className="variable-name">
-                            { icon && <Glyphicon glyph={icon} /> }
-                            { name }
-                        </span>
-                        <VariableAction name={name} value={value} kind={kind} {...rest} />
-                    </div>
-                ))
-            }
-        </Panel>
+        <Card header="Variables">
+            <Card.Header>Variables</Card.Header>
+            <Card.Body style={{ fontSize: '14px' }}>
+                {
+                    Object.keys(variables)
+                        .map(name => ({
+                            name, value: variables[name], ...getVariableKind(name),
+                        }))
+                        .map(({
+                            name, value, kind, icon,
+                        }) => (
+                            <div key={name} className={`variable ${value !== undefined ? 'set' : ''}`}>
+                                <span className="variable-name">
+                                    { icon && <span className={`mdi mdi-${icon}`} /> }
+                                    { name }
+                                </span>
+                                <VariableAction name={name} value={value} kind={kind} {...rest} />
+                            </div>
+                        ))
+                }
+            </Card.Body>
+        </Card>
     </div>
 );
 

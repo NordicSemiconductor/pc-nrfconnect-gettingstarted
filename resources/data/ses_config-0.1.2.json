@@ -1,47 +1,58 @@
 {
     "type": "Recipe",
     "title": "Set up a project in SEGGER Embedded Studio",
-    "tool": "ses_config-0.1.2",
-    "platforms": [
-        { "platform": "linux" },
-        { "platform": "win32" },
-        { "platform": "darwin"}
-    ],
-    "description": "SEGGER Embedded Studio supports nRF Connect SDK projects. Note that you need the Nordic Edition of SEGGER Embedded Studio as described in a previous step.",
+    "tool": "ses_config-0.1.3",
+    "description": "SEGGER Embedded Studio supports nRF Connect SDK projects. Note that you need the Nordic Edition of SEGGER Embedded Studio as described in the previous step.",
     "checkables": [
         {
             "type": "Checkable",
             "steps": [
                 {
                     "type": "Step",
-                    "title": "Start SEGGER Embedded Studio",
+                    "title": "Settings",
+                    "platforms": [{ "platform": "linux" }, { "platform": "win32" }],
                     "description": [
-                        "Navigate to the folder where you extracted SEGGER Embedded Studio. In the ``bin`` subfolder, run ``emStudio``."
+                        "Navigate to the folder where you extracted SEGGER Embedded Studio. In the ``bin`` subfolder, run ``emStudio``.",
+                        "Click **Tools > Options** and select the **nRF Connect** tab.",
+                        "To load and build a project in SES, you must specify the following information:",
+                        "- **Zephyr Base** - the location of your cloned Zephyr repository (the full path to ``ncs/zephyr``)",
+                        "- **GNU ARM Embedded Toolchain Directory** - the location of your GNU ARM Embedded Toolchain installation (for example, ``c:\\gnuarmemb``)"
                     ]
                 },
                 {
                     "type": "Step",
-                    "title": "Open a project",
-                    "description": "Select **File > Open nRF Connect SDK Project**."
-                },
+                    "title": "Settings",
+                    "platforms": [{ "platform": "darwin" }],
+                    "description": [
+                        "Navigate to the folder where you extracted SEGGER Embedded Studio. Double-click `SEGGER Embedded Studio for ARM.app`.",
+                        "Click **Tools > Options** and select the **nRF Connect** tab.",
+                        "To load and build a project in SES, you must specify the following information:",
+                        "- **Additional CMake Options** - ``-D WEST=<path to west executable>``, for example ``-D WEST=~/Library/Python/3.7/bin/west``",
+                        "- **Zephyr Base** - the location of your cloned Zephyr repository (the full path to ``ncs/zephyr``)",
+                        "- **GNU ARM Embedded Toolchain Directory** - the location of your GNU ARM Embedded Toolchain installation (for example, ``/opt/gnuarmemb``)",
+                        "- **CMake** - the path is ``/usr/local/bin/cmake`` by default",
+                        "- **DTC** - the path is ``/usr/local/bin/dtc`` by default",
+                        "- **Ninja** - the path is ``/usr/local/bin/ninja`` by default",
+                        "- **Python** - the path is ``/usr/local/bin/python3`` by default"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
                 {
                     "type": "Step",
                     "title": "Choose paths",
                     "description": [
-                        "To import a project into SES, you must specify the following paths:",
-                        "- **Zephyr Base** - the location of your cloned Zephyr repository (the full path to ``ncs/zephyr``)",
-                        "- **CMakeLists.txt** - the location of the ``CMakeLists.txt`` project file of the sample that you want to work with (for example, the full path to ``ncs/nrf/samples/nrf9160/asset_tracker/CMakeLists.txt``)",
-                        "- **Build Directory** - the folder in which to run the build (for example, the full path to ``ncs/nrf/samples/nrf9160/asset_tracker/build``)",
+                        "Select **File > Open nRF Connect SDK Project**.",
+                        "To import a project into SES, you must specify the following information:",
+                        "- **CMakeLists.txt** - the location of the ``CMakeLists.txt`` project file of the sample that you want to work with (for example, the full path to ``ncs/nrf/applications/asset_tracker/CMakeLists.txt``)",
                         "- **Board Directory** - the location of the board description for which to build the project (for example, the full path to ``ncs/zephyr/boards/arm/nrf9160_pca10090``)",
-                        "- **GNU ARM Embedded Toolchain Directory** - the location of your GNU ARM Embedded Toolchain installation (for example, ``c:\\gnuarmemb``)",
+                        "- **Board Name** - the board name for which to build the project (for example, ``nrf9160_pca10090ns``)",
+                        "- **Build Directory** - the folder in which to run the build (for example, the full path to ``ncs/nrf/applications/asset_tracker/build``)",
                         "- **Delete Existing CMakeCache.txt** - select this option to ensure that you are not building with an outdated build cache",
-                        "\n\n&nbsp;"
-                    ]
-                },
-                {
-                    "type": "Step",
-                    "title": "Open project",
-                    "description": [
+                        "&nbsp;",
                         "Click **OK** to open the project."
                     ]
                 }

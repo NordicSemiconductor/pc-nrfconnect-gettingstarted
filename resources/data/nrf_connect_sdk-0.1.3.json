@@ -1,14 +1,15 @@
 {
     "type": "Recipe",
     "title": "Clone the nRF Connect SDK",
-    "tool": "nrf_connect_sdk-0.1.3",
+    "tool": "nrf_connect_sdk-0.1.4",
     "platforms": [
+        { "platform": "win32" },
         { "platform": "linux" },
-        { "platform": "win32" }
+        { "platform": "darwin" }
     ],
     "description": [
         "The nRF Connect SDK consists of four GitHub repositories. To set up the nRF Connect SDK, you must clone these repositories and install the required Python modules.",
-        "If you intend to contribute directly to any of the repositories, you need to fork the repositories. For more information, see [Forking the nRF Connect SDK repositories](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/0.3.0/nrf/gs_ins_fork.html) in the nRF Connect SDK documentation."
+        "If you intend to contribute directly to any of the repositories, you need to fork the repositories. For more information, see [Forking the nRF Connect SDK repositories](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/gs_ins_fork.html) in the nRF Connect SDK documentation."
     ],
     "checkables": [
         {
@@ -16,47 +17,33 @@
             "steps": [
                 {
                     "type": "Step",
-                    "platforms": { "platform": "all" },
-                    "title": "Clone the repositories",
+                    "platforms": { "platform": "win32" },
+                    "title": "Install west tool",
                     "description": [
-                        "Clone the latest SDK repositories:",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "cd <sourcecode_root>",
-                                "mkdir ncs",
-                                "cd ncs",
-                                "git clone https://github.com/NordicPlayground/fw-nrfconnect-zephyr.git zephyr",
-                                "git clone https://github.com/NordicPlayground/fw-nrfconnect-mcuboot.git mcuboot",
-                                "git clone https://github.com/NordicPlayground/fw-nrfconnect-nrf.git nrf",
-                                "git clone https://github.com/NordicPlayground/nrfxlib.git nrfxlib"
-                            ]
-                        }
+                        "To manage the combination of repositories and versions, the nRF Connect SDK uses [west](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/zephyr/guides/west/index.html#west).",
+                        "Install it by entering the following command:",
+                        "```\npip3 install west\n```"
+                    ]
+                },
+                {
+                    "type": "Step",
+                    "platforms": [
+                        { "platform": "linux" },
+                        { "platform": "darwin" }
+                    ],
+                    "title": "Install west tool",
+                    "description": [
+                        "To manage the combination of repositories and versions, the nRF Connect SDK uses [west](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/zephyr/guides/west/index.html#west).",
+                        "Install it by entering the following command:",
+                        "```\npip3 install --user west\n```"
                     ]
                 }
             ],
             "checkers": [
                 {
                     "type": "Checker",
-                    "checkerType": "fileExists",
-                    "platforms": { "platform": "win32" },
-                    "filenames": [
-                        "<sourcecode_root>\\ncs\\zephyr",
-                        "<sourcecode_root>\\ncs\\mcuboot",
-                        "<sourcecode_root>\\ncs\\nrf",
-                        "<sourcecode_root>\\ncs\\nrfxlib"
-                    ]
-                },
-                {
-                    "type": "Checker",
-                    "checkerType": "fileExists",
-                    "platforms": [{ "platform": "linux"}, {"platform": "darwin" }],
-                    "filenames": [
-                        "<sourcecode_root>/ncs/zephyr",
-                        "<sourcecode_root>/ncs/mcuboot",
-                        "<sourcecode_root>/ncs/nrf",
-                        "<sourcecode_root>/ncs/nrfxlib"
-                    ]
+                    "checkerType": "command",
+                    "commands": "west --version"
                 }
             ]
         },
@@ -68,14 +55,75 @@
                     "platforms": { "platform": "all" },
                     "title": "Clone the repositories",
                     "description": [
-                        "Check out the release:",
+                        "Initialize west and clone the nRF Connect SDK manifest repository `nrf`:",
+                        "_Note: If you already cloned the nRF Connect SDK repositories and want to continue using these clones, skip this step and see [Updating your existing clones to use west]( https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/gs_ins_windows.html#updating-your-existing-clones-to-use-west) instead._",
                         {
                             "type": "commands",
                             "description": [
-                                "cd <sourcecode_root>\\ncs\\zephyr ; git checkout tags/v0.3.0",
-                                "cd <sourcecode_root>\\ncs\\mcuboot ; git checkout tags/v0.3.0",
-                                "cd <sourcecode_root>\\ncs\\nrf ; git checkout tags/v0.3.0",
-                                "cd <sourcecode_root>\\ncs\\nrfxlib ; git checkout tags/v0.3.0"
+                                "cd <sourcecode_root>",
+                                "mkdir ncs",
+                                "cd ncs",
+                                "west init -m https://github.com/NordicPlayground/fw-nrfconnect-nrf",
+                                "west update"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "fileExists",
+                    "platforms": { "platform": "win32" },
+                    "filenames": [
+                        "<sourcecode_root>\\ncs\\.west\\config"
+                    ]
+                },
+                {
+                    "type": "Checker",
+                    "checkerType": "fileExists",
+                    "platforms": [{ "platform": "linux"}, {"platform": "darwin" }],
+                    "filenames": [
+                        "<sourcecode_root>/ncs/.west/config"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Check out the release",
+                    "description": [
+                        "Decide if you want to work with a tagged release of the nRF Connect SDK or with the latest state of development.",
+                        "_Note: The latest state is not necessarily tested. For a higher degree of quality assurance, check out a tagged release._",
+                        "To work with a tagged release, check the [Release Notes](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/release_notes.html#release-notes) for that release to find out the corresponding tag. Check out this tag in the `nrf` repository and use west to update the other repositories:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "cd <sourcecode_root>\\ncs\\nrf",
+                                "git checkout <ncs_tag>",
+                                "west update"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Step",
+                    "platforms": [{ "platform": "linux"}, {"platform": "darwin" }],
+                    "title": "Check out the release",
+                    "description": [
+                        "Decide if you want to work with a tagged release of the nRF Connect SDK or with the latest state of development.",
+                        "_Note: The latest state is not necessarily tested. For a higher degree of quality assurance, check out a tagged release._",
+                        "To work with a tagged release, check the [Release Notes](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/release_notes.html#release-notes) for that release to find out the corresponding tag. Check out this tag in the `nrf` repository and use west to update the other repositories:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "cd <sourcecode_root>/ncs/nrf",
+                                "git checkout <ncs_tag>",
+                                "west update"
                             ]
                         }
                     ]
@@ -90,12 +138,14 @@
                     "platforms": { "platform": "win32" },
                     "title": "Install Python modules",
                     "description": [
-                        "The nRF Connect SDK Zephyr repository contains a list of required Python modules. Install theses modules by entering the following command:",
+                        "The nRF Connect SDK Zephyr repository contains a list of required Python modules. Install these modules by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
-                                "cd <sourcecode_root>\\ncs\\zephyr",
-                                "pip3 install -r scripts\\requirements.txt"
+                                "cd <sourcecode_root>\\ncs",
+                                "pip3 install -r zephyr\\scripts\\requirements.txt",
+                                "pip3 install -r nrf\\scripts\\requirements.txt",
+                                "pip3 install -r mcuboot\\scripts\\requirements.txt"
                             ]
                         }
                     ]
@@ -108,12 +158,14 @@
                     ],
                     "title": "Install Python modules",
                     "description": [
-                        "The nRF Connect SDK Zephyr repository contains a list of required Python modules. Install theses modules by entering the following command:",
+                        "The nRF Connect SDK Zephyr repository contains a list of required Python modules. Install these modules by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
-                                "cd <sourcecode_root>/ncs/zephyr",
-                                "pip3 install --user -r scripts/requirements.txt"
+                                "cd <sourcecode_root>/ncs",
+                                "pip3 install --user -r zephyr/scripts/requirements.txt",
+                                "pip3 install --user -r nrf/scripts/requirements.txt",
+                                "pip3 install --user -r mcuboot/scripts/requirements.txt"
                             ]
                         }
                     ]

@@ -1,11 +1,11 @@
 {
     "type": "Recipe",
-    "title": "Installing Requirements and Dependencies",
+    "title": "Install the toolchain",
     "tool": "darwin_deps-0.9.3",
     "platforms": { "platform": "darwin" },
     "description": [
-        "To install the software components required to build the Zephyr kernel on a Mac, you will need to build a cross compiler for the target devices you wish to build for and install tools that the build system requires.",
-        "[Zephyr Getting Started for macOS](https://docs.zephyrproject.org/latest/getting_started/installation_mac.html#installing-requirements-and-dependencies) have more descriptions for how to get all the needed tools."
+        "Complete the following steps to install the Zephyr requirements and the GNU ARM Embedded Toolchain on macOS.",
+        "For more information, see [Development Environment Setup on macOS](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/zephyr/getting_started/installation_mac.html) in Zephyr’s Getting Started Guide."
     ],
     "checkables": [
         {
@@ -13,38 +13,214 @@
             "steps": [
                 {
                     "type": "Step",
-                    "platforms": { "platform": "darwin" },
                     "title": "Install Homebrew",
                     "description": [
-                        "Install *Homebrew* (The missing package manager for macOS). Homebrew is a free and open-source software package management system that simplifies the installation of software on Apple's macOS operating system.",
-                        "To install *Homebrew*, visit the [*Homebrew* site](http://brew.sh/) and follow the installation instructions on the site.",
-                        "To complete the Homebrew installation, you might be prompted to install some missing dependencies. If so, follow please follow the instructions provided."
+                        "First, install *Homebrew* by following instructions on the [Homebrew site](https://brew.sh/).",
+                        "Homebrew is a free and open-source package management system that simplifies the installation of software on macOS. While installing Homebrew, you may be prompted to install additional missing dependencies; please follow any such instructions as well."
                     ]
-                },
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "brew --version"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
                 {
                     "type": "Step",
-                    "platforms": { "platform": "darwin" },
-                    "title": "Install tools from Homebrew",
+                    "title": "Install CMake",
                     "description": [
-                        "After Homebrew is successfully installed, install the following tools using the brew command line.",
+                        "Install CMake by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
-                                "brew install cmake ninja dfu-util doxygen qemu dtc python3 gperf\ncd ~/zephyr",
-                                "# or to the folder where you cloned the zephyr repo",
-                                "pip3 install --user -r scripts/requirements.txt"
-                            ]
-                        },
-                        "Source `zephyr-env.sh` wherever you have cloned the Zephyr Git repository:",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "unset ZEPHYR_SDK_INSTALL_DIR",
-                                "cd <zephyr git clone location>",
-                                "source zephyr-env.sh"
+                                "brew install cmake"
                             ]
                         }
                     ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "brew list cmake"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install Ninja",
+                    "description": [
+                        "Install Ninja by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "brew install ninja"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "brew list ninja"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install GPerf",
+                    "description": [
+                        "Install GPerf by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "brew install gperf"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "brew list gperf"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install CCache",
+                    "description": [
+                        "Install CCache by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "brew install ccache"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "brew list ccache"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install dfu-util",
+                    "description": [
+                        "Install dfu-util by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "brew install dfu-util"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "brew list dfu-util"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install DTC",
+                    "description": [
+                        "Install DTC by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "brew install dtc"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "brew list dtc"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install Python3",
+                    "description": [
+                        "Install Python3 by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "brew install python3"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "brew list python3"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Install cross compiler toolchain for ARM",
+                    "description": [
+                        "Download and install version `7-2018-q2-update` of the GNU ARM Embedded toolchain to be able to cross-compile for ARM targets.",
+                        "Extract the downloaded file to your preferred folder, for example, `/opt/gnuarmemb`.",
+                        "- [Mac OS X 64-bit Tarball](https://developer.arm.com/-/media/Files/downloads/gnu-rm/7-2018q2/gcc-arm-none-eabi-7-2018-q2-update-mac.tar.bz2)"
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "fileExists",
+                    "filenames": ["<GnuArmEmb_path:/opt/gnuarmemb>/bin/arm-none-eabi-gcc"]
                 }
             ]
         }

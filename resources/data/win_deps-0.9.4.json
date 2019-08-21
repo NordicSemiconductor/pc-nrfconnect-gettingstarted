@@ -5,7 +5,7 @@
     "platforms": { "platform": "win32" },
     "description": [
         "Complete the following steps to install the toolchain using the [Chocolatey package manager](https://chocolatey.org/).",
-        "For more information, see [Installing on Windows](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/0.3.0/nrf/gs_ins_windows.html) in the nRF Connect SDK documentation."
+        "For more information, see [Installing on Windows](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/gs_ins_windows.html) in the nRF Connect SDK documentation."
     ],
     "checkables": [
         {
@@ -57,7 +57,7 @@
             "steps": [
                 {
                     "type": "Step",
-                    "title": "Install cmake",
+                    "title": "Install CMake",
                     "description": [
                         "Open a command prompt (`cmd.exe`) as **Administrator**. Install CMake by entering the following command:",
                         {
@@ -90,9 +90,9 @@
             "steps": [
                 {
                     "type": "Step",
-                    "title": "Install git",
+                    "title": "Install Git",
                     "description": [
-                        "Install git by entering the following command:",
+                        "Install Git by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
@@ -115,9 +115,9 @@
             "steps": [
                 {
                     "type": "Step",
-                    "title": "Install python",
+                    "title": "Install Python",
                     "description": [
-                        "Install python by entering the following command:",
+                        "Install Python by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
@@ -140,9 +140,9 @@
             "steps": [
                 {
                     "type": "Step",
-                    "title": "Install ninja",
+                    "title": "Install Ninja",
                     "description": [
-                        "Install ninja by entering the following command:",
+                        "Install Ninja by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
@@ -156,7 +156,7 @@
                 {
                     "type": "Checker",
                     "checkerType": "command",
-                    "commands": "ninja --version"
+                    "commands": "<ChocolateyInstall>\\bin\\ninja --version"
                 }
             ]
         },
@@ -165,9 +165,9 @@
             "steps": [
                 {
                     "type": "Step",
-                    "title": "Install dtc",
+                    "title": "Install DTC",
                     "description": [
-                        "Install dtc by entering the following command:",
+                        "Install DTC by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
@@ -181,7 +181,7 @@
                 {
                     "type": "Checker",
                     "checkerType": "command",
-                    "commands": "dtc --version"
+                    "commands": "<ChocolateyInstall>\\bin\\dtc --version"
                 }
             ]
         },
@@ -190,9 +190,9 @@
             "steps": [
                 {
                     "type": "Step",
-                    "title": "Install gperf",
+                    "title": "Install GPerf",
                     "description": [
-                        "Install gperf by entering the following command:",
+                        "Install GPerf by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
@@ -206,7 +206,7 @@
                 {
                     "type": "Checker",
                     "checkerType": "command",
-                    "commands": "gperf --version"
+                    "commands": "<ChocolateyInstall>\\bin\\gperf --version"
                 }
             ]
         },
@@ -217,8 +217,10 @@
                     "type": "Step",
                     "title": "Install cross compiler toolchain for ARM",
                     "description": [
-                        "Download and install the latest GNU ARM Embedded toolchain to be able to cross-compile for ARM targets. It is available on the [ARM developer website](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads).",
-                        "We recommend to install the toolchain into the `c:\\gnuarmemb` folder."
+                        "Download and install version `7-2018-q2-update` of the GNU ARM Embedded toolchain to be able to cross-compile for ARM targets.",
+                        "We recommend to install the toolchain into the `c:\\gnuarmemb` folder.",
+                        "- [Windows 32-bit Installer (Signed for Windows 7 and later)](https://developer.arm.com/-/media/Files/downloads/gnu-rm/7-2018q2/gcc-arm-none-eabi-7-2018-q2-update-win32-sha2.exe)",
+                        "- [Windows 32-bit Installer (Unsigned)](https://developer.arm.com/-/media/Files/downloads/gnu-rm/7-2018q2/gcc-arm-none-eabi-7-2018-q2-update-win32.exe)"
                     ]
                 }
             ],
@@ -226,7 +228,7 @@
                 {
                     "type": "Checker",
                     "checkerType": "fileExists",
-                    "filenames": ["<GnuArmEmb_path:c:\\gnuarmemb>\\bin\\gccvar.bat"]
+                    "filenames": ["<GnuArmEmb_path:c:\\gnuarmemb>\\bin\\arm-none-eabi-gcc-7.3.1.exe"]
                 }
             ]
         }

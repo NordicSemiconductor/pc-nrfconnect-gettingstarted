@@ -35,14 +35,19 @@
  */
 
 import React from 'react';
-import { string, node, array, oneOfType } from 'prop-types';
+import {
+    string, node, array, oneOfType,
+} from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import { shell } from 'electron';
 
 const link = ({ href, children }) => (
     <a
         href={href}
-        onClick={({ target }) => shell.openExternal(target.getAttribute('href'))}
+        onClick={event => {
+            event.preventDefault();
+            shell.openExternal(event.target.getAttribute('href'));
+        }}
     >
         { children }
     </a>

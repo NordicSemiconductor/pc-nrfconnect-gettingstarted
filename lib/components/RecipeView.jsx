@@ -39,7 +39,9 @@ import PropTypes from 'prop-types';
 import DescriptionView from './DescriptionView';
 import CheckableView from '../containers/checkableView';
 
-const RecipeView = ({ tool, id, description, checkables }) => (
+const RecipeView = ({
+    tool, id, description, checkables,
+}) => (
     <div className="recipe-view">
         <DescriptionView key={id} description={description} /><br />
         {

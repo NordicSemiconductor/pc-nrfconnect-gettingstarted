@@ -1,0 +1,1 @@
+[![Build Status](https://dev.azure.com/NordicSemiconductor/Wayland/_apis/build/status/nrf-framework-courses?branchName=master)](https://dev.azure.com/NordicSemiconductor/Wayland/_build/latest?definitionId=15&branchName=master)
