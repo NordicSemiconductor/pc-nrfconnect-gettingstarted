@@ -4,15 +4,15 @@
 [![License](https://img.shields.io/badge/license-Modified%20BSD%20License-blue.svg)](LICENSE)
 
 *nRF Connect Getting Started Assistant* is a cross-platform tool guiding to set up the nRF Connect SDK.
-It is implemented as an app for [nRF Connect](https://github.com/NordicSemiconductor/pc-nrfconnect-core#creating-apps).
+It is implemented as an app in [nRF Connect for Desktop](https://github.com/NordicSemiconductor/pc-nrfconnect-core#creating-apps).
 
 ![screenshot](resources/screenshot.png)
 
 ## Installation
 
-1. Download *nRF Connect* from the [nRF Connect product page](https://www.nordicsemi.com/eng/Products/Bluetooth-low-energy/nRF-Connect-for-desktop).
+1. Download *nRF Connect for Desktop* from the [nRF Connect product page](https://www.nordicsemi.com/eng/Products/Bluetooth-low-energy/nRF-Connect-for-desktop).
 
-2. Install *nRF Connect* and open it.
+2. Install *nRF Connect for Desktop* and open it.
 
 3. Find the app in the app list and click install.
 
