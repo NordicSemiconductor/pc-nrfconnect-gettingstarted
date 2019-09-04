@@ -26,7 +26,7 @@ See the [Contributing](https://github.com/NordicSemiconductor/pc-nrfconnect-core
 
 ## License
 
-See the [license file](LICENSE) for details.
+See the [LICENSE](LICENSE) for details.
 
 ## Feedback
 
