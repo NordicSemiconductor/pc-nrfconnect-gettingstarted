@@ -4,14 +4,14 @@
 [![License](https://img.shields.io/badge/license-Modified%20BSD%20License-blue.svg)](LICENSE)
 
 *nRF Connect Getting Started Assistant* is a cross-platform tool guiding to set up the nRF Connect SDK.
-
-*nRF Connect Getting Started Assistant* is implemented as an app for [nRF Connect](https://github.com/NordicSemiconductor/pc-nrfconnect-core#creating-apps).
+It is implemented as an app for [nRF Connect](https://github.com/NordicSemiconductor/pc-nrfconnect-core#creating-apps).
 
 ![screenshot](resources/screenshot.png)
 
-# Installation
+## Installation
 
 To install the application you can download binaries from the [nRF Connect product page](https://www.nordicsemi.com/eng/Products/Bluetooth-low-energy/nRF-Connect-for-desktop) on Nordic Semiconductor web pages.
+After *nRF Connect* is installed, you can find it in the app list.
 
 nRF Connect currently supports the following operating systems:
 
@@ -19,17 +19,15 @@ nRF Connect currently supports the following operating systems:
 * Ubuntu Linux 64-bit
 * macOS
 
-After *nRF Connect* is installed, you can find *Programmer* in the app list by selecting *Add/remove apps*.
+## Contributing
 
-# Contributing
+Feel free to file code related issues on [GitHub Issues](issues) and/or submit a pull request. In order to accept your pull request, we need you to sign our Contributor License Agreement (CLA). You will see instructions for doing this after having submitted your first pull request. You only need to sign the CLA once, so if you have already done it for another project in the NordicSemiconductor organization, you are good to go.
 
-Feel free to file code related issues on [GitHub Issues](https://github.com/NordicSemiconductor/nrf-framework-courses/issues) and/or submit a pull request. In order to accept your pull request, we need you to sign our Contributor License Agreement (CLA). You will see instructions for doing this after having submitted your first pull request. You only need to sign the CLA once, so if you have already done it for another project in the NordicSemiconductor organization, you are good to go.
-
-# License
+## License
 
 See the [license file](LICENSE) for details.
 
-# Feedback
+## Feedback
 
 * Ask questions on [DevZone Questions](https://devzone.nordicsemi.com)
-* File code related issues on [GitHub Issues](https://github.com/NordicSemiconductor/nrf-framework-courses/issues)
+* File code related issues on [GitHub Issues](issues)
