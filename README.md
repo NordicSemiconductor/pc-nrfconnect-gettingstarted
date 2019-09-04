@@ -10,16 +10,19 @@ It is implemented as an app for [nRF Connect](https://github.com/NordicSemicondu
 
 ## Installation
 
-To install the application you can download binaries from the [nRF Connect product page](https://www.nordicsemi.com/eng/Products/Bluetooth-low-energy/nRF-Connect-for-desktop) on Nordic Semiconductor web pages.
-After *nRF Connect* is installed, you can find it in the app list.
+1. Download *nRF Connect* from the [nRF Connect product page](https://www.nordicsemi.com/eng/Products/Bluetooth-low-energy/nRF-Connect-for-desktop).
+
+2. Install *nRF Connect* and open it.
+
+3. Find the app in the app list and click install.
 
 ## Development
 
-See the [Getting started page](https://github.com/NordicSemiconductor/pc-nrfconnect-core/wiki/Getting-started) for details.
+See the [nRF Connect app development](https://github.com/NordicSemiconductor/pc-nrfconnect-core/wiki) for details.
 
 ## Contributing
 
-Feel free to file code related issues on [GitHub Issues](https://github.com/NordicSemiconductor/pc-nrfconnect-gettingstarted/issues) and/or submit a pull request. In order to accept your pull request, we need you to sign our Contributor License Agreement (CLA). You will see instructions for doing this after having submitted your first pull request. You only need to sign the CLA once, so if you have already done it for another project in the NordicSemiconductor organization, you are good to go.
+See the [Contributing](https://github.com/NordicSemiconductor/pc-nrfconnect-core/wiki/Contributing) for details
 
 ## License
 
