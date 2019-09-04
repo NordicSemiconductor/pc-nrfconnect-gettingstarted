@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/license-Modified%20BSD%20License-blue.svg)](LICENSE)
 
 *nRF Connect Getting Started Assistant* is a cross-platform tool guiding to set up the nRF Connect SDK.
-It is implemented as an app in [nRF Connect for Desktop](https://github.com/NordicSemiconductor/pc-nrfconnect-core#creating-apps).
+It is implemented as an app in [nRF Connect for Desktop](https://github.com/NordicSemiconductor/pc-nrfconnect-core#nrf-connect).
 
 ![screenshot](resources/screenshot.png)
 
