@@ -10,7 +10,7 @@ It is implemented as an app in [nRF Connect for Desktop](https://github.com/Nord
 
 ## Installation
 
-1. Download *nRF Connect for Desktop* from the [nRF Connect product page](https://www.nordicsemi.com/eng/Products/Bluetooth-low-energy/nRF-Connect-for-desktop)
+1. Download *nRF Connect for Desktop* from the [nRF Connect product page](https://www.nordicsemi.com/Software-and-Tools/Development-Tools/nRF-Connect-for-desktop)
 
 2. Install *nRF Connect for Desktop* and open it
 
