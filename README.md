@@ -9,7 +9,7 @@
 
 ## Installation
 
-See the [InfoCenter](https://infocenter.nordicsemi.com/topic/ug_nrfconnect_ble/UG/common/nrf_connect_app_installing.html) pages for information on how to install the application.
+See the [InfoCenter](https://infocenter.nordicsemi.com/index.jsp?topic=%2Fstruct_nrftools%2Fstruct%2Fnrftools_nrfconnect.html) pages for information on how to install the application.
 
 ## Development
 
