@@ -1,11 +1,11 @@
 {
-  "name": "nrf-framework-courses",
+  "name": "pc-nrfconnect-gettingstarted",
   "version": "1.0.2",
   "displayName": "Getting Started Assistant",
   "description": "Guide for setting up toolchains and getting the code for nRF Connect SDK",
   "repository": {
     "type": "git",
-    "url": "https://github.com/NordicSemiconductor/pc-nrfconnect-boilerplate.git"
+    "url": "https://github.com/NordicSemiconductor/pc-nrfconnect-gettingstarted"
   },
   "author": "Nordic Semiconductor ASA",
   "license": "SEE LICENSE IN LICENSE",
@@ -23,6 +23,7 @@
     "dev": "nrfconnect-scripts build-watch",
     "webpack": "nrfconnect-scripts build-dev",
     "build": "nrfconnect-scripts build-prod",
+    "lint-init": "nrfconnect-scripts lint-init",
     "lint": "nrfconnect-scripts lint components reducers index.jsx actions parsers",
     "lintfix": "nrfconnect-scripts lint --fix components reducers index.jsx actions parsers",
     "nordic-publish": "nrfconnect-scripts nordic-publish",
@@ -33,7 +34,7 @@
     "clean-modules": "rimraf \"node_modules/!(rimraf|.bin)\""
   },
   "devDependencies": {
-    "pc-nrfconnect-devdep": "git+https://github.com/NordicSemiconductor/pc-nrfconnect-devdep.git#semver:^3.0.0",
+    "pc-nrfconnect-devdep": "git+https://github.com/NordicSemiconductor/pc-nrfconnect-devdep.git#semver:^3.1.0",
     "react-markdown": "^3.6.0",
     "linux-os-info": "^2.0.0"
   },
