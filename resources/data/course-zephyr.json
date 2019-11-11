@@ -8,12 +8,15 @@
     ],
     "description": [
         "The nRF Connect SDK contains libraries and application examples for Nordic Semiconductor devices. It uses the Zephyr Project as real-time operating system.",
+        "The nRF Connect SDK supports nRF53 and nRF91 Series devices. For nRF51 and nRF52 Series devices, we recommend using the [nRF5 SDK](https://www.nordicsemi.com/Software-and-tools/Software/nRF5-SDK) instead. See our [Software development Getting Started Guides](https://infocenter.nordicsemi.com/topic/struct_nrf5gs/struct/nrf5gs_sw_dev.html) for more information.",
+
         "#### Getting started",
         "This app helps you to set up your nRF Connect SDK development environment. It guides you through installing the required software:",
         "- Zephyr requirements and GNU ARM Embedded Toolchain",
         "- nRF Connect SDK",
         "- SEGGER Embedded Studio",
         "Follow the steps on the left to complete the installation. For more information, see the [nRF Connect SDK documentation](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest).",
+
         "#### Disclaimer",
         "This app checks what tools are already installed on your machine and helps you add the ones that are missing. In most cases, you can rely on these checks, but if you have custom installations (for example, you installed a tool in a non-default folder that is not in your path), the result might be incorrect."
     ],
