@@ -57,6 +57,20 @@
                     ]
                 }
             ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Read user guides",
+                    "description": [
+                        "See the following user guides in the nRF Connect SDK documentation for essential information about developing applications for your device:",
+                        "- [Working with nRF9160](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/ug_nrf9160.html)",
+                        "- [Working with nRF5340](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/ug_nrf5340.html)"
+                    ]
+                }
+            ]
         }
     ]
 }
