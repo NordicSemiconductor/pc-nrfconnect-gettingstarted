@@ -1,3 +1,7 @@
+## Version 1.0.4
+### Features
+- Update instructions for GNU toolchain 8-2019q3 #15
+
 ## Version 1.0.3
 ### Features
 - Clarify scope of #11
