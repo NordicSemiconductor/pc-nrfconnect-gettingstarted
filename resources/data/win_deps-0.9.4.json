@@ -228,7 +228,7 @@
                 {
                     "type": "Checker",
                     "checkerType": "fileExists",
-                    "filenames": ["<GnuArmEmb_path:c:\\gnuarmemb>\\bin\\arm-none-eabi-gcc-7.3.1.exe"]
+                    "filenames": ["<GnuArmEmb_path:c:\\gnuarmemb>\\bin\\arm-none-eabi-gcc-8.3.1.exe"]
                 }
             ]
         }
