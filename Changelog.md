@@ -1,3 +1,7 @@
+## Version 1.0.5
+### Bugfixes
+- Fix gcc version check on windows #17
+
 ## Version 1.0.4
 ### Features
 - Update instructions for GNU toolchain 8-2019q3 #15
