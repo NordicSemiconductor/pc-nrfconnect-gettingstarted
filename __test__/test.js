@@ -1,6 +1,10 @@
 import path from 'path';
 import Course from '../lib/parsers/Course';
 
+jest.mock('electron', () => ({
+    remote: { process: { env: {} } },
+}));
+
 describe('Test Course Loader', () => {
     describe('loading courses', () => {
         it('throws error when course file does not exist', (done) => {
