@@ -1,3 +1,15 @@
+## Version 1.0.6
+### Bugfixes
+- Update mcuboot path, fix pip call on macOS #20
+
+## Version 1.0.5
+### Bugfixes
+- Fix gcc version check on windows #17
+
+## Version 1.0.4
+### Features
+- Update instructions for GNU toolchain 8-2019q3 #15
+
 ## Version 1.0.3
 ### Features
 - Clarify scope of #11

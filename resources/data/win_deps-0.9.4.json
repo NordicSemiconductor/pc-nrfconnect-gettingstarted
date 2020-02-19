@@ -217,10 +217,10 @@
                     "type": "Step",
                     "title": "Install cross compiler toolchain for ARM",
                     "description": [
-                        "Download and install version `7-2018-q2-update` of the GNU ARM Embedded toolchain to be able to cross-compile for ARM targets.",
+                        "Download and install version `8-2019-q3-update` of the GNU ARM Embedded toolchain to be able to cross-compile for ARM targets.",
                         "We recommend to install the toolchain into the `c:\\gnuarmemb` folder.",
-                        "- [Windows 32-bit Installer (Signed for Windows 7 and later)](https://developer.arm.com/-/media/Files/downloads/gnu-rm/7-2018q2/gcc-arm-none-eabi-7-2018-q2-update-win32-sha2.exe)",
-                        "- [Windows 32-bit Installer (Unsigned)](https://developer.arm.com/-/media/Files/downloads/gnu-rm/7-2018q2/gcc-arm-none-eabi-7-2018-q2-update-win32.exe)"
+                        "- [Windows 32-bit Installer (Signed for Windows 7 and later)](https://developer.arm.com/-/media/Files/downloads/gnu-rm/8-2019q3/RC1.1/gcc-arm-none-eabi-8-2019-q3-update-win32-sha2.exe)",
+                        "- [Windows 32-bit Installer (Unsigned)](https://developer.arm.com/-/media/Files/downloads/gnu-rm/8-2019q3/RC1.1/gcc-arm-none-eabi-8-2019-q3-update-win32.exe)"
                     ]
                 }
             ],
@@ -228,7 +228,7 @@
                 {
                     "type": "Checker",
                     "checkerType": "fileExists",
-                    "filenames": ["<GnuArmEmb_path:c:\\gnuarmemb>\\bin\\arm-none-eabi-gcc-7.3.1.exe"]
+                    "filenames": ["<GnuArmEmb_path:c:\\gnuarmemb>\\bin\\arm-none-eabi-gcc-8.3.1.exe"]
                 }
             ]
         }

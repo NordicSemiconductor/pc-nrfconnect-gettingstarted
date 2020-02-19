@@ -418,9 +418,9 @@
                     "type": "Step",
                     "title": "Install cross compiler toolchain for ARM",
                     "description": [
-                        "Download and install version `7-2018-q2-update` of the GNU ARM Embedded toolchain to be able to cross-compile for ARM targets.",
+                        "Download and install version `8-2019-q3-update` of the GNU ARM Embedded toolchain to be able to cross-compile for ARM targets.",
                         "Extract the downloaded file to your preferred folder, for example, `/opt/gnuarmemb`.",
-                        "- [Linux 64-bit Tarball](https://developer.arm.com/-/media/Files/downloads/gnu-rm/7-2018q2/gcc-arm-none-eabi-7-2018-q2-update-linux.tar.bz2)"
+                        "- [Linux 64-bit Tarball](https://developer.arm.com/-/media/Files/downloads/gnu-rm/8-2019q3/RC1.1/gcc-arm-none-eabi-8-2019-q3-update-linux.tar.bz2)"
                     ]
                 }
             ],
