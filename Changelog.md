@@ -1,3 +1,7 @@
+## Version 1.0.6
+### Bugfixes
+- Update mcuboot path, fix pip call on macOS #20
+
 ## Version 1.0.5
 ### Bugfixes
 - Fix gcc version check on windows #17
