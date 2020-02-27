@@ -61,7 +61,6 @@ const recipeState = recipeCheckables => {
 
 const btnClassName = 'checkable-button btn btn-primary btn-nordic';
 const deprecated = process.platform === 'win32';
-const deprecatedClassName = deprecated ? 'deprecated' : '';
 
 const DeprecationWarning = () => (deprecated ? (
     <Alert variant="warning" className="description-view mb-3">
@@ -115,9 +114,7 @@ const CourseView = ({
                 </Col>
                 <Col sm={9}>
                     <Tab.Content>
-                        { deprecated && (
-                            <div className={deprecatedClassName} />
-                        )}
+                        { deprecated && (<div className="deprecated-watermark" />)}
                         <Tab.Pane eventKey={0} className="course-pane">
                             <h3>Overview</h3>
                             <DeprecationWarning />

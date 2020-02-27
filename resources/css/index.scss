@@ -285,12 +285,12 @@ pre {
     border-radius: 4px;
 }
 
-.deprecated {
+.deprecated-watermark {
     position: relative;
     max-width: 800px;
     height: 95%;
 }
-.deprecated::before {
+.deprecated-watermark::before {
     content: "DEPRECATED";
     position: absolute;
     top: 50%;
