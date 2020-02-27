@@ -284,3 +284,31 @@ pre {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+
+.deprecated {
+    position: relative;
+    max-width: 800px;
+    height: 95%;
+}
+.deprecated::before {
+    content: "DEPRECATED";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 90pt;
+    font-weight: 600;
+    opacity: 0.2;
+    color: #ffffff;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    z-index: 50;
+    pointer-events: none;
+    background: #f58220;
+    padding: 0 1rem;
+    border-radius: 2rem;
+    line-height: 96pt;
+}
+
+.alert.alert-warning {
+    border-radius: 0;
+    z-index: 100;
+}
