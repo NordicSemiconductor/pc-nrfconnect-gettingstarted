@@ -1,3 +1,7 @@
+## Version 1.0.8
+### Updates
+- Update text regarding SDK device family support
+
 ## Version 1.0.7
 ### Updates
 - Deprecation warning for Windows + NCS 1.2 #22
