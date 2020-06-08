@@ -1,7 +1,7 @@
 ## Version 1.0.8
 ### Updates
 - Update text regarding SDK device family support
-- Update NCS repoditory URL
+- Update NCS repository URL
 - Add zephyr-export step
 
 ## Version 1.0.7
