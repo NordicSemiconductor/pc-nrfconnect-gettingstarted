@@ -1,7 +1,7 @@
 {
     "type": "Recipe",
     "title": "Clone the nRF Connect SDK",
-    "tool": "nrf_connect_sdk-0.1.4",
+    "tool": "nrf_connect_sdk-0.1.5",
     "platforms": [
         { "platform": "win32" },
         { "platform": "linux" },
@@ -65,8 +65,9 @@
                                 "cd <sourcecode_root>",
                                 "mkdir ncs",
                                 "cd ncs",
-                                "west init -m https://github.com/NordicPlayground/fw-nrfconnect-nrf",
-                                "west update"
+                                "west init -m https://github.com/nrfconnect/sdk-nrf",
+                                "west update",
+                                "west zephyr-export"
                             ]
                         }
                     ]
