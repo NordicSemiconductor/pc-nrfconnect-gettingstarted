@@ -3,6 +3,7 @@
 - Update text regarding SDK device family support
 - Update NCS repository URL
 - Add zephyr-export step
+- Fix dtc install step for Linux
 
 ## Version 1.0.7
 ### Updates
