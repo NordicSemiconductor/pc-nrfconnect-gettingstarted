@@ -1,3 +1,13 @@
+## Version 1.0.8
+### Updates
+- Update text regarding SDK device family support
+- Update NCS repository URL
+- Add zephyr-export step
+
+## Version 1.0.7
+### Updates
+- Deprecation warning for Windows + NCS 1.2 #22
+
 ## Version 1.0.6
 ### Bugfixes
 - Update mcuboot path, fix pip call on macOS #20

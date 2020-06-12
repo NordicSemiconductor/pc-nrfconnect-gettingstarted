@@ -37,6 +37,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Alert from 'react-bootstrap/Alert';
 import Tab from 'react-bootstrap/Tab';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -59,6 +60,23 @@ const recipeState = recipeCheckables => {
 };
 
 const btnClassName = 'checkable-button btn btn-primary btn-nordic';
+const deprecated = process.platform === 'win32';
+
+const DeprecationWarning = () => (deprecated ? (
+    <Alert variant="warning" className="description-view mb-3">
+        <Alert.Heading className="mb-3">Deprecation warning</Alert.Heading>
+        <p>
+            For nRF Connect SDK v1.2.0 (and later), this app has been replaced by the
+            Toolchain Manager app. Go to the app overview to install and open
+            the <b>Toolchain Manager</b>.
+        </p>
+        <p className="mb-0">
+            The Toolchain Manager is available for Windows operating systems and installs
+            the full toolchain that you need to work with the nRF Connect SDK, including
+            SEGGER Embedded Studio and the nRF Connect SDK source code.
+        </p>
+    </Alert>
+) : null);
 
 const CourseView = ({
     description, recipes, checkables, checkAll,
@@ -96,8 +114,10 @@ const CourseView = ({
                 </Col>
                 <Col sm={9}>
                     <Tab.Content>
+                        { deprecated && (<div className="deprecated-watermark" />)}
                         <Tab.Pane eventKey={0} className="course-pane">
                             <h3>Overview</h3>
+                            <DeprecationWarning />
                             <DescriptionView description={description} />
                         </Tab.Pane>
                         {
