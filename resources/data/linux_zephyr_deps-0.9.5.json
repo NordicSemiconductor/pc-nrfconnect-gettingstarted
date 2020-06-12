@@ -222,7 +222,7 @@
                         {
                             "type": "commands",
                             "description": [
-                                "[ $(apt-cache show device-tree-compiler | grep '^Version: .*$' | grep -Po '(\\d.\\d.\\d+)' | sed s/\\.//g) -ge '146' ] && sudo apt-get install device-tree-compiler || (wget http://mirrors.kernel.org/ubuntu/pool/main/d/device-tree-compiler/device-tree-compiler_1.4.7-1_amd64.deb && sudo dpkg -i device-tree-compiler_1.4.7-1_amd64.deb)"
+                                "[ $(apt-cache show device-tree-compiler | grep '^Version: .*$' | grep -Po '(\\d.\\d.\\d+)' | sed 's/\\.//g') -ge '146' ] && sudo apt-get install device-tree-compiler || (wget http://mirrors.kernel.org/ubuntu/pool/main/d/device-tree-compiler/device-tree-compiler_1.4.7-1_amd64.deb && sudo dpkg -i device-tree-compiler_1.4.7-1_amd64.deb)"
                             ]
                         }
                     ]
