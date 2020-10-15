@@ -1,3 +1,7 @@
+## Version 1.0.9
+## Updates
+* Updated according to changes of Electron dialog API
+
 ## Version 1.0.8
 ### Updates
 - Update text regarding SDK device family support
