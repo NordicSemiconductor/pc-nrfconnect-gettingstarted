@@ -83,6 +83,47 @@
             "steps": [
                 {
                     "type": "Step",
+                    "title": "Install GN build system",
+                    "description": [
+                        "_Note: If you are not interested in the [Connected Home over IP](https://www.connectedhomeip.com/) applications, omit this section._",
+                        "Install GN build system by completing following steps:",
+                        "1. Download and extract [GN](https://gn.googlesource.com/gn/) build system executable archive used by the Connected Home over IP to generate output files:",
+                        "&nbsp;",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "mkdir ${HOME}/gn && cd ${HOME}/gn",
+                                "wget -O gn.zip https://chrome-infra-packages.appspot.com/dl/gn/gn/mac-amd64/+/latest",
+                                "unzip gn.zip",
+                                "rm gn.zip"
+                            ]
+                        },
+                        "&nbsp;",
+                        "2. Add the GN location to the system PATH:",
+                        "&nbsp;",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "echo 'export PATH=${HOME}/gn:\"$PATH\"' >> ${HOME}/.bashrc",
+                                "source ${HOME}/.bashrc"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "gn --version"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
                     "title": "Install GPerf",
                     "description": [
                         "Install GPerf by entering the following command:",
