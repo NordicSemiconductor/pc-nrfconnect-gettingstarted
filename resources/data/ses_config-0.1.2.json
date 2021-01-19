@@ -48,7 +48,7 @@
                         "Select **File > Open nRF Connect SDK Project**.",
                         "To import a project into SES, you must specify the following information:",
                         "- **nRF Connect SDK Release** - Select the nRF Connect SDK version that you want to work with.",
-                        "- **nRF Connect Toolchain Version** - Select the version of the toolchain that works with the selected nRF Connect SDK version.",
+                        "- **nRF Connect Toolchain Version** - Select NONE and make sure that your SES environment is configured correctly.",
                         "- **Projects** - Select the project that you want to work with.",
                         "    Select any of the checkboxes to add samples and applications from the respective area to the drop-down list. To add custom projects to the drop-down list, click  and select the folder that contains the projects that you want to add.",
                         "- **Board Name** - Select the board that you want to work with.",
