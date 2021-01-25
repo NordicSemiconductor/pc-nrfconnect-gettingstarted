@@ -1,5 +1,6 @@
 ## Version 1.0.10
 ### Updates
+* Add installing section for Connected Home over IP dependencies
 * Updated project import step
 
 ## Version 1.0.9
