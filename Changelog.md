@@ -1,5 +1,10 @@
+## Version 1.0.10
+### Updates
+* Add installing section for Connected Home over IP dependencies
+* Updated project import step
+
 ## Version 1.0.9
-## Updates
+### Updates
 * Updated according to changes of Electron dialog API
 
 ## Version 1.0.8

@@ -43,15 +43,20 @@
             "steps": [
                 {
                     "type": "Step",
-                    "title": "Choose paths",
+                    "title": "Import project",
                     "description": [
                         "Select **File > Open nRF Connect SDK Project**.",
                         "To import a project into SES, you must specify the following information:",
-                        "- **CMakeLists.txt** - the location of the ``CMakeLists.txt`` project file of the sample that you want to work with (for example, the full path to ``ncs/nrf/applications/asset_tracker/CMakeLists.txt``)",
-                        "- **Board Directory** - the location of the board description for which to build the project (for example, the full path to ``ncs/zephyr/boards/arm/nrf9160_pca10090``)",
-                        "- **Board Name** - the board name for which to build the project (for example, ``nrf9160_pca10090ns``)",
-                        "- **Build Directory** - the folder in which to run the build (for example, the full path to ``ncs/nrf/applications/asset_tracker/build``)",
-                        "- **Delete Existing CMakeCache.txt** - select this option to ensure that you are not building with an outdated build cache",
+                        "- **nRF Connect SDK Release** - Select the nRF Connect SDK version that you want to work with.",
+                        "- **nRF Connect Toolchain Version** - Select NONE.",
+                        "- **Projects** - Select the project that you want to work with.",
+                        "    Select any of the checkboxes to add samples and applications from the respective area to the drop-down list. To add custom projects to the drop-down list, click and select the folder that contains the projects that you want to add.",
+                        "- **Board Name** - Select the board that you want to work with.",
+                        "    Select any of the checkboxes to add the respective build targets to the drop-down list. To add custom build targets to the drop-down list, click and select the folder that contains the board definitions.",
+                        "    _Note that if you work with a TrustZone device, you usually build the firmware for the non-secure domain and must therefore select the non-secure build target, for example, **nrf9160dk_nrf9160ns** or **nrf5340pdk_nrf5340_cpuappns**._",
+                        "- **Build Directory** - Select the folder in which to run the build. The field is filled automatically based on the selected board name, but you can specify a different directory.",
+                        "- **Clean Build Directory** - Select this option to ensure that you are not building with an outdated build cache.",
+                        "- **Extended Settings** - Select this option to display a field where you can specify additional CMake options to be used for building.",
                         "&nbsp;",
                         "Click **OK** to open the project."
                     ]
