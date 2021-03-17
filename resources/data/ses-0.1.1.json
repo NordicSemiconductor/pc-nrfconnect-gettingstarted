@@ -1,6 +1,6 @@
 {
     "type": "Recipe",
-    "title": "Download SEGGER Embedded Studio",
+    "title": "Install SEGGER Embedded Studio",
     "tool": "ses-0.1.1",
     "platforms": [
         { "platform": "linux" },

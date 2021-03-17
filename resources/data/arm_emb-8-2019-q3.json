@@ -1,0 +1,71 @@
+{
+    "type": "Recipe",
+    "title": "Install the toolchain",
+    "tool": "arm_emb-8-2019-q3",
+    "platforms": [
+        { "platform": "win32" },
+        { "platform": "linux" },
+        { "platform": "darwin" }
+    ],
+    "description": [
+        "Download and install version `8-2019-q3-update` of the GNU ARM Embedded toolchain to be able to cross-compile for ARM targets.",
+        "For more information, see [Installing on Windows](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/gs_ins_windows.html) in the nRF Connect SDK documentation."
+    ],
+    "checkables": [
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "win32" },
+                    "title": "Install cross compiler toolchain for ARM",
+                    "description": [
+                        "We recommend to install the toolchain into the `c:\\gnuarmemb` folder.",
+                        "- [Windows 32-bit Installer (Signed for Windows 7 and later)](https://developer.arm.com/-/media/Files/downloads/gnu-rm/8-2019q3/RC1.1/gcc-arm-none-eabi-8-2019-q3-update-win32-sha2.exe)",
+                        "- [Windows 32-bit Installer (Unsigned)](https://developer.arm.com/-/media/Files/downloads/gnu-rm/8-2019q3/RC1.1/gcc-arm-none-eabi-8-2019-q3-update-win32.exe)"
+                    ]
+                },
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "linux" },
+                    "title": "Install cross compiler toolchain for ARM",
+                    "description": [
+                        "Download and install version `8-2019-q3-update` of the GNU ARM Embedded toolchain to be able to cross-compile for ARM targets.",
+                        "Extract the downloaded file to your preferred folder, for example, `/opt/gnuarmemb`.",
+                        "- [Linux 64-bit Tarball](https://developer.arm.com/-/media/Files/downloads/gnu-rm/8-2019q3/RC1.1/gcc-arm-none-eabi-8-2019-q3-update-linux.tar.bz2)"
+                    ]
+                },
+                {
+                    "type": "Step",
+                    "platforms": { "platform": "darwin" },
+                    "title": "Install cross compiler toolchain for ARM",
+                    "description": [
+                        "Download and install version `8-2019-q3-update` of the GNU ARM Embedded toolchain to be able to cross-compile for ARM targets.",
+                        "Extract the downloaded file to your preferred folder, for example, `/opt/gnuarmemb`.",
+                        "- [Mac OS X 64-bit Tarball](https://developer.arm.com/-/media/Files/downloads/gnu-rm/8-2019q3/RC1.1/gcc-arm-none-eabi-8-2019-q3-update-mac.tar.bz2)"
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "platforms": { "platform": "win32" },
+                    "checkerType": "fileExists",
+                    "filenames": ["<GnuArmEmb_path:c:\\gnuarmemb>\\bin\\arm-none-eabi-gcc-8.3.1.exe"]
+                },
+                {
+                    "type": "Checker",
+                    "platforms": { "platform": "linux" },
+                    "checkerType": "fileExists",
+                    "filenames": ["<GnuArmEmb_path:/opt/gnuarmemb>/bin/arm-none-eabi-gcc"]
+                },
+                {
+                    "type": "Checker",
+                    "platforms": { "platform": "darwin" },
+                    "checkerType": "fileExists",
+                    "filenames": ["<GnuArmEmb_path:/opt/gnuarmemb>/bin/arm-none-eabi-gcc"]
+                }
+            ]
+        }
+    ]
+}

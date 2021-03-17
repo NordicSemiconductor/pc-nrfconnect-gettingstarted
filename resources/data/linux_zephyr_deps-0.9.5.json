@@ -1,10 +1,10 @@
 {
     "type": "Recipe",
-    "title": "Install the toolchain",
+    "title": "Install the required tools",
     "tool": "linux_zephyr_deps-0.9.5",
     "platforms": { "platform": "linux" },
     "description": [
-        "Complete the following steps to install the Zephyr requirements and the GNU ARM Embedded Toolchain on Linux.",
+        "Complete the following steps to install the Zephyr requirements on Linux.",
         "For more information, see [Installing on Linux](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/gs_ins_linux.html) in the nRF Connect SDK documentation."
     ],
     "checkables": [
@@ -457,19 +457,19 @@
             "steps": [
                 {
                     "type": "Step",
-                    "title": "Install cross compiler toolchain for ARM",
+                    "title": "Install west tool",
                     "description": [
-                        "Download and install version `8-2019-q3-update` of the GNU ARM Embedded toolchain to be able to cross-compile for ARM targets.",
-                        "Extract the downloaded file to your preferred folder, for example, `/opt/gnuarmemb`.",
-                        "- [Linux 64-bit Tarball](https://developer.arm.com/-/media/Files/downloads/gnu-rm/8-2019q3/RC1.1/gcc-arm-none-eabi-8-2019-q3-update-linux.tar.bz2)"
+                        "To manage the combination of repositories and versions, the nRF Connect SDK uses [west](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/zephyr/guides/west/index.html#west).",
+                        "Install it by entering the following command:",
+                        "```\npip3 install --user west\n```"
                     ]
                 }
             ],
             "checkers": [
                 {
                     "type": "Checker",
-                    "checkerType": "fileExists",
-                    "filenames": ["<GnuArmEmb_path:/opt/gnuarmemb>/bin/arm-none-eabi-gcc"]
+                    "checkerType": "command",
+                    "commands": "west --version"
                 }
             ]
         }
