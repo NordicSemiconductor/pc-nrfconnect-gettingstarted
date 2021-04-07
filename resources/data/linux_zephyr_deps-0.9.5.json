@@ -38,9 +38,9 @@
             "steps": [
                 {
                     "type": "Step",
-                    "title": "Install Wget",
+                    "title": "Install wget",
                     "description": [
-                        "Install Wget by entering the following command:",
+                        "Install wget by entering the following command:",
                         {
                             "type": "commands",
                             "description": [
@@ -133,47 +133,6 @@
                     "type": "Checker",
                     "checkerType": "command",
                     "commands": "dpkg -s ninja-build"
-                }
-            ]
-        },
-        {
-            "type": "Checkable",
-            "steps": [
-                {
-                    "type": "Step",
-                    "title": "Installing GN build system",
-                    "description": [
-                        "_Note: If you are not interested in the [Connected Home over IP](https://www.connectedhomeip.com/) applications, omit this section._",
-                        "Install GN build system by completing following steps:",
-                        "1. Download and extract [GN](https://gn.googlesource.com/gn/) build system executable archive used by the Connected Home over IP to generate output files:",
-                        "&nbsp;",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "mkdir ${HOME}/gn && cd ${HOME}/gn",
-                                "wget -O gn.zip https://chrome-infra-packages.appspot.com/dl/gn/gn/linux-amd64/+/latest",
-                                "unzip gn.zip",
-                                "rm gn.zip"
-                            ]
-                        },
-                        "&nbsp;",
-                        "2. Add the GN location to the system PATH:",
-                        "&nbsp;",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "echo 'export PATH=${HOME}/gn:\"$PATH\"' >> ${HOME}/.bashrc",
-                                "source ${HOME}/.bashrc"
-                            ]
-                        }
-                    ]
-                }
-            ],
-            "checkers": [
-                {
-                    "type": "Checker",
-                    "checkerType": "command",
-                    "commands": "gn --version"
                 }
             ]
         },
@@ -449,6 +408,47 @@
                     "type": "Checker",
                     "checkerType": "command",
                     "commands": "dpkg -s gcc-multilib"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
+                    "title": "Installing the GN build system",
+                    "description": [
+                        "_Note: The GN meta-build system is only required by the [Project Connected Home over IP](https://www.connectedhomeip.com/) applications. If you are not interested in these applications, omit this step._",
+                        "Install GN build system by completing following steps:",
+                        "1. Download and extract [GN](https://gn.googlesource.com/gn/) build system executable archive used to generate output files:",
+                        "&nbsp;",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "mkdir ${HOME}/gn && cd ${HOME}/gn",
+                                "wget -O gn.zip https://chrome-infra-packages.appspot.com/dl/gn/gn/linux-amd64/+/latest",
+                                "unzip gn.zip",
+                                "rm gn.zip"
+                            ]
+                        },
+                        "&nbsp;",
+                        "2. Add the GN location to the system PATH:",
+                        "&nbsp;",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "echo 'export PATH=${HOME}/gn:\"$PATH\"' >> ${HOME}/.bashrc",
+                                "source ${HOME}/.bashrc"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "gn --version"
                 }
             ]
         },
