@@ -24,6 +24,7 @@
         "win_deps-0.9.4",
         "linux_zephyr_deps-0.9.5",
         "darwin_deps-0.9.3",
+        "west-0.1.3",
         "nrf_connect_sdk-0.1.3",
         "python_deps-0.1.3",
         "arm_emb-8-2019-q3",

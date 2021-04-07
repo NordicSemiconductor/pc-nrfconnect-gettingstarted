@@ -451,27 +451,6 @@
                     "commands": "gn --version"
                 }
             ]
-        },
-        {
-            "type": "Checkable",
-            "steps": [
-                {
-                    "type": "Step",
-                    "title": "Install west tool",
-                    "description": [
-                        "To manage the combination of repositories and versions, the nRF Connect SDK uses [west](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/zephyr/guides/west/index.html#west).",
-                        "Install it by entering the following command:",
-                        "```\npip3 install --user west\n```"
-                    ]
-                }
-            ],
-            "checkers": [
-                {
-                    "type": "Checker",
-                    "checkerType": "command",
-                    "commands": "west --version"
-                }
-            ]
         }
     ]
 }
