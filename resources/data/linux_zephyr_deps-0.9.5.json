@@ -5,7 +5,7 @@
     "platforms": { "platform": "linux" },
     "description": [
         "Complete the following steps to install the Zephyr requirements on Linux.",
-        "For more information, see [Installing on Linux](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/gs_ins_linux.html) in the nRF Connect SDK documentation."
+        "For more information, see [Installing the nRF Connect SDK manually](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/gs_installing.html) in the nRF Connect SDK documentation."
     ],
     "checkables": [
         {

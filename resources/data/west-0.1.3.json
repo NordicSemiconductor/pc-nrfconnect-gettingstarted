@@ -8,7 +8,7 @@
         { "platform": "darwin" }
     ],
     "description": [
-        "To manage the combination of repositories and versions, the nRF Connect SDK uses [west](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/zephyr/guides/west/index.html#west)."
+        "To manage the combination of repositories and versions, the nRF Connect SDK uses [Zephyr's west](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/zephyr/guides/west/index.html#west)."
     ],
     "checkables": [
         {

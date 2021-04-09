@@ -9,7 +9,7 @@
     ],
     "description": [
         "Download and install version `8-2019-q3-update` of the GNU ARM Embedded toolchain to be able to cross-compile for ARM targets.",
-        "For more information, see [Installing on Windows](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/gs_ins_windows.html) in the nRF Connect SDK documentation."
+        "For more information, see [Installing the nRF Connect SDK manually](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/gs_installing.html#install-the-toolchain) in the nRF Connect SDK documentation."
     ],
     "checkables": [
         {

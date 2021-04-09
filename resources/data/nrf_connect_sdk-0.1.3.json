@@ -9,7 +9,7 @@
     ],
     "description": [
         "The nRF Connect SDK consists of four GitHub repositories. To set up the nRF Connect SDK, you must clone these repositories and install the required Python modules.",
-        "If you intend to contribute directly to any of the repositories, you need to fork the repositories. For more information, see [Forking the nRF Connect SDK repositories](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/ug_dev_model.html#fork-a-repository-of-the-ncs) in the nRF Connect SDK documentation."
+        "If you intend to contribute directly to any of the repositories, you need to fork the repositories. For more information, see [Forking a repository of the nRF Connect SDK](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/dm_managing_code.html#forking-a-repository-of-the-ncs) in the nRF Connect SDK documentation."
     ],
     "checkables": [
         {
@@ -21,7 +21,6 @@
                     "title": "Clone the repositories",
                     "description": [
                         "Initialize west and clone the nRF Connect SDK manifest repository `nrf`:",
-                        "_Note: If you already cloned the nRF Connect SDK repositories and want to continue using these clones, skip this step and see [Updating your existing clones to use west]( https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/gs_ins_windows.html#updating-your-existing-clones-to-use-west) instead._",
                         {
                             "type": "commands",
                             "description": [
