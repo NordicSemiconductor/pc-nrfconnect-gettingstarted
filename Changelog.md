@@ -1,3 +1,8 @@
+## Version 1.1.0
+### Features
+- Align instructions with online documentation structure #39
+- Update instructions for GNU toolchain 9-2019-q4-major
+
 ## Version 1.0.10
 ### Updates
 * Add installing section for Connected Home over IP dependencies
