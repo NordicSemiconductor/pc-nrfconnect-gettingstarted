@@ -5,7 +5,7 @@
     "platforms": { "platform": "darwin" },
     "description": [
         "Complete the following steps to install the Zephyr requirements on macOS.",
-        "For more information, see [Development Environment Setup on macOS](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/zephyr/getting_started/installation_mac.html) in Zephyr’s Getting Started Guide."
+        "For more information, see [Installing the nRF Connect SDK manually](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/gs_installing.html) in the nRF Connect SDK documentation."
     ],
     "checkables": [
         {
