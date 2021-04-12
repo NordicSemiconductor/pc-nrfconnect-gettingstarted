@@ -1,6 +1,6 @@
 {
     "type": "Recipe",
-    "title": "Clone the nRF Connect SDK",
+    "title": "Get the nRF Connect SDK code",
     "tool": "nrf_connect_sdk-0.1.5",
     "platforms": [
         { "platform": "win32" },
@@ -9,46 +9,9 @@
     ],
     "description": [
         "The nRF Connect SDK consists of four GitHub repositories. To set up the nRF Connect SDK, you must clone these repositories and install the required Python modules.",
-        "If you intend to contribute directly to any of the repositories, you need to fork the repositories. For more information, see [Forking the nRF Connect SDK repositories](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/ug_dev_model.html#fork-a-repository-of-the-ncs) in the nRF Connect SDK documentation."
+        "If you intend to contribute directly to any of the repositories, you need to fork the repositories. For more information, see [Forking a repository of the nRF Connect SDK](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/dm_managing_code.html#forking-a-repository-of-the-ncs) in the nRF Connect SDK documentation."
     ],
     "checkables": [
-        {
-            "type": "Checkable",
-            "steps": [
-                {
-                    "type": "Step",
-                    "platforms": [
-                        { "platform": "win32" },
-                        { "platform": "darwin" }
-                    ],
-                    "title": "Install west tool",
-                    "description": [
-                        "To manage the combination of repositories and versions, the nRF Connect SDK uses [west](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/zephyr/guides/west/index.html#west).",
-                        "Install it by entering the following command:",
-                        "```\npip3 install west\n```"
-                    ]
-                },
-                {
-                    "type": "Step",
-                    "platforms": [
-                        { "platform": "linux" }
-                    ],
-                    "title": "Install west tool",
-                    "description": [
-                        "To manage the combination of repositories and versions, the nRF Connect SDK uses [west](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/zephyr/guides/west/index.html#west).",
-                        "Install it by entering the following command:",
-                        "```\npip3 install --user west\n```"
-                    ]
-                }
-            ],
-            "checkers": [
-                {
-                    "type": "Checker",
-                    "checkerType": "command",
-                    "commands": "west --version"
-                }
-            ]
-        },
         {
             "type": "Checkable",
             "steps": [
@@ -58,7 +21,6 @@
                     "title": "Clone the repositories",
                     "description": [
                         "Initialize west and clone the nRF Connect SDK manifest repository `nrf`:",
-                        "_Note: If you already cloned the nRF Connect SDK repositories and want to continue using these clones, skip this step and see [Updating your existing clones to use west]( https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/gs_ins_windows.html#updating-your-existing-clones-to-use-west) instead._",
                         {
                             "type": "commands",
                             "description": [
@@ -127,62 +89,6 @@
                                 "cd <sourcecode_root>/ncs/nrf",
                                 "git checkout <ncs_tag>",
                                 "west update"
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "type": "Checkable",
-            "steps": [
-                {
-                    "type": "Step",
-                    "platforms": { "platform": "win32" },
-                    "title": "Install Python modules",
-                    "description": [
-                        "The nRF Connect SDK Zephyr repository contains a list of required Python modules. Install these modules by entering the following command:",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "cd <sourcecode_root>\\ncs",
-                                "pip3 install -r zephyr\\scripts\\requirements.txt",
-                                "pip3 install -r nrf\\scripts\\requirements.txt",
-                                "pip3 install -r bootloader\\mcuboot\\scripts\\requirements.txt"
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "Step",
-                    "platforms": { "platform": "linux" },
-                    "title": "Install Python modules",
-                    "description": [
-                        "The nRF Connect SDK Zephyr repository contains a list of required Python modules. Install these modules by entering the following command:",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "cd <sourcecode_root>/ncs",
-                                "pip3 install --user -r zephyr/scripts/requirements.txt",
-                                "pip3 install --user -r nrf/scripts/requirements.txt",
-                                "pip3 install --user -r bootloader/mcuboot/scripts/requirements.txt"
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "Step",
-                    "platforms": { "platform": "darwin" },
-                    "title": "Install Python modules",
-                    "description": [
-                        "The nRF Connect SDK Zephyr repository contains a list of required Python modules. Install these modules by entering the following command:",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "cd <sourcecode_root>/ncs",
-                                "pip3 install -r zephyr/scripts/requirements.txt",
-                                "pip3 install -r nrf/scripts/requirements.txt",
-                                "pip3 install -r bootloader/mcuboot/scripts/requirements.txt"
                             ]
                         }
                     ]

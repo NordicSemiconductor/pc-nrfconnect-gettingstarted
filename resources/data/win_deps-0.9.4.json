@@ -1,11 +1,11 @@
 {
     "type": "Recipe",
-    "title": "Install the toolchain",
+    "title": "Install the required tools",
     "tool": "win_deps-0.9.4",
     "platforms": { "platform": "win32" },
     "description": [
-        "Complete the following steps to install the toolchain using the [Chocolatey package manager](https://chocolatey.org/).",
-        "For more information, see [Installing on Windows](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/gs_ins_windows.html) in the nRF Connect SDK documentation."
+        "Complete the following steps to install the required tools using the [Chocolatey package manager](https://chocolatey.org/).",
+        "For more information, see [Installing the nRF Connect SDK manually](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/gs_installing.html) in the nRF Connect SDK documentation."
     ],
     "checkables": [
         {
@@ -207,28 +207,6 @@
                     "type": "Checker",
                     "checkerType": "command",
                     "commands": "<ChocolateyInstall>\\bin\\gperf --version"
-                }
-            ]
-        },
-        {
-            "type": "Checkable",
-            "steps": [
-                {
-                    "type": "Step",
-                    "title": "Install cross compiler toolchain for ARM",
-                    "description": [
-                        "Download and install version `8-2019-q3-update` of the GNU ARM Embedded toolchain to be able to cross-compile for ARM targets.",
-                        "We recommend to install the toolchain into the `c:\\gnuarmemb` folder.",
-                        "- [Windows 32-bit Installer (Signed for Windows 7 and later)](https://developer.arm.com/-/media/Files/downloads/gnu-rm/8-2019q3/RC1.1/gcc-arm-none-eabi-8-2019-q3-update-win32-sha2.exe)",
-                        "- [Windows 32-bit Installer (Unsigned)](https://developer.arm.com/-/media/Files/downloads/gnu-rm/8-2019q3/RC1.1/gcc-arm-none-eabi-8-2019-q3-update-win32.exe)"
-                    ]
-                }
-            ],
-            "checkers": [
-                {
-                    "type": "Checker",
-                    "checkerType": "fileExists",
-                    "filenames": ["<GnuArmEmb_path:c:\\gnuarmemb>\\bin\\arm-none-eabi-gcc-8.3.1.exe"]
                 }
             ]
         }

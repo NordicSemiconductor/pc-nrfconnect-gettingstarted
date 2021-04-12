@@ -8,14 +8,14 @@
     ],
     "description": [
         "The nRF Connect SDK contains libraries and application examples for Nordic Semiconductor devices. It uses the Zephyr Project as real-time operating system.",
-        "The nRF Connect SDK supports nRF52, nRF53 and nRF91 Series devices. See our [Software development Getting Started Guides](https://infocenter.nordicsemi.com/topic/struct_nrf5gs/struct/nrf5gs_sw_dev.html) for more information.",
+        "The nRF Connect SDK supports nRF52, nRF53, and nRF91 Series devices. See our [Software development Getting Started Guides](https://infocenter.nordicsemi.com/topic/struct_nrf5gs/struct/nrf5gs_sw_dev.html) for more information.",
 
         "#### Getting started",
         "This app helps you to set up your nRF Connect SDK development environment. It guides you through installing the required software:",
         "- Zephyr requirements and GNU ARM Embedded Toolchain",
         "- nRF Connect SDK",
         "- SEGGER Embedded Studio",
-        "Follow the steps on the left to complete the installation. For more information, see the [nRF Connect SDK documentation](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest).",
+        "Follow the steps on the left to complete the installation. For more information, see the [Getting started section](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/getting_started.html) in the nRF Connect SDK documentation.",
 
         "#### Disclaimer",
         "This app checks what tools are already installed on your machine and helps you add the ones that are missing. In most cases, you can rely on these checks, but if you have custom installations (for example, you installed a tool in a non-default folder that is not in your path), the result might be incorrect."
@@ -24,7 +24,10 @@
         "win_deps-0.9.4",
         "linux_zephyr_deps-0.9.5",
         "darwin_deps-0.9.3",
+        "west-0.1.3",
         "nrf_connect_sdk-0.1.3",
+        "python_deps-0.1.3",
+        "arm_emb_gcc-0.1.3",
         "ses-0.1.1",
         "ses_config-0.1.2"
     ]

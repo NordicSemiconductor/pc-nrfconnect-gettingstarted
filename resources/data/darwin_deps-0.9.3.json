@@ -1,11 +1,11 @@
 {
     "type": "Recipe",
-    "title": "Install the toolchain",
+    "title": "Install the required tools",
     "tool": "darwin_deps-0.9.3",
     "platforms": { "platform": "darwin" },
     "description": [
-        "Complete the following steps to install the Zephyr requirements and the GNU ARM Embedded Toolchain on macOS.",
-        "For more information, see [Development Environment Setup on macOS](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/zephyr/getting_started/installation_mac.html) in Zephyr’s Getting Started Guide."
+        "Complete the following steps to install the Zephyr requirements on macOS.",
+        "For more information, see [Installing the nRF Connect SDK manually](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/gs_installing.html) in the nRF Connect SDK documentation."
     ],
     "checkables": [
         {
@@ -75,47 +75,6 @@
                     "type": "Checker",
                     "checkerType": "command",
                     "commands": "brew list ninja"
-                }
-            ]
-        },
-        {
-            "type": "Checkable",
-            "steps": [
-                {
-                    "type": "Step",
-                    "title": "Install GN build system",
-                    "description": [
-                        "_Note: If you are not interested in the [Connected Home over IP](https://www.connectedhomeip.com/) applications, omit this section._",
-                        "Install GN build system by completing following steps:",
-                        "1. Download and extract [GN](https://gn.googlesource.com/gn/) build system executable archive used by the Connected Home over IP to generate output files:",
-                        "&nbsp;",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "mkdir ${HOME}/gn && cd ${HOME}/gn",
-                                "wget -O gn.zip https://chrome-infra-packages.appspot.com/dl/gn/gn/mac-amd64/+/latest",
-                                "unzip gn.zip",
-                                "rm gn.zip"
-                            ]
-                        },
-                        "&nbsp;",
-                        "2. Add the GN location to the system PATH:",
-                        "&nbsp;",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "echo 'export PATH=${HOME}/gn:\"$PATH\"' >> ${HOME}/.bashrc",
-                                "source ${HOME}/.bashrc"
-                            ]
-                        }
-                    ]
-                }
-            ],
-            "checkers": [
-                {
-                    "type": "Checker",
-                    "checkerType": "command",
-                    "commands": "gn --version"
                 }
             ]
         },
@@ -249,19 +208,57 @@
             "steps": [
                 {
                     "type": "Step",
-                    "title": "Install cross compiler toolchain for ARM",
+                    "title": "Install the GN build system",
                     "description": [
-                        "Download and install version `8-2019-q3-update` of the GNU ARM Embedded toolchain to be able to cross-compile for ARM targets.",
-                        "Extract the downloaded file to your preferred folder, for example, `/opt/gnuarmemb`.",
-                        "- [Mac OS X 64-bit Tarball](https://developer.arm.com/-/media/Files/downloads/gnu-rm/8-2019q3/RC1.1/gcc-arm-none-eabi-8-2019-q3-update-mac.tar.bz2)"
+                        "_Note: _Note: The GN meta-build system is only required by the [Project Connected Home over IP](https://www.connectedhomeip.com/) applications. If you are not interested in these applications, omit this section._",
+                        "Install GN build system by completing following steps:",
+                        "1. Install wget:",
+                        "&nbsp;",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "brew install wget"
+                            ]
+                        },
+                        "&nbsp;",
+                        "2. Download and extract the [GN](https://gn.googlesource.com/gn/) build system executable archive used to generate output files:",
+                        "&nbsp;",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "mkdir ${HOME}/gn && cd ${HOME}/gn",
+                                "wget -O gn.zip https://chrome-infra-packages.appspot.com/dl/gn/gn/mac-amd64/+/latest",
+                                "unzip gn.zip",
+                                "rm gn.zip"
+                            ]
+                        },
+                        "&nbsp;",
+                        "3. Create the .bash_profile file if you do not have it already:",
+                        "&nbsp;",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "touch ${HOME}/.bash_profile"
+                            ]
+                        },
+                        "&nbsp;",
+                        "4. Add the GN tool to the system PATH by adding its location to the .bash_profile file:",
+                        "&nbsp;",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "echo 'export PATH=${HOME}/gn:\"$PATH\"' >> ${HOME}/.bash_profile",
+                                "source ${HOME}/.bash_profile"
+                            ]
+                        }
                     ]
                 }
             ],
             "checkers": [
                 {
                     "type": "Checker",
-                    "checkerType": "fileExists",
-                    "filenames": ["<GnuArmEmb_path:/opt/gnuarmemb>/bin/arm-none-eabi-gcc"]
+                    "checkerType": "command",
+                    "commands": "gn --version"
                 }
             ]
         }
