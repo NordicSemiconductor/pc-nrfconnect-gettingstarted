@@ -1,3 +1,7 @@
+## Version 1.1.1
+### Bugfixes
+- Fix main view scrolling issue #42
+
 ## Version 1.1.0
 ### Features
 - Align instructions with online documentation structure #39
