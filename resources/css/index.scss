@@ -27,12 +27,16 @@ div.core-main-view {
 }
 .course-view {
     position: absolute;
-    top: 15px;
+    top: 0;
+    padding-top: 15px;
     left: 15px;
-    right: 17px;
+    right: 0;
     bottom: 2px;
+    margin-right: 4px;
+    padding-right: 18px;
+    overflow-y: auto;
 
-    > div,  {
+    > div {
         height: 100%;
     }
     .tab-pane:not(.active) {
@@ -168,7 +172,6 @@ div.core-main-view {
 
 .recipe-view {
     flex: 1;
-    overflow-y: scroll;
     padding-right: 15px;
     padding-bottom: 15px;
     .marked {
