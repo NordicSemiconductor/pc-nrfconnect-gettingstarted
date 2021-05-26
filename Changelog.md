@@ -1,3 +1,7 @@
+## Version 1.1.2
+### Updates
+- Update west install instructions
+
 ## Version 1.1.1
 ### Bugfixes
 - Fix main view scrolling issue #42
