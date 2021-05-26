@@ -19,11 +19,12 @@
                     "platforms": [{ "platform": "win32"}, {"platform": "darwin" }],
                     "title": "Install west",
                     "description": [
-                        "Install west by entering the following command:",
+                        "Install west by entering the following commands:",
                         {
                             "type": "commands",
                             "description": [
-                                "pip3 install west"
+                                "pip3 install west",
+                                "export PATH=\"$PATH:/$HOME/.local/bin\""
                             ]
                         }
                     ]

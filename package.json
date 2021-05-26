@@ -1,6 +1,6 @@
 {
   "name": "pc-nrfconnect-gettingstarted",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "displayName": "Getting Started Assistant",
   "description": "Guide for setting up toolchains and getting the code for nRF Connect SDK",
   "repository": {
