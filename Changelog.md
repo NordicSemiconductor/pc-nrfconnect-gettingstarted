@@ -1,3 +1,7 @@
+## Version 1.1.3
+### Updates
+- Add deprecation warning for Mac
+
 ## Version 1.1.2
 ### Updates
 - Update west install instructions
