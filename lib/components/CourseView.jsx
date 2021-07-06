@@ -60,7 +60,7 @@ const recipeState = recipeCheckables => {
 };
 
 const btnClassName = 'checkable-button btn btn-primary btn-nordic';
-const deprecated = process.platform === 'win32';
+const deprecated = process.platform === 'win32' || process.platform === 'darwin';
 
 const DeprecationWarning = () => (deprecated ? (
     <Alert variant="warning" className="description-view mb-3">
