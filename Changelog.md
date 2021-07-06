@@ -1,3 +1,7 @@
+## Version 1.1.4
+### Updates
+- Mention that Toolchain Manager is supported on Mac explicitly
+
 ## Version 1.1.3
 ### Updates
 - Add deprecation warning for Mac

@@ -71,7 +71,7 @@ const DeprecationWarning = () => (deprecated ? (
             the <b>Toolchain Manager</b>.
         </p>
         <p className="mb-0">
-            The Toolchain Manager is available for Windows operating systems and installs
+            The Toolchain Manager is available for Windows and Mac operating systems and installs
             the full toolchain that you need to work with the nRF Connect SDK, including
             SEGGER Embedded Studio and the nRF Connect SDK source code.
         </p>
