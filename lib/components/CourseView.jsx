@@ -60,7 +60,7 @@ const recipeState = recipeCheckables => {
 };
 
 const btnClassName = 'checkable-button btn btn-primary btn-nordic';
-const deprecated = process.platform === 'win32';
+const deprecated = process.platform === 'win32' || process.platform === 'darwin';
 
 const DeprecationWarning = () => (deprecated ? (
     <Alert variant="warning" className="description-view mb-3">
@@ -71,7 +71,7 @@ const DeprecationWarning = () => (deprecated ? (
             the <b>Toolchain Manager</b>.
         </p>
         <p className="mb-0">
-            The Toolchain Manager is available for Windows operating systems and installs
+            The Toolchain Manager is available for Windows and Mac operating systems and installs
             the full toolchain that you need to work with the nRF Connect SDK, including
             SEGGER Embedded Studio and the nRF Connect SDK source code.
         </p>
