@@ -3,8 +3,8 @@
 - Mention that Toolchain Manager is supported on Mac explicitly.
 
 ## 1.1.3 - 2021-07-06
-### Changed
-- Add deprecation warning for Mac.
+### Added
+- Deprecation warning for Mac.
 
 ## 1.1.2 - 2021-05-26
 ### Changed
@@ -12,7 +12,7 @@
 
 ## 1.1.1 - 2021-04-13
 ### Fixed
-- Fix main view scrolling issue.
+- Main view scrolling issue.
 
 ## 1.1.0 - 2021-04-12
 ### Changed
@@ -20,8 +20,9 @@
 - Update instructions for GNU toolchain 9-2019-q4-major.
 
 ## 1.0.10 - 2021-01-25
+### Added
+- Installing section for Connected Home over IP dependencies.
 ### Changed
-- Add installing section for Connected Home over IP dependencies.
 - Updated project import step.
 
 ## 1.0.9 - 2020-10-21
@@ -30,10 +31,12 @@
 
 ## 1.0.8 - 2020-06-12
 ### Changed
-- Update text regarding SDK device family support.
-- Update NCS repository URL.
-- Add zephyr-export step.
-- Fix dtc install step for Linux.
+- Text regarding SDK device family support.
+- NCS repository URL.
+### Added
+- zephyr-export step.
+### Fixed
+- dtc install step for Linux.
 
 ## 1.0.7 - 2020-03-06
 ### Changed
@@ -45,11 +48,11 @@
 
 ## 1.0.5 - 2019-12-02
 ### Fixed
-- Fix gcc version check on windows.
+- gcc version check on windows.
 
 ## 1.0.4 - 2019-11-25
 ### Changed
-- Update instructions for GNU toolchain 8-2019q3.
+- Instructions for GNU toolchain 8-2019q3.
 
 ## 1.0.3 - 2019-11-14
 ### Changed
