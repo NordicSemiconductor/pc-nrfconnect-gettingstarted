@@ -12,11 +12,11 @@
 
 ## 1.1.1 - 2021-04-13
 ### Bugfixes
-- Fix main view scrolling issue #42
+- Fix main view scrolling issue
 
 ## 1.1.0 - 2021-04-12
 ### Features
-- Align instructions with online documentation structure #39
+- Align instructions with online documentation structure
 - Update instructions for GNU toolchain 9-2019-q4-major
 
 ## 1.0.10 - 2021-01-25
@@ -37,24 +37,24 @@
 
 ## 1.0.7 - 2020-03-06
 ### Updates
-- Deprecation warning for Windows + NCS 1.2 #22
+- Deprecation warning for Windows + NCS 1.2
 
 ## 1.0.6 - 2020-02-19
 ### Bugfixes
-- Update mcuboot path, fix pip call on macOS #20
+- Update mcuboot path, fix pip call on macOS
 
 ## 1.0.5 - 2019-12-02
 ### Bugfixes
-- Fix gcc version check on windows #17
+- Fix gcc version check on windows
 
 ## 1.0.4 - 2019-11-25
 ### Features
-- Update instructions for GNU toolchain 8-2019q3 #15
+- Update instructions for GNU toolchain 8-2019q3
 
 ## 1.0.3 - 2019-11-14
 ### Features
-- Clarify scope of #11
-- Link to user guide for nRF9160 and nRF5340 #13
+- Clarify scope of
+- Link to user guide for nRF9160 and nRF5340
 ### Bugfixes
-- Reference new [docs project](https://nordicsemiconductor.github.io/pc-nrfconnect-docs/) (replacing the [defunct wiki](https://github.com/NordicSemiconductor/pc-nrfconnect-core/wiki)) #7
-- Fix verification issues for `python3` and `cmake` #9 (Thanks, @ndrake)"
+- Reference new [docs project](https://nordicsemiconductor.github.io/pc-nrfconnect-docs/) (replacing the [defunct wiki](https://github.com/NordicSemiconductor/pc-nrfconnect-core/wiki))
+- Fix verification issues for `python3` and `cmake` (Thanks, @ndrake)
