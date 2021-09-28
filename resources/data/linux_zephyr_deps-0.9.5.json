@@ -89,21 +89,21 @@
                 {
                     "type": "Step",
                     "title": "Check CMake version",
-                    "description": "Enter `cmake --version` to check which version of CMake you have installed. The nRF Connect SDK requires CMake version 3.13.1 or later. "
+                    "description": "Enter `cmake --version` to check which version of CMake you have installed. The nRF Connect SDK requires CMake version 3.20.0 or later. "
                 },
                 {
                     "type": "Step",
                     "title": "Update CMake version",
                     "description": [
                         "If your CMake version is lower than required, check the backports for your distribution or install a current version of CMake manually.",
-                        "For example, to install version 3.13.1 directly from the CMake website into the `~/cmake` folder, enter the following commands:",
+                        "For example, to install version 3.20.5 directly from the CMake website into the `~/cmake` folder, enter the following commands:",
                         {
                             "type": "commands",
                             "description": [
                                 "mkdir -p ${HOME}/cmake && cd ${HOME}/cmake",
-                                "wget https://github.com/Kitware/CMake/releases/download/v3.13.1/cmake-3.13.1-Linux-x86_64.sh",
-                                "yes | sh cmake-3.13.1-Linux-x86_64.sh | cat",
-                                "echo \"export PATH=${PWD}/cmake-3.13.1-Linux-x86_64/bin:${PATH}\" >> ${HOME}/.zephyrrc",
+                                "wget https://github.com/Kitware/CMake/releases/download/v3.20.5/cmake-3.20.5-linux-x86_64.sh",
+                                "yes | sh cmake-3.20.5-linux-x86_64.sh | cat",
+                                "echo \"export PATH=${PWD}/cmake-3.20.5-linux-x86_64/bin:${PATH}\" >> ${HOME}/.zephyrrc",
                                 "cmake --version"
                             ]
                         }
