@@ -4,19 +4,19 @@
  * SPDX-License-Identifier: LicenseRef-Nordic-4-Clause
  */
 
-import { join } from 'path';
 import React from 'react';
 import { ipcRenderer } from 'electron';
+import { join } from 'path';
+
 import { loadCourseAction } from './lib/actions/courseActions';
-import appReducer from './lib/reducers';
 import CourseView from './lib/containers/courseView';
 import SidePanel from './lib/containers/sidePanel';
+import AbstractParser from './lib/parsers/AbstractParser';
+import appReducer from './lib/reducers';
+
 import './resources/css/index.scss';
 
-import AbstractParser from './lib/parsers/AbstractParser';
-
 /* eslint-disable react/prop-types */
-
 
 // nRF Connect boilerplate app
 // ===========================
@@ -30,7 +30,6 @@ import AbstractParser from './lib/parsers/AbstractParser';
 //
 // The API for apps is also documented with additional examples on:
 // https://nordicsemiconductor.github.io/pc-nrfconnect-docs/api_reference
-
 
 // App configuration
 // =================
@@ -55,7 +54,6 @@ export const config = {
     },
     deviceSetup: {},
 };
-
 
 // Lifecycle methods
 // =================
@@ -88,12 +86,15 @@ export function onReady(dispatch) {
     // IPC stuff to fetch the path of the currently running code (not
     // remote.app.getAppPath(), which is the path of the core code)
     ipcRenderer.once('app-details', (sender, details) => {
-        dispatch(loadCourseAction(join(details.path, 'resources/data/course-zephyr.json')));
+        dispatch(
+            loadCourseAction(
+                join(details.path, 'resources/data/course-zephyr.json')
+            )
+        );
     });
 
     ipcRenderer.send('get-app-details');
 }
-
 
 // Component decoration
 // ====================
@@ -121,8 +122,8 @@ export function decorateDeviceSelector() {
 export function decorateMainView(MainView) {
     return ({ course, checkables }) => (
         <MainView>
-            { !course && 'No course loaded' }
-            { course && (
+            {!course && 'No course loaded'}
+            {course && (
                 <CourseView
                     title={course.title}
                     description={course.description}
@@ -143,9 +144,7 @@ export function decorateMainView(MainView) {
  * @returns {Function} A new React component.
  */
 export function decorateNavBar(NavBar) {
-    return props => (
-        <NavBar {...props} />
-    );
+    return props => <NavBar {...props} />;
 }
 
 /**
@@ -157,7 +156,7 @@ export function decorateNavBar(NavBar) {
  * @returns {Function} A new React component.
  */
 export function decorateNavMenu() {
-    return ({ title }) => <h4>{ title }</h4>;
+    return ({ title }) => <h4>{title}</h4>;
 }
 
 /**
@@ -169,11 +168,8 @@ export function decorateNavMenu() {
  * @returns {Function} A new React component.
  */
 export function decorateSidePanel() {
-    return props => (
-        <SidePanel {...props} />
-    );
+    return props => <SidePanel {...props} />;
 }
-
 
 // Passing information from state to components
 // ============================================

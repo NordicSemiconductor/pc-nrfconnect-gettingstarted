@@ -5,11 +5,9 @@
  */
 
 import React from 'react';
-import {
-    string, node, array, oneOfType,
-} from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import { shell } from 'electron';
+import { array, node, oneOfType, string } from 'prop-types';
 
 const link = ({ href, children }) => (
     <a
@@ -19,7 +17,7 @@ const link = ({ href, children }) => (
             shell.openExternal(event.target.getAttribute('href'));
         }}
     >
-        { children }
+        {children}
     </a>
 );
 

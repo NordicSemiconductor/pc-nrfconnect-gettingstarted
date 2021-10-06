@@ -5,12 +5,12 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import PropTypes from 'prop-types';
 
-import DescriptionView from './DescriptionView';
 import { CheckableState } from '../actions/courseActions';
+import DescriptionView from './DescriptionView';
 
 const CheckableView = ({
     tool,
@@ -20,39 +20,40 @@ const CheckableView = ({
     check,
     install,
 }) => {
-    const manualButtonText = currentState === CheckableState.DONE
-        ? 'Mark not done'
-        : 'Mark done';
+    const manualButtonText =
+        currentState === CheckableState.DONE ? 'Mark not done' : 'Mark done';
 
     let checkableStateClassName = 'checkable-state';
-    checkableStateClassName += currentState === CheckableState.DONE ? ' marked' : '';
-    checkableStateClassName += currentState === CheckableState.NOT_DONE ? ' unmarked' : '';
-    checkableStateClassName += currentState === CheckableState.IN_PROGRESS ? ' in-progress' : '';
+    checkableStateClassName +=
+        currentState === CheckableState.DONE ? ' marked' : '';
+    checkableStateClassName +=
+        currentState === CheckableState.NOT_DONE ? ' unmarked' : '';
+    checkableStateClassName +=
+        currentState === CheckableState.IN_PROGRESS ? ' in-progress' : '';
 
     return (
         <div key={`${tool}-${data.id}`} className="checkable">
             <div className={checkableStateClassName} />
             <ul className="checkable-description">
-                {
-                    data.steps.filter(step => step.enabled)
-                        .map(({ id, description }) => (
-                            <DescriptionView
-                                className="description"
-                                key={id}
-                                description={description}
-                            />
-                        ))
-                }
+                {data.steps
+                    .filter(step => step.enabled)
+                    .map(({ id, description }) => (
+                        <DescriptionView
+                            className="description"
+                            key={id}
+                            description={description}
+                        />
+                    ))}
             </ul>
             <ButtonGroup className="checkable-button-group">
                 <Button
                     className="checkable-button btn btn-primary btn-nordic"
                     onClick={manualCheck}
                 >
-                    { manualButtonText }
+                    {manualButtonText}
                 </Button>
 
-                { !data.isManual && (
+                {!data.isManual && (
                     <Button
                         className="checkable-button btn btn-primary btn-nordic"
                         onClick={check}
@@ -61,7 +62,7 @@ const CheckableView = ({
                     </Button>
                 )}
 
-                { data.automation && (
+                {data.automation && (
                     <Button
                         className="checkable-button btn btn-primary btn-nordic"
                         onClick={install}
