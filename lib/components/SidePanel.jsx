@@ -5,8 +5,8 @@
  */
 
 import React from 'react';
-import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
+import { Group, SidePanel as SharedSidePanel } from 'pc-nrfconnect-shared';
 import PropTypes from 'prop-types';
 
 function getVariableKind(name) {
@@ -58,44 +58,40 @@ VariableAction.defaultProps = {
     kind: null,
 };
 
-const SidePanel = ({ variables, hidden, ...rest }) => (
-    <div className={`core-side-panel ${hidden ? 'hidden' : ''}`}>
-        <Card header="Variables">
-            <Card.Header>Variables</Card.Header>
-            <Card.Body style={{ fontSize: '14px' }}>
-                {Object.keys(variables)
-                    .map(name => ({
-                        name,
-                        value: variables[name],
-                        ...getVariableKind(name),
-                    }))
-                    .map(({ name, value, kind, icon }) => (
-                        <div
-                            key={name}
-                            className={`variable ${
-                                value !== undefined ? 'set' : ''
-                            }`}
-                        >
-                            <span className="variable-name">
-                                {icon && <span className={`mdi mdi-${icon}`} />}
-                                {name}
-                            </span>
-                            <VariableAction
-                                name={name}
-                                value={value}
-                                kind={kind}
-                                {...rest}
-                            />
-                        </div>
-                    ))}
-            </Card.Body>
-        </Card>
-    </div>
+const SidePanel = ({ variables, ...rest }) => (
+    <SharedSidePanel>
+        <Group heading="Variables">
+            {Object.keys(variables)
+                .map(name => ({
+                    name,
+                    value: variables[name],
+                    ...getVariableKind(name),
+                }))
+                .map(({ name, value, kind, icon }) => (
+                    <div
+                        key={name}
+                        className={`variable ${
+                            value !== undefined ? 'set' : ''
+                        }`}
+                    >
+                        <span className="variable-name">
+                            {icon && <span className={`mdi mdi-${icon}`} />}
+                            {name}
+                        </span>
+                        <VariableAction
+                            name={name}
+                            value={value}
+                            kind={kind}
+                            {...rest}
+                        />
+                    </div>
+                ))}
+        </Group>
+    </SharedSidePanel>
 );
 
 SidePanel.propTypes = {
     variables: PropTypes.shape({}).isRequired,
-    hidden: PropTypes.bool.isRequired,
 };
 
 export default SidePanel;

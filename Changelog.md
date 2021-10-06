@@ -1,3 +1,7 @@
+## Unreleased
+### Changed
+- Use new look & feel of nRF Connect for Desktop.
+
 ## 1.1.5 - 2021-09-28
 ### Changed
 - Bump required CMake version to 3.20.5 for Linux.
