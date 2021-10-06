@@ -10,7 +10,7 @@
   "author": "Nordic Semiconductor ASA",
   "license": "SEE LICENSE IN LICENSE",
   "engines": {
-    "nrfconnect": "^3.6.0"
+    "nrfconnect": "^3.8.0"
   },
   "main": "dist/bundle.js",
   "files": [
@@ -24,8 +24,8 @@
     "webpack": "nrfconnect-scripts build-dev",
     "build": "nrfconnect-scripts build-prod",
     "lint-init": "nrfconnect-scripts lint-init",
-    "lint": "nrfconnect-scripts lint lib",
-    "lintfix": "nrfconnect-scripts lint --fix lib",
+    "lint": "nrfconnect-scripts lint index.jsx lib",
+    "lintfix": "nrfconnect-scripts lint --fix index.jsx lib",
     "nordic-publish": "nrfconnect-scripts nordic-publish",
     "test": "nrfconnect-scripts test",
     "test-watch": "nrfconnect-scripts test --watch",
@@ -35,13 +35,20 @@
   },
   "devDependencies": {
     "linux-os-info": "^2.0.0",
-    "pc-nrfconnect-devdep": "git+https://github.com/NordicSemiconductor/pc-nrfconnect-devdep.git#semver:3.3.0",
-    "react-markdown": "^3.6.0"
+    "pc-nrfconnect-shared": "github:NordicSemiconductor/pc-nrfconnect-shared#v5.3.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-markdown": "^3.6.0",
+    "react-redux": "7.2.5"
   },
   "dependencies": {
     "electron-store": "^2.0.0"
   },
   "bundledDependencies": [
     "electron-store"
-  ]
+  ],
+  "eslintConfig": {
+    "extends": "./node_modules/pc-nrfconnect-shared/config/eslintrc.json"
+  },
+  "prettier": "./node_modules/pc-nrfconnect-shared/config/prettier.config.js"
 }
