@@ -1,31 +1,20 @@
+/*
+ * Copyright (c) 2021 Nordic Semiconductor ASA
+ *
+ * SPDX-License-Identifier: LicenseRef-Nordic-4-Clause
+ */
+
 // This file is imported by index.jsx, and may contain styles for the app.
 @import './colors';
 
-.core-main-layout > div:nth-child(1) > div:nth-child(1).core-main-view {
-    height: 100%;
-}
-
-.core-nav-bar h4 {
-    color: white;
-    margin-top: 20px;
-}
-
-div.core-main-view {
+.course-view {
     user-select: text;
     cursor: auto;
-    background-color: white;
-    padding: 0;
-    position: relative;
 
     a {
         cursor: pointer;
     }
-}
 
-.core-side-panel {
-    width: 300px;
-}
-.course-view {
     position: absolute;
     top: 0;
     padding-top: 15px;
