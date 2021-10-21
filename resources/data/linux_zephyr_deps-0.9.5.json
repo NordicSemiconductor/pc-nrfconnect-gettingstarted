@@ -63,6 +63,31 @@
             "steps": [
                 {
                     "type": "Step",
+                    "title": "Install libncurses5",
+                    "description": [
+                        "Install libncurses5 by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "sudo apt-get install libncurses5"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "dpkg -s libncurses5"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
                     "title": "Install CMake",
                     "description": [
                         "Install CMake by entering the following command:",
@@ -103,7 +128,7 @@
                                 "mkdir -p ${HOME}/cmake && cd ${HOME}/cmake",
                                 "wget https://github.com/Kitware/CMake/releases/download/v3.20.5/cmake-3.20.5-linux-x86_64.sh",
                                 "yes | sh cmake-3.20.5-linux-x86_64.sh | cat",
-                                "echo \"export PATH=${PWD}/cmake-3.20.5-linux-x86_64/bin:${PATH}\" >> ${HOME}/.zephyrrc",
+                                "echo \"export PATH=${PWD}/cmake-3.20.5-linux-x86_64/bin:${PATH}\" | tee -a ${HOME}/.zephyrrc ${HOME}/.bashrc",
                                 "cmake --version"
                             ]
                         }
