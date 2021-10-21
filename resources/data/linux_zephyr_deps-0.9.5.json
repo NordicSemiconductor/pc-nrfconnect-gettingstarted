@@ -63,6 +63,31 @@
             "steps": [
                 {
                     "type": "Step",
+                    "title": "Install libncurses5",
+                    "description": [
+                        "Install libncurses5 by entering the following command:",
+                        {
+                            "type": "commands",
+                            "description": [
+                                "sudo apt-get install libncurses5"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "checkers": [
+                {
+                    "type": "Checker",
+                    "checkerType": "command",
+                    "commands": "dpkg -s libncurses5"
+                }
+            ]
+        },
+        {
+            "type": "Checkable",
+            "steps": [
+                {
+                    "type": "Step",
                     "title": "Install CMake",
                     "description": [
                         "Install CMake by entering the following command:",
