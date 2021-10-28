@@ -64,56 +64,70 @@ const CourseView = ({ description, recipes, checkables, checkAll }) => (
                                 <span className="recipe-title">Overview</span>
                             </Nav.Link>
                         </Nav.Item>
-                        {recipes.map(({ title, tool }, index) => (
-                            <Nav.Item
-                                as="li"
-                                key={`${index + 1}`}
-                                className={`${recipeState(checkables[tool])}`}
-                            >
-                                <Nav.Link eventKey={index + 1}>
-                                    <i className="recipe-number">{index + 1}</i>
-                                    <span className="recipe-title">
-                                        {title}
-                                    </span>
-                                </Nav.Link>
-                            </Nav.Item>
-                        ))}
+                        {!deprecated &&
+                            recipes.map(({ title, tool }, index) => (
+                                <Nav.Item
+                                    as="li"
+                                    key={`${index + 1}`}
+                                    className={`${recipeState(
+                                        checkables[tool]
+                                    )}`}
+                                >
+                                    <Nav.Link eventKey={index + 1}>
+                                        <i className="recipe-number">
+                                            {index + 1}
+                                        </i>
+                                        <span className="recipe-title">
+                                            {title}
+                                        </span>
+                                    </Nav.Link>
+                                </Nav.Item>
+                            ))}
                     </Nav>
                 </Col>
                 <Col sm={9}>
                     <Tab.Content>
-                        {deprecated && <div className="deprecated-watermark" />}
                         <Tab.Pane eventKey={0} className="course-pane">
-                            <h3>Overview</h3>
-                            <DeprecationWarning />
-                            <DescriptionView description={description} />
+                            {deprecated ? (
+                                <DeprecationWarning />
+                            ) : (
+                                <>
+                                    <h3>Overview</h3>
+                                    <DescriptionView
+                                        description={description}
+                                    />
+                                </>
+                            )}
                         </Tab.Pane>
-                        {recipes.map((recipe, index) => (
-                            <Tab.Pane
-                                eventKey={index + 1}
-                                key={`${index + 1}`}
-                                className={`recipe-pane ${recipeState(
-                                    checkables[recipe.tool]
-                                )}`}
-                            >
-                                <div className="course-title">
-                                    <h3>{recipe.title}</h3>
-                                    {recipe.checkables.find(
-                                        ({ checkers }) => !!checkers
-                                    ) !== undefined && (
-                                        <ButtonGroup className="checkable-button-group">
-                                            <Button
-                                                className={btnClassName}
-                                                onClick={() => checkAll(recipe)}
-                                            >
-                                                Verify all
-                                            </Button>
-                                        </ButtonGroup>
-                                    )}
-                                </div>
-                                <RecipeView {...recipe} />
-                            </Tab.Pane>
-                        ))}
+                        {!deprecated &&
+                            recipes.map((recipe, index) => (
+                                <Tab.Pane
+                                    eventKey={index + 1}
+                                    key={`${index + 1}`}
+                                    className={`recipe-pane ${recipeState(
+                                        checkables[recipe.tool]
+                                    )}`}
+                                >
+                                    <div className="course-title">
+                                        <h3>{recipe.title}</h3>
+                                        {recipe.checkables.find(
+                                            ({ checkers }) => !!checkers
+                                        ) !== undefined && (
+                                            <ButtonGroup className="checkable-button-group">
+                                                <Button
+                                                    className={btnClassName}
+                                                    onClick={() =>
+                                                        checkAll(recipe)
+                                                    }
+                                                >
+                                                    Verify all
+                                                </Button>
+                                            </ButtonGroup>
+                                        )}
+                                    </div>
+                                    <RecipeView {...recipe} />
+                                </Tab.Pane>
+                            ))}
                     </Tab.Content>
                 </Col>
             </Row>
