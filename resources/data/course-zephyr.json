@@ -1,11 +1,6 @@
 {
     "type": "Course",
     "title": "nRF Connect SDK",
-    "platforms": [
-        { "platform": "linux" },
-        { "platform": "win32" },
-        { "platform": "darwin" }
-    ],
     "description": [
         "The nRF Connect SDK contains libraries and application examples for Nordic Semiconductor devices. It uses the Zephyr Project as real-time operating system.",
         "The nRF Connect SDK supports nRF52, nRF53, and nRF91 Series devices. See our [Software development Getting Started Guides](https://infocenter.nordicsemi.com/topic/struct_nrf5gs/struct/nrf5gs_sw_dev.html) for more information.",
@@ -21,9 +16,7 @@
         "This app checks what tools are already installed on your machine and helps you add the ones that are missing. In most cases, you can rely on these checks, but if you have custom installations (for example, you installed a tool in a non-default folder that is not in your path), the result might be incorrect."
     ],
     "recipes": [
-        "win_deps-0.9.4",
         "linux_zephyr_deps-0.9.5",
-        "darwin_deps-0.9.3",
         "west-0.1.3",
         "nrf_connect_sdk-0.1.3",
         "python_deps-0.1.3",

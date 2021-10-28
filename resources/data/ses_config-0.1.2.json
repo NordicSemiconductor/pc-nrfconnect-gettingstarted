@@ -10,30 +10,12 @@
                 {
                     "type": "Step",
                     "title": "Settings",
-                    "platforms": [{ "platform": "linux" }, { "platform": "win32" }],
                     "description": [
                         "Navigate to the folder where you extracted SEGGER Embedded Studio. In the ``bin`` subfolder, run ``emStudio``.",
                         "Click **Tools > Options** and select the **nRF Connect** tab.",
                         "To load and build a project in SES, you must specify the following information:",
                         "- **Zephyr Base** - the location of your cloned Zephyr repository (the full path to ``ncs/zephyr``)",
                         "- **GNU ARM Embedded Toolchain Directory** - the location of your GNU ARM Embedded Toolchain installation (for example, ``c:\\gnuarmemb``)"
-                    ]
-                },
-                {
-                    "type": "Step",
-                    "title": "Settings",
-                    "platforms": [{ "platform": "darwin" }],
-                    "description": [
-                        "Navigate to the folder where you extracted SEGGER Embedded Studio. Double-click `SEGGER Embedded Studio for ARM.app`.",
-                        "Click **Tools > Options** and select the **nRF Connect** tab.",
-                        "To load and build a project in SES, you must specify the following information:",
-                        "- **Additional CMake Options** - ``-D WEST=<path to west executable>``, for example ``-D WEST=~/Library/Python/3.7/bin/west``",
-                        "- **Zephyr Base** - the location of your cloned Zephyr repository (the full path to ``ncs/zephyr``)",
-                        "- **GNU ARM Embedded Toolchain Directory** - the location of your GNU ARM Embedded Toolchain installation (for example, ``/opt/gnuarmemb``)",
-                        "- **CMake** - the path is ``/usr/local/bin/cmake`` by default",
-                        "- **DTC** - the path is ``/usr/local/bin/dtc`` by default",
-                        "- **Ninja** - the path is ``/usr/local/bin/ninja`` by default",
-                        "- **Python** - the path is ``/usr/local/bin/python3`` by default"
                     ]
                 }
             ]
