@@ -37,9 +37,9 @@ const DeprecationWarning = () =>
         <Alert variant="warning" className="description-view mb-3">
             <Alert.Heading className="mb-3">Deprecation warning</Alert.Heading>
             <p>
-                For nRF Connect SDK v1.2.0 (and later), this app has been
-                replaced by the Toolchain Manager app. Go to the app overview to
-                install and open the <b>Toolchain Manager</b>.
+                This app has been replaced by the Toolchain Manager app. Go to
+                the app overview to install and open the{' '}
+                <b>Toolchain Manager</b>.
             </p>
             <p className="mb-0">
                 The Toolchain Manager is available for Windows and Mac operating
