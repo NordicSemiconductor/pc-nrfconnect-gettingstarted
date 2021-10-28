@@ -35,15 +35,13 @@ const CheckableView = ({
         <div key={`${tool}-${data.id}`} className="checkable">
             <div className={checkableStateClassName} />
             <ul className="checkable-description">
-                {data.steps
-                    .filter(step => step.enabled)
-                    .map(({ id, description }) => (
-                        <DescriptionView
-                            className="description"
-                            key={id}
-                            description={description}
-                        />
-                    ))}
+                {data.steps.map(({ id, description }) => (
+                    <DescriptionView
+                        className="description"
+                        key={id}
+                        description={description}
+                    />
+                ))}
             </ul>
             <ButtonGroup className="checkable-button-group">
                 <Button
