@@ -1,6 +1,7 @@
 ## Unreleased
 ### Changed
 - Use new look & feel of nRF Connect for Desktop.
+- Removed windows and mac support. 
 
 ## 1.1.5 - 2021-09-28
 ### Changed
