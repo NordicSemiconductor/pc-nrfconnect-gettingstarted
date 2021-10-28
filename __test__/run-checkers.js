@@ -13,8 +13,6 @@ Course.loadFromFile(filename).then(course => {
 
     for (const recipe of course.recipes) {
 
-        if (recipe.enabled) {
-
             console.log('Recipe: ', recipe.tool, recipe.title);
 
             for (const checkable of recipe.checkables) {
@@ -30,8 +28,6 @@ Course.loadFromFile(filename).then(course => {
 
                 }
             }
-
-        }
 
     }
 
