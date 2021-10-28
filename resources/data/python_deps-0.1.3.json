@@ -2,11 +2,6 @@
     "type": "Recipe",
     "title": "Install additional Python dependencies",
     "tool": "python_deps-0.1.3",
-    "platforms": [
-        { "platform": "win32" },
-        { "platform": "linux" },
-        { "platform": "darwin" }
-    ],
     "description": [
         "The nRF Connect SDK Zephyr repository contains a list of required Python modules."
     ],
@@ -16,24 +11,6 @@
             "steps": [
                 {
                     "type": "Step",
-                    "platforms": { "platform": "win32" },
-                    "title": "Install Python modules",
-                    "description": [
-                        " Install these modules by entering the following command:",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "cd <sourcecode_root>\\ncs",
-                                "pip3 install -r zephyr\\scripts\\requirements.txt",
-                                "pip3 install -r nrf\\scripts\\requirements.txt",
-                                "pip3 install -r bootloader\\mcuboot\\scripts\\requirements.txt"
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "Step",
-                    "platforms": { "platform": "linux" },
                     "title": "Install Python modules",
                     "description": [
                         "Install these modules by entering the following command:",
@@ -44,23 +21,6 @@
                                 "pip3 install --user -r zephyr/scripts/requirements.txt",
                                 "pip3 install --user -r nrf/scripts/requirements.txt",
                                 "pip3 install --user -r bootloader/mcuboot/scripts/requirements.txt"
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "type": "Step",
-                    "platforms": { "platform": "darwin" },
-                    "title": "Install Python modules",
-                    "description": [
-                        "Install these modules by entering the following command:",
-                        {
-                            "type": "commands",
-                            "description": [
-                                "cd <sourcecode_root>/ncs",
-                                "pip3 install -r zephyr/scripts/requirements.txt",
-                                "pip3 install -r nrf/scripts/requirements.txt",
-                                "pip3 install -r bootloader/mcuboot/scripts/requirements.txt"
                             ]
                         }
                     ]

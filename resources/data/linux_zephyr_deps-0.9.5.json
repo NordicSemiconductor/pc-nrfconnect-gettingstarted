@@ -2,7 +2,6 @@
     "type": "Recipe",
     "title": "Install the required tools",
     "tool": "linux_zephyr_deps-0.9.5",
-    "platforms": { "platform": "linux" },
     "description": [
         "Complete the following steps to install the Zephyr requirements on Linux.",
         "For more information, see [Installing the nRF Connect SDK manually](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/gs_installing.html) in the nRF Connect SDK documentation."
@@ -18,9 +17,7 @@
                         "Install Git by entering the following command:",
                         {
                             "type": "commands",
-                            "description": [
-                                "sudo apt-get install git"
-                            ]
+                            "description": ["sudo apt-get install git"]
                         }
                     ]
                 }
@@ -43,9 +40,7 @@
                         "Install wget by entering the following command:",
                         {
                             "type": "commands",
-                            "description": [
-                                "sudo apt-get install wget"
-                            ]
+                            "description": ["sudo apt-get install wget"]
                         }
                     ]
                 }
@@ -68,9 +63,7 @@
                         "Install libncurses5 by entering the following command:",
                         {
                             "type": "commands",
-                            "description": [
-                                "sudo apt-get install libncurses5"
-                            ]
+                            "description": ["sudo apt-get install libncurses5"]
                         }
                     ]
                 }
@@ -93,9 +86,7 @@
                         "Install CMake by entering the following command:",
                         {
                             "type": "commands",
-                            "description": [
-                                "sudo apt-get install cmake"
-                            ]
+                            "description": ["sudo apt-get install cmake"]
                         }
                     ]
                 }
@@ -146,9 +137,7 @@
                         "Install Ninja by entering the following command:",
                         {
                             "type": "commands",
-                            "description": [
-                                "sudo apt-get install ninja-build"
-                            ]
+                            "description": ["sudo apt-get install ninja-build"]
                         }
                     ]
                 }
@@ -171,9 +160,7 @@
                         "Install GPerf by entering the following command:",
                         {
                             "type": "commands",
-                            "description": [
-                                "sudo apt-get install gperf"
-                            ]
+                            "description": ["sudo apt-get install gperf"]
                         }
                     ]
                 }
@@ -196,9 +183,7 @@
                         "Install CCache by entering the following command:",
                         {
                             "type": "commands",
-                            "description": [
-                                "sudo apt-get install ccache"
-                            ]
+                            "description": ["sudo apt-get install ccache"]
                         }
                     ]
                 }
@@ -221,9 +206,7 @@
                         "Install dfu-util by entering the following command:",
                         {
                             "type": "commands",
-                            "description": [
-                                "sudo apt-get install dfu-util"
-                            ]
+                            "description": ["sudo apt-get install dfu-util"]
                         }
                     ]
                 }
@@ -271,9 +254,7 @@
                         "Install python3-pip by entering the following command:",
                         {
                             "type": "commands",
-                            "description": [
-                                "sudo apt-get install python3-pip"
-                            ]
+                            "description": ["sudo apt-get install python3-pip"]
                         }
                     ]
                 }
@@ -346,9 +327,7 @@
                         "Install xz-utils by entering the following command:",
                         {
                             "type": "commands",
-                            "description": [
-                                "sudo apt-get install xz-utils"
-                            ]
+                            "description": ["sudo apt-get install xz-utils"]
                         }
                     ]
                 }
@@ -371,9 +350,7 @@
                         "Install file by entering the following command:",
                         {
                             "type": "commands",
-                            "description": [
-                                "sudo apt-get install file"
-                            ]
+                            "description": ["sudo apt-get install file"]
                         }
                     ]
                 }
@@ -396,9 +373,7 @@
                         "Install Make by entering the following command:",
                         {
                             "type": "commands",
-                            "description": [
-                                "sudo apt-get install make"
-                            ]
+                            "description": ["sudo apt-get install make"]
                         }
                     ]
                 }
@@ -421,9 +396,7 @@
                         "Install gcc-multilib by entering the following command:",
                         {
                             "type": "commands",
-                            "description": [
-                                "sudo apt-get install gcc-multilib"
-                            ]
+                            "description": ["sudo apt-get install gcc-multilib"]
                         }
                     ]
                 }
