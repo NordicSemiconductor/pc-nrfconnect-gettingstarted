@@ -5,7 +5,7 @@
 
 *nRF Connect Getting Started Assistant* is a tool to guide through the process of setting up the nRF Connect SDK toolchain.
 
-![screenshot](resources/screenshot.gif)
+![screenshot](resources/screenshot.png)
 
 ## Installation
 
