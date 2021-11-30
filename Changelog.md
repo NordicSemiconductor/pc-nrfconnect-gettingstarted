@@ -1,3 +1,7 @@
+## 2.0.1 - 2021-11-30
+### Fixed
+- `Restore Defaults...` option not removing stored values.
+
 ## 2.0.0 - 2021-11-01
 ### Changed
 - Use new look & feel of nRF Connect for Desktop.
