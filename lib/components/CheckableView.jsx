@@ -76,11 +76,30 @@ const CheckableView = ({
 CheckableView.propTypes = {
     tool: PropTypes.string.isRequired,
     data: PropTypes.shape({
-        automation: PropTypes.any,
+        automation: PropTypes.arrayOf(
+            PropTypes.shape({
+                type: PropTypes.string.isRequired,
+                commands: PropTypes.arrayOf(PropTypes.string).isRequired,
+            })
+        ),
         id: PropTypes.number.isRequired,
         isManual: PropTypes.bool.isRequired,
         runCheckers: PropTypes.func.isRequired,
-        steps: PropTypes.array.isRequired,
+        steps: PropTypes.arrayOf(
+            PropTypes.shape({
+                type: PropTypes.string.isRequired,
+                title: PropTypes.string.isRequired,
+                description: [
+                    PropTypes.string.isRequired,
+                    PropTypes.shape({
+                        type: PropTypes.string.isRequired,
+                        description: PropTypes.arrayOf(
+                            PropTypes.string.isRequired
+                        ),
+                    }),
+                ],
+            })
+        ).isRequired,
     }).isRequired,
     manualCheck: PropTypes.func.isRequired,
     currentState: PropTypes.string.isRequired,

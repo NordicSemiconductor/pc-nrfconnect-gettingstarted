@@ -31,8 +31,28 @@ RecipeView.propTypes = {
     description: PropTypes.string.isRequired,
     checkables: PropTypes.arrayOf(
         PropTypes.shape({
-            checkers: PropTypes.array,
-            steps: PropTypes.array.isRequired,
+            checkers: PropTypes.arrayOf(
+                PropTypes.shape({
+                    type: PropTypes.string.isRequired,
+                    checkerType: PropTypes.string.isRequired,
+                    commands: PropTypes.string,
+                })
+            ),
+            steps: PropTypes.arrayOf(
+                PropTypes.shape({
+                    type: PropTypes.string.isRequired,
+                    title: PropTypes.string.isRequired,
+                    description: [
+                        PropTypes.string.isRequired,
+                        PropTypes.shape({
+                            type: PropTypes.string.isRequired,
+                            description: PropTypes.arrayOf(
+                                PropTypes.string.isRequired
+                            ),
+                        }),
+                    ],
+                })
+            ).isRequired,
         })
     ).isRequired,
 };
