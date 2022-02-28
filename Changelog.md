@@ -1,3 +1,6 @@
+## 2.0.2 - 2022-02-28
+- Stop using legacy api for internal functionality.
+
 ## 2.0.1 - 2021-11-30
 ### Fixed
 - `Restore Defaults...` option not removing stored values.
