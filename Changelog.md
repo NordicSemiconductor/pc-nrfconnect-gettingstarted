@@ -1,5 +1,5 @@
 ## 2.0.2 - 2022-02-28
-- Stop using legacy api for internal functionality.
+- Made compatible with next version of nRF Connect for Desktop.
 
 ## 2.0.1 - 2021-11-30
 ### Fixed
