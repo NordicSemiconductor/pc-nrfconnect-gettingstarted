@@ -20,21 +20,19 @@
         "resources/data/"
     ],
     "scripts": {
-        "dev": "nrfconnect-scripts build-watch",
-        "webpack": "nrfconnect-scripts build-dev",
-        "build": "nrfconnect-scripts build-prod",
-        "lint": "nrfconnect-scripts lint index.jsx lib",
-        "lintfix": "nrfconnect-scripts lint --fix index.jsx lib",
-        "nordic-publish": "nrfconnect-scripts nordic-publish",
-        "test": "nrfconnect-scripts test",
-        "test-watch": "nrfconnect-scripts test --watch",
-        "clean": "npm run clean-dist && npm run clean-modules",
-        "clean-dist": "rimraf dist",
-        "clean-modules": "rimraf \"node_modules/!(rimraf|.bin)\""
+        "dev": "webpack watch --mode development",
+        "webpack": "webpack build --mode development",
+        "build": "webpack build",
+        "test": "jest",
+        "check": "run-p --silent --continue-on-error --print-label check:*",
+        "check:lint": "eslint --color .",
+        "check:types": "check-for-typescript tsc --noEmit --pretty",
+        "check:license": "nrfconnect-license check",
+        "nordic-publish": "nordic-publish"
     },
     "devDependencies": {
         "linux-os-info": "^2.0.0",
-        "pc-nrfconnect-shared": "github:NordicSemiconductor/pc-nrfconnect-shared#v5.17.0",
+        "pc-nrfconnect-shared": "github:NordicSemiconductor/pc-nrfconnect-shared#v6.0.5",
         "react": "17.0.2",
         "react-dom": "17.0.2",
         "react-markdown": "^3.6.0",
@@ -47,7 +45,7 @@
         "electron-store"
     ],
     "eslintConfig": {
-        "extends": "./node_modules/pc-nrfconnect-shared/config/eslintrc.json"
+        "extends": "./node_modules/pc-nrfconnect-shared/config/eslintrc"
     },
     "prettier": "./node_modules/pc-nrfconnect-shared/config/prettier.config.js"
 }
