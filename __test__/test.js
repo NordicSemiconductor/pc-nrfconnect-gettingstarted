@@ -5,6 +5,7 @@
  */
 
 import path from 'path';
+
 import Course from '../lib/parsers/Course';
 
 jest.mock('@electron/remote', () => ({
