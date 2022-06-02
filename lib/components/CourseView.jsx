@@ -43,7 +43,9 @@ const DeprecationWarning = () => (
     </Alert>
 );
 const CourseView = ({ description, recipes, checkables, checkAll }) => (
-    <DeprecationWarning />
+    <div className="deprecation-wrapper">
+        <DeprecationWarning />
+    </div>
 );
 
 CourseView.propTypes = {
