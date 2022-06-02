@@ -36,9 +36,11 @@ const DeprecationWarning = () => (
             app overview to install and open the <b>Toolchain Manager</b>.
         </p>
         <p className="mb-0">
-            The Toolchain Manager is available for Windws, Mac and Ubuntu
-            operating systems and installs the full toolchain that you need to
-            work with the nRF Connect SDK.
+            The Toolchain Manager is available for Windows, Mac and Ubuntu
+            operating systems and enables installs of the full toolchain that
+            you need in order to work with the nRF Connect SDK. If you need to
+            do a manual toolchain installation, please refer to the nRF Connect
+            SDK documentation.
         </p>
     </Alert>
 );
