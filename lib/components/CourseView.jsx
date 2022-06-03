@@ -6,27 +6,7 @@
 
 import React from 'react';
 import Alert from 'react-bootstrap/Alert';
-import Button from 'react-bootstrap/Button';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Col from 'react-bootstrap/Col';
-import Nav from 'react-bootstrap/Nav';
-import Row from 'react-bootstrap/Row';
-import Tab from 'react-bootstrap/Tab';
 import PropTypes from 'prop-types';
-
-import { CheckableState } from '../actions/courseActions';
-import DescriptionView from './DescriptionView';
-import RecipeView from './RecipeView';
-
-const recipeState = recipeCheckables => {
-    if (recipeCheckables.every(item => item === CheckableState.DONE)) {
-        return 'marked';
-    }
-    if (recipeCheckables.every(item => item === CheckableState.NOT_DONE)) {
-        return 'unmarked';
-    }
-    return 'in-progress';
-};
 
 const DeprecationWarning = () => (
     <Alert variant="warning" className="description-view mb-3">
@@ -39,8 +19,14 @@ const DeprecationWarning = () => (
             The Toolchain Manager is available for Windows, Mac and Ubuntu
             operating systems and enables installs of the full toolchain that
             you need in order to work with the nRF Connect SDK. If you need to
-            do a manual toolchain installation, please refer to the nRF Connect
-            SDK documentation.
+            do a manual toolchain installation, please refer to the{' '}
+            <a
+                href="https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/gs_installing.html"
+                target="_blank"
+            >
+                nRF Connect SDK documentation
+            </a>
+            .
         </p>
     </Alert>
 );

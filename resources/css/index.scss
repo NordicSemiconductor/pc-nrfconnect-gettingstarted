@@ -310,4 +310,10 @@ pre {
 .alert.alert-warning {
     border-radius: 0;
     z-index: 100;
+
+    a {
+        color: #856404;
+        text-decoration: underline;
+    }
+
 }
