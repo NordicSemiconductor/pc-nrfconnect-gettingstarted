@@ -8,7 +8,6 @@ import React from 'react';
 import { App } from 'pc-nrfconnect-shared';
 
 import Main from './lib/components/Main';
-import SidePanel from './lib/containers/sidePanel';
 import appReducer from './lib/reducers';
 
 import './resources/css/index.scss';
@@ -16,7 +15,8 @@ import './resources/css/index.scss';
 export default () => (
     <App
         appReducer={appReducer}
-        sidePanel={<SidePanel />}
         panes={[{ name: 'nRF Connect SDK', Main }]}
+        sidePanel={null}
+        showLogByDefault={false}
     />
 );

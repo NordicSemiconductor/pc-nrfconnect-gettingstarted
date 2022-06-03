@@ -184,6 +184,13 @@
     }
 }
 
+.deprecation-wrapper {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
 .checkable {
     display: flex;
     flex-direction: row;
@@ -303,4 +310,10 @@ pre {
 .alert.alert-warning {
     border-radius: 0;
     z-index: 100;
+
+    a {
+        color: #856404;
+        text-decoration: underline;
+    }
+
 }
