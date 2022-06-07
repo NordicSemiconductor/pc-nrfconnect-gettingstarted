@@ -1,3 +1,10 @@
+## 2.1.0 - 2022-06-03
+
+### Removed
+
+-   Support for Ubuntu. Toolchain Manager should be used by all supported
+    platforms.
+
 ## 2.0.2 - 2022-02-28
 
 -   Made compatible with next version of nRF Connect for Desktop.

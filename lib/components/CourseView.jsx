@@ -23,6 +23,7 @@ const DeprecationWarning = () => (
             <a
                 href="https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/gs_installing.html"
                 target="_blank"
+                rel="noreferrer"
             >
                 nRF Connect SDK documentation
             </a>
