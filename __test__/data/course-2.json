@@ -1,7 +1,0 @@
-{
-    "type": "Course",
-    "title": "A course with one fake recipe",
-    "platforms": "all",
-    "description": "This is just a stub for testing, but includes one recipe",
-    "recipes": ["snake-1.2.3"]
-}

@@ -17,8 +17,7 @@
     "files": [
         "dist/",
         "icon.png",
-        "LICENSE",
-        "resources/data/"
+        "LICENSE"
     ],
     "scripts": {
         "dev": "webpack watch --mode development",
@@ -32,11 +31,9 @@
         "nordic-publish": "nordic-publish"
     },
     "devDependencies": {
-        "linux-os-info": "^2.0.0",
         "pc-nrfconnect-shared": "https://github.com/NordicSemiconductor/pc-nrfconnect-shared#v6.0.5",
         "react": "17.0.2",
         "react-dom": "17.0.2",
-        "react-markdown": "^3.6.0",
         "react-redux": "7.2.5"
     },
     "dependencies": {
