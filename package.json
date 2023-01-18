@@ -1,6 +1,6 @@
 {
     "name": "pc-nrfconnect-gettingstarted",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "displayName": "Getting Started Assistant",
     "description": "Deprecated. Please use Toolchain Manager.",
     "homepage": "https://github.com/NordicSemiconductor/pc-nrfconnect-gettingstarted",
@@ -11,7 +11,7 @@
     "author": "Nordic Semiconductor ASA",
     "license": "SEE LICENSE IN LICENSE",
     "engines": {
-        "nrfconnect": ">3.11.1"
+        "nrfconnect": ">=4.0.0"
     },
     "main": "dist/bundle.js",
     "files": [

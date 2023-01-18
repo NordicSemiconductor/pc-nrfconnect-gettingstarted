@@ -1,3 +1,9 @@
+## 2.1.1 - Unreleased
+
+### Changed
+
+-   Support nRF Connect for Desktop 4.0.0.
+
 ## 2.1.0 - 2022-06-03
 
 ### Removed
